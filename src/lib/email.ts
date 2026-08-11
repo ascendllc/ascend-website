@@ -17,6 +17,19 @@ export interface CapturedLead {
 	org: string;
 }
 
+export interface IntakeField {
+	label: string;
+	value: string;
+}
+
+function getResend() {
+	const apiKey = process.env.RESEND_API_KEY;
+	if (!apiKey) {
+		throw new Error("RESEND_API_KEY is not set");
+	}
+	return new Resend(apiKey);
+}
+
 function escapeHtml(value: string) {
 	return value
 		.replace(/&/g, "&amp;")
@@ -26,11 +39,7 @@ function escapeHtml(value: string) {
 }
 
 export async function sendLeadEmail(lead: CapturedLead, transcript: ChatMessage[]) {
-	const apiKey = process.env.RESEND_API_KEY;
-	if (!apiKey) {
-		throw new Error("RESEND_API_KEY is not set");
-	}
-	const resend = new Resend(apiKey);
+	const resend = getResend();
 
 	const transcriptHtml = transcript
 		.map(
@@ -52,6 +61,35 @@ export async function sendLeadEmail(lead: CapturedLead, transcript: ChatMessage[
 			<hr />
 			<h3>Conversation</h3>
 			${transcriptHtml}
+		`,
+	});
+}
+
+export async function sendIntakeEmail(fields: IntakeField[]) {
+	const resend = getResend();
+
+	const nameField = fields.find((f) => f.label === "Full name");
+	const orgField = fields.find((f) => f.label === "Organization or business name");
+	const emailField = fields.find((f) => f.label === "Email address");
+
+	const rowsHtml = fields
+		.filter((f) => f.value.trim().length > 0)
+		.map(
+			(f) =>
+				`<p style="margin:0 0 14px;"><strong>${escapeHtml(f.label)}</strong><br />${escapeHtml(f.value).replace(/\n/g, "<br />")}</p>`
+		)
+		.join("");
+
+	const subjectWho = [nameField?.value, orgField?.value].filter(Boolean).join(" — ");
+
+	await resend.emails.send({
+		from: `BrandRise Intake <intake@${SEND_DOMAIN}>`,
+		to: site.email,
+		replyTo: emailField?.value || undefined,
+		subject: `New BrandRise intake${subjectWho ? `: ${subjectWho}` : ""}`,
+		html: `
+			<h2>New BrandRise™ pre-call intake</h2>
+			${rowsHtml}
 		`,
 	});
 }

@@ -172,7 +172,9 @@ const sections = [
 			</div>
 		</div>
 
-		<form class="mx-auto max-w-2xl space-y-8 px-6 py-12">
+		<form id="intake-form" class="mx-auto max-w-2xl space-y-8 px-6 py-12">
+			<!-- Honeypot: hidden from real visitors, bots that fill every field trip it. -->
+			<input type="text" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
 			{
 				sections.map((section) => (
 					<div class="space-y-6 rounded-sm border border-gray-200 bg-white p-7 shadow-sm md:p-9">
@@ -184,7 +186,7 @@ const sections = [
 							</div>
 						</div>
 						{section.fields.map((field) => (
-							<div>
+							<div class="intake-field" data-label={field.label}>
 								<label class="mb-1.5 block text-sm font-semibold text-primary">
 									{field.label}
 									{field.required && <span class="ml-1 text-accent">*</span>}
@@ -225,22 +227,83 @@ const sections = [
 			}
 
 			<div class="rounded-sm border border-gray-200 bg-white p-7 text-center shadow-sm md:p-9">
-				<h2 class="mb-2 text-lg font-semibold text-primary">Ready to send?</h2>
-				<p class="mb-6 text-sm leading-relaxed text-gray-500">
-					Clicking the button below sends your answers to Ascend. We'll review everything before your call.
-				</p>
-				<button
-					type="button"
-					title="This intake form isn't wired up to send yet — schedule your call directly instead."
-					class="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-accent px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl sm:w-auto"
-				>
-					Send My Intake
-				</button>
-				<p class="mt-6 text-xs text-gray-400">Your answers go directly to Ascend via email — no third-party services, no databases.</p>
-				<p class="mt-1 text-xs text-gray-400">
-					Questions? Email <a href={`mailto:${site.email}`} class="text-accent underline">{site.email}</a>
-				</p>
+				<div id="intake-idle">
+					<h2 class="mb-2 text-lg font-semibold text-primary">Ready to send?</h2>
+					<p class="mb-6 text-sm leading-relaxed text-gray-500">
+						Clicking the button below sends your answers to Ascend. We'll review everything before your call.
+					</p>
+					<button
+						type="submit"
+						id="intake-submit"
+						class="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-accent px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
+					>
+						Send My Intake
+					</button>
+					<p id="intake-error" class="mt-4 hidden text-sm font-medium text-red-600"></p>
+					<p class="mt-6 text-xs text-gray-400">Your answers go directly to Ascend via email — no third-party services, no databases.</p>
+					<p class="mt-1 text-xs text-gray-400">
+						Questions? Email <a href={`mailto:${site.email}`} class="text-accent underline">{site.email}</a>
+					</p>
+				</div>
+				<div id="intake-success" class="hidden">
+					<h2 class="mb-2 text-lg font-semibold text-primary">Thanks — we've got it.</h2>
+					<p class="text-sm leading-relaxed text-gray-500">Your intake was sent to Ascend. We'll review it before your call.</p>
+				</div>
 			</div>
 		</form>
+
+		<script>
+			const form = document.getElementById("intake-form") as HTMLFormElement;
+			const submitBtn = document.getElementById("intake-submit") as HTMLButtonElement;
+			const errorEl = document.getElementById("intake-error") as HTMLParagraphElement;
+			const idleEl = document.getElementById("intake-idle") as HTMLDivElement;
+			const successEl = document.getElementById("intake-success") as HTMLDivElement;
+
+			form?.addEventListener("submit", async (e) => {
+				e.preventDefault();
+				if (!form.reportValidity()) return;
+
+				errorEl.classList.add("hidden");
+				submitBtn.disabled = true;
+				submitBtn.textContent = "Sending...";
+
+				const fields: { label: string; value: string }[] = [];
+				form.querySelectorAll<HTMLElement>(".intake-field").forEach((wrapper) => {
+					const label = wrapper.dataset.label ?? "";
+					const checkboxes = wrapper.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+					if (checkboxes.length) {
+						const checked = Array.from(checkboxes)
+							.filter((c) => c.checked)
+							.map((c) => c.value);
+						fields.push({ label, value: checked.join(", ") });
+						return;
+					}
+					const input = wrapper.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>("input, textarea, select");
+					if (input) fields.push({ label, value: input.value });
+				});
+
+				const website = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value ?? "";
+
+				try {
+					const res = await fetch("/api/brandrise-intake", {
+						method: "POST",
+						headers: { "Content-Type": "application/json" },
+						body: JSON.stringify({ fields, website }),
+					});
+					if (!res.ok) {
+						const data = await res.json().catch(() => ({}));
+						throw new Error(data.error || "Something went wrong, please try again.");
+					}
+					idleEl.classList.add("hidden");
+					successEl.classList.remove("hidden");
+					window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
+				} catch (err) {
+					errorEl.textContent = err instanceof Error ? err.message : "Something went wrong, please try again.";
+					errorEl.classList.remove("hidden");
+					submitBtn.disabled = false;
+					submitBtn.textContent = "Send My Intake";
+				}
+			});
+		</script>
 	</div>
 </Layout>
