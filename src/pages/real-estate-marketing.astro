@@ -148,13 +148,18 @@ const packages = [
 				<a href="/" class="flex shrink-0 items-center gap-2">
 					<img src="/images/ascend-logo-color.webp" alt="Ascend Consulting" class="h-8" />
 				</a>
-				<a
-					href={site.booking}
-					target="_blank"
-					rel="noopener"
-					class="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-primary-dark"
-					set:html={`Schedule a Consultation ${ArrowRight}`}
-				/>
+				<div class="flex items-center gap-3">
+					<a href="/" class="hidden text-sm font-medium text-gray-500 transition-colors hover:text-primary sm:inline">
+						&larr; Back to Home
+					</a>
+					<a
+						href={site.booking}
+						target="_blank"
+						rel="noopener"
+						class="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-primary-dark"
+						set:html={`Meet with Ascend ${ArrowRight}`}
+					/>
+				</div>
 			</div>
 		</header>
 
