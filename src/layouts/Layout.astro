@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import AvaChatBubble from "../components/AvaChatBubble.astro";
+import DeferredChatWidget from "../components/DeferredChatWidget.tsx";
 import { site } from "../data/site";
 
 interface Props {
@@ -37,6 +37,6 @@ const { title, description, transparentHeader = false, bare = false, noindex = f
 			<slot />
 		</main>
 		{!bare && <Footer />}
-		{!bare && <AvaChatBubble />}
+		{!bare && <DeferredChatWidget client:load />}
 	</body>
 </html>
