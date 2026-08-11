@@ -20,7 +20,7 @@ const menuBtnClass = transparent ? "text-white" : "text-foreground";
 			<img id="site-logo" src={logoSrc} alt="Ascend Consulting" class="h-8 transition-all duration-300 md:h-10" />
 		</a>
 
-		<nav class="hidden items-center gap-8 lg:flex">
+		<nav class="hidden items-center gap-8 md:flex">
 			<ul id="nav-links" class:list={["flex items-center gap-7 text-sm font-medium", navTextClass]}>
 				{
 					mainNav.map((item) => (
@@ -94,56 +94,72 @@ const menuBtnClass = transparent ? "text-white" : "text-foreground";
 			</a>
 		</nav>
 
-		<button id="mobile-menu-btn" class:list={["lg:hidden", menuBtnClass]} aria-label="Toggle menu">
-			<svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+		<button id="mobile-menu-btn" class:list={["md:hidden", menuBtnClass]} aria-label="Open navigation menu" aria-expanded="false">
+			<svg id="mobile-menu-icon-open" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" />
+			</svg>
+			<svg id="mobile-menu-icon-close" class="hidden h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M18 6 6 18" /><path d="m6 6 12 12" />
 			</svg>
 		</button>
 	</div>
 
-	<div id="mobile-menu" class="hidden border-t border-border bg-white lg:hidden">
-		<ul class="flex flex-col gap-1 px-6 py-4 text-sm font-medium text-foreground">
-			{
-				mainNav.map((item) => (
-					<li>
-						<button type="button" data-scroll-to={item.scrollTo} class="block w-full py-2 text-left hover:text-accent">
-							{item.label}
+	<div
+		id="mobile-menu"
+		class="absolute top-full left-0 flex w-full flex-col gap-1 border-t bg-white px-6 py-4 opacity-0 shadow-lg transition-all duration-200 md:hidden"
+		style="pointer-events:none; transform: translateY(-0.5rem);"
+	>
+		{
+			mainNav.map((item, i) =>
+				item.children ? (
+					<div class:list={["mobile-accordion", i > 0 && "mt-1 border-t border-gray-100 pt-2"]}>
+						<button type="button" class="mobile-accordion-trigger flex w-full items-center justify-between py-2 font-medium text-gray-800">
+							<span>{item.label}</span>
+							<svg class="mobile-accordion-chevron h-[15px] w-[15px] text-gray-400 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+								<path d="m6 9 6 6 6-6" />
+							</svg>
 						</button>
-						{item.children && (
-							<ul class="ml-4 flex flex-col gap-1 border-l border-border pl-4">
-								{item.children.map((child) => (
-									<li>
-										{child.scrollTo ? (
-											<button
-												type="button"
-												data-scroll-to={child.scrollTo}
-												class="block w-full py-1.5 text-left font-semibold text-primary hover:text-accent"
-											>
-												{child.label}
-											</button>
-										) : (
-											<a href={child.href} class="block py-1.5 text-muted-foreground hover:text-accent">
-												{child.label}
-											</a>
-										)}
-									</li>
-								))}
-							</ul>
-						)}
-					</li>
-				))
-			}
-			<li class="pt-2">
-				<a
-					href={site.booking}
-					target="_blank"
-					rel="noopener"
-					class="block rounded-sm bg-accent px-5 py-2.5 text-center text-sm font-medium text-white"
-				>
-					Consultation
-				</a>
-			</li>
-		</ul>
+						<div class="mobile-accordion-panel hidden flex-col gap-1 py-1 pb-2 pl-4">
+							{item.children.map((child) =>
+								child.label.includes("All ") ? (
+									child.scrollTo ? (
+										<button type="button" data-scroll-to={child.scrollTo} class="block py-1.5 text-left text-sm font-semibold text-primary">
+											{child.label}
+										</button>
+									) : (
+										<a href={child.href} class="block py-1.5 text-sm font-semibold text-primary">
+											{child.label}
+										</a>
+									)
+								) : (
+									<a href={child.href} class="block py-1.5 text-sm text-gray-600 transition-colors hover:text-primary">
+										{child.label}
+									</a>
+								)
+							)}
+						</div>
+					</div>
+				) : (
+					<button
+						type="button"
+						data-scroll-to={item.scrollTo}
+						class:list={["py-2 text-left font-medium text-gray-800", i > 0 && "mt-1 border-t border-gray-100 pt-3"]}
+					>
+						{item.label}
+					</button>
+				)
+			)
+		}
+		<div class="pt-2">
+			<a
+				href={site.booking}
+				target="_blank"
+				rel="noopener"
+				class="block rounded-sm bg-accent px-5 py-3 text-center font-medium text-white hover:bg-accent/90"
+			>
+				Schedule Consultation
+			</a>
+		</div>
 	</div>
 </header>
 
@@ -189,8 +205,46 @@ const menuBtnClass = transparent ? "text-white" : "text-foreground";
 
 	const btn = document.getElementById("mobile-menu-btn");
 	const menu = document.getElementById("mobile-menu");
+	const menuIconOpen = document.getElementById("mobile-menu-icon-open");
+	const menuIconClose = document.getElementById("mobile-menu-icon-close");
+
+	function openMobileMenu() {
+		if (!menu) return;
+		menu.style.opacity = "1";
+		menu.style.pointerEvents = "auto";
+		menu.style.transform = "translateY(0)";
+		menuIconOpen?.classList.add("hidden");
+		menuIconClose?.classList.remove("hidden");
+		btn?.setAttribute("aria-label", "Close navigation menu");
+		btn?.setAttribute("aria-expanded", "true");
+	}
+	function closeMobileMenu() {
+		if (!menu) return;
+		menu.style.opacity = "0";
+		menu.style.pointerEvents = "none";
+		menu.style.transform = "translateY(-0.5rem)";
+		menuIconOpen?.classList.remove("hidden");
+		menuIconClose?.classList.add("hidden");
+		btn?.setAttribute("aria-label", "Open navigation menu");
+		btn?.setAttribute("aria-expanded", "false");
+	}
 	btn?.addEventListener("click", () => {
-		menu?.classList.toggle("hidden");
+		if (btn.getAttribute("aria-expanded") === "true") closeMobileMenu();
+		else openMobileMenu();
+	});
+
+	// Matches live: tapping a mobile "Solutions"/"Resources" row expands an inline
+	// accordion of links instead of navigating, with the chevron rotating open.
+	document.querySelectorAll<HTMLElement>(".mobile-accordion").forEach((accordion) => {
+		const trigger = accordion.querySelector<HTMLButtonElement>(".mobile-accordion-trigger");
+		const panel = accordion.querySelector<HTMLElement>(".mobile-accordion-panel");
+		const chevron = accordion.querySelector<SVGElement>(".mobile-accordion-chevron");
+		trigger?.addEventListener("click", () => {
+			const isOpen = !panel?.classList.contains("hidden");
+			panel?.classList.toggle("hidden", isOpen);
+			panel?.classList.toggle("flex", !isOpen);
+			chevron?.classList.toggle("rotate-180", !isOpen);
+		});
 	});
 
 	// Matches live: nav items smooth-scroll to a homepage section. If that section
@@ -201,7 +255,7 @@ const menuBtnClass = transparent ? "text-white" : "text-foreground";
 			if (!id) return;
 			const target = document.getElementById(id);
 			if (target) {
-				menu?.classList.add("hidden");
+				closeMobileMenu();
 				target.scrollIntoView({ behavior: "smooth" });
 			} else {
 				window.location.href = `/#${id}`;

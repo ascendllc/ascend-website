@@ -18,6 +18,9 @@
 	--color-foreground: #0f163e;
 	--color-border: #e0e2eb;
 	--font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+	/* Live's own "font-serif" utility resolves to Plus Jakarta Sans too — there's no
+	   separate serif typeface in use anywhere on the site, despite the class name. */
+	--font-serif: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 body {

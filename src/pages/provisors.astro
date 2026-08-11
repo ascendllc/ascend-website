@@ -1,0 +1,392 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+import { services } from "../data/services";
+
+const NAVY = "#0A1628";
+const ORANGE = "#E8622A";
+const BLUE = "#1577D4";
+
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+const ExternalLink = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>`;
+const Mail = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>`;
+const Phone = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>`;
+const Calendar = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>`;
+
+// Icons per service, matching live's assignments.
+const serviceIcons: Record<string, string> = {
+	"growth-marketing-strategy": `<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline>`,
+	"brand-alignment-storytelling": `<path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle>`,
+	"sales-enablement": `<path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path>`,
+	"lifecycle-marketing-systems": `<path d="m17 2 4 4-4 4"></path><path d="M3 11v-1a4 4 0 0 1 4-4h14"></path><path d="m7 22-4-4 4-4"></path><path d="M21 13v1a4 4 0 0 1-4 4H3"></path>`,
+	"digital-acquisition-growth": `<circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle>`,
+	"creative-design-content-development": `<path d="m11 10 3 3"></path><path d="M6.5 21A3.5 3.5 0 1 0 3 17.5a2.62 2.62 0 0 1-.708 1.792A1 1 0 0 0 3 21z"></path><path d="M9.969 17.031 21.378 5.624a1 1 0 0 0-3.002-3.002L6.967 14.031"></path>`,
+};
+
+const solutionsCards = services.map((s) => ({
+	num: s.number,
+	icon: serviceIcons[s.slug],
+	label: s.name,
+	question: s.shortHook,
+	desc: s.conceptParagraphs[0],
+	href: `/services/${s.slug}`,
+}));
+
+const industryCards = [
+	{
+		badge: "Legal Industry",
+		title: "A complete marketing system built for attorneys and law firms.",
+		body: "Brand identity, website, SEO, AEO/IEO optimization, content, Google & Meta ad campaigns with dedicated landing pages, and a 24/7 AI chat assistant. Demo site available.",
+		includes: ["Brand identity & website", "SEO + AEO/IEO", "Google Ads + Meta Ads", "Dedicated landing pages", "24/7 AI chat assistant"],
+		fullSolutionHref: "https://ascendsmartly.com/legal-marketing",
+		demoHref: "https://law.ascendsmartly.com/",
+	},
+	{
+		badge: "Accounting & Finance",
+		title: "A complete marketing system built for CPAs and financial advisors.",
+		body: "Brand identity, website, SEO, AEO/IEO optimization, content, Google, Meta & LinkedIn ad campaigns with dedicated landing pages, and a 24/7 AI chat assistant. Demo site available.",
+		includes: ["Brand identity & website", "SEO + AEO/IEO", "Google Ads + Meta Ads + LinkedIn", "Dedicated landing pages", "24/7 AI chat assistant"],
+		fullSolutionHref: "https://ascendsmartly.com/finance-marketing",
+		demoHref: "https://finance.ascendsmartly.com/",
+	},
+];
+
+const resourceLinks = [
+	{ label: "Partners", anchor: "partners", desc: "A trusted network of specialists ready to extend Ascend's capabilities." },
+	{ label: "Case Studies", anchor: "case-studies", desc: "Real-world examples of measurable impact across sectors." },
+	{ label: "Portfolio", anchor: "portfolio", desc: "Brands, websites, and campaigns built from the ground up." },
+	{ label: "Testimonials", anchor: "testimonials", desc: "What leaders who've worked with Brad say about the experience." },
+	{ label: "FAQs", anchor: "faq", desc: "Answers to common questions about Ascend and its services." },
+];
+
+const navItems = [
+	{ label: "About", anchor: "about" },
+	{ label: "Solutions", anchor: "solutions" },
+	{ label: "Resources", anchor: "resources" },
+	{ label: "Benefit", anchor: "benefit" },
+];
+---
+
+<Layout
+	title="ProVisors | Ascend Consulting — Brad Stave"
+	description="ProVisors is a community of senior professionals and Brad Stave is a trusted member ready to support the network. Every member and referral receives 20% off all Ascend Consulting services."
+	bare
+	noindex
+>
+	<div class="min-h-screen bg-white font-sans">
+		<header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-sm">
+			<div class="container mx-auto flex items-center justify-between gap-6 px-6 py-3 md:px-12">
+				<div class="flex items-center gap-4">
+					<a href="/" class="flex shrink-0 items-center gap-2">
+						<img src="/images/ascend-logo-color.webp" alt="Ascend Consulting" class="h-8" />
+					</a>
+					<span class="hidden text-lg text-gray-300 sm:block">/</span>
+					<a href="https://www.provisors.com/" target="_blank" rel="noopener" class="hidden sm:block">
+						<img src="/images/provisors-logo.webp" alt="ProVisors" class="h-8 w-auto" />
+					</a>
+				</div>
+				<div class="flex items-center gap-3">
+					<nav class="hidden items-center gap-5 md:flex">
+						{navItems.map((item) => <a href={`#${item.anchor}`} class="text-sm font-medium text-gray-500 transition-colors hover:text-[#E8622A]">{item.label}</a>)}
+					</nav>
+					<a
+						href={site.booking}
+						target="_blank"
+						rel="noopener"
+						class="flex items-center gap-1.5 rounded-sm px-4 py-2 text-sm font-medium text-white transition-all"
+						style={`background-color:${ORANGE}`}
+						set:html={`Meet with Brad ${ArrowRight}`}
+					/>
+				</div>
+			</div>
+		</header>
+
+		<!-- Hero -->
+		<section class="relative overflow-hidden pt-16 pb-20 text-white" style={`background-color:${NAVY}`}>
+			<div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image:url('/images/provisors-hero-bg.jpg')"></div>
+			<div class="relative mx-auto max-w-5xl px-6">
+				<div class="flex flex-col items-start gap-10 md:flex-row md:items-center">
+					<div class="flex-1">
+						<div class="mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold tracking-widest uppercase" style={`background-color:${BLUE}33; border-color:${BLUE}66; color:#60adf0`}>
+							ProVisors Partnership
+						</div>
+						<h1 class="mb-4 text-4xl leading-tight md:text-5xl">
+							A trusted partner.<br />
+							<span style={`color:${ORANGE}`}>A smarter way to grow.</span>
+						</h1>
+						<p class="mb-3 max-w-xl text-lg leading-relaxed text-white/65">
+							ProVisors is a community of senior professionals and Brad Stave is a trusted member ready to
+							support the network. Professionally trained with 20 years of marketing leadership, Brad helps
+							organizations with everything from fractional CMO strategic direction to simple brand launches and
+							digital rebuilds. Services start at $200 per month.
+						</p>
+						<p class="mb-8 max-w-xl text-lg leading-relaxed text-white/65">
+							If you need stronger marketing for your own business or a reliable referral for someone you know,
+							Brad, through Ascend Consulting, is here to help you and the ProVisors community grow.
+						</p>
+						<div class="inline-flex items-center gap-3 rounded-lg border px-5 py-3.5" style={`background-color:${BLUE}26; border-color:${BLUE}4d`}>
+							<span class="text-2xl font-black" style={`color:${ORANGE}`}>20%</span>
+							<div>
+								<p class="text-sm leading-tight font-bold text-white">Exclusive ProVisors Discount</p>
+								<p class="text-xs text-white/55">Every member and anyone they refer receives 20% off all Ascend services.</p>
+							</div>
+						</div>
+					</div>
+					<div class="w-full shrink-0 md:w-64">
+						<div class="overflow-hidden rounded-xl border border-white/10 bg-white/5">
+							<img src="/images/brad-stave-square.jpg" alt="Brad Stave — Founder & Principal, Ascend Consulting" class="aspect-square w-full object-cover" />
+							<div class="px-5 py-4">
+								<p class="text-base leading-tight font-bold text-white">Brad Stave</p>
+								<p class="mb-3 text-sm text-white/55">Founder &amp; Principal, Ascend Consulting</p>
+								<div class="space-y-1.5 text-sm">
+									<a href={`mailto:${site.email}`} class="flex items-center gap-2 text-white/60 transition-colors hover:text-[#E8622A]" set:html={`${Mail} <span>${site.email}</span>`} />
+									<a href={`tel:${site.phone}`} class="flex items-center gap-2 text-white/60 transition-colors hover:text-[#E8622A]" set:html={`${Phone} <span>${site.phoneDisplay}</span>`} />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- About -->
+		<section id="about" class="scroll-mt-16 border-b border-gray-100 bg-white py-16">
+			<div class="mx-auto max-w-5xl px-6">
+				<div class="grid gap-12 md:grid-cols-2">
+					<div>
+						<p class="mb-3 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>Your Trusted Marketing Advisor</p>
+						<h2 class="mb-4 text-3xl leading-snug" style={`color:${NAVY}`}>20+ years of marketing leadership. Professionally trained. A practical approach.</h2>
+						<p class="leading-relaxed text-gray-600">
+							Brad brings deep marketing expertise to every engagement — focused on helping organizations
+							communicate clearly, strengthen their brand, and build systems that support long-term growth. His
+							work blends strategy, execution, and practical guidance so clients can accelerate with confidence.
+						</p>
+					</div>
+					<div>
+						<p class="mb-3 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>The Purpose of Ascend Consulting</p>
+						<h2 class="mb-4 text-3xl leading-snug" style={`color:${NAVY}`}>Built to help organizations grow with intention.</h2>
+						<p class="leading-relaxed text-gray-600">
+							Ascend Consulting supports organizations that require strategic clarity, stronger messaging, and a
+							marketing engine that aligns with their goals. As the Founder &amp; Principal, Brad provides
+							seasoned marketing leadership, allowing organizations to strengthen their brands, speak more
+							clearly, and grow their audiences effectively.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Solutions -->
+		<section id="solutions" class="scroll-mt-16 bg-gray-50 py-16">
+			<div class="mx-auto max-w-5xl px-6">
+				<div class="mb-12 text-center">
+					<p class="mb-3 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>How Ascend Serves its Clients</p>
+					<h2 class="text-3xl leading-snug md:text-4xl" style={`color:${NAVY}`}>Strategic Direction. Deep Expertise.</h2>
+				</div>
+				<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+					{
+						solutionsCards.map((s) => (
+							<div class="flex flex-col rounded-lg border border-gray-200 bg-white p-6 transition-all hover:shadow-md" style="--tw-border-opacity:1">
+								<div class="mb-3 flex items-start gap-3">
+									<span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-200 text-sm font-semibold text-gray-400">{s.num}</span>
+									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ORANGE} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 shrink-0" set:html={s.icon} />
+								</div>
+								<p class="mb-2 text-base leading-snug font-bold" style={`color:${NAVY}`}>{s.label}</p>
+								<p class="mb-2 text-sm leading-relaxed text-gray-400 italic">{s.question}</p>
+								<p class="mb-4 flex-1 text-sm leading-relaxed text-gray-600">{s.desc}</p>
+								<a href={s.href} class="inline-flex w-fit items-center gap-1.5 rounded-sm px-4 py-2 text-sm font-bold text-white transition-colors" style={`background-color:${ORANGE}`} set:html={`Learn More ${ArrowRight}`} />
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Ascend in Action (video) -->
+		<section class="py-14" style={`background-color:${NAVY}`}>
+			<div class="mx-auto max-w-5xl px-6">
+				<div class="grid items-center gap-10 md:grid-cols-2">
+					<div>
+						<p class="mb-3 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>Ascend in Action</p>
+						<h2 class="mb-4 text-2xl leading-snug text-white md:text-3xl">From dated to dynamic. A full brand and digital refresh.</h2>
+						<p class="text-sm leading-relaxed text-white/55">
+							When Ashdon Golf came to Ascend, their digital presence wasn't reflecting the quality of their
+							product. We rebuilt it from the ground up — clean design, modern visuals, and a user experience
+							built to drive engagement and sales. This is what Ascend's full marketing solutions look like in
+							practice.
+						</p>
+					</div>
+					<div class="relative aspect-video overflow-hidden rounded-lg border border-white/10 bg-black shadow-2xl">
+						<video id="ashdon-video" src="/videos/ashdon-brand-refresh.mp4" poster="/images/ashdon-poster.jpg" playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover"></video>
+						<div id="ashdon-video-overlay" class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300" style="background:rgba(10,22,40,0.65)">
+							<button id="ashdon-video-play" aria-label="Play video" class="group flex flex-col items-center gap-2 focus:outline-none">
+								<span class="flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-all group-hover:scale-105" style={`background-color:${ORANGE}`}>
+									<svg viewBox="0 0 24 24" class="h-6 w-6 fill-white" style="margin-left:3px"><polygon points="5,3 19,12 5,21"></polygon></svg>
+								</span>
+								<span class="text-xs font-semibold tracking-wide text-white/80 transition-colors group-hover:text-white">Watch the Transformation</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- BrandRise teaser -->
+		<section class="bg-gray-50 py-16">
+			<div class="mx-auto max-w-5xl px-6">
+				<a href="/brandrise" class="group block overflow-hidden rounded-sm border border-white/10 bg-gradient-to-r from-[#0A1628] via-[#0f1e38] to-[#162447] transition-all hover:border-[#E8622A]/40">
+					<div class="flex flex-col items-center sm:flex-row">
+						<div class="flex flex-1 flex-col items-center justify-center p-10 text-center sm:text-left">
+							<p class="mb-3 text-xs font-bold tracking-widest text-white/50 uppercase">New Offering</p>
+							<p class="text-3xl leading-none md:text-4xl">
+								<span class="text-white">Brand</span><span class="bg-gradient-to-r from-[#E8622A] via-orange-300 to-yellow-300 bg-clip-text text-transparent">Rise</span><span class="align-super text-xl text-white/30">™</span>
+							</p>
+						</div>
+						<div class="hidden h-36 w-px bg-white/15 sm:block"></div>
+						<div class="flex flex-1 flex-col justify-center p-10 text-center md:text-left">
+							<p class="mb-2 text-lg leading-snug font-semibold text-white">Build or relaunch your organization — completely.</p>
+							<p class="mb-5 text-sm leading-relaxed text-white/55">
+								Strategy. Identity. Website. Go-to-market. Promotion. Five ways to launch, starting at{" "}
+								<span class="text-[#E8622A] line-through">$250</span> <span class="font-semibold text-white">$200</span>.
+							</p>
+							<span class="inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all group-hover:-translate-y-0.5 hover:bg-accent/90" set:html={`Explore BrandRise™ ${ArrowRight}`} />
+						</div>
+					</div>
+				</a>
+			</div>
+		</section>
+
+		<!-- Industry solutions teaser -->
+		<section class="border-t border-gray-100 bg-white py-16">
+			<div class="mx-auto max-w-5xl px-6">
+				<div class="mb-8 text-center">
+					<p class="mb-3 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>Digital Solutions for Professional Services</p>
+					<h2 class="text-3xl leading-snug md:text-4xl" style={`color:${NAVY}`}>Industry-specific marketing systems.</h2>
+					<p class="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-gray-500">
+						Ascend has built complete, end-to-end marketing systems for legal and accounting/finance
+						professionals — with live demo sites that showcase every capability before you commit.
+					</p>
+				</div>
+				<div class="grid gap-5 md:grid-cols-2">
+					{
+						industryCards.map((c) => (
+							<div class="flex flex-col overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#0A1628] to-[#162447]">
+								<div class="flex-1 p-8">
+									<div class="mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold tracking-widest uppercase" style={`background-color:${ORANGE}33; border-color:${ORANGE}66; color:#f0a080`}>{c.badge}</div>
+									<h3 class="mb-3 text-xl leading-snug text-white">{c.title}</h3>
+									<p class="mb-4 text-sm leading-relaxed text-white/60">{c.body}</p>
+									<div class="space-y-1.5">
+										{c.includes.map((item) => (
+											<div class="flex items-center gap-2 text-xs text-white/65">
+												<span class="h-1.5 w-1.5 shrink-0 rounded-full" style={`background-color:${ORANGE}`} />
+												{item}
+											</div>
+										))}
+									</div>
+								</div>
+								<div class="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 p-6">
+									<a href={c.fullSolutionHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold text-white transition-all" style={`background-color:${ORANGE}`} set:html={`See Full Solution ${ArrowRight}`} />
+									<a href={c.demoHref} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-bold transition-colors hover:underline" style={`color:${ORANGE}`} set:html={`View Demo Site ${ArrowRight}`} />
+								</div>
+							</div>
+						))
+					}
+				</div>
+				<div class="mt-8 text-center">
+					<a href="/industry-solutions" class="inline-flex items-center gap-2 text-sm font-bold transition-colors hover:underline" style={`color:${ORANGE}`} set:html={`View All Industry Solutions ${ArrowRight}`} />
+				</div>
+			</div>
+		</section>
+
+		<!-- Resources -->
+		<section id="resources" class="scroll-mt-16 border-t border-gray-100 bg-white py-16">
+			<div class="mx-auto max-w-5xl px-6">
+				<div class="mb-10 flex items-end justify-between">
+					<div>
+						<p class="mb-2 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>Explore</p>
+						<h2 class="text-3xl md:text-4xl" style={`color:${NAVY}`}>Resources</h2>
+					</div>
+					<a href="/resources" class="hidden items-center gap-2 rounded-sm px-5 py-3 text-sm font-bold text-white transition-colors sm:inline-flex" style={`background-color:${NAVY}`} set:html={`View All Resources ${ArrowRight}`} />
+				</div>
+				<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					{
+						resourceLinks.map((r) => (
+							<a href={`/resources#${r.anchor}`} class="flex flex-col rounded-lg border border-gray-200 bg-gray-50 p-6 transition-all hover:shadow-sm" style="border-color:#e5e7eb">
+								<div class="mb-4 h-0.5 w-6" style={`background-color:${ORANGE}`} />
+								<p class="mb-2 text-base font-bold" style={`color:${NAVY}`}>{r.label}</p>
+								<p class="mb-4 flex-1 text-sm leading-relaxed text-gray-500">{r.desc}</p>
+								<span class="inline-flex items-center gap-1 text-sm font-bold hover:underline" style={`color:${ORANGE}`} set:html={`Explore ${ArrowRight}`} />
+							</a>
+						))
+					}
+					<a href="/resources" class="flex flex-col rounded-lg border p-6" style={`background-color:${NAVY}; border-color:${NAVY}`}>
+						<div class="mb-4 h-0.5 w-6" style={`background-color:${ORANGE}`} />
+						<p class="mb-2 text-base font-bold text-white">All Resources</p>
+						<p class="mb-4 flex-1 text-sm leading-relaxed text-gray-300">Partners, case studies, portfolio, testimonials, and FAQs — all in one place.</p>
+						<span class="inline-flex items-center gap-1 text-sm font-bold hover:underline" style={`color:${ORANGE}`} set:html={`Explore All ${ArrowRight}`} />
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Benefit -->
+		<section id="benefit" class="scroll-mt-16 py-16" style={`background-color:${NAVY}`}>
+			<div class="mx-auto max-w-3xl px-6 text-center">
+				<p class="mb-4 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>Exclusive ProVisors Benefit</p>
+				<h2 class="mb-5 text-3xl leading-snug text-white md:text-4xl">
+					Every ProVisors member — and anyone they refer — receives <span style={`color:${ORANGE}`}>20% off</span> all Ascend Consulting
+					solutions.
+				</h2>
+				<p class="mx-auto mb-10 max-w-xl text-base leading-relaxed text-white/55">
+					Ascend Consulting is built to help organizations move faster, communicate better, and grow more
+					strategically. Let's connect and find the right path forward for you or someone in your network.
+				</p>
+				<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+					<a href={site.booking} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-sm px-7 py-3.5 font-bold text-white transition-colors" style={`background-color:${ORANGE}`} set:html={`${Calendar} Schedule a Free Consultation`} />
+					<a href={`mailto:${site.email}`} class="inline-flex items-center gap-2 rounded-sm border border-white/25 px-7 py-3.5 font-semibold text-white/70 transition-colors hover:border-white/50 hover:text-white" set:html={`${Mail} ${site.email}`} />
+				</div>
+			</div>
+		</section>
+
+		<footer class="bg-[#060e1c] py-6">
+			<div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-6 text-sm text-white/35 sm:flex-row">
+				<div class="flex items-center gap-3">
+					<img src="/images/ascend-logo-white.webp" alt="Ascend Consulting" class="h-6 opacity-50" loading="lazy" />
+					<p>&copy; {new Date().getFullYear()} Ascend Consulting. All rights reserved.</p>
+				</div>
+				<div class="flex items-center gap-4">
+					<a href={`tel:${site.phone}`} class="transition-colors hover:text-white/70">{site.phoneDisplay}</a>
+					<span>&middot;</span>
+					<a href={`mailto:${site.email}`} class="transition-colors hover:text-white/70">{site.email}</a>
+				</div>
+			</div>
+		</footer>
+	</div>
+</Layout>
+
+<script>
+	const video = document.getElementById("ashdon-video") as HTMLVideoElement | null;
+	const overlay = document.getElementById("ashdon-video-overlay");
+	const playBtn = document.getElementById("ashdon-video-play");
+
+	playBtn?.addEventListener("click", () => {
+		video?.play();
+		if (overlay) {
+			overlay.style.opacity = "0";
+			overlay.style.pointerEvents = "none";
+		}
+		if (video) video.controls = true;
+	});
+	video?.addEventListener("pause", () => {
+		if (overlay) {
+			overlay.style.opacity = "1";
+			overlay.style.pointerEvents = "auto";
+		}
+	});
+	video?.addEventListener("ended", () => {
+		if (overlay) {
+			overlay.style.opacity = "1";
+			overlay.style.pointerEvents = "auto";
+		}
+	});
+</script>
