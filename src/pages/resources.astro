@@ -5,6 +5,8 @@ import { partners, partnershipCallouts, testimonials, faqs } from "../data/resou
 import { portfolio } from "../data/resources";
 import { caseStudies } from "../data/caseStudies";
 
+const toImagePath = (p: string) => p.replace(/^\//, "/images/");
+
 const tabs = [
 	{ label: "Partners", anchor: "partners" },
 	{ label: "Case Studies", anchor: "case-studies" },
@@ -174,7 +176,7 @@ const Play = `<svg viewBox="0 0 24 24" width="24" height="24"><polygon points="5
 						caseStudies.map((cs) => (
 							<div class="group overflow-hidden rounded-sm border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 								<div class="relative h-52 overflow-hidden">
-									<img src={cs.heroImage} alt={cs.title} class={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${cs.heroObjectPosition ?? "object-center"}`} loading="lazy" />
+									<img src={toImagePath(cs.heroImage)} alt={cs.title} class={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${cs.heroObjectPosition ?? "object-center"}`} loading="lazy" />
 									<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
 									<div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
 										{cs.tags.slice(0, 2).map((tag) => (
@@ -242,7 +244,7 @@ const Play = `<svg viewBox="0 0 24 24" width="24" height="24"><polygon points="5
 							<div class="group flex flex-col overflow-hidden rounded-sm border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
 								{p.screenshot ? (
 									<a href={p.url} target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-										<img src={p.screenshot} alt={`${p.name} website screenshot`} class="h-48 w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
+										<img src={toImagePath(p.screenshot)} alt={`${p.name} website screenshot`} class="h-48 w-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
 									</a>
 								) : (
 									<a href={p.url} target="_blank" rel="noopener noreferrer" class="block">
