@@ -67,28 +67,30 @@ const MapPinIcon = `<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-
 
 				<div class="lg:col-span-7">
 					<div class="border-t-4 border-t-accent bg-white p-8 shadow-xl md:p-12">
-						<form class="space-y-6">
+						<form id="law-contact-form" class="space-y-6">
+							<!-- Honeypot: hidden from real visitors, bots that fill every field trip it. -->
+							<input type="text" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
 							<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-								<div>
+								<div class="intake-field" data-label="First Name">
 									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">First Name *</label>
 									<input type="text" placeholder="Jane" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
 								</div>
-								<div>
+								<div class="intake-field" data-label="Last Name">
 									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Last Name *</label>
 									<input type="text" placeholder="Doe" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
 								</div>
 							</div>
 							<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-								<div>
+								<div class="intake-field" data-label="Email Address">
 									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Email Address *</label>
 									<input type="email" placeholder="jane@example.com" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
 								</div>
-								<div>
+								<div class="intake-field" data-label="Phone Number">
 									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Phone Number *</label>
 									<input type="tel" placeholder="(206) 555-0100" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
 								</div>
 							</div>
-							<div>
+							<div class="intake-field" data-label="Area of Interest">
 								<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Area of Interest *</label>
 								<select required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none">
 									<option value="">Select a practice area</option>
@@ -96,17 +98,24 @@ const MapPinIcon = `<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-
 									<option value="other">Other / Not Sure</option>
 								</select>
 							</div>
-							<div>
+							<div class="intake-field" data-label="Brief Description">
 								<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Brief Description *</label>
 								<textarea rows="5" placeholder="Please describe your legal issue. Do not include highly sensitive or confidential information yet." required class="min-h-[120px] w-full resize-y rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"></textarea>
 							</div>
-							<button
-								type="button"
-								title="This form isn't wired up to send yet — please call or email us directly."
-								class="w-full rounded-none bg-accent px-8 py-4 font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:bg-accent/90"
-							>
-								Submit Request
-							</button>
+							<div id="law-contact-idle">
+								<button
+									type="submit"
+									id="law-contact-submit"
+									class="w-full rounded-none bg-accent px-8 py-4 font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:bg-accent/90 disabled:pointer-events-none disabled:opacity-60"
+								>
+									Submit Request
+								</button>
+								<p id="law-contact-error" class="mt-4 hidden text-center text-sm font-medium text-red-600"></p>
+							</div>
+							<div id="law-contact-success" class="hidden text-center">
+								<h3 class="mb-1 font-sans text-lg font-semibold text-primary">Thanks — we've got it.</h3>
+								<p class="font-serif text-sm text-gray-500">Your message was sent. We'll be in touch shortly.</p>
+							</div>
 							<p class="mt-4 flex flex-col gap-1 text-center font-sans text-xs text-gray-500">
 								<span class="font-semibold text-primary">Your information is confidential. No unsolicited marketing.</span>
 								<span>Attorney-client privilege begins at first contact.</span>
@@ -117,4 +126,49 @@ const MapPinIcon = `<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-
 			</div>
 		</div>
 	</div>
+
+	<script>
+		const form = document.getElementById("law-contact-form") as HTMLFormElement;
+		const submitBtn = document.getElementById("law-contact-submit") as HTMLButtonElement;
+		const errorEl = document.getElementById("law-contact-error") as HTMLParagraphElement;
+		const idleEl = document.getElementById("law-contact-idle") as HTMLDivElement;
+		const successEl = document.getElementById("law-contact-success") as HTMLDivElement;
+
+		form?.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			if (!form.reportValidity()) return;
+
+			errorEl.classList.add("hidden");
+			submitBtn.disabled = true;
+			submitBtn.textContent = "Sending...";
+
+			const fields: { label: string; value: string }[] = [];
+			form.querySelectorAll<HTMLElement>(".intake-field").forEach((wrapper) => {
+				const label = wrapper.dataset.label ?? "";
+				const input = wrapper.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>("input, textarea, select");
+				if (input) fields.push({ label, value: input.value });
+			});
+
+			const website = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value ?? "";
+
+			try {
+				const res = await fetch("/api/law-contact", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ fields, website }),
+				});
+				if (!res.ok) {
+					const data = await res.json().catch(() => ({}));
+					throw new Error(data.error || "Something went wrong, please try again.");
+				}
+				idleEl.classList.add("hidden");
+				successEl.classList.remove("hidden");
+			} catch (err) {
+				errorEl.textContent = err instanceof Error ? err.message : "Something went wrong, please try again.";
+				errorEl.classList.remove("hidden");
+				submitBtn.disabled = false;
+				submitBtn.textContent = "Submit Request";
+			}
+		});
+	</script>
 </LawLayout>

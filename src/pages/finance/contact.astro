@@ -28,45 +28,54 @@ const situations = ["Small Business Owner", "Individual/Family", "Nonprofit", "S
 				<!-- Form -->
 				<div class="rounded-xl border border-[#d4e6dc] bg-white p-8 shadow-lg md:p-12">
 					<h2 class="font-display mb-8 text-3xl font-semibold text-wafs-forest">Send a Message</h2>
-					<form class="space-y-6">
+					<form id="contact-form" class="space-y-6">
+						<!-- Honeypot: hidden from real visitors, bots that fill every field trip it. -->
+						<input type="text" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
 						<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-							<div>
+							<div class="intake-field" data-label="First Name">
 								<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">First Name</label>
-								<input type="text" name="firstName" placeholder="Jane" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+								<input type="text" name="firstName" required placeholder="Jane" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
 							</div>
-							<div>
+							<div class="intake-field" data-label="Last Name">
 								<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Last Name</label>
 								<input type="text" name="lastName" placeholder="Doe" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
 							</div>
 						</div>
 						<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-							<div>
+							<div class="intake-field" data-label="Email">
 								<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Email</label>
-								<input type="email" name="email" placeholder="jane@example.com" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+								<input type="email" name="email" required placeholder="jane@example.com" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
 							</div>
-							<div>
+							<div class="intake-field" data-label="Phone">
 								<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Phone</label>
 								<input type="tel" name="phone" placeholder="(206) 555-0123" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
 							</div>
 						</div>
-						<div>
+						<div class="intake-field" data-label="Situation">
 							<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">What best describes your situation?</label>
 							<select name="situation" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none">
 								<option value="">Select an option</option>
 								{situations.map((s) => <option value={s}>{s}</option>)}
 							</select>
 						</div>
-						<div>
+						<div class="intake-field" data-label="Message">
 							<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">How can we help?</label>
 							<textarea name="message" rows="5" placeholder="Tell us a bit about your financial needs..." class="w-full resize-y rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none"></textarea>
 						</div>
-						<button
-							type="button"
-							title="This form isn't wired up to send yet — call or email us directly instead."
-							class="h-14 w-full rounded-md bg-wafs-forest text-lg font-semibold text-warmwhite transition-colors hover:bg-wafs-forest/90"
-						>
-							Send Message
-						</button>
+						<div id="contact-idle">
+							<button
+								type="submit"
+								id="contact-submit"
+								class="h-14 w-full rounded-md bg-wafs-forest text-lg font-semibold text-warmwhite transition-colors hover:bg-wafs-forest/90 disabled:pointer-events-none disabled:opacity-60"
+							>
+								Send Message
+							</button>
+							<p id="contact-error" class="mt-4 hidden text-sm font-medium text-red-600"></p>
+						</div>
+						<div id="contact-success" class="hidden rounded-md border border-[#d4e6dc] bg-[#f0ede8] p-6 text-center">
+							<h3 class="mb-2 text-lg font-semibold text-wafs-forest">Thanks — we've got it.</h3>
+							<p class="text-sm leading-relaxed text-[#4a5568]">Your message was sent. We'll be in touch shortly.</p>
+						</div>
 					</form>
 				</div>
 
@@ -134,4 +143,50 @@ const situations = ["Small Business Owner", "Individual/Family", "Nonprofit", "S
 			</div>
 		</div>
 	</section>
+
+	<script>
+		const form = document.getElementById("contact-form") as HTMLFormElement;
+		const submitBtn = document.getElementById("contact-submit") as HTMLButtonElement;
+		const errorEl = document.getElementById("contact-error") as HTMLParagraphElement;
+		const idleEl = document.getElementById("contact-idle") as HTMLDivElement;
+		const successEl = document.getElementById("contact-success") as HTMLDivElement;
+
+		form?.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			if (!form.reportValidity()) return;
+
+			errorEl.classList.add("hidden");
+			submitBtn.disabled = true;
+			submitBtn.textContent = "Sending...";
+
+			const fields: { label: string; value: string }[] = [];
+			form.querySelectorAll<HTMLElement>(".intake-field").forEach((wrapper) => {
+				const label = wrapper.dataset.label ?? "";
+				const input = wrapper.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>("input, textarea, select");
+				if (input) fields.push({ label, value: input.value });
+			});
+
+			const website = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value ?? "";
+
+			try {
+				const res = await fetch("/api/finance-contact", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ fields, website }),
+				});
+				if (!res.ok) {
+					const data = await res.json().catch(() => ({}));
+					throw new Error(data.error || "Something went wrong, please try again.");
+				}
+				idleEl.classList.add("hidden");
+				successEl.classList.remove("hidden");
+				window.scrollTo({ top: form.offsetTop, behavior: "smooth" });
+			} catch (err) {
+				errorEl.textContent = err instanceof Error ? err.message : "Something went wrong, please try again.";
+				errorEl.classList.remove("hidden");
+				submitBtn.disabled = false;
+				submitBtn.textContent = "Send Message";
+			}
+		});
+	</script>
 </FinanceLayout>

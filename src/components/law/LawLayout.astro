@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import LawHeader from "./LawHeader.astro";
 import LawFooter from "./LawFooter.astro";
-import LawChatBubble from "./LawChatBubble.astro";
+import LawDeferredChatWidget from "./LawDeferredChatWidget.tsx";
 
 interface Props {
 	title: string;
@@ -19,7 +19,7 @@ const { title, description, noHeaderFooter = false } = Astro.props;
 			<slot />
 		</main>
 		{!noHeaderFooter && <LawFooter />}
-		<LawChatBubble />
+		<LawDeferredChatWidget client:load />
 	</div>
 </Layout>
 

@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import FinanceHeader from "./FinanceHeader.astro";
 import FinanceFooter from "./FinanceFooter.astro";
-import FinanceChatBubble from "./FinanceChatBubble.astro";
+import FinanceDeferredChatWidget from "./FinanceDeferredChatWidget.tsx";
 
 interface Props {
 	title: string;
@@ -22,7 +22,7 @@ const { title, description, noHeaderFooter = false } = Astro.props;
 			<slot />
 		</main>
 		{!noHeaderFooter && <FinanceFooter />}
-		<FinanceChatBubble />
+		<FinanceDeferredChatWidget client:load />
 	</div>
 </Layout>
 
