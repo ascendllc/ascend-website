@@ -1,0 +1,324 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site, trustLogoImages } from "../data/site";
+
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+const ChevronRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>`;
+const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>`;
+const Clock = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>`;
+const Mail = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>`;
+const Phone = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>`;
+const Star = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>`;
+const Layers = `<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>`;
+const Shield = `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>`;
+const TrendingUp = `<path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>`;
+
+const pillars = [
+	{
+		icon: Layers,
+		title: "Brand Clarity",
+		body: "One consistent story, identity, and website a buyer can trust at first glance. If your brand looks inconsistent or dated across channels, it raises questions before a single financial statement is reviewed.",
+	},
+	{
+		icon: Shield,
+		title: "Documented Systems",
+		body: "Proof that leads and growth don't depend solely on you. We document how customers find you, how they convert, and how that process runs without your personal involvement in every deal.",
+	},
+	{
+		icon: TrendingUp,
+		title: "Digital Reputation",
+		body: "SEO, reviews, and social proof that hold up the moment a buyer searches your name. First impressions now happen online, long before a call is scheduled.",
+	},
+];
+
+const packages = [
+	{
+		name: "Audit",
+		tag: null,
+		desc: "An outside-in readiness assessment. We evaluate your brand, marketing, and digital presence the way a buyer's advisors will, and give you a clear list of what needs to change before you go to market.",
+		bullets: ["Brand & visual identity audit", "Website and digital footprint review", "Lead generation documentation gap analysis", "Prioritized readiness report"],
+		cta: "Talk to Brad About an Audit",
+		featured: false,
+	},
+	{
+		name: "Brand Refresh",
+		tag: null,
+		desc: "Updated identity, collateral, and a professional website that reflects the real quality of the business you've built.",
+		bullets: ["Refined or rebuilt visual identity", "Professional website redesign or rebuild", "Updated brand collateral and messaging", "Positioning aligned with buyer expectations"],
+		cta: "Schedule a Brand Conversation",
+		featured: false,
+	},
+	{
+		name: "Full Readiness",
+		tag: "Most common",
+		desc: "Brand refresh plus full documentation of your marketing and lead generation systems. Built to hold up in diligence.",
+		bullets: ["Everything in Brand Refresh", "Documented customer acquisition process", "Lead generation systems map", "Marketing playbook built for hand-off", "Diligence-ready presentation materials"],
+		cta: "Talk About Full Readiness",
+		featured: true,
+	},
+	{
+		name: "Ongoing Support",
+		tag: null,
+		desc: "Continued support through the sale process, so the story stays consistent through close.",
+		bullets: ["Responsive updates as diligence evolves", "Consistent messaging guidance", "Materials updates for buyer presentations", "Support through signing"],
+		cta: "Ask About Ongoing Support",
+		featured: false,
+	},
+];
+---
+
+<Layout
+	title="Exit-Ready Brand | M&A Brand & Marketing Readiness | Ascend Consulting"
+	description="Prepare your business to sell for what it's really worth. Ascend Consulting builds the brand clarity, documented systems, and digital reputation that hold up in buyer diligence — before the offer is made."
+	bare
+	canonical="https://ascendsmartly.com/exit-ready-brand"
+>
+	<div class="min-h-screen bg-white font-sans">
+		<header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-sm">
+			<div class="container mx-auto flex items-center justify-between gap-6 px-6 py-3 md:px-12">
+				<a href="/" class="flex shrink-0 items-center gap-2">
+					<img src="/images/ascend-logo-color.webp" alt="Ascend Consulting" class="h-8" />
+				</a>
+				<a
+					href={site.booking}
+					target="_blank"
+					rel="noopener"
+					class="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-primary-dark"
+					set:html={`Schedule a Readiness Call ${ArrowRight}`}
+				/>
+			</div>
+		</header>
+
+		<main>
+			<!-- Hero -->
+			<section class="relative overflow-hidden bg-primary">
+				<div class="absolute inset-0">
+					<picture>
+						<source media="(max-width: 768px)" srcset="/images/hero-mobile.webp" type="image/webp" />
+						<source media="(min-width: 769px)" srcset="/images/hero-desktop.webp" type="image/webp" />
+						<img src="/images/hero-desktop.webp" alt="" class="h-full w-full object-cover object-center" />
+					</picture>
+					<div class="absolute inset-0 bg-primary/88"></div>
+				</div>
+				<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+					<div class="absolute -top-1/4 -right-1/4 h-3/4 w-3/4 rounded-full bg-blue-900/50 blur-[140px]"></div>
+					<div class="absolute -bottom-1/4 -left-1/4 h-2/3 w-2/3 rounded-full bg-orange-600/15 blur-[100px]"></div>
+				</div>
+				<div class="relative z-10 container mx-auto px-6 pt-20 pb-24 md:px-12 md:pt-28 md:pb-32">
+					<div class="max-w-3xl">
+						<h1 class="mb-6 text-4xl leading-[1.05] text-white md:text-6xl lg:text-7xl">
+							Your business is about to be judged by a stranger.
+						</h1>
+						<p class="mb-10 max-w-2xl text-xl leading-relaxed font-light text-white/75 md:text-2xl">
+							Get it ready to sell for what it's really worth, before the buyer starts asking questions.
+						</p>
+						<a
+							href={site.booking}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex items-center gap-2 rounded-sm bg-orange-500 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-orange-400 hover:shadow-xl"
+							set:html={`Schedule a Readiness Call ${ArrowRight}`}
+						/>
+					</div>
+				</div>
+				<div class="absolute right-0 bottom-0 left-0 h-8 bg-white" style="clip-path: ellipse(55% 100% at 50% 100%)"></div>
+			</section>
+
+			<!-- The Problem -->
+			<section class="bg-white py-20 md:py-28">
+				<div class="container mx-auto max-w-3xl px-6 md:px-12">
+					<p class="mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase">The Problem</p>
+					<h2 class="mb-8 text-3xl leading-tight text-primary md:text-4xl">
+						What a buyer sees before they see your financials
+					</h2>
+					<div class="space-y-5 text-lg leading-relaxed text-gray-600">
+						<p>
+							Buyers and their advisors discount for what looks unproven: an inconsistent brand story, growth
+							that depends entirely on the owner, no documented marketing system, a thin or outdated digital
+							footprint. None of that shows up on your P&amp;L. All of it shows up in the offer.
+						</p>
+						<p>
+							Most M&amp;A preparation focuses on financials, operations, and deal structure. It rarely touches
+							the brand and marketing story a buyer sees first — and that story shapes how much confidence a
+							buyer has in what they're paying for.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Three pillars -->
+			<section class="bg-gray-50 py-20 md:py-28">
+				<div class="container mx-auto px-6 md:px-12">
+					<div class="mb-14 text-center">
+						<p class="mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase">How We Get You Ready</p>
+						<h2 class="text-3xl text-primary md:text-4xl">Three pillars of readiness</h2>
+					</div>
+					<div class="grid gap-6 md:grid-cols-3 md:gap-8">
+						{
+							pillars.map((p) => (
+								<div class="rounded-sm border border-gray-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
+									<div class="mb-5 flex h-11 w-11 items-center justify-center rounded-sm bg-primary/10 text-primary">
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={p.icon} />
+									</div>
+									<h3 class="mb-3 text-lg font-bold text-primary">{p.title}</h3>
+									<p class="text-sm leading-relaxed text-gray-600">{p.body}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Timing -->
+			<section class="relative overflow-hidden bg-primary py-20 md:py-28">
+				<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+					<div class="absolute top-0 right-0 h-full w-1/2 bg-blue-900/30 blur-[120px]"></div>
+				</div>
+				<div class="relative z-10 container mx-auto max-w-3xl px-6 md:px-12">
+					<p class="mb-4 text-xs font-bold tracking-widest text-orange-400 uppercase">Timing</p>
+					<h2 class="mb-8 text-3xl text-white md:text-4xl">Where this fits your timeline</h2>
+					<div class="flex items-start gap-5 rounded-sm border border-white/15 bg-white/10 p-8">
+						<div class="mt-0.5 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-orange-400/30 bg-orange-500/20 text-orange-300">
+							<span set:html={Clock} />
+						</div>
+						<div>
+							<p class="mb-3 text-lg font-semibold text-white">Best started 6 to 18 months before you go to market</p>
+							<p class="leading-relaxed text-white/70">
+								So the work is finished, live, and proven by the time your Confidential Information Memorandum
+								(CIM) goes out to buyers. Starting late means rushing work a buyer can tell was rushed.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Packages -->
+			<section class="bg-white py-20 md:py-28">
+				<div class="container mx-auto max-w-5xl px-6 md:px-12">
+					<div class="mb-14 text-center">
+						<p class="mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase">Packages</p>
+						<h2 class="text-3xl text-primary md:text-4xl">Readiness packages</h2>
+						<p class="mx-auto mt-4 max-w-xl text-gray-500">
+							Each engagement is scoped to your situation. Pricing is quoted after a readiness conversation.
+						</p>
+					</div>
+					<div class="grid gap-6 md:grid-cols-2">
+						{
+							packages.map((pkg) => (
+								<div class:list={["relative flex flex-col rounded-sm border p-8", pkg.featured ? "border-primary bg-primary/[0.03] shadow-lg" : "border-gray-200 bg-white shadow-sm"]}>
+									{pkg.tag && <span class="absolute -top-3 left-6 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white">{pkg.tag}</span>}
+									<h3 class:list={["mb-3 text-xl font-bold", pkg.featured ? "text-primary" : "text-gray-900"]}>{pkg.name}</h3>
+									<p class="mb-5 text-sm leading-relaxed text-gray-600">{pkg.desc}</p>
+									<ul class="mb-8 flex-1 space-y-2">
+										{pkg.bullets.map((b) => (
+											<li class="flex items-start gap-2.5 text-sm text-gray-700">
+												<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-orange-500" set:html={Check.match(/<path.*<\/path>/s)?.[0]} />
+												{b}
+											</li>
+										))}
+									</ul>
+									<a
+										href={site.booking}
+										target="_blank"
+										rel="noopener"
+										class:list={[
+											"inline-flex w-full items-center justify-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold transition-all",
+											pkg.featured ? "bg-primary text-white shadow-md hover:-translate-y-0.5 hover:bg-primary-dark hover:shadow-lg" : "bg-gray-100 text-gray-800 hover:bg-gray-200",
+										]}
+										set:html={`${pkg.cta} ${ChevronRight}`}
+									/>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Why Ascend -->
+			<section class="bg-gray-50 py-20 md:py-28">
+				<div class="container mx-auto max-w-5xl px-6 md:px-12">
+					<div class="mb-14 text-center">
+						<p class="mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase">Why Ascend</p>
+						<h2 class="text-3xl text-primary md:text-4xl">Who you're working with</h2>
+					</div>
+					<div class="grid items-start gap-12 md:grid-cols-2">
+						<div>
+							<div class="mb-6 flex items-center gap-5">
+								<img src="/images/brad-stave.jpg" alt="Brad Stave, Founder of Ascend Consulting" class="h-20 w-20 rounded-full border-2 border-white object-cover object-top shadow-md" loading="lazy" />
+								<div>
+									<p class="text-lg font-bold text-gray-900">Brad Stave</p>
+									<p class="text-sm text-gray-500">Founder &amp; Principal, Ascend Consulting</p>
+									<p class="text-sm text-gray-500">{site.location}</p>
+								</div>
+							</div>
+							<p class="leading-relaxed text-gray-600">
+								Brad brings 20+ years of senior marketing leadership across global tech, corporate, and
+								nonprofit organizations — including Dell, HP, Lenovo, Microsoft, World Vision, and others. He
+								works directly with ownership to see the business the way an outside buyer will, and build the
+								story, systems, and presentation to close the gap.
+							</p>
+							<div class="mt-6 flex flex-col gap-2">
+								<a href={`mailto:${site.email}`} class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" set:html={`${Mail} ${site.email}`} />
+								<a href={`tel:${site.phone}`} class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" set:html={`${Phone} ${site.phoneDisplay}`} />
+							</div>
+						</div>
+						<div>
+							<p class="mb-6 text-xs font-bold tracking-widest text-gray-400 uppercase">Organizations Brad has led marketing for</p>
+							<div class="grid grid-cols-5 items-center gap-4">
+								{
+									trustLogoImages.map((logo) => (
+										<img src={logo.src} alt={logo.name} class="h-7 w-auto object-contain opacity-50 grayscale transition-all hover:opacity-70 hover:grayscale-0" loading="lazy" />
+									))
+								}
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Final CTA -->
+			<section class="relative overflow-hidden bg-primary py-20 md:py-28">
+				<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+					<div class="absolute -bottom-1/3 -left-1/4 h-3/4 w-3/4 rounded-full bg-blue-900/50 blur-[120px]"></div>
+					<div class="absolute -top-1/3 -right-1/4 h-2/3 w-2/3 rounded-full bg-orange-600/10 blur-[120px]"></div>
+				</div>
+				<div class="relative z-10 container mx-auto max-w-2xl px-6 text-center md:px-12">
+					<span class="mx-auto mb-6 block w-fit text-orange-400" set:html={Star} />
+					<h2 class="mb-6 text-3xl text-white md:text-5xl">Talk to Brad before you go to market.</h2>
+					<p class="mb-10 text-lg text-white/65">
+						A 30-minute conversation to see where you stand and what matters most before the process begins.
+					</p>
+					<a
+						href={site.booking}
+						target="_blank"
+						rel="noopener"
+						class="inline-flex items-center gap-2 rounded-sm bg-orange-500 px-10 py-4 text-base font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-orange-400 hover:shadow-xl"
+						set:html={`Schedule a Consultation ${ArrowRight}`}
+					/>
+				</div>
+			</section>
+		</main>
+
+		<footer class="border-t border-gray-800 bg-gray-900 py-12 text-gray-500">
+			<div class="container mx-auto px-6 md:px-12">
+				<div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+					<div>
+						<img src="/images/ascend-logo-white.webp" alt="Ascend Consulting" class="mb-4 h-8 opacity-80" loading="lazy" />
+						<div class="flex flex-col gap-1.5 text-sm">
+							<span class="font-medium text-gray-400">Brad Stave, Founder &amp; Principal</span>
+							<span>{site.location}</span>
+							<a href={`mailto:${site.email}`} class="transition-colors hover:text-gray-300">{site.email}</a>
+							<a href={`tel:${site.phone}`} class="transition-colors hover:text-gray-300">{site.phoneDisplay}</a>
+							<a href={`https://${site.domain}`} class="transition-colors hover:text-gray-300">{site.domain}</a>
+						</div>
+					</div>
+					<div class="flex flex-col gap-3 text-right text-sm">
+						<a href="/" class="transition-colors hover:text-gray-300">&larr; Back to Ascend Consulting</a>
+						<a href="/terms-and-conditions" class="text-xs transition-colors hover:text-gray-400">Terms &amp; Conditions</a>
+						<p class="mt-2 text-xs">&copy; {new Date().getFullYear()} Ascend Consulting. All rights reserved.</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+</Layout>

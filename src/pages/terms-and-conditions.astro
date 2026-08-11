@@ -1,0 +1,164 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+interface Section {
+	number: string;
+	title: string;
+	body: string | { label: string; text: string }[];
+}
+
+const sections: Section[] = [
+	{
+		number: "1",
+		title: "Services",
+		body: 'Client hereby engages Consultant to perform services for Client (the "Services"), and Consultant hereby accepts such engagement. The Services Consultant will initially perform for Client are described in the Statement of Work which is attached to this Agreement. The parties may agree upon additional Services to be performed by Consultant, in which case the parties will sign an additional Statement of Work describing the additional Services, which shall then be governed by and shall become part of this Agreement. If there is any direct conflict between the terms of this Agreement and the terms of any Statement of Work, the terms of the Statement of Work shall control with respect to the Services to be performed pursuant to that Statement of Work.',
+	},
+	{
+		number: "2",
+		title: "Compensation",
+		body: "For the Services rendered by Consultant, Client agrees to pay Consultant the amount specified in the Statement of Work applicable to the Services. Except as may be otherwise indicated in a Statement of Work, Consultant will bear its own expenses in connection with the performance of the Services. Consultant will invoice Client for Services performed under this Agreement in advance of work on a project or monthly basis. Monthly payments to Consultant from the Client are due 5 business days after invoicing, and done through an automatic ACH withdrawal system, from the Client's business bank account, through Consultant's payment service provider, GoCardless or via Direct ACH transfer, or via Wire Transfer. Any payment not paid by the Client to Consultant, when due, shall bear interest at the rate of 1.5% per month (but no more than the maximum rate allowed by applicable law) and, shall constitute sufficient cause for Consultant to immediately suspend performance and terminate this agreement, if they so desire. Ascend Consulting fees automatically increase by 4% annually upon the renewal date.",
+	},
+	{
+		number: "3",
+		title: "Ownership of Work Product",
+		body: 'Client shall own all right, title and interest (including rights under patent, copyright, trademark, and trade secret laws) to all inventions (whether or not patentable), works of authorship, software, reports, and other materials (collectively, "Work Product") that are created by Consultant in the performance of the Services. Consultant agrees that all Work Product consists of "works made for hire" to the greatest extent permitted by applicable law. To the extent any Work Product does not qualify as a work made for hire, Consultant agrees to assign all rights to such Work Product to Client. Consultant agrees to give reasonable assistance to Client, at Client\'s expense, to obtain and maintain Client\'s rights to the Work Product.',
+	},
+	{
+		number: "4",
+		title: "Confidential Information",
+		body: [
+			{
+				label: "(a) Non-Disclosure.",
+				text: 'The parties acknowledge that, in the course of performing this Agreement, each party may find it necessary or desirable to disclose to the other party information deemed to be "Confidential Information" (as defined in Section 4(b) below). The receiving party agrees not to use any of the other party\'s Confidential Information for any purpose, or disclose any of the other party\'s Confidential Information to any third party, except as reasonably necessary to perform this Agreement. The receiving party further agrees not to disclose any of the other party\'s Confidential Information to any employee of the receiving party unless such person both (i) needs to know such information in order to further the authorized use of the information, and (ii) is bound by confidentiality obligations at least as restrictive as the provisions of this Agreement. In addition, the receiving party agrees not to make copies of, or otherwise reproduce any documents or other materials containing the other party\'s Confidential Information, except as reasonably necessary to perform this Agreement. The above restrictions on use and disclosure of Confidential Information shall survive any termination of this Agreement and shall continue for a period of three (3) years from the date the Confidential Information was disclosed to the receiving party. Notwithstanding the above restrictions on disclosure, the receiving party may disclose the other party\'s Confidential Information to the extent ordered to do so by a court, provided the disclosing party has given the other party prior notice of its intent to do so.',
+			},
+			{
+				label: "(b) Definition of Confidential Information.",
+				text: 'As used in this Agreement, the term "Confidential Information" means all information disclosed by one party to the other party, whether orally or in tangible form, that is identified by such party as confidential or proprietary, or that a reasonable person would understand to be of a confidential, trade secret, proprietary or sensitive nature. Notwithstanding the above, information shall not be deemed "Confidential Information" for purposes of this Agreement if (i) the information is or becomes publicly known through no wrongful act of the receiving party, or (ii) the receiving party can demonstrate that the information was already known to the receiving party at the time that it was disclosed by the disclosing party, or (iii) the information is subsequently disclosed to the receiving party by a third party as a matter of right and without restriction on further use or disclosure, or (iv) the information is subsequently developed by the receiving party, without use of or reference to the disclosing party\'s information.',
+			},
+			{
+				label: "(c) Return of Confidential Information.",
+				text: "Upon request of the disclosing party, the receiving party agrees to return to the disclosing party, or destroy (at the option of the disclosing party), all documents and other materials containing the other party's Confidential Information; provided, however, that the receiving party may retain one copy for archival purposes.",
+			},
+			{
+				label: "(d) Remedies.",
+				text: "The receiving party acknowledges that the unauthorized disclosure or use of the other party's Confidential Information may result in substantial and irreparable harm to the other party and that monetary damages will be difficult to determine and inadequate to compensate the other party. Therefore, the receiving party agrees that, upon any breach of the obligations in this Section by the receiving party, the disclosing party shall be permitted to seek equitable relief such as an injunction or specific performance, in addition to any other available remedies.",
+			},
+		],
+	},
+	{
+		number: "5",
+		title: "Warranties and Disclaimer of Warranties",
+		body: "Consultant represents and warrants that (a) Consultant will perform the Services in a professional manner, consistent with generally accepted industry standards, and (b) the Services and Work Product will meet any specifications or requirements set forth in the applicable Statement of Work. Consultant's Statement of Work shall not include responding to server outages, customer online reviews, social media or blog comments unless specifically agreed to by the Parties in writing.\n\nCONSULTANT MAKES NO OTHER WARRANTIES TO CLIENT UNDER THIS AGREEMENT WITH REGARD TO THE WORK PRODUCT OR THE SERVICES, AND SPECIFICALLY DISCLAIMS ALL OTHER WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.",
+	},
+	{
+		number: "6",
+		title: "Term and Termination",
+		body: "This agreement shall remain in effect for the terms set forth in the Statement of Work. Either party may terminate this Agreement for cause (i) upon sixty (60) days' notice to the other party of a material breach if such breach remains uncured at the expiration of such period, or (ii) immediately, if the other party becomes the subject of a petition in bankruptcy or any other proceeding relating to insolvency, cessation of business, liquidation or assignment for the benefit of creditors. This Agreement may not otherwise be terminated prior to the end of the Terms set forth in the Statement of Work. Client shall compensate Consultant through the end of the Terms set forth in the Statement of Work. This agreement shall renew automatically on an annual basis, unless otherwise terminated with sixty (60) days written notice prior to the renewal date.",
+	},
+	{
+		number: "7",
+		title: "Relationship of the Parties",
+		body: "The Consultant is an independent contractor of the Client. Neither shall be deemed a partner, joint venturer, or agent of the other and neither shall have the power to bind the other to any contract. No employees of the Consultant shall be entitled to employee benefits that the Client may provide to its employees.",
+	},
+	{
+		number: "8",
+		title: "Limitation of Liability",
+		body: "EXCEPT FOR BREACH OF SECTION 4 (CONFIDENTIAL INFORMATION), (A) NEITHER PARTY WILL BE LIABLE TO THE OTHER UNDER ANY CAUSE OF ACTION, WHETHER IN CONTRACT, WARRANTY, TORT OR OTHERWISE, FOR ANY INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES (INCLUDING LOSS OF REVENUE OR PROFITS) ARISING OUT OF OR RELATING TO THIS AGREEMENT, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES, AND (B) IN NO EVENT SHALL THE LIABILITY OF EITHER PARTY TO THE OTHER UNDER THIS AGREEMENT, OR ANY STATEMENT OF WORK, EXCEED THE AMOUNT CLIENT HAS PAID CONSULTANT UNDER THE APPLICABLE STATEMENT OF WORK.",
+	},
+	{
+		number: "9",
+		title: "Assignment",
+		body: "Consultant may utilize subcontractors to perform Services for the Client. Either party may assign this Agreement to a successor to its business resulting from a sale of assets, merger or similar transaction. Neither party shall be entitled to otherwise assign this Agreement without the prior written consent of the other party. This Agreement shall be binding upon the parties and their successors and permitted assigns.",
+	},
+	{
+		number: "10",
+		title: "Notices",
+		body: "All notices under this Agreement must be in writing, and shall be deemed given (a) when personally delivered to an officer of a party, or (b) three days after being sent by prepaid certified or registered U.S. mail to the address of the party to be noticed as set forth in this Agreement or such other address as such party last provided to the other by written notice, or (c) on the next business day after being sent by email, to the email addresses shown below. A party may change its address or email address for notice purposes by notifying the other party of such change pursuant to the above notice procedure.",
+	},
+	{
+		number: "11",
+		title: "Force Majeure",
+		body: 'Neither party will be liable for, or be considered in breach of or default under this Agreement on account of, any delay or failure to perform as required by this Agreement (except failure to pay money) as a result of fire, earthquakes, storms, floods, strikes, riots, wars, hostility, terrorism, or sabotage (such as hacking, provided reasonable security methods were used to attempt to prevent it), or other similar events beyond such party\'s reasonable control (a "Force Majeure Event"). Any such breach of this Agreement shall be excused for the duration of the Force Majeure Event.',
+	},
+	{
+		number: "12",
+		title: "Publicity",
+		body: "Neither party will issue any public announcement of the existence of this Agreement or the relationship of the parties, or otherwise use the name or logos of the other party for promotional purposes, without the other party's prior written consent via email or SMS.",
+	},
+	{
+		number: "13",
+		title: "Non-Solicitation",
+		body: "During the term of this Agreement and for a period of one hundred eighty days (180) after termination of this Agreement, each party agrees not to solicit, induce, recruit or encourage any employee of the other party to terminate their service to the other party. Such covenant shall not apply to any particular person who has not performed services for the other party for a period of at least three hundred sixty-five days (365) prior to the date in question. The posting of general job announcements that do not specifically target employees of the other party shall not be deemed to violate the covenants in this paragraph.",
+	},
+	{
+		number: "14",
+		title: "Liquidation of Damages",
+		body: [
+			{
+				label: "Hiring/Recruiting Ascend Consulting LLC's Team Members:",
+				text: 'Client agrees not to breach Paragraph 13 hereof, and offer or accept for hire any of Consultant\'s Employees or Independent Contractors at any time during the term or any extension or renewal of this agreement. "Consultant\'s Team Members" include Consultant\'s employees and Independent Contractors during the period of their work with Client and for a period of one hundred eighty (180) days thereafter. If Client breaches Paragraph 13 hereof and offers or accepts for hire any of Consultant\'s Team Members at any time during the term or any extension of renewal of this agreement, or within one hundred eighty (180) days after Client terminates, Client agrees to pay Consultant the sum of Forty-Five Thousand United States dollars ($45,000) for the team member so hired to compensate Consultant for Consultant\'s loss in hiring and training said team member.',
+			},
+		],
+	},
+	{
+		number: "15",
+		title: "General Provisions",
+		body: "The failure of either party to enforce its rights under this Agreement at any time for any period shall not be construed as a waiver of such rights. No changes or modifications or waivers to this Agreement will be effective unless in writing and signed by both parties. In the event any provision of this Agreement is determined to be illegal or unenforceable, that provision will be limited or eliminated to the minimum extent necessary and the other provisions of this Agreement shall not be affected. This Agreement shall be governed by and construed in accordance with the laws of the State of California, excluding its conflicts of law provisions. In any action or proceeding to enforce rights under this Agreement, the prevailing party shall be awarded its costs and attorney's fees. This Agreement, together with any Statements of Work signed by the parties, is the entire agreement and understanding of the parties relating to its subject matter, and supersedes all prior agreements and understandings, whether written or oral, relating to that subject.",
+	},
+];
+---
+
+<Layout
+	title="Terms and Conditions | Ascend Consulting"
+	description="Terms and Conditions for Ascend Consulting services. Revision Date: June 30, 2026."
+	bare
+	noindex
+	canonical="https://ascendsmartly.com/terms-and-conditions"
+>
+	<div class="min-h-screen bg-white">
+		<div class="bg-[#0A1628] py-10">
+			<div class="mx-auto max-w-4xl px-6">
+				<a href="/" class="mb-6 inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white/80">
+					<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="m12 19-7-7 7-7" /><path d="M19 12H5" />
+					</svg>
+					Back to Ascend Consulting
+				</a>
+				<h1 class="text-3xl text-white md:text-4xl">Terms and Conditions</h1>
+				<p class="mt-2 text-sm text-white/50">Revision Date: June 30, 2026</p>
+			</div>
+		</div>
+
+		<div class="mx-auto max-w-4xl px-6 py-14">
+			<div class="space-y-10 leading-relaxed text-gray-700">
+				{
+					sections.map((section) => (
+						<div>
+							<h2 class="mb-3 flex items-baseline gap-2 text-lg font-bold text-[#0A1628]">
+								<span class="shrink-0 font-mono text-sm text-accent">{section.number}.</span>
+								{section.title}
+							</h2>
+							<div class="space-y-3 border-l-2 border-gray-100 pl-5 text-[15px] leading-relaxed text-gray-600">
+								{Array.isArray(section.body)
+									? section.body.map((item) => (
+											<div class="mb-4">
+												<span class="font-semibold text-gray-700">{item.label} </span>
+												{item.text}
+											</div>
+										))
+									: section.body.split("\n\n").map((para) => <p>{para}</p>)}
+							</div>
+						</div>
+					))
+				}
+			</div>
+
+			<div class="mt-14 border-t border-gray-200 pt-8">
+				<p class="text-xs text-gray-400">
+					&copy; {new Date().getFullYear()} Ascend Consulting LLC. All rights reserved. For questions regarding these terms, contact{" "}
+					<a href="mailto:brad@ascendsmartly.com" class="text-gray-500 underline hover:text-gray-700">brad@ascendsmartly.com</a>.
+				</p>
+			</div>
+		</div>
+	</div>
+</Layout>

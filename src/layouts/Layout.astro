@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import AvaChatBubble from "../components/AvaChatBubble.astro";
+import { site } from "../data/site";
+
+interface Props {
+	title: string;
+	description: string;
+	transparentHeader?: boolean;
+	/** Skip the site Nav, Footer, and chat bubble — used by standalone pages like Terms. */
+	bare?: boolean;
+	noindex?: boolean;
+	canonical?: string;
+}
+
+const { title, description, transparentHeader = false, bare = false, noindex = false, canonical } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="/images/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content={site.themeColor} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{canonical && <link rel="canonical" href={canonical} />}
+	</head>
+	<body class="bg-white text-foreground">
+		{!bare && <Nav transparent={transparentHeader} />}
+		<main>
+			<slot />
+		</main>
+		{!bare && <Footer />}
+		{!bare && <AvaChatBubble />}
+	</body>
+</html>

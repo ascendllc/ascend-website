@@ -1,0 +1,244 @@
+---
+import { mainNav, site } from "../data/site";
+
+interface Props {
+	transparent?: boolean;
+}
+const { transparent = false } = Astro.props;
+
+const headerClass = transparent
+	? "fixed top-0 z-50 w-full border-b border-transparent bg-transparent py-5 transition-all duration-300"
+	: "sticky top-0 z-50 w-full border-b border-border bg-white/95 py-3 shadow-sm backdrop-blur-sm";
+const logoSrc = transparent ? "/images/ascend-logo-white.webp" : "/images/ascend-logo-color.webp";
+const navTextClass = transparent ? "text-white" : "text-foreground";
+const menuBtnClass = transparent ? "text-white" : "text-foreground";
+---
+
+<header id="site-header" class={headerClass} data-transparent={transparent ? "true" : "false"}>
+	<div class="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-12">
+		<a href="/" id="logo-link" class="flex items-center">
+			<img id="site-logo" src={logoSrc} alt="Ascend Consulting" class="h-8 transition-all duration-300 md:h-10" />
+		</a>
+
+		<nav class="hidden items-center gap-8 lg:flex">
+			<ul id="nav-links" class:list={["flex items-center gap-7 text-sm font-medium", navTextClass]}>
+				{
+					mainNav.map((item) => (
+						<li class="nav-item relative" data-has-dropdown={item.children ? "true" : undefined}>
+							<button
+								type="button"
+								class="flex items-center gap-1 py-2 hover:text-accent"
+								data-scroll-to={item.scrollTo}
+								aria-haspopup={item.children ? "true" : undefined}
+								aria-expanded={item.children ? "false" : undefined}
+							>
+								{item.label}
+								{item.children && (
+									<svg class="dropdown-chevron h-3.5 w-3.5 opacity-70 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6" />
+									</svg>
+								)}
+							</button>
+							{item.children && (
+								<div
+									class:list={[
+										"dropdown-panel pointer-events-none absolute top-full left-1/2 z-50 mt-2 -translate-x-1/2 -translate-y-1 rounded-sm border border-gray-100 bg-white py-1.5 text-foreground opacity-0 shadow-lg transition-all duration-150",
+										item.label === "Solutions" ? "w-56" : "w-44",
+									]}
+								>
+									{item.children.map((child) =>
+										child.description ? (
+											<a href={child.href} class="group/item block px-4 py-2.5 transition-colors hover:bg-gray-50">
+												<span class="block text-sm font-medium text-gray-700 transition-colors group-hover/item:text-primary">{child.label}</span>
+												<span class="mt-0.5 block text-xs text-gray-400">{child.description}</span>
+											</a>
+										) : child.label.includes("All ") ? (
+											<>
+												<div class="mx-4 my-1.5 border-t border-gray-100" />
+												{child.scrollTo ? (
+													<button
+														type="button"
+														data-scroll-to={child.scrollTo}
+														class="block w-full px-4 py-2 text-left text-sm font-semibold text-primary transition-colors hover:bg-gray-50"
+													>
+														{child.label}
+													</button>
+												) : (
+													<a href={child.href} class="block px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-gray-50">
+														{child.label}
+													</a>
+												)}
+											</>
+										) : (
+											<a href={child.href} class="block px-4 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50 hover:text-primary">
+												{child.label}
+											</a>
+										)
+									)}
+								</div>
+							)}
+						</li>
+					))
+				}
+			</ul>
+			<a
+				href={site.booking}
+				target="_blank"
+				rel="noopener"
+				class="flex items-center gap-2 rounded-sm bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-accent/90"
+			>
+				Consultation
+				<svg class="h-4 w-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M4 10h12M11 5l5 5-5 5" />
+				</svg>
+			</a>
+		</nav>
+
+		<button id="mobile-menu-btn" class:list={["lg:hidden", menuBtnClass]} aria-label="Toggle menu">
+			<svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+			</svg>
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="hidden border-t border-border bg-white lg:hidden">
+		<ul class="flex flex-col gap-1 px-6 py-4 text-sm font-medium text-foreground">
+			{
+				mainNav.map((item) => (
+					<li>
+						<button type="button" data-scroll-to={item.scrollTo} class="block w-full py-2 text-left hover:text-accent">
+							{item.label}
+						</button>
+						{item.children && (
+							<ul class="ml-4 flex flex-col gap-1 border-l border-border pl-4">
+								{item.children.map((child) => (
+									<li>
+										{child.scrollTo ? (
+											<button
+												type="button"
+												data-scroll-to={child.scrollTo}
+												class="block w-full py-1.5 text-left font-semibold text-primary hover:text-accent"
+											>
+												{child.label}
+											</button>
+										) : (
+											<a href={child.href} class="block py-1.5 text-muted-foreground hover:text-accent">
+												{child.label}
+											</a>
+										)}
+									</li>
+								))}
+							</ul>
+						)}
+					</li>
+				))
+			}
+			<li class="pt-2">
+				<a
+					href={site.booking}
+					target="_blank"
+					rel="noopener"
+					class="block rounded-sm bg-accent px-5 py-2.5 text-center text-sm font-medium text-white"
+				>
+					Consultation
+				</a>
+			</li>
+		</ul>
+	</div>
+</header>
+
+<script>
+	const header = document.getElementById("site-header");
+	const isTransparent = header?.dataset.transparent === "true";
+
+	if (isTransparent) {
+		const logo = document.getElementById("site-logo") as HTMLImageElement;
+		const navLinks = document.getElementById("nav-links");
+		const menuBtn = document.getElementById("mobile-menu-btn");
+
+		function updateHeader() {
+			if (!header || !logo || !navLinks) return;
+			if (window.scrollY > 40) {
+				header.className = "fixed top-0 z-50 w-full border-b border-border bg-white/95 py-3 shadow-sm backdrop-blur-sm transition-all duration-300";
+				logo.src = "/images/ascend-logo-color.webp";
+				navLinks.classList.remove("text-white");
+				navLinks.classList.add("text-foreground");
+				menuBtn?.classList.remove("text-white");
+				menuBtn?.classList.add("text-foreground");
+			} else {
+				header.className = "fixed top-0 z-50 w-full border-b border-transparent bg-transparent py-5 transition-all duration-300";
+				logo.src = "/images/ascend-logo-white.webp";
+				navLinks.classList.add("text-white");
+				navLinks.classList.remove("text-foreground");
+				menuBtn?.classList.add("text-white");
+				menuBtn?.classList.remove("text-foreground");
+			}
+		}
+
+		window.addEventListener("scroll", updateHeader);
+		updateHeader();
+	}
+
+	const logoLink = document.getElementById("logo-link");
+	logoLink?.addEventListener("click", (e) => {
+		if (window.location.pathname === "/") {
+			e.preventDefault();
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		}
+	});
+
+	const btn = document.getElementById("mobile-menu-btn");
+	const menu = document.getElementById("mobile-menu");
+	btn?.addEventListener("click", () => {
+		menu?.classList.toggle("hidden");
+	});
+
+	// Matches live: nav items smooth-scroll to a homepage section. If that section
+	// isn't on the current page, fall back to navigating home with the hash.
+	document.querySelectorAll<HTMLElement>("[data-scroll-to]").forEach((el) => {
+		el.addEventListener("click", () => {
+			const id = el.dataset.scrollTo;
+			if (!id) return;
+			const target = document.getElementById(id);
+			if (target) {
+				menu?.classList.add("hidden");
+				target.scrollIntoView({ behavior: "smooth" });
+			} else {
+				window.location.href = `/#${id}`;
+			}
+		});
+	});
+
+	// Matches live: dropdown open/close is driven by mouseenter/mouseleave with a
+	// 180ms close delay (not raw CSS :hover), so crossing the gap between the
+	// trigger and the panel doesn't slam the menu shut before you can click a link.
+	const OPEN_CLASSES = ["opacity-100", "translate-y-0", "pointer-events-auto"];
+	const CLOSED_CLASSES = ["opacity-0", "-translate-y-1", "pointer-events-none"];
+	document.querySelectorAll<HTMLElement>('.nav-item[data-has-dropdown="true"]').forEach((item) => {
+		const trigger = item.querySelector<HTMLButtonElement>("button");
+		const panel = item.querySelector<HTMLElement>(".dropdown-panel");
+		const chevron = item.querySelector<SVGElement>(".dropdown-chevron");
+		if (!trigger || !panel) return;
+
+		let closeTimer: ReturnType<typeof setTimeout> | undefined;
+
+		const open = () => {
+			if (closeTimer) clearTimeout(closeTimer);
+			panel.classList.remove(...CLOSED_CLASSES);
+			panel.classList.add(...OPEN_CLASSES);
+			chevron?.classList.add("rotate-180");
+			trigger.setAttribute("aria-expanded", "true");
+		};
+		const scheduleClose = () => {
+			closeTimer = setTimeout(() => {
+				panel.classList.remove(...OPEN_CLASSES);
+				panel.classList.add(...CLOSED_CLASSES);
+				chevron?.classList.remove("rotate-180");
+				trigger.setAttribute("aria-expanded", "false");
+			}, 180);
+		};
+
+		item.addEventListener("mouseenter", open);
+		item.addEventListener("mouseleave", scheduleClose);
+	});
+</script>

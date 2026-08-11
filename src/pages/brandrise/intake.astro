@@ -1,0 +1,246 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { site } from "../../data/site";
+
+const ArrowLeft = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>`;
+
+const channelOptions = [
+	"Website",
+	"Instagram",
+	"Facebook",
+	"LinkedIn",
+	"TikTok / YouTube",
+	"Email newsletters",
+	"Google Ads / Paid search",
+	"Events or trade shows",
+	"Word of mouth / referrals",
+	"Print or direct mail",
+	"Other",
+];
+const operatingLengthOptions = ["Just getting started", "Under 1 year", "1–3 years", "3–10 years", "10+ years"];
+const brandStateOptions = [
+	"Fully developed — logo, color palette, typography, messaging, tone of voice, and brand guidelines",
+	"Mostly visual — we have a logo and some visual elements, but no defined messaging or verbal identity",
+	"Logo only — we have a mark but no broader identity system or guidelines",
+	"Scattered and inconsistent — elements exist but nothing is unified or documented",
+	"Starting from scratch — we need to build the full identity from the ground up",
+];
+const deadlineOptions = ["Yes — I have a date in mind", "Sort of — there's a rough timeframe but nothing hard", "No hard deadline"];
+const budgetOptions = ["Under $5,000", "$5,000 – $10,000", "$10,000 – $20,000", "$20,000 – $40,000", "$40,000+", "Not sure yet"];
+
+const sections = [
+	{
+		number: "1",
+		title: "Your Contact Details",
+		subtitle: "So we know who we're talking to and can follow up if needed.",
+		fields: [
+			{ type: "text", label: "Full name", required: true },
+			{ type: "text", label: "Organization or business name", required: true },
+			{ type: "email", label: "Email address", required: true },
+			{ type: "tel", label: "Phone number", required: true },
+			{ type: "text", label: "Website (if you have one)" },
+			{ type: "text", label: "City & State / Country" },
+		],
+	},
+	{
+		number: "2",
+		title: "Your Goals",
+		subtitle: "Think about what you're hoping to walk away with — not the tactics, but the outcomes.",
+		fields: [
+			{ type: "textarea", label: "What are the top 1–2 things you want to accomplish in the next 12 months?", required: true },
+			{ type: "textarea", label: "Where do you want this organization to be in 3–5 years?" },
+			{
+				type: "textarea",
+				label: "What would a win look like if you hired Ascend to do this work?",
+				help: "Think beyond deliverables — what would feel different? What problem would finally be solved?",
+			},
+		],
+	},
+	{
+		number: "3",
+		title: "Your Organization",
+		subtitle: "Help us get a feel for who you are and what you're building.",
+		fields: [
+			{ type: "textarea", label: "How would you describe what your organization does — in your own words, like you're explaining it to a friend?" },
+			{ type: "select", label: "How long have you been operating?", options: operatingLengthOptions },
+		],
+	},
+	{
+		number: "4",
+		title: "Your Brand Today",
+		subtitle: "No judgment — wherever you are is a fine starting point.",
+		fields: [
+			{
+				type: "select",
+				label: "How would you describe the current state of your brand identity?",
+				options: brandStateOptions,
+				help: "A complete brand includes visual identity (logo, colors, typography), verbal identity (messaging, tone of voice, tagline), and guidelines that keep everything consistent across every touchpoint.",
+			},
+			{
+				type: "textarea",
+				label: "How would you describe your brand's personality? If your brand were a person, how would they come across?",
+				help: "Think about tone, values, how you want people to feel after interacting with you.",
+			},
+			{ type: "textarea", label: "Is there anything about your current brand you're proud of and want to keep?" },
+			{
+				type: "textarea",
+				label: "List up to five brands you admire and aspire to be like.",
+				help: "These don't need to be in your industry — just brands whose look, feel, or personality resonates with you. A sentence on why helps too.",
+			},
+		],
+	},
+	{
+		number: "5",
+		title: "Marketing & Visibility",
+		subtitle: "Where you show up today and what's actually working (or not).",
+		fields: [
+			{ type: "checkboxes", label: "Where does your organization currently show up?", options: channelOptions },
+			{ type: "textarea", label: "What's been working well with your marketing, even if just a little?" },
+			{ type: "textarea", label: "What's clearly not working — or what feels like a gap?" },
+		],
+	},
+	{
+		number: "6",
+		title: "Your Customers",
+		subtitle: "Understanding who you serve helps us understand your entire business.",
+		fields: [
+			{ type: "textarea", label: "Describe your ideal customer or client as if they were a real person — who are they, what do they care about, what keeps them up at night?" },
+			{ type: "textarea", label: "What problem do you solve for them that they can't easily get elsewhere?" },
+		],
+	},
+	{
+		number: "7",
+		title: "The Competitive Landscape",
+		subtitle: "You don't need a full market analysis — just your honest read on the field.",
+		fields: [
+			{ type: "textarea", label: "Who are your main competitors, and how are you different from them?" },
+			{ type: "textarea", label: "What do your best customers say about why they chose you over someone else?" },
+		],
+	},
+	{
+		number: "8",
+		title: "Timeline & What Success Looks Like",
+		subtitle: "Helps us understand urgency and set realistic expectations.",
+		fields: [
+			{ type: "textarea", label: "What would a wildly successful outcome look like 12 months from now?" },
+			{ type: "select", label: "Do you have a specific deadline, launch date, or event you're working toward?", options: deadlineOptions },
+		],
+	},
+	{
+		number: "9",
+		title: "Team & Budget",
+		subtitle: "No pressure on exact numbers — a ballpark helps us recommend the right scope.",
+		fields: [
+			{ type: "textarea", label: "Who's currently involved in your marketing — do you have a dedicated team, or is it mostly you?" },
+			{
+				type: "select",
+				label: "What's your approximate budget range for this kind of work?",
+				options: budgetOptions,
+				help: "This helps us match you with the right tier — no commitment implied.",
+			},
+		],
+	},
+	{
+		number: "10",
+		title: "Anything Else?",
+		subtitle: "This is the stuff that's easy to miss but often the most important to know upfront.",
+		fields: [
+			{ type: "textarea", label: "Is there anything about your brand or organization that's off-limits or that you're nervous about changing?" },
+			{ type: "textarea", label: "Anything else you'd like us to know before your call?" },
+		],
+	},
+];
+---
+
+<Layout
+	title="BrandRise™ Pre-Call Intake | Ascend Consulting"
+	description="Complete your BrandRise™ pre-call intake form so the Ascend team can review your goals, brand, and context before your exploratory call."
+	bare
+	noindex
+	canonical="https://ascendsmartly.com/brandrise/intake"
+>
+	<div class="min-h-screen bg-gray-50">
+		<div class="bg-primary px-6 py-10">
+			<div class="mx-auto max-w-2xl">
+				<a href="/brandrise" class="mb-5 inline-flex items-center gap-1.5 text-sm text-white/50 transition-colors hover:text-white" set:html={`${ArrowLeft} Back to BrandRise™`} />
+				<p class="mb-3 text-xs font-bold tracking-widest text-accent uppercase">Pre-Call Intake Form</p>
+				<h1 class="mb-3 text-3xl leading-snug text-white md:text-4xl">Help Ascend prepare for your call.</h1>
+				<p class="text-base leading-relaxed text-white/65">
+					Answer as much or as little as you're comfortable with — there are no wrong answers. The more context
+					you share, the more productive your exploratory call will be. It typically takes 15–20 minutes.
+				</p>
+			</div>
+		</div>
+
+		<form class="mx-auto max-w-2xl space-y-8 px-6 py-12">
+			{
+				sections.map((section) => (
+					<div class="space-y-6 rounded-sm border border-gray-200 bg-white p-7 shadow-sm md:p-9">
+						<div class="mb-6 flex items-start gap-4">
+							<div class="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">{section.number}</div>
+							<div>
+								<h2 class="text-lg leading-snug font-semibold text-primary">{section.title}</h2>
+								<p class="mt-0.5 text-sm leading-relaxed text-gray-500">{section.subtitle}</p>
+							</div>
+						</div>
+						{section.fields.map((field) => (
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-primary">
+									{field.label}
+									{field.required && <span class="ml-1 text-accent">*</span>}
+								</label>
+								{field.help && <p class="mb-2 text-xs leading-relaxed text-gray-400">{field.help}</p>}
+								{field.type === "text" && (
+									<input type="text" required={field.required} class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+								)}
+								{field.type === "email" && (
+									<input type="email" required={field.required} class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+								)}
+								{field.type === "tel" && (
+									<input type="tel" required={field.required} class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+								)}
+								{field.type === "textarea" && (
+									<textarea rows="4" required={field.required} class="w-full resize-y rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+								)}
+								{field.type === "select" && (
+									<select class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none">
+										<option value="">Select one...</option>
+										{field.options?.map((opt) => <option value={opt}>{opt}</option>)}
+									</select>
+								)}
+								{field.type === "checkboxes" && (
+									<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+										{field.options?.map((opt) => (
+											<label class="flex items-center gap-2 text-sm text-gray-700">
+												<input type="checkbox" value={opt} class="h-4 w-4 rounded border-gray-300 text-accent focus:ring-accent/30" />
+												{opt}
+											</label>
+										))}
+									</div>
+								)}
+							</div>
+						))}
+					</div>
+				))
+			}
+
+			<div class="rounded-sm border border-gray-200 bg-white p-7 text-center shadow-sm md:p-9">
+				<h2 class="mb-2 text-lg font-semibold text-primary">Ready to send?</h2>
+				<p class="mb-6 text-sm leading-relaxed text-gray-500">
+					Clicking the button below sends your answers to Ascend. We'll review everything before your call.
+				</p>
+				<button
+					type="button"
+					title="This intake form isn't wired up to send yet — schedule your call directly instead."
+					class="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-accent px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl sm:w-auto"
+				>
+					Send My Intake
+				</button>
+				<p class="mt-6 text-xs text-gray-400">Your answers go directly to Ascend via email — no third-party services, no databases.</p>
+				<p class="mt-1 text-xs text-gray-400">
+					Questions? Email <a href={`mailto:${site.email}`} class="text-accent underline">{site.email}</a>
+				</p>
+			</div>
+		</form>
+	</div>
+</Layout>

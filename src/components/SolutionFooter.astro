@@ -1,0 +1,28 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-gray-800 bg-gray-900 text-gray-400">
+	<div class="border-b border-gray-800">
+		<div class="container mx-auto flex flex-col items-start gap-5 px-6 py-8 sm:flex-row sm:items-center md:px-12">
+			<div class="flex-1">
+				<p class="mb-1 text-sm font-semibold text-white/80">Already have your call booked?</p>
+				<p class="max-w-xl text-xs leading-relaxed text-gray-500">
+					Complete the pre-call intake form so Brad can review your goals, brand, and context before you meet. It
+					takes about 15–20 minutes and means your call is focused on strategy, not introductions.
+				</p>
+			</div>
+			<a
+				href="/brandrise/intake"
+				class="inline-flex shrink-0 items-center gap-2 rounded-sm border border-white/15 px-5 py-2.5 text-sm font-medium whitespace-nowrap text-white/70 transition-all hover:border-accent/50 hover:text-accent"
+			>
+				Complete the Intake Form
+				<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+			</a>
+		</div>
+	</div>
+	<div class="container mx-auto flex flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row md:px-12">
+		<img src="/images/ascend-logo-white.webp" alt="Ascend Consulting" class="h-8 opacity-80" loading="lazy" />
+		<p class="text-sm">&copy; {year} Ascend Consulting. All rights reserved.</p>
+	</div>
+</footer>

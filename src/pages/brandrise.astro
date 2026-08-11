@@ -1,0 +1,755 @@
+---
+import Layout from "../layouts/Layout.astro";
+import MinimalHeader from "../components/MinimalHeader.astro";
+import SolutionFooter from "../components/SolutionFooter.astro";
+import { site } from "../data/site";
+
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>`;
+
+const iconPaths = {
+	rocket: `<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>`,
+	shield: `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>`,
+	gem: `<path d="M10.5 3 8 9l4 13 4-13-2.5-6"/><path d="M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z"/><path d="M2 9h20"/>`,
+	star: `<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>`,
+	diamond: `<path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41l-7.59-7.59a2.41 2.41 0 0 0-3.41 0Z"/>`,
+	lifeBuoy: `<circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/>`,
+	compass: `<path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/>`,
+	palette: `<path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>`,
+	messageSquare: `<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>`,
+	search: `<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>`,
+	map: `<path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894L8.106 3.447a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/>`,
+	megaphone: `<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>`,
+	camera: `<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>`,
+	mail: `<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect>`,
+};
+
+interface Feature {
+	text: string;
+	link?: string;
+	linkLabel?: string;
+}
+
+interface Tier {
+	id: string;
+	name: string;
+	label: string;
+	tagline: string;
+	price: string;
+	priceSubtitle: string;
+	priceNote?: string;
+	color: string;
+	icon: keyof typeof iconPaths;
+	popular?: boolean;
+	ctaLabel: string;
+	outcome: string;
+	features: (string | Feature)[];
+}
+
+const tiers: Tier[] = [
+	{
+		id: "brandrise-monthly",
+		name: "BrandRise Monthly",
+		label: "Pay Monthly · Zero Upfront",
+		tagline: "A professional website without the big upfront investment — modern design plus ongoing support for one predictable monthly rate.",
+		price: "$250/mo",
+		priceSubtitle: "zero upfront cost",
+		priceNote: "2-year minimum",
+		color: "#34D399",
+		icon: "rocket",
+		ctaLabel: "Schedule to Discuss BrandRise Monthly",
+		outcome: "A professional, fully hosted website and digital workspace — launched without upfront cost and maintained continuously as your business evolves.",
+		features: [
+			"Every launch needs a spark. Ours starts with a complimentary hot cup of coffee.",
+			"Custom website design — clean, modern, mobile-optimized",
+			"One page scrolling website with clear, purposeful content (extra pages at additional cost)",
+			"A professional, branded email address (extra email addresses at additional cost)",
+			"Fast, secure hosting with backups and monitoring",
+			"Google Workspace — Gmail, Calendar, Drive, Docs, Sheets, Meet, shared storage",
+			"Basic SEO (metadata, structure, search-friendly setup)",
+			"Minor monthly updates — quick edits and content adjustments",
+			"Two seasonal site refreshes each year",
+			"No upfront cost — launch without a large initial payment",
+			"An Ascend frisbee to mark your launch — take a break, celebrate, and let it fly.",
+		],
+	},
+	{
+		id: "bronze",
+		name: "Bronze",
+		label: "BrandRise™ Essentials",
+		tagline: "For early-stage organizations that need a clean, credible foundation.",
+		price: "$3,500",
+		priceSubtitle: "one-time investment",
+		color: "#CD853F",
+		icon: "shield",
+		ctaLabel: "Schedule to Discuss Bronze",
+		outcome: "A simple, professional brand presence that gets you into the market quickly and affordably.",
+		features: [
+			"Every launch needs a spark. Ours starts with a complimentary hot cup of coffee.",
+			"Mini brand strategy (positioning + value proposition)",
+			"Basic visual identity (logo, colors, typography)",
+			"Light verbal identity (voice, tone, core messaging)",
+			{ text: "One-page website (scrolling layout)", link: "https://resleuth.com/", linkLabel: "see example" },
+			"Basic SEO setup (metadata, indexing, GA4)",
+			"Target market identification, USP development, and a go-to-market plan to land customers faster.",
+			"An Ascend frisbee to mark your launch — take a break, celebrate, and let it fly.",
+		],
+	},
+	{
+		id: "silver",
+		name: "Silver",
+		label: "BrandRise™ Core",
+		tagline: "For organizations ready to grow with a stronger identity and digital presence.",
+		price: "$7,500",
+		priceSubtitle: "one-time investment",
+		color: "#A8B8C8",
+		icon: "gem",
+		ctaLabel: "Schedule to Discuss Silver",
+		outcome: "A cohesive brand and website that communicate clearly, look polished, and support early growth.",
+		features: [
+			"Everything in Bronze, including the coffee, plus:",
+			"Expanded brand strategy (personas, competitive map)",
+			"Full visual identity system (logo suite, imagery, graphic elements)",
+			"Verbal identity system (messaging architecture, brand lexicon)",
+			"Multi-page website (up to 5 pages)",
+			"Conversion-focused UX + wireframes",
+			"Technical SEO audit + improvements",
+			"Local SEO (Google Business Profile setup)",
+			"An Ascend frisbee to mark your launch — take a break, celebrate, and let it fly.",
+		],
+	},
+	{
+		id: "gold",
+		name: "Gold",
+		label: "BrandRise™ Growth",
+		tagline: "For organizations ready to scale, differentiate, and accelerate traction.",
+		price: "$16,500",
+		priceSubtitle: "one-time investment",
+		color: "#D4AF37",
+		icon: "star",
+		popular: true,
+		ctaLabel: "Schedule to Discuss Gold",
+		outcome: "A fully equipped brand and marketing engine designed to drive awareness, engagement, and conversion.",
+		features: [
+			"Everything in Silver, including the coffee, plus:",
+			"Full brand story + narrative development",
+			"Tagline development (3–5 options)",
+			"Social media brand kit (profiles, covers, templates)",
+			"Presentation deck template",
+			"Email signature system",
+			"Content starter pack (3–5 SEO-optimized articles)",
+			"Expansive website (up to 10 pages)",
+			"Landing pages + funnel design",
+			"Go-to-market strategy (channels, timeline, milestones)",
+			"90-day content calendar",
+			"Paid + organic promotion strategy",
+			"An Ascend frisbee to mark your launch — take a break, celebrate, and let it fly.",
+		],
+	},
+	{
+		id: "platinum",
+		name: "Platinum",
+		label: "BrandRise™ Complete",
+		tagline: "The full transformation — every system, every asset, every strategy.",
+		price: "Starting at $33,500",
+		priceSubtitle: "one-time investment",
+		color: "#B8C8E8",
+		icon: "diamond",
+		ctaLabel: "Schedule to Discuss Platinum",
+		outcome: "A complete, enterprise-grade brand and growth system — built to scale, differentiate, and dominate your category.",
+		features: [
+			"Everything in Gold, including the coffee, plus:",
+			"Full brand architecture + naming systems",
+			"Comprehensive visual identity library (icons, patterns, graphics)",
+			"Full verbal identity playbook",
+			"Enterprise website (up to 25 pages)",
+			"Advanced SEO (schema, technical optimization, reputation strategy)",
+			"AEO/IEO optimization for AI search platforms",
+			"Video + photography package",
+			"Email marketing setup (welcome + launch sequences)",
+			"Retargeting + remarketing strategy",
+			"Influencer + partnership strategy",
+			"Sales enablement materials (one-pagers, pitch decks, scripts)",
+			"Brand governance system",
+			"CRM integration (HubSpot, Zoho, etc.)",
+			"Internal brand training",
+			"Templates library (social, email, proposals, presentations)",
+			"Launch playbook + operational enablement",
+			"An Ascend frisbee to mark your launch — take a break, celebrate, and let it fly.",
+		],
+	},
+];
+
+const engagementStarters = [
+	"Your organization's short- and long-term goals",
+	"Current brand identity, tone, and visual assets (if any)",
+	"Existing marketing channels, campaigns, and messaging",
+	"Ideal customer or constituent profile",
+	"Competitive landscape and market positioning",
+	"Current digital presence — website, social, search",
+	"What a successful outcome looks like to you",
+	"Timeline, key milestones, and launch targets",
+	"Internal team structure and capacity",
+	"Budget parameters and any constraints",
+	"Brand equity worth preserving vs. reinventing",
+	"Any risks, sensitivities, or non-negotiables",
+];
+
+const steps = [
+	{
+		step: "01",
+		title: "Choose your path",
+		body: "Review the five BrandRise™ options above — four upfront tiers plus the BrandRise Monthly plan — and decide which best aligns with where you are and where you want to go.",
+		cta: null,
+	},
+	{
+		step: "02",
+		title: "Book your free consultation",
+		body: "Schedule a no-commitment exploratory call with Brad. This is where you'll talk through goals, context, and confirm the right fit before anything moves forward.",
+		cta: { label: "Schedule a call", href: site.booking, external: true },
+	},
+	{
+		step: "03",
+		title: "Complete the pre-call intake",
+		body: "Once your call is booked, fill out a short intake form so Brad can review your goals, brand, and context before you meet. It takes about 15–20 minutes and makes the call significantly more productive.",
+		cta: { label: "Complete the intake form", href: "/brandrise/intake", external: false },
+	},
+];
+
+const workCategories = [
+	{
+		icon: "compass",
+		num: "01",
+		title: "Brand Strategy & Positioning",
+		desc: "The foundation every organization needs before building anything else.",
+		items: [
+			"Market and competitive landscape analysis",
+			"Audience segmentation and persona development",
+			"Positioning strategy and differentiation",
+			"Brand architecture and naming systems",
+			"Tagline development",
+			"Brand story and narrative development",
+			"Messaging hierarchy and elevator pitches (short, medium, long)",
+		],
+		outcome: "A clear, compelling strategic foundation that guides every decision and touchpoint.",
+	},
+	{
+		icon: "palette",
+		num: "02",
+		title: "Visual Identity System",
+		desc: "A complete, modern, scalable visual identity built to work everywhere.",
+		items: [
+			"Logo and mark development",
+			"Color palette and typography system",
+			"Imagery and photography direction",
+			"Graphic elements and iconography",
+			"Layout and grid systems",
+			"Brand style guide (full documentation)",
+			"Social media brand kit",
+			"Business card, letterhead, and collateral templates",
+			"Presentation deck template",
+			"Email signature system",
+			"Favicon and app icon set",
+		],
+		outcome: "A cohesive visual system that elevates credibility and ensures consistency across all channels.",
+	},
+	{
+		icon: "messageSquare",
+		num: "03",
+		title: "Verbal Identity System",
+		desc: "The voice, tone, and language that define how the brand speaks.",
+		items: [
+			"Brand voice and tone guidelines",
+			"Messaging architecture",
+			"Core messaging and value propositions",
+			"Brand lexicon and terminology",
+			"Naming (products, programs, services)",
+			"Copywriting guidelines",
+			"Tagline and headline frameworks",
+			"Brand story and origin narrative",
+		],
+		outcome: "A unified verbal identity that strengthens recognition and builds trust.",
+	},
+	{
+		icon: "rocket",
+		num: "04",
+		title: "Website Design, Development & Digital Experience",
+		desc: "From one-page sites to full digital ecosystems.",
+		items: [
+			"UX strategy, sitemap, and wireframes",
+			"Full website design and build (1–100+ pages)",
+			"Integration of visual + verbal identity",
+			"Conversion strategy and CTA architecture",
+			"Landing pages and funnels",
+			"Accessibility compliance (WCAG)",
+			"Performance optimization (speed, mobile, Core Web Vitals)",
+			"Analytics setup (GA4, Search Console, Tag Manager)",
+			"Marketing automation setup",
+		],
+		outcome: "A high-performing digital presence that converts visitors into customers.",
+	},
+	{
+		icon: "search",
+		num: "05",
+		title: "SEO, AEO/IEO & GEO Optimization",
+		desc: "A modern, multi-layered approach to organic discoverability.",
+		items: [
+			"Keyword strategy and content plan",
+			"Technical SEO audit and implementation",
+			"On-page optimization",
+			"Local SEO (Google Business Profile, citations)",
+			"Schema markup and structured data",
+			"Reputation management setup",
+			"AI Engine Optimization (AEO/IEO) for AI search platforms",
+		],
+		outcome: "Stronger organic visibility, AI-search presence, and long-term discoverability.",
+	},
+	{
+		icon: "map",
+		num: "06",
+		title: "Go-to-Market Strategy",
+		desc: "A complete roadmap for launching or relaunching a brand, product, or initiative.",
+		items: [
+			"Market entry strategy",
+			"Audience prioritization",
+			"Launch timeline and milestones",
+			"Channel strategy (owned, earned, paid)",
+			"Sales enablement materials (one-pagers, pitch decks, scripts)",
+			"Pricing and packaging guidance",
+			"Partnership and ecosystem strategy",
+		],
+		outcome: "A clear, actionable plan that accelerates adoption and revenue.",
+	},
+	{
+		icon: "megaphone",
+		num: "07",
+		title: "Promotion, Advertising & Growth",
+		desc: "Everything needed to drive awareness, engagement, and conversion.",
+		items: [
+			"Organic and paid advertising strategy",
+			"Ad creative development (static, video, social, display)",
+			"Social media launch kit",
+			"90-day content calendar",
+			"Email marketing setup (welcome sequences, launch sequences)",
+			"Retargeting and remarketing strategy",
+			"Landing pages and conversion funnels",
+			"Influencer and partnership strategy",
+		],
+		outcome: "A scalable growth engine that drives measurable results.",
+	},
+	{
+		icon: "camera",
+		num: "08",
+		title: "Content Creation & Media Production",
+		desc: "High-quality content that brings the brand to life.",
+		items: [
+			"Brand photography (product, lifestyle, team)",
+			"Video production (intro videos, social clips, ads)",
+			"Copywriting for web, campaigns, and collateral",
+			"Blog starter pack (3–5 SEO-optimized articles)",
+			"Social media templates and content kits",
+			"Graphic asset library",
+		],
+		outcome: "A ready-to-use content ecosystem that fuels marketing and storytelling.",
+	},
+] as const;
+---
+
+<Layout
+	title="BrandRise™ Launch Packages | Ascend Consulting"
+	description="BrandRise™ is your lift-off point — a complete system that builds or rebuilds your brand's strategic, visual, verbal, and digital foundation. Choose from four upfront tiers ($3,500–$33,500+) or our $250/month BrandRise Monthly subscription with zero upfront cost — plus a $100/month Ongoing Care Plan to keep everything running."
+	bare
+	canonical="https://ascendsmartly.com/brandrise"
+>
+	<div class="min-h-screen bg-white">
+		<MinimalHeader />
+
+		<!-- Hero -->
+		<section class="relative overflow-hidden bg-primary pt-32 pb-20 md:pt-40 md:pb-28">
+			<div class="absolute inset-0">
+				<img src="/images/hero-desktop.webp" alt="" class="h-full w-full object-cover object-center" />
+				<div class="absolute inset-0 bg-primary/88"></div>
+			</div>
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<div class="absolute -top-[20%] -right-[10%] h-[60%] w-[60%] rounded-full bg-secondary/25 blur-[120px]"></div>
+				<div class="absolute -bottom-[20%] -left-[10%] h-[50%] w-[50%] rounded-full bg-accent/15 blur-[100px]"></div>
+			</div>
+			<div class="container relative z-10 mx-auto px-6 text-center md:px-12">
+				<div class="mx-auto max-w-3xl">
+					<div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5">
+						<span class="h-2 w-2 animate-pulse rounded-full bg-accent"></span>
+						<span class="text-sm font-medium tracking-wide text-white/80">Launch · Relaunch · Rise</span>
+					</div>
+					<h1 class="mb-4 text-6xl leading-[1.05] font-normal text-white md:text-7xl lg:text-8xl">
+						Brand<span class="bg-gradient-to-r from-accent via-orange-300 to-yellow-300 bg-clip-text text-transparent">Rise</span><span class="align-super text-4xl text-white/40 md:text-5xl">™</span>
+					</h1>
+					<p class="mx-auto mb-8 max-w-2xl text-xl leading-relaxed font-light text-white/75 md:text-2xl">
+						Your lift-off point — a complete system that builds or relaunches the strategic, visual, verbal, and
+						digital foundation your organization needs to compete and grow.
+					</p>
+					<div class="mb-10 flex flex-wrap items-center justify-center gap-3">
+						{
+							tiers.map((t) => (
+								<a
+									href={`#${t.id}`}
+									class="flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-bold transition-all hover:scale-105"
+									style={`border-color:${t.color}60; color:${t.color}; background-color:${t.color}15`}
+								>
+									<span class="h-2 w-2 rounded-full" style={`background-color:${t.color}`} />
+									{t.name} · {t.price}
+								</a>
+							))
+						}
+					</div>
+					<a
+						href="#pricing"
+						class="inline-flex items-center gap-2 rounded-sm bg-accent px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl"
+						set:html={`Choose Your Tier ${ArrowRight}`}
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- What Is BrandRise -->
+		<section class="bg-white py-20 md:py-28">
+			<div class="container mx-auto max-w-4xl px-6 md:px-12">
+				<div class="grid items-start gap-12 md:grid-cols-5">
+					<div class="md:col-span-2">
+						<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">What Is BrandRise™</p>
+						<h2 class="mb-4 text-3xl leading-snug text-primary md:text-4xl">
+							Built for organizations ready to rise above their competition.
+						</h2>
+						<div class="h-1 w-12 bg-accent"></div>
+					</div>
+					<div class="space-y-5 text-lg leading-relaxed text-gray-600 md:col-span-3">
+						<p>
+							Whether you're starting fresh, evolving your identity, or reigniting momentum, BrandRise™ gives you
+							the clarity, cohesion, and infrastructure to move forward with confidence.
+						</p>
+						<p>
+							It's a complete suite of strategic, creative, and operational services designed to launch, refresh,
+							or accelerate any organization. Each offering stands alone — but together, they form a full
+							business-launch ecosystem.
+						</p>
+						<p>
+							Five ways to launch. Transparent pricing. One clear path from where you are to where you need to
+							be — including a monthly option with zero upfront cost.
+						</p>
+					</div>
+				</div>
+
+				<div class="mt-12 overflow-hidden rounded-sm border border-primary/15 bg-primary/4">
+					<div class="border-b border-primary/10 px-6 pt-5 pb-3">
+						<p class="mb-1 text-xs font-bold tracking-widest text-accent uppercase">How Every Engagement Begins</p>
+						<p class="text-base leading-snug font-semibold text-primary">
+							Regardless of tier, every BrandRise™ initiative starts with a free exploratory call.
+						</p>
+					</div>
+					<div class="px-6 py-4">
+						<p class="mb-4 text-sm leading-relaxed text-gray-500">
+							Before a single deliverable is scoped, Ascend takes time to deeply understand your organization.
+							The exploratory call covers:
+						</p>
+						<ul class="grid grid-cols-1 gap-x-6 gap-y-2.5 sm:grid-cols-2 md:grid-cols-3">
+							{
+								engagementStarters.map((item) => (
+									<li class="flex items-start gap-2 text-sm leading-snug text-gray-600">
+										<span class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-accent/15">
+											<span class="block h-1.5 w-1.5 rounded-full bg-accent" />
+										</span>
+										{item}
+									</li>
+								))
+							}
+						</ul>
+						<p class="mt-4 text-xs leading-relaxed text-gray-400">
+							No commitment required. The call is designed to give you clarity — and give Ascend everything needed
+							to recommend the right tier and build a plan that actually fits.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Pricing / Tiers -->
+		<section id="pricing" class="relative overflow-hidden bg-gray-950 py-20 md:py-28">
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<div class="absolute top-0 left-1/4 h-[500px] w-[500px] rounded-full bg-accent/5 blur-[120px]"></div>
+				<div class="absolute right-1/4 bottom-0 h-[400px] w-[400px] rounded-full bg-indigo-600/8 blur-[100px]"></div>
+			</div>
+			<div class="container relative z-10 mx-auto px-6 md:px-12">
+				<div class="mx-auto mb-10 max-w-2xl text-center">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">The Tiers</p>
+					<h2 class="mb-4 text-3xl text-white md:text-4xl">Five ways. One goal.</h2>
+					<p class="text-lg text-white/60">
+						Launch with zero upfront cost on a monthly plan, or choose one of four upfront tiers — whichever
+						fits where you are today.
+					</p>
+				</div>
+
+				<div class="mx-auto mb-14 max-w-4xl">
+					<div class="flex flex-col items-start gap-4 rounded-sm border border-white/10 bg-white/5 px-6 py-5 sm:flex-row sm:items-center">
+						<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent/30 bg-accent/15 text-accent">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths.mail} />
+						</div>
+						<div class="flex-1">
+							<p class="mb-1 text-sm leading-snug font-semibold text-white">
+								Every tier starts with a free exploratory call — no commitment required.
+							</p>
+							<p class="text-xs leading-relaxed text-white/45">
+								Before any work begins, Ascend takes time to understand your goals, current brand and
+								messaging, ideal customer profile, competitive landscape, digital presence, timeline, and what
+								success looks like for your organization. The right tier becomes clear from there.
+							</p>
+						</div>
+						<a
+							href={site.booking}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex shrink-0 items-center gap-1.5 rounded-sm border border-accent/40 px-4 py-2 text-xs font-bold whitespace-nowrap text-accent transition-all hover:bg-accent hover:text-white"
+							set:html={`Book the Call ${ArrowRight}`}
+						/>
+					</div>
+				</div>
+
+				<div class="mx-auto grid max-w-[1500px] gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+					{
+						tiers.map((t) => (
+							<div id={t.id} class="relative flex flex-col overflow-hidden rounded-sm border" style={`border-color:${t.color}66; background:linear-gradient(to bottom, ${t.color}14, transparent)`}>
+								{t.popular && (
+									<div class="bg-accent py-1.5 text-center text-xs font-bold tracking-widest text-white uppercase">Most Popular</div>
+								)}
+								<div class:list={["flex flex-1 flex-col p-7", t.popular && "pt-10"]}>
+									<div class="mb-6 flex items-center gap-3">
+										<div class="flex h-10 w-10 items-center justify-center rounded-full" style={`background-color:${t.color}20; border:1px solid ${t.color}40`}>
+											<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={t.color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[t.icon]} />
+										</div>
+										<div>
+											<p class="text-xs font-bold tracking-widest uppercase" style={`color:${t.color}`}>{t.name}</p>
+											<p class="text-xs leading-tight text-white/60">{t.label}</p>
+										</div>
+									</div>
+									<div class="mb-5">
+										<p class="mb-1 text-4xl leading-none font-bold text-white">{t.price}</p>
+										<p class="text-xs text-white/40">{t.priceSubtitle}</p>
+										{t.priceNote && <p class="mt-1.5 text-[10px] font-bold tracking-wider uppercase" style={`color:${t.color}`}>{t.priceNote}</p>}
+									</div>
+									<p class="mb-6 border-t border-white/10 pt-5 text-sm leading-relaxed text-white/70">{t.tagline}</p>
+									<ul class="mb-8 flex-1 space-y-2.5">
+										{t.features.map((f) => {
+											const text = typeof f === "string" ? f : f.text;
+											const link = typeof f === "string" ? null : f.link;
+											const linkLabel = typeof f === "string" ? null : f.linkLabel;
+											const isHeader = text.startsWith("Everything");
+											return (
+												<li class:list={["flex items-start gap-2.5 text-sm", isHeader ? "font-semibold text-white/80" : "text-white/60"]}>
+													{isHeader ? (
+														<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={t.color} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0" set:html={ArrowRight.match(/<path.*<\/path>/s)?.[0]} />
+													) : (
+														<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-white/30" set:html={Check.match(/<path.*<\/path>/s)?.[0]} />
+													)}
+													<span>
+														{text}
+														{link && (
+															<a href={link} target="_blank" rel="noopener" class="ml-1.5 text-xs font-medium text-accent/70 underline underline-offset-2 transition-colors hover:text-accent">
+																{linkLabel ?? link}
+															</a>
+														)}
+													</span>
+												</li>
+											);
+										})}
+									</ul>
+									<div class="mb-6 rounded-sm border p-4" style={`background-color:${t.color}10; border-color:${t.color}40`}>
+										<p class="mb-1 text-xs font-bold tracking-wider uppercase" style={`color:${t.color}`}>Outcome</p>
+										<p class="text-xs leading-relaxed text-white/70">{t.outcome}</p>
+									</div>
+									<a
+										href={site.booking}
+										target="_blank"
+										rel="noopener"
+										class="flex w-full items-center justify-center gap-2 rounded-sm px-6 py-3 text-sm font-medium text-white transition-all hover:-translate-y-0.5"
+										style={`background-color:${t.color}`}
+										set:html={`${t.ctaLabel} ${ArrowRight}`}
+									/>
+									<a href="/brandrise/intake" class="flex w-full items-center justify-center gap-1.5 pt-1 text-xs text-white/35 transition-colors hover:text-white/70">
+										Already booked? Complete your intake form →
+									</a>
+								</div>
+							</div>
+						))
+					}
+				</div>
+
+				<!-- Ongoing Care Plan -->
+				<div class="mx-auto mt-14 max-w-4xl">
+					<div class="rounded-sm border border-emerald-400/30 bg-emerald-500/[0.06] p-6 md:p-8">
+						<div class="flex flex-col items-start gap-5 sm:flex-row">
+							<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-500/15 text-emerald-300">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths.lifeBuoy} />
+							</div>
+							<div class="flex-1">
+								<div class="mb-2 flex flex-wrap items-baseline gap-3">
+									<p class="text-xs font-bold tracking-widest text-emerald-300 uppercase">Ongoing Care Plan</p>
+									<span class="text-xs text-white/30">·</span>
+									<p class="text-2xl leading-none text-white md:text-3xl">
+										$100<span class="text-base font-normal text-white/50">/month</span>
+									</p>
+								</div>
+								<p class="mb-4 text-sm leading-relaxed text-white/70 md:text-base">
+									Already chose <span class="font-medium text-white/90">Bronze, Silver, Gold, or Platinum</span> — or
+									have an existing brand and website you want to keep running smoothly? Add the Ongoing Care Plan
+									for hosting, monthly updates, two seasonal refreshes a year, basic SEO upkeep, and a professional
+									email setup — all for one predictable monthly fee.
+								</p>
+								<div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] font-bold tracking-wider text-emerald-300/80 uppercase">
+									<span>$100 / month</span>
+									<span class="text-white/20">·</span>
+									<span>2-year minimum</span>
+									<span class="text-white/20">·</span>
+									<span>Add-on or standalone</span>
+								</div>
+							</div>
+							<a
+								href={site.booking}
+								target="_blank"
+								rel="noopener"
+								class="inline-flex shrink-0 items-center gap-1.5 rounded-sm border border-emerald-400/50 px-4 py-2.5 text-xs font-bold whitespace-nowrap text-emerald-300 transition-all hover:bg-emerald-500 hover:text-white"
+								set:html={`Discuss the Care Plan ${ArrowRight}`}
+							/>
+						</div>
+					</div>
+				</div>
+				<p class="mx-auto mt-10 max-w-xl text-center text-sm text-white/40">
+					Not sure which path is right for you?{" "}
+					<a href="/brandrise/intake" class="text-accent underline underline-offset-2 hover:text-accent/80">Schedule a free consultation</a>{" "}
+					and we'll figure it out together.
+				</p>
+			</div>
+		</section>
+
+		<!-- What Happens Next -->
+		<section class="border-t border-gray-100 bg-white py-16 md:py-20">
+			<div class="container mx-auto max-w-4xl px-6 md:px-12">
+				<p class="mb-3 text-center text-xs font-bold tracking-widest text-accent uppercase">What Happens Next</p>
+				<h2 class="mb-10 text-center text-2xl text-primary md:text-3xl">Three steps to get started.</h2>
+				<div class="grid gap-6 md:grid-cols-3">
+					{
+						steps.map((s) => (
+							<div class="relative flex flex-col gap-4 rounded-sm border border-gray-200 bg-gray-50 p-7">
+								<span class="text-4xl leading-none font-bold text-primary/10 select-none">{s.step}</span>
+								<div>
+									<h3 class="mb-2 text-base font-semibold text-primary">{s.title}</h3>
+									<p class="text-sm leading-relaxed text-gray-500">{s.body}</p>
+								</div>
+								{s.cta && (
+									<a
+										href={s.cta.href}
+										target={s.cta.external ? "_blank" : undefined}
+										rel={s.cta.external ? "noopener" : undefined}
+										class="mt-auto inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80"
+										set:html={`${s.cta.label} ${ArrowRight}`}
+									/>
+								)}
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- The Work -->
+		<section class="border-t border-gray-100 bg-gray-50 py-20 md:py-28">
+			<div class="container mx-auto px-6 md:px-12">
+				<div class="mx-auto mb-14 max-w-2xl text-center">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">The Work</p>
+					<h2 class="mb-4 text-3xl text-primary md:text-4xl">Eight service categories. One ecosystem.</h2>
+					<p class="text-lg text-gray-500">
+						Every upfront BrandRise™ launch tier draws from these eight core service areas. The BrandRise Monthly
+						plan focuses on website, hosting, email, and ongoing support. Click any card to see exactly what's
+						included.
+					</p>
+				</div>
+				<div class="mx-auto grid max-w-5xl gap-4 md:grid-cols-2">
+					{
+						workCategories.map((service) => (
+							<details class="group overflow-hidden rounded-sm border border-gray-100 bg-white shadow-sm">
+								<summary class="flex cursor-pointer list-none items-start gap-5 p-6 text-left transition-colors hover:bg-gray-50">
+									<div class="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-primary/5 text-primary">
+										<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[service.icon]} />
+									</div>
+									<div class="min-w-0 flex-1">
+										<p class="mb-1 text-xs font-bold tracking-widest text-accent uppercase">{service.num}</p>
+										<h3 class="text-base leading-snug font-bold text-primary">{service.title}</h3>
+										<p class="mt-1 text-sm leading-relaxed text-gray-500">{service.desc}</p>
+									</div>
+									<div class="mt-1 shrink-0 text-gray-400">
+										<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
+									</div>
+								</summary>
+								<div class="border-t border-gray-50 px-6 pb-6">
+									<ul class="mt-4 space-y-2">
+										{service.items.map((item) => (
+											<li class="flex items-start gap-2.5 text-sm text-gray-600">
+												<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-accent" set:html={Check.match(/<path.*<\/path>/s)?.[0]} />
+												{item}
+											</li>
+										))}
+									</ul>
+									<div class="mt-5 border-t border-gray-100 pt-4">
+										<p class="text-sm font-semibold text-primary">
+											<span class="text-accent">Outcome:</span> {service.outcome}
+										</p>
+									</div>
+								</div>
+							</details>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Final CTA -->
+		<section class="relative overflow-hidden bg-primary py-20 md:py-28">
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<div class="absolute -top-[20%] -right-[10%] h-[60%] w-[60%] rounded-full bg-secondary/25 blur-[120px]"></div>
+				<div class="absolute -bottom-[20%] -left-[10%] h-[50%] w-[50%] rounded-full bg-accent/15 blur-[100px]"></div>
+			</div>
+			<div class="container relative z-10 mx-auto px-6 md:px-12">
+				<div class="mx-auto max-w-2xl text-center">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">Start Your Rise</p>
+					<h2 class="mb-6 text-3xl leading-snug text-white md:text-4xl">Which rise is right for you?</h2>
+					<p class="mb-10 text-lg leading-relaxed text-white/70">
+						Whether you're building from scratch, refreshing your identity, or preparing for your next chapter,
+						BrandRise™ gives you a clear path forward — from essential foundations to full-scale transformation.
+						Choose your tier. Start your rise.
+					</p>
+					<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+						<a
+							href={site.booking}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-accent px-8 py-4 text-lg font-medium text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-lg sm:w-auto"
+							set:html={`Schedule Your BrandRise™ Consultation ${ArrowRight}`}
+						/>
+					</div>
+					<div class="mt-4 flex flex-col items-center justify-center gap-4 sm:flex-row">
+						<a href={`mailto:${site.email}`} class="inline-flex items-center justify-center gap-2 text-sm text-white/60 transition-colors hover:text-white">
+							<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths.mail} />
+							{site.email}
+						</a>
+						<span class="hidden text-white/30 sm:block">·</span>
+						<span class="text-sm text-white/60">{site.phoneDisplay}</span>
+					</div>
+					<p class="mt-8 text-sm text-white/35">
+						Already have your call booked?{" "}
+						<a href="/brandrise/intake" class="text-white/55 underline underline-offset-2 transition-colors hover:text-white">Complete the pre-call intake form</a>{" "}
+						so Brad can prepare.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<SolutionFooter />
+	</div>
+</Layout>

@@ -1,0 +1,17 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-gray-800 bg-gray-900 py-12 text-gray-400">
+	<div class="container mx-auto px-6 md:px-12">
+		<div class="flex flex-col items-center justify-between gap-6 md:flex-row">
+			<img src="/images/ascend-logo-white.webp" alt="Ascend Consulting" class="h-8 opacity-80" loading="lazy" />
+			<div class="flex flex-col items-center gap-4 text-sm md:flex-row">
+				<p>&copy; {year} Ascend Consulting. All rights reserved.</p>
+				<a href="/terms-and-conditions" class="text-xs text-gray-600 transition-colors hover:text-gray-400">
+					Terms &amp; Conditions
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,279 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+import { partners, featuredPartners, caseStudies, portfolio, testimonials, faqs } from "../data/resources";
+
+const tabs = [
+	{ label: "Partners", anchor: "partners" },
+	{ label: "Case Studies", anchor: "case-studies" },
+	{ label: "Portfolio", anchor: "portfolio" },
+	{ label: "Testimonials", anchor: "testimonials" },
+	{ label: "FAQs", anchor: "faq" },
+];
+
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+---
+
+<Layout
+	title="Resources | Ascend Consulting"
+	description="Partners, real-world case studies, portfolio work, client testimonials, and answers to common questions about Ascend Consulting."
+	bare
+	canonical="https://ascendsmartly.com/resources"
+>
+	<div class="min-h-screen bg-white">
+		<header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-sm">
+			<div class="container mx-auto flex items-center justify-between gap-6 px-6 py-3 md:px-12">
+				<div class="flex items-center gap-4">
+					<a href="/" class="flex shrink-0 items-center gap-2">
+						<img src="/images/ascend-logo-color.webp" alt="Ascend Consulting" class="h-8" />
+					</a>
+					<span class="hidden text-lg text-gray-300 sm:block">/</span>
+					<span class="hidden text-sm font-semibold text-primary sm:block">Resources</span>
+				</div>
+				<nav class="hidden items-center gap-1 md:flex">
+					{
+						tabs.map((tab) => (
+							<a href={`#${tab.anchor}`} class="rounded px-3 py-1.5 text-sm font-medium text-gray-500 transition-colors hover:bg-gray-50 hover:text-primary">
+								{tab.label}
+							</a>
+						))
+					}
+				</nav>
+				<div class="flex items-center gap-3">
+					<a href="/" class="hidden items-center gap-1.5 text-sm font-medium text-gray-500 transition-colors hover:text-primary sm:inline-flex">
+						&larr; Home
+					</a>
+					<a
+						href={site.booking}
+						target="_blank"
+						rel="noopener"
+						class="flex items-center gap-1.5 rounded-sm bg-accent px-4 py-2 text-sm font-medium text-white transition-all hover:bg-accent/90"
+						set:html={`Consultation ${ArrowRight}`}
+					/>
+				</div>
+			</div>
+		</header>
+
+		<!-- Intro -->
+		<section class="bg-primary py-16 md:py-20">
+			<div class="container mx-auto max-w-4xl px-6 md:px-12">
+				<p class="mb-3 text-xs font-bold tracking-widest text-accent uppercase">Ascend Consulting</p>
+				<h1 class="mb-6 text-4xl leading-snug text-white md:text-5xl">Resources</h1>
+				<p class="max-w-2xl text-lg leading-relaxed text-white/65">
+					Partners, real-world case studies, portfolio work, client testimonials, and answers to
+					common questions — everything you need to make a confident decision.
+				</p>
+				<div class="mt-8 flex flex-wrap gap-3">
+					{
+						tabs.map((tab) => (
+							<a
+								href={`#${tab.anchor}`}
+								class="rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white/60 transition-all hover:border-white/40 hover:text-white"
+							>
+								{tab.label}
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+	<!-- Partners -->
+	<section id="partners" class="mx-auto max-w-6xl px-6 py-20">
+		<p class="text-sm font-semibold uppercase tracking-widest text-accent">Partners</p>
+		<h2 class="mt-3 text-3xl text-primary">A Network Built for Your Needs</h2>
+		<p class="mt-3 max-w-2xl text-muted-foreground">
+			Vetted specialists Ascend brings in when needs extend beyond marketing strategy.
+		</p>
+
+		<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				partners.map((p) => (
+					<div class="rounded-sm border border-border p-5">
+						<p class="font-semibold text-primary">{p.name}</p>
+						<p class="mt-1 text-sm text-muted-foreground">{p.role}</p>
+						<p class="text-sm text-muted-foreground">{p.org}</p>
+					</div>
+				))
+			}
+		</div>
+
+		<div class="mt-10 grid gap-6 md:grid-cols-2">
+			{
+				featuredPartners.map((fp) => (
+					<div class="rounded-sm bg-muted p-6">
+						<h3 class="text-lg text-primary">{fp.name}</h3>
+						<p class="mt-2 text-sm text-muted-foreground">{fp.description}</p>
+						<div class="mt-4 flex flex-wrap gap-2">
+							{fp.tags.map((tag) => (
+								<span class="rounded-full bg-white px-3 py-1 text-xs font-medium text-muted-foreground">{tag}</span>
+							))}
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- Case Studies -->
+	<section id="case-studies" class="bg-muted py-20">
+		<div class="mx-auto max-w-6xl px-6">
+			<p class="text-sm font-semibold uppercase tracking-widest text-accent">Case Studies</p>
+			<h2 class="mt-3 text-3xl text-primary">Ascend in Action</h2>
+
+			<div class="mt-6 rounded-sm bg-white p-8 shadow-sm">
+				<p class="text-sm font-semibold text-accent">Featured: Ashdon Golf</p>
+				<p class="mt-2 text-muted-foreground">
+					A before/after transformation story — full brand rebuild, digital transformation, and
+					go-to-market launch.
+				</p>
+				<a href="https://ashdongolf.com" target="_blank" rel="noopener" class="mt-3 inline-block text-sm font-semibold text-primary hover:text-accent">
+					Watch the Transformation → View the live site
+				</a>
+			</div>
+
+			<div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					caseStudies.map((cs) => (
+						<div class="rounded-sm bg-white p-6 shadow-sm">
+							<p class="text-sm font-semibold text-accent">{cs.client}</p>
+							<h3 class="mt-2 font-semibold text-primary">{cs.title}</h3>
+							{cs.note && <p class="mt-2 text-xs text-muted-foreground">{cs.note}</p>}
+							<div class="mt-4 flex flex-wrap gap-2">
+								{cs.tags.map((tag) => (
+									<span class="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">{tag}</span>
+								))}
+							</div>
+							<span class="mt-4 inline-block text-sm font-semibold text-muted-foreground">Read Case Study →</span>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Portfolio -->
+	<section id="portfolio" class="mx-auto max-w-6xl px-6 py-20">
+		<p class="text-sm font-semibold uppercase tracking-widest text-accent">Portfolio</p>
+		<h2 class="mt-3 text-3xl text-primary">Work We've Built</h2>
+
+		<div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				portfolio.map((p) => (
+					<div class="flex flex-col rounded-sm border border-border p-6">
+						<h3 class="font-semibold text-primary">{p.name}</h3>
+						<p class="mt-1 text-sm text-muted-foreground">{p.description}</p>
+						<ul class="mt-3 space-y-1 text-sm text-muted-foreground">
+							{p.contributions.map((c) => (
+								<li class="flex gap-2">
+									<span class="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
+									<span>{c}</span>
+								</li>
+							))}
+						</ul>
+						<div class="mt-4 flex flex-wrap gap-2">
+							{p.tags.map((tag) => (
+								<span class="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">{tag}</span>
+							))}
+						</div>
+						<a
+							href={`https://${p.url}`}
+							target="_blank"
+							rel="noopener"
+							class="mt-4 text-sm font-semibold text-primary hover:text-accent"
+						>
+							Visit Site →
+						</a>
+						{p.urlNote && <p class="mt-1 text-xs italic text-muted-foreground">{p.urlNote}</p>}
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- Testimonials -->
+	<section id="testimonials" class="relative overflow-hidden border-t border-orange-400/20 bg-accent py-20 md:py-28">
+		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+			<div class="absolute top-0 right-0 h-[600px] w-[600px] rounded-full bg-orange-300/20 blur-[140px]" />
+			<div class="absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full bg-primary/30 blur-[120px]" />
+		</div>
+		<div class="container relative z-10 mx-auto px-6 md:px-12">
+			<div class="mb-16 text-center">
+				<p class="mb-4 text-xs font-bold tracking-widest text-white/60 uppercase">Client Voices</p>
+				<h2 class="mb-4 text-4xl font-bold text-white md:text-5xl">What Leaders Say</h2>
+				<div class="mx-auto mb-6 h-1 w-16 bg-white/60" />
+				<p class="mx-auto max-w-2xl text-xl text-white/80">
+					Hear from the people who've worked alongside Brad and seen the results firsthand.
+				</p>
+			</div>
+			<div class="grid gap-6 md:grid-cols-2">
+				{
+					testimonials.map((t) => (
+						<div class="flex flex-col gap-6 rounded-sm border border-white/25 bg-white/15 p-8">
+							<p class="text-lg leading-relaxed text-white">"{t.quote}"</p>
+							<div>
+								<p class="font-bold text-white">{t.name}</p>
+								<p class="text-sm text-white/70">{t.role}</p>
+								<p class="text-sm font-semibold text-white/90">{t.org}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQs -->
+	<section id="faq" class="border-t border-gray-100 bg-gray-50 py-20 md:py-28">
+		<div class="container mx-auto max-w-6xl px-6 md:px-12">
+			<div class="mb-16 text-center">
+				<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">Got Questions?</p>
+				<h2 class="mb-6 text-4xl text-primary md:text-5xl">Frequently Asked Questions</h2>
+				<div class="mx-auto h-1 w-16 bg-accent" />
+			</div>
+			<div class="grid grid-cols-1 items-start gap-3 md:grid-cols-2">
+				{
+					faqs.map((item, i) => (
+						<div class="overflow-hidden rounded-sm border border-gray-200 bg-white">
+							<details class="group">
+								<summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-7 py-5 text-left font-semibold text-primary transition-colors hover:text-accent">
+									<span class="text-base leading-snug md:text-lg">{item.q}</span>
+									<span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gray-200 bg-gray-50 text-lg font-bold text-accent shadow-sm transition-transform duration-200 group-open:rotate-45">
+										+
+									</span>
+								</summary>
+								<div class="border-t border-gray-100 px-7 pt-5 pb-6 text-base leading-relaxed text-gray-600">
+									{item.a}
+								</div>
+							</details>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-primary text-white">
+		<div class="mx-auto max-w-3xl px-6 py-20 text-center">
+			<h2 class="text-3xl md:text-4xl">Still have questions?</h2>
+			<a
+				href={site.booking}
+				target="_blank"
+				rel="noopener"
+				class="mt-8 inline-block rounded-sm bg-accent px-7 py-3.5 text-sm font-semibold text-primary-dark transition hover:brightness-105"
+			>
+				Schedule a Consultation
+			</a>
+		</div>
+	</section>
+
+	<footer class="border-t border-gray-800 bg-gray-900 py-10 text-gray-400">
+		<div class="container mx-auto flex flex-col items-center justify-between gap-4 px-6 md:flex-row md:px-12">
+			<a href="/"><img src="/images/ascend-logo-white.webp" alt="Ascend Consulting" class="h-8 opacity-80" loading="lazy" /></a>
+			<p class="text-sm">&copy; {new Date().getFullYear()} Ascend Consulting. All rights reserved.</p>
+			<a href="/" class="text-sm text-gray-500 transition-colors hover:text-white">&larr; Back to Home</a>
+		</div>
+	</footer>
+	</div>
+</Layout>

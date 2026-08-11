@@ -1,0 +1,193 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import MinimalHeader from "../../components/MinimalHeader.astro";
+import { services } from "../../data/services";
+import { site } from "../../data/site";
+
+export function getStaticPaths() {
+	return services.map((service) => ({
+		params: { slug: service.slug },
+		props: { service },
+	}));
+}
+
+const { service } = Astro.props;
+
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+const Mail = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>`;
+const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>`;
+---
+
+<Layout
+	title={`${service.name} | Ascend Consulting`}
+	description={service.subhead}
+	bare
+	canonical={`https://ascendsmartly.com/services/${service.slug}`}
+>
+	<div class="min-h-screen bg-white">
+		<MinimalHeader />
+
+		<!-- Hero -->
+		<section class="relative overflow-hidden bg-primary pt-32 pb-24 md:pt-40 md:pb-32">
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<div class="absolute -top-[20%] -right-[10%] h-[60%] w-[60%] rounded-full bg-secondary/25 blur-[120px]"></div>
+				<div class="absolute -bottom-[20%] -left-[10%] h-[50%] w-[50%] rounded-full bg-accent/15 blur-[100px]"></div>
+			</div>
+			<div class="relative z-10 container mx-auto px-6 md:px-12">
+				<div class="max-w-3xl">
+					<div class="mb-6 inline-flex items-center gap-3">
+						<span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-lg font-bold text-white">
+							{service.number}
+						</span>
+						<span class="text-xs font-bold tracking-widest text-accent uppercase">Core Capability</span>
+					</div>
+					<h1 class="mb-6 text-5xl leading-[1.1] text-white md:text-6xl lg:text-7xl">
+						{service.nameLead}<br class="hidden md:block" />
+						<span class="bg-gradient-to-r from-accent to-orange-300 bg-clip-text text-transparent"> {service.nameAccent}</span>
+					</h1>
+					<p class="mb-10 max-w-2xl text-xl leading-relaxed font-light text-white/75 md:text-2xl">{service.subhead}</p>
+					<a
+						href={site.booking}
+						target="_blank"
+						rel="noopener"
+						class="inline-flex items-center gap-2 rounded-sm bg-accent px-8 py-4 text-lg font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl"
+						set:html={`${service.cta} ${ArrowRight}`}
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- The Concept -->
+		<section class="bg-white py-20 md:py-28">
+			<div class="container mx-auto px-6 md:px-12">
+				<div class="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2 md:gap-20">
+					<div>
+						<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">The Concept</p>
+						<h2 class="mb-6 text-3xl leading-snug text-primary md:text-4xl">{service.conceptHeadline}</h2>
+						<div class="mb-8 h-1 w-12 bg-accent"></div>
+						<div class="space-y-5 text-lg leading-relaxed text-gray-600">
+							{service.conceptParagraphs.map((p) => <p>{p}</p>)}
+						</div>
+					</div>
+					<div class="grid grid-cols-2 gap-4">
+						{
+							service.stats.map((stat) => (
+								<div class="rounded-sm border border-gray-100 bg-gray-50 p-6 text-center">
+									<p class="mb-2 text-3xl font-bold text-primary">{stat.value}</p>
+									<p class="text-sm leading-snug text-gray-500">{stat.label}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- The Work -->
+		<section class="border-t border-gray-100 bg-gray-50 py-20 md:py-28">
+			<div class="container mx-auto px-6 md:px-12">
+				<div class="mx-auto mb-16 max-w-2xl text-center">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">The Work</p>
+					<h2 class="mb-4 text-3xl leading-snug text-primary md:text-4xl">What I deliver</h2>
+					<p class="text-lg text-gray-500">
+						Eight specific engagements that build a complete {service.name.toLowerCase()} capability from the ground up.
+					</p>
+				</div>
+				<div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
+					{
+						service.work.map((item, i) => (
+							<div class="group rounded-sm border border-gray-100 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+								<div class="mb-5 flex h-10 w-10 items-center justify-center rounded-sm bg-primary/5 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+									<span class="text-sm font-bold">{String(i + 1).padStart(2, "0")}</span>
+								</div>
+								<h3 class="mb-3 text-sm leading-snug font-bold text-primary transition-colors group-hover:text-accent">{item.title}</h3>
+								<p class="text-sm leading-relaxed text-gray-500">{item.description}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- The Value -->
+		<section class="border-t border-gray-100 bg-white py-20 md:py-28">
+			<div class="container mx-auto max-w-5xl px-6 md:px-12">
+				<div class="mx-auto mb-16 max-w-2xl text-center">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">The Value</p>
+					<h2 class="mb-4 text-3xl leading-snug text-primary md:text-4xl">{service.valueHeadline}</h2>
+					<p class="text-lg text-gray-500">{service.valueSubhead}</p>
+				</div>
+				<div class="grid gap-5 md:grid-cols-2">
+					{
+						service.value.map((pair) => (
+							<div class="flex gap-5 rounded-sm border border-gray-100 bg-gray-50 p-6">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-accent" set:html={Check.match(/<path.*<\/path>/s)?.[0]} />
+								<div>
+									<p class="mb-1 text-xs font-semibold tracking-wider text-gray-400 uppercase line-through decoration-accent decoration-2">{pair.from}</p>
+									<p class="leading-snug font-medium text-gray-700">{pair.to}</p>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Who It's For -->
+		<section class="relative overflow-hidden bg-primary py-20 md:py-28">
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<div class="absolute top-0 right-0 h-full w-[40%] bg-white/3 blur-[80px]"></div>
+			</div>
+			<div class="relative z-10 container mx-auto px-6 md:px-12">
+				<div class="mx-auto mb-16 max-w-2xl text-center">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">Who It's For</p>
+					<h2 class="mb-4 text-3xl leading-snug text-white md:text-4xl">{service.whoHeadline}</h2>
+					<p class="text-lg text-white/60">{service.whoSubhead}</p>
+				</div>
+				<div class="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+					{
+						service.who.map((persona) => (
+							<div class="rounded-sm border border-white/15 bg-white/8 p-8 transition-colors hover:bg-white/12">
+								<h3 class="mb-3 text-lg font-bold text-white">{persona.title}</h3>
+								<p class="leading-relaxed text-white/65">{persona.desc}</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Closing CTA -->
+		<section class="border-t border-gray-100 bg-white py-20 md:py-28">
+			<div class="container mx-auto px-6 md:px-12">
+				<div class="mx-auto max-w-2xl text-center">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">Start the Conversation</p>
+					<h2 class="mb-6 text-3xl leading-snug text-primary md:text-4xl">{service.finalHeadline}</h2>
+					<p class="mb-10 text-lg leading-relaxed text-gray-500">{service.finalSubhead}</p>
+					<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+						<a
+							href={site.booking}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-accent px-8 py-4 text-lg font-medium text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-lg sm:w-auto"
+							set:html={`Schedule a Conversation ${ArrowRight}`}
+						/>
+						<a
+							href={`mailto:${site.email}`}
+							class="inline-flex w-full items-center justify-center gap-2 rounded-sm border border-gray-200 px-8 py-4 text-lg font-medium text-gray-600 transition-all hover:border-primary hover:text-primary sm:w-auto"
+							set:html={`${Mail} Email Brad Directly`}
+						/>
+					</div>
+					<p class="mt-6 text-sm text-gray-400">{site.email} &middot; {site.phoneDisplay}</p>
+				</div>
+			</div>
+		</section>
+
+		<footer class="border-t border-gray-800 bg-gray-900 py-10 text-gray-400">
+			<div class="container mx-auto flex flex-col items-center justify-between gap-4 px-6 md:flex-row md:px-12">
+				<img src="/images/ascend-logo-white.webp" alt="Ascend Consulting" class="h-8 opacity-80" loading="lazy" />
+				<p class="text-sm">&copy; {new Date().getFullYear()} Ascend Consulting. All rights reserved.</p>
+			</div>
+		</footer>
+	</div>
+</Layout>

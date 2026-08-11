@@ -1,0 +1,387 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site, realEstateContact } from "../data/site";
+
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+const ChevronRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>`;
+const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>`;
+const ExternalLink = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>`;
+const Camera = `<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>`;
+const House = `<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>`;
+const Globe = `<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>`;
+
+const pillars = [
+	{
+		icon: Camera,
+		title: "Visual Storytelling",
+		body: "Professional photography, video, twilight images, Matterport 3D tours, and floor plans that show the property the way it actually feels to walk through — not just what it looks like in a snapshot.",
+	},
+	{
+		icon: House,
+		title: "On-Site Experience",
+		body: "Custom yard signage, feature cards placed throughout the home, and listing one-pagers for showings and open houses — so buyers get the full story the moment they walk in, not just when they ask.",
+	},
+	{
+		icon: Globe,
+		title: "Digital Presence",
+		body: "A dedicated property website with its own unique URL, plus a full digital brochure covering the neighborhood, community, city, and property — with real perspective and value adds communicated, not boilerplate copy.",
+	},
+];
+
+const listings = [
+	{
+		address: "12415 6th Ave NW, Gig Harbor",
+		name: "Water View Home on Colvos Passage",
+		desc: "A 4-bed, 2.5-bath water view retreat above Colvos Passage. Full video gallery, Matterport 3D tour, custom photography, and a dedicated property site.",
+		url: "https://www.agigharborview.com/",
+		displayUrl: "agigharborview.com",
+		label: "Full Marketing System",
+		badge: null,
+		featured: true,
+	},
+	{
+		address: "7707 35th St NW, Gig Harbor",
+		name: "Wonderful Living in Artondale",
+		desc: "A 3-bed, 2-bath remodeled home with video, 3D tour, and a full digital property book covering the home, neighborhood, and community.",
+		url: "https://www.wonderfulgigharbor.com/",
+		displayUrl: "wonderfulgigharbor.com",
+		label: null,
+		badge: null,
+		featured: false,
+	},
+	{
+		address: "562 W Lake Samish Dr, Bellingham",
+		name: "Waterfront Home with ADU",
+		desc: "Sold waterfront property with a dock, boat lift, and ADU — marketed with video, a 3D tour, and a dedicated property site.",
+		url: "https://www.lakesamishhome.com/",
+		displayUrl: "lakesamishhome.com",
+		label: null,
+		badge: "Sold",
+		featured: false,
+	},
+	{
+		address: "182 Frost Rd, Twisp — Big Buck Ranch",
+		name: "Built for a Fellow Agent",
+		desc: "A 118-acre ranch listing marketed on behalf of another agent — complete with a digital property book, an area comparison guide, and a dedicated property site. Proof this system works for any listing, not just Brad's own.",
+		url: "https://www.thebigbuckranch.com/",
+		displayUrl: "thebigbuckranch.com",
+		label: null,
+		badge: "Built for Another Agent",
+		featured: false,
+	},
+];
+
+const packages = [
+	{
+		name: "Essentials",
+		price: "$950",
+		tag: null,
+		featured: false,
+		desc: "A strong starting point for any listing that needs a professional edge.",
+		bullets: ["Professional photography", "Twilight images", "Video tour", "Listing one-pager"],
+		cta: "Ask About Essentials",
+	},
+	{
+		name: "Pro",
+		price: "$1,950",
+		tag: null,
+		featured: false,
+		desc: "Everything in Essentials, plus a full digital presence for your listing.",
+		bullets: ["Professional photography", "Twilight images", "Video tour", "Listing one-pager", "Matterport 3D tour", "Floor plans", "Dedicated property website with a unique URL"],
+		cta: "Ask About Pro",
+	},
+	{
+		name: "Complete Marketing System",
+		price: "$2,950",
+		tag: "Most common",
+		featured: true,
+		desc: "Everything included — the full system Brad uses on his own listings.",
+		bullets: [
+			"Professional photography",
+			"Twilight images",
+			"Video tour",
+			"Listing one-pager",
+			"Matterport 3D tour",
+			"Floor plans",
+			"Dedicated property website with a unique URL",
+			"Custom yard signage",
+			"Feature cards to be used throughout the home",
+			"Social media posts",
+			"Paid ad campaign (costs included) for the listing — first two weeks",
+			"Full digital brochure — property, neighborhood, community & city",
+		],
+		cta: "Talk About the Complete System",
+	},
+];
+---
+
+<Layout
+	title="Real Estate Marketing | Listing Photography, Video & Property Websites | Ascend Consulting"
+	description="Ascend Consulting builds complete listing marketing systems for real estate agents — photography, video, 3D tours, signage, and dedicated property websites. Built by a licensed WA broker who uses it on his own listings."
+	bare
+	canonical="https://ascendsmartly.com/real-estate-marketing"
+>
+	<div class="min-h-screen bg-white font-sans">
+		<header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-sm">
+			<div class="container mx-auto flex items-center justify-between gap-6 px-6 py-3 md:px-12">
+				<a href="/" class="flex shrink-0 items-center gap-2">
+					<img src="/images/ascend-logo-color.webp" alt="Ascend Consulting" class="h-8" />
+				</a>
+				<a
+					href={site.booking}
+					target="_blank"
+					rel="noopener"
+					class="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-primary-dark"
+					set:html={`Schedule a Consultation ${ArrowRight}`}
+				/>
+			</div>
+		</header>
+
+		<main>
+			<!-- Hero -->
+			<section class="relative overflow-hidden bg-primary">
+				<div class="absolute inset-0">
+					<img src="/images/hero-desktop.webp" alt="" class="h-full w-full object-cover object-center" />
+					<div class="absolute inset-0 bg-primary/88"></div>
+				</div>
+				<div class="relative z-10 container mx-auto px-6 pt-20 pb-24 text-center md:px-12 md:pt-28 md:pb-32">
+					<div class="mx-auto max-w-3xl">
+						<p class="mb-4 text-xs font-bold tracking-widest text-orange-400 uppercase">Real Estate Marketing</p>
+						<h1 class="mb-6 text-4xl leading-[1.05] text-white md:text-6xl">
+							Your Listing Has One Shot at a First Impression. Make It Count.
+						</h1>
+						<p class="mx-auto mb-10 max-w-2xl text-xl leading-relaxed font-light text-white/75 md:text-2xl">
+							Ascend Consulting builds complete marketing systems for real estate listings — photography,
+							video, 3D tours, signage, and a dedicated property website — the same system Brad uses on his
+							own listings as a licensed Washington broker.
+						</p>
+						<div class="flex flex-col justify-center gap-4 sm:flex-row">
+							<a
+								href={site.booking}
+								target="_blank"
+								rel="noopener"
+								class="inline-flex items-center justify-center gap-2 rounded-sm bg-orange-500 px-8 py-4 text-base font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-orange-400 hover:shadow-xl"
+								set:html={`Schedule a Consultation ${ArrowRight}`}
+							/>
+							<a href="#listings" class="inline-flex items-center justify-center gap-2 rounded-sm border border-white/30 px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/10">
+								See a Live Example
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- The Problem -->
+			<section class="bg-white py-20 md:py-28">
+				<div class="container mx-auto max-w-3xl px-6 text-center md:px-12">
+					<p class="mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase">The Problem</p>
+					<h2 class="mb-8 text-3xl leading-tight text-primary md:text-4xl">
+						What buyers see before they ever request a showing
+					</h2>
+					<div class="space-y-5 text-left text-lg leading-relaxed text-gray-600">
+						<p>
+							Most listings get a lockbox, a sign, and a handful of flat photos. Meanwhile, buyers are
+							scrolling through a dozen other listings online, deciding in seconds whether yours is worth a
+							second look. A listing that looks generic gets treated like it's worth less — regardless of what
+							the home is actually worth.
+						</p>
+						<p>
+							Great marketing doesn't just make a listing look nice. It changes how buyers perceive value, how
+							many showings you get, and how competitive the offers are when they come in.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Three pillars -->
+			<section class="bg-gray-50 py-20 md:py-28">
+				<div class="container mx-auto px-6 md:px-12">
+					<div class="mb-14 text-center">
+						<p class="mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase">How We Market Your Listing</p>
+						<h2 class="text-3xl text-primary md:text-4xl">Three pillars of a listing that sells itself</h2>
+					</div>
+					<div class="grid gap-6 md:grid-cols-3 md:gap-8">
+						{
+							pillars.map((p) => (
+								<div class="rounded-sm border border-gray-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-md">
+									<div class="mb-5 flex h-11 w-11 items-center justify-center rounded-sm bg-primary/10 text-primary">
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={p.icon} />
+									</div>
+									<h3 class="mb-3 text-lg font-bold text-primary">{p.title}</h3>
+									<p class="text-sm leading-relaxed text-gray-600">{p.body}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Who this is for -->
+			<section class="relative overflow-hidden bg-primary py-20 md:py-28">
+				<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+					<div class="absolute top-0 right-0 h-full w-1/2 bg-blue-900/30 blur-[120px]"></div>
+				</div>
+				<div class="relative z-10 container mx-auto max-w-3xl px-6 md:px-12">
+					<p class="mb-4 text-xs font-bold tracking-widest text-orange-400 uppercase">Who This Is For</p>
+					<h2 class="mb-8 text-3xl text-white md:text-4xl">Built for my own listings. Available for yours.</h2>
+					<div class="mb-8 space-y-5 text-lg leading-relaxed text-white/75">
+						<p>
+							Brad Stave is a licensed Real Estate Broker in Washington State with The Medford Team Real
+							Estate Team at Keller Williams. He built this marketing system to give his own listings an edge
+							— and now brings it to any real estate professional who needs marketing support on theirs,
+							whether that's a single listing or ongoing support across a book of business.
+						</p>
+						<p>
+							You don't have to be on Brad's team, or with Keller Williams, to work together. This is a
+							marketing service, available to any agent who wants their listing to look like what it's
+							actually worth.
+						</p>
+					</div>
+					<a href="https://pugetsoundlife.com/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-medium text-orange-300 transition-colors hover:text-orange-200" set:html={`See Brad's own real estate work at PugetSoundLife.com ${ArrowRight}`} />
+				</div>
+			</section>
+
+			<!-- Listings -->
+			<section id="listings" class="bg-white py-20 md:py-28">
+				<div class="container mx-auto max-w-5xl px-6 md:px-12">
+					<div class="mb-14 text-center">
+						<p class="mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase">See It in Action</p>
+						<h2 class="text-3xl text-primary md:text-4xl">Real listings, built with this exact system</h2>
+					</div>
+					<div class="grid gap-6 md:grid-cols-2">
+						{
+							listings.map((l) => (
+								<a href={l.url} target="_blank" rel="noopener" class:list={["group flex flex-col overflow-hidden rounded-sm border shadow-sm transition-shadow hover:shadow-md", l.featured ? "border-primary/20 md:col-span-2 md:flex-row" : "border-gray-200"]}>
+									<div class:list={["relative flex aspect-video shrink-0 items-center justify-center bg-gradient-to-br from-primary to-primary-dark", l.featured && "md:w-1/2"]}>
+										<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-white/30" set:html={House} />
+										{l.badge && <span class="absolute top-3 left-3 rounded-full bg-white px-3 py-1 text-xs font-bold text-primary">{l.badge}</span>}
+										{l.label && <span class="absolute top-3 left-3 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white">{l.label}</span>}
+									</div>
+									<div class="flex-1 p-6">
+										<p class="text-xs font-semibold text-gray-400">{l.address}</p>
+										<h3 class="mt-1 text-lg font-bold text-primary transition-colors group-hover:text-orange-600">{l.name}</h3>
+										<p class="mt-2 text-sm leading-relaxed text-gray-500">{l.desc}</p>
+										<span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary" set:html={`${l.displayUrl} ${ExternalLink}`} />
+									</div>
+								</a>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Packages -->
+			<section class="bg-gray-50 py-20 md:py-28">
+				<div class="container mx-auto max-w-6xl px-6 md:px-12">
+					<div class="mb-14 text-center">
+						<p class="mb-4 text-xs font-bold tracking-widest text-orange-600 uppercase">Packages</p>
+						<h2 class="text-3xl text-primary md:text-4xl">Marketing systems for any listing</h2>
+						<p class="mx-auto mt-4 max-w-xl text-gray-500">
+							Every engagement is scoped to the listing — from a single service to the complete system.
+						</p>
+					</div>
+					<div class="grid gap-6 md:grid-cols-3">
+						{
+							packages.map((pkg) => (
+								<div class:list={["relative flex flex-col rounded-sm border bg-white p-8", pkg.featured ? "border-primary shadow-lg ring-1 ring-primary" : "border-gray-200 shadow-sm"]}>
+									{pkg.tag && <span class="absolute -top-3 left-6 rounded-full bg-orange-500 px-3 py-1 text-xs font-bold text-white">{pkg.tag}</span>}
+									<h3 class="text-xl font-bold text-primary">{pkg.name}</h3>
+									<p class="mt-2 text-3xl font-bold text-primary">{pkg.price}</p>
+									<p class="mt-3 text-sm leading-relaxed text-gray-600">{pkg.desc}</p>
+									<ul class="mt-5 flex-1 space-y-2">
+										{pkg.bullets.map((b) => (
+											<li class="flex items-start gap-2.5 text-sm text-gray-700">
+												<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-orange-500" set:html={Check.match(/<path.*<\/path>/s)?.[0]} />
+												{b}
+											</li>
+										))}
+									</ul>
+									<a
+										href={site.booking}
+										target="_blank"
+										rel="noopener"
+										class:list={[
+											"mt-6 inline-flex w-full items-center justify-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold transition-all",
+											pkg.featured ? "bg-primary text-white shadow-md hover:-translate-y-0.5 hover:bg-primary-dark hover:shadow-lg" : "bg-gray-100 text-gray-800 hover:bg-gray-200",
+										]}
+										set:html={`${pkg.cta} ${ChevronRight}`}
+									/>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</section>
+
+			<!-- Who you're working with -->
+			<section class="bg-white py-20 md:py-28">
+				<div class="container mx-auto max-w-3xl px-6 md:px-12">
+					<p class="mb-4 text-center text-xs font-bold tracking-widest text-orange-600 uppercase">Who You're Working With</p>
+					<div class="flex items-center gap-5">
+						<img src="/images/brad-stave.jpg" alt="Brad Stave" class="h-20 w-20 rounded-full border-2 border-white object-cover object-top shadow-md" loading="lazy" />
+						<div>
+							<p class="text-lg font-bold text-gray-900">Brad Stave</p>
+							<p class="text-sm text-gray-500">Founder &amp; Principal, Ascend Consulting</p>
+							<p class="text-sm text-gray-500">Licensed Real Estate Broker, WA</p>
+						</div>
+					</div>
+					<p class="mt-6 leading-relaxed text-gray-600">
+						Brad brings 20+ years of senior marketing leadership across global tech, corporate, and nonprofit
+						organizations to real estate. As a licensed Washington broker with Keller Williams, he applies that
+						same marketing discipline to his own listings — and now offers it as a standalone service to other
+						agents who want their listings marketed at that level.
+					</p>
+					<div class="mt-6 flex flex-col gap-2 text-sm">
+						<a href={`mailto:${site.email}`} class="font-medium text-primary hover:underline">{site.email}</a>
+						<a href={`tel:${site.phone}`} class="font-medium text-primary hover:underline">{site.phoneDisplay}</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Final CTA -->
+			<section class="relative overflow-hidden bg-primary py-20 md:py-28">
+				<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+					<div class="absolute -bottom-1/3 -left-1/4 h-3/4 w-3/4 rounded-full bg-blue-900/50 blur-[120px]"></div>
+				</div>
+				<div class="relative z-10 container mx-auto max-w-2xl px-6 text-center md:px-12">
+					<h2 class="mb-6 text-3xl text-white md:text-5xl">Ready to make your next listing look like what it's worth?</h2>
+					<p class="mb-10 text-lg text-white/65">
+						A 30-minute conversation to talk through your listing, what it needs, and which package makes
+						sense.
+					</p>
+					<a
+						href={site.booking}
+						target="_blank"
+						rel="noopener"
+						class="inline-flex items-center gap-2 rounded-sm bg-orange-500 px-10 py-4 text-base font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-orange-400 hover:shadow-xl"
+						set:html={`Schedule a Consultation ${ArrowRight}`}
+					/>
+				</div>
+			</section>
+		</main>
+
+		<footer class="border-t border-gray-800 bg-gray-900 py-12 text-white/70">
+			<div class="mx-auto max-w-3xl px-6 text-center text-sm leading-relaxed">
+				<p class="mb-1 text-xs font-bold tracking-widest text-gray-500 uppercase">Real Estate Contact</p>
+				<p class="font-semibold text-white">Brad Stave</p>
+				<p class="text-white/60">Real Estate Broker | {realEstateContact.brokerage}</p>
+				<p class="mt-3">
+					<a href={`tel:${realEstateContact.phone}`} class="hover:text-orange-400">{realEstateContact.phone}</a>
+					<span class="text-white/30"> · </span>
+					<a href={`mailto:${realEstateContact.email}`} class="hover:text-orange-400">{realEstateContact.email}</a>
+					<span class="text-white/30"> · </span>
+					<a href={`https://${realEstateContact.site}`} target="_blank" rel="noopener" class="hover:text-orange-400">{realEstateContact.site}</a>
+				</p>
+				<p class="mt-1 text-white/60">{realEstateContact.address}</p>
+				<p class="mt-3 text-xs text-white/40">License #: {realEstateContact.license.replace("WA Real Estate Broker License #", "")}</p>
+				<p class="mx-auto mt-6 max-w-2xl text-xs leading-relaxed text-white/35">
+					Brad Stave is a licensed Real Estate Broker in the State of Washington (License #25024602),
+					affiliated with The Medford Team Real Estate Team, Keller Williams Realty. Ascend Consulting's real
+					estate marketing services are offered independently of brokerage services and are available to any
+					real estate professional, regardless of brokerage affiliation.
+				</p>
+				<a href="/terms-and-conditions" class="mt-4 inline-block text-xs text-white/40 hover:text-white/60">Terms &amp; Conditions</a>
+			</div>
+		</footer>
+	</div>
+</Layout>
