@@ -1,155 +1,55 @@
 export const partners = [
-	{ name: "Tyler Carey", role: "Leadership Advisor", org: "Trellis Leadership" },
-	{ name: "Samuel Ebat", role: "Filmmaker & Creative Director", org: "PIXELtechnics" },
-	{ name: "Ben Hamilton", role: "Fractional CSO/CISO", org: "PraeSyn" },
-	{ name: "Mike Nakamura", role: "Photographer", org: "Mike Nakamura Photography" },
-	{ name: "Alex Polamero", role: "Chief Growth Officer", org: "Ninestone Partners" },
-	{ name: "Mitch Roberts", role: "Executive Coach & Facilitator", org: "Aligned to Purpose" },
-	{ name: "Jay Russo", role: "Owner & President", org: "RB Printing" },
-	{ name: "Dr. Tom Tonkin", role: "Fractional Sales & GTM Leader", org: "The Tonkin Group" },
+	{ name: "Tyler Carey", role: "Leadership Advisor", org: "Trellis Leadership", slug: "tyler-carey" },
+	{ name: "Samuel Ebat", role: "Filmmaker & Creative Director", org: "PIXELtechnics", slug: "samuel-ebat" },
+	{ name: "Ben Hamilton", role: "Fractional CSO/CISO", org: "PraeSyn", slug: "ben-hamilton" },
+	{ name: "Mike Nakamura", role: "Photographer", org: "Mike Nakamura Photography", slug: "mike-nakamura" },
+	{ name: "Alex Polamero", role: "Chief Growth Officer", org: "Ninestone Partners", slug: "alex-polamero" },
+	{ name: "Mitch Roberts", role: "Executive Coach & Facilitator", org: "Aligned to Purpose", slug: "mitch-roberts" },
+	{ name: "Jay Russo", role: "Owner & President", org: "RB Printing", slug: "jay-russo" },
+	{ name: "Dr. Tom Tonkin", role: "Fractional Sales & GTM Leader", org: "The Tonkin Group", slug: "dr-tom-tonkin" },
 ];
 
-export const featuredPartners = [
+export const partnershipCallouts = [
 	{
-		name: "NineStone Partners",
-		description:
-			"Extended bench of system architects, web designers, CRM experts, sales leaders, and executive coaches for enterprise-level challenges.",
-		tags: ["System Architecture", "Web Design", "CRM & Technology", "Sales Leadership", "Executive Coaching", "Org Transformation"],
-	},
-	{
-		name: "PraeSyn",
-		description:
-			"Ben Hamilton's fractional CSO/CISO practice for growth-stage and PE-backed companies needing investor-ready security programs.",
-		tags: ["Fractional CSO/CISO", "SOC 2 & ISO 27001", "CMMC Compliance", "AI Security (ISO 42001)", "Investor-Ready Security", "Board-Level Reporting", "M&A Due Diligence"],
-	},
-];
-
-export const caseStudies = [
-	{
-		client: "Ashdon Golf",
-		title: "Brand Rebuild, Digital Transformation, and Full Go-to-Market Launch",
-		tags: ["Brand Identity", "UX/UI Design"],
-	},
-	{
-		client: "Sensient Technologies",
-		title: "Building an ABM-Ready Marketing Team Through Custom B2B Masterclass Training",
-		tags: ["ABM Strategy", "B2B Marketing"],
-	},
-	{
-		client: "Trail Life USA",
-		title: "Aligning Sales, CRM & E-Commerce to Fuel Mission-Driven Growth",
-		tags: ["Sales Architecture", "CRM Strategy"],
-		note: "Delivered via Ninestone Partners through Ascend's partner network.",
-	},
-	{
-		client: "VisionFund International",
-		title: "Unifying a Global Microfinance Network Under One Brand",
-		tags: ["Brand Strategy", "Global Marketing"],
-		note: "30+ institutions unified under one identity.",
-	},
-	{
-		client: "Water Mission",
-		title: "Record-Breaking Q1 Growth Through Strategic Marketing Leadership",
-		tags: ["Lifecycle Marketing", "Donor Engagement"],
-	},
-	{
-		client: "Water Mission",
-		title: "Driving Record Digital Acquisition Through Strategic, Multi-Channel Engagement",
-		tags: ["Digital Acquisition", "Paid Media"],
-	},
-	{
-		client: "Zones, LLC",
-		title: "Driving Double-Digit Growth Through Strategic IT Brand Leadership",
-		tags: ["Sales Enablement", "Brand Leadership"],
-		note: "Dell, HP, Lenovo, Microsoft, and Intel portfolios.",
-	},
-];
-
-export const portfolio = [
-	{
-		name: "Ashdon Golf",
-		url: "ashdongolf.com",
-		description: "Premium putters brand.",
-		contributions: ["Full brand identity", "E-commerce site", "Creative & copy", "SEO/GEO/AEO"],
-		tags: ["Branding", "Web Design", "E-Commerce", "SEO/GEO/AEO"],
-	},
-	{
-		name: "Carteeo",
-		url: "carteeo.com",
-		description: "Shopping-cart middleware concept.",
-		contributions: ["Full concept & business plan", "Brand identity", "Website", "GTM strategy", "SEO/GEO/AEO"],
-		tags: ["Brand Development", "Business Planning", "GTM Strategy", "Web Design"],
-	},
-	{
-		name: "FuelTru",
-		url: "fueltru.com",
-		description: "Driving-cost / EV-savings calculator web app.",
-		contributions: [
-			"Concept, brand name & visual identity",
-			"Built the web app",
-			"Integrated third-party APIs (gas prices, EV data, dealer locations)",
-			"Copy & GTM strategy",
+		eyebrow: "Extended Partnership",
+		title: "More Firepower When You Need It",
+		bg: "primary",
+		paragraphs: [
+			[
+				{ text: "Brad is also a proud partner with " },
+				{ text: "NineStone Partners", bold: true },
+				{ text: " — a full-service growth consultancy built to help organizations integrate, optimize, and accelerate. NineStone's team specializes in complex, enterprise-level challenges across technology, sales, and marketing transformation." },
+			],
+			[
+				{ text: "Through this partnership, clients have access to an extended bench of specialists — including system architects, web designers, CRM experts, organizational sales leaders, and executive coaches — ready to step in whenever a need extends beyond what Ascend provides directly." },
+			],
 		],
-		tags: ["Brand Development", "Web App", "GTM Strategy", "UI/UX Design"],
+		tags: ["System Architecture", "Web Design", "CRM & Technology", "Sales Leadership", "Executive Coaching", "Org Transformation"],
+		cta: { label: "Learn More About NineStone Partners", href: "https://ninestonepartners.com/bradstave/" },
+		logo: { src: "/images/logo-ninestone.webp", href: "https://ninestonepartners.com/our-partners/" },
 	},
 	{
-		name: "Keller Williams — Lake Samish Listing",
-		url: "lakesamishhome.com",
-		description: "Bellingham lakefront listing.",
-		contributions: ["Media & 3D capture", "Listing copy", "Dedicated property site", "GTM strategy", "Paid ads & social"],
-		tags: ["Real Estate Marketing", "Listing Strategy", "3D Tour", "Paid Media", "Social Media", "SEO/GEO/AEO"],
-	},
-	{
-		name: "Larson Electric",
-		url: "larson-electric.com",
-		description: "Electrical services company.",
-		contributions: ["Color palette & brand system from existing logo", "Creative, copy & website", "GTM strategy", "SEO/GEO/AEO"],
-		tags: ["Branding", "Web Design", "SEO/GEO/AEO"],
-	},
-	{
-		name: "Real Estate Sleuth",
-		url: "resleuth.com",
-		description: "Agent engagement platform.",
-		contributions: ["Marketing plan", "Brand identity & naming", "Creative, copy & website", "GTM strategy", "SEO/GEO/AEO"],
-		tags: ["Brand & Naming", "Marketing Strategy", "Copy & Design", "GTM Strategy"],
-	},
-	{
-		name: "Rose's Landscaping Co",
-		url: "staging2.ascendsmartly.com",
-		urlNote: "Staging URL — confirm production URL with Brad before publishing.",
-		description: "University Place, WA lawn care & landscaping.",
-		contributions: ["Brand identity & visual system", "Creative, copy & website", "Lead capture / free-quote UX", "Local GTM strategy", "SEO/GEO/AEO"],
-		tags: ["Branding", "Web Design", "Lead Generation", "Local SEO"],
-	},
-	{
-		name: "Washington Accounting & Financial Services",
-		url: "/finance",
-		description: "Demo CPA/finance firm site.",
-		contributions: ["Full brand identity", "Multi-page website", "Creative & copy", "AI assistant", "Paid landing pages for 4 segments", "SEO/GEO/AEO"],
-		tags: ["Branding", "Web Design", "AI Assistant", "Paid Media", "SEO/GEO/AEO"],
-	},
-	{
-		name: "Washington Law",
-		url: "/law",
-		description: "Demo boutique law firm site — 8 practice areas, attorney bios, results showcase, client insights, booking flow.",
-		contributions: ["Full brand identity", "Multi-page website", "Creative & copy", "AI assistant", "Paid landing pages", "SEO/GEO/AEO"],
-		tags: ["Branding", "Web Design", "AI Assistant", "Paid Media", "SEO/GEO/AEO"],
-	},
-	{
-		name: "The Wide Lens Podcast",
-		url: "widelenspodcast.com",
-		description: "Brad-hosted long-form interview podcast.",
-		contributions: ["Full production (concept → ongoing episodes)", "Audio engineering", "Branding, format & show identity", "Hosting", "Website", "Promotion & social strategy"],
-		tags: ["Podcast Production", "Audio Engineering", "Creative Development", "Hosting", "Web Design", "Social Media"],
-	},
-	{
-		name: "Water Mission",
-		url: "watermission.org",
-		description: "Global faith-based nonprofit.",
-		contributions: ["UX & creative design", "Content copy", "Brand integration", "SEO/GEO/AEO", "Paid ads", "Social strategy"],
-		tags: ["UX & Creative Design", "Content Copy", "Brand Integration", "SEO/GEO/AEO", "Paid Media", "Social Media"],
+		eyebrow: "Security Partnership",
+		title: "Enterprise-Grade Cybersecurity, On Demand",
+		bg: "#0E09A0",
+		paragraphs: [
+			[
+				{ text: "Ascend also partners with " },
+				{ text: "Ben Hamilton", bold: true },
+				{ text: ", founder of " },
+				{ text: "PraeSyn", bold: true },
+				{ text: " — a fractional CSO/CISO practice built for growth-stage and PE-backed companies that need investor-ready security programs without the cost of a full-time hire." },
+			],
+			[
+				{ text: "Through this partnership, Ascend clients who reach a security inflection point — requiring SOC 2, an M&A transaction, or AI adoption — can tap into Ben's expertise directly. PraeSyn delivers board-ready security strategy, compliance readiness, and AI governance frameworks that scale with your business." },
+			],
+		],
+		tags: ["Fractional CSO / CISO", "SOC 2 & ISO 27001", "CMMC Compliance", "AI Security (ISO 42001)", "Investor-Ready Security", "Board-Level Reporting", "M&A Due Diligence"],
+		cta: { label: "Learn More About PraeSyn", href: "https://www.praesyn.com/" },
 	},
 ];
+
+export const portfolio = [{name:"Ashdon Golf",url:"https://www.ashdongolf.com/",displayUrl:"ashdongolf.com",screenshot:"/portfolio-ashdon-golf.jpg",whatTheyDo:"Ashdon Golf engineers premium putters with geometric precision to stabilize your stroke and eliminate torque. USGA approved and trusted by 10,000+ golfers.",whatBradDid:["Built the full brand identity and visual system","Designed and launched the e-commerce website","Created all creative design, copy, and product storytelling","Optimized throughout for SEO, GEO, and AEO/IEO"],tags:["Branding","Web Design","E-Commerce","SEO / GEO / AEO"],accent:"#C62828"},{name:"Carteeo",url:"https://carteeo.com/",displayUrl:"carteeo.com",screenshot:"/portfolio-carteoo.webp",whatTheyDo:"Carteeo is the middleware layer that transforms static shopping carts into dynamic, service-ready revenue engines.",whatBradDid:["Developed the full concept and business plan from the ground up","Built the brand identity, creative design system, and visual language","Designed and launched the website","Developed the go-to-market strategy","Optimized throughout for SEO, GEO, and AEO/IEO"],tags:["Brand Development","Business Planning","GTM Strategy","Web Design"],accent:"#1B2870"},{name:"FuelTru",url:"https://www.fueltru.com/",displayUrl:"fueltru.com",screenshot:"/portfolio-fueltru.png",whatTheyDo:"FuelTru uncovers the true cost of your daily drive — calculating what you're really spending on gas, showing exactly how much you'd save switching to an EV, and connecting you with personalized vehicle recommendations and nearby dealerships.",whatBradDid:["Developed the concept, brand name, and visual identity","Designed and built the web application from the ground up","Integrated multiple third-party APIs for real-time gas prices, EV data, and dealership locations","Created all copy and product storytelling","Developed the go-to-market strategy"],tags:["Brand Development","Web App","GTM Strategy","UI/UX Design"],accent:"#22a06b"},{name:"Keller Williams",contributionLabel:"Brad Stave's Contribution",url:"https://www.lakesamishhome.com/",displayUrl:"lakesamishhome.com",screenshot:"/portfolio-kw.jpg",whatTheyDo:"A premier lakefront home listing in Bellingham, WA. This property was marketed with a full-service promotional strategy built to attract the right buyer.",whatBradDid:["Organized all media capture and 3D tour capture for the listing","Wrote all listing copy and property storytelling","Built and launched the dedicated property website","Developed the full go-to-market strategy for the home","Developed and launched a paid ad engagement series","Developed all supporting social media content and engagement strategy"],tags:["Real Estate Marketing","Listing Strategy","3D Tour","Paid Media","Social Media","SEO / GEO / AEO"],accent:"#B31B1B"},{name:"Larson Electric",url:"https://larson-electric.com/",displayUrl:"larson-electric.com",screenshot:"/portfolio-larson.webp",whatTheyDo:"Larson Electric is a professional electrical services company serving residential and commercial clients with quality, reliability, and care.",whatBradDid:["Developed a full color palette and brand system from the existing logo","Created all creative design, copy, and website","Developed the go-to-market strategy","Built and launched the website","Optimized throughout for SEO, GEO, and AEO/IEO"],tags:["Branding","Web Design","SEO / GEO / AEO"],accent:"#1B2870"},{name:"Real Estate Sleuth",url:"https://resleuth.com/",displayUrl:"resleuth.com",screenshot:"/portfolio-resleuth.webp",whatTheyDo:"Real Estate Sleuth is an agent engagement platform built to connect real estate professionals with the tools, data, and resources they need to grow.",whatBradDid:["Developed the full externally facing agent engagement marketing plan","Built the brand identity and naming convention","Created all creative design, copy, and website","Developed the go-to-market strategy","Optimized throughout for SEO, GEO, and AEO/IEO"],tags:["Brand & Naming","Marketing Strategy","Copy & Design","GTM Strategy"],accent:"#F4511E"},{name:"Rose's Landscaping Co",url:"https://staging2.ascendsmartly.com/",displayUrl:"staging2.ascendsmartly.com",screenshot:"/portfolio-roses-landscaping.webp",whatTheyDo:"Rose's Landscaping Co is a women-owned, family-operated lawn care and landscaping company serving University Place, WA and the greater South Sound — offering professional lawn care, planting, shrub care, and property cleanup.",whatBradDid:["Built the brand identity and visual system","Created all creative design, copy, and website","Designed the lead capture and free-quote experience","Developed the go-to-market and local positioning strategy","Built and launched the website","Optimized throughout for SEO, GEO, and AEO/IEO"],tags:["Branding","Web Design","Lead Generation","Local SEO"],accent:"#2F5D3A"},{name:"Washington Accounting & Financial Services",url:"/finance",displayUrl:"finance.ascendsmartly.com",screenshot:"/portfolio-washington-finance.png",whatTheyDo:"Washington Accounting & Financial Services is a Seattle-based CPA and financial advisory firm offering accounting, tax planning, fractional CFO services, and wealth management — built by Ascend as a full-scale demo of what a complete finance industry marketing system looks like.",whatBradDid:["Built the full brand identity and visual system from the ground up","Designed and launched the complete multi-page website","Created all creative design, copy, and service page content","Built the AI assistant and configured the lead capture experience","Developed paid ad landing pages for four distinct audience segments","Optimized throughout for SEO, GEO, and AEO/IEO"],tags:["Branding","Web Design","AI Assistant","Paid Media","SEO / GEO / AEO"],accent:"#2D6A4F"},{name:"Washington Law",url:"/law",displayUrl:"law.ascendsmartly.com",screenshot:"/portfolio-washington-law.png",whatTheyDo:"Washington Law is a Seattle boutique law firm built by Ascend as a full-scale demo of what a complete legal industry marketing system looks like — featuring 8 practice areas, attorney bios, results showcase, client insights, and a seamless consultation booking flow.",whatBradDid:["Built the full brand identity and visual system from the ground up","Designed and launched the complete multi-page website","Created all creative design, copy, and practice area content","Built the AI assistant and configured the lead capture experience","Developed paid ad landing pages for four distinct practice areas","Optimized throughout for SEO, GEO, and AEO/IEO"],tags:["Branding","Web Design","AI Assistant","Paid Media","SEO / GEO / AEO"],accent:"#B8902A"},{name:"The Wide Lens Podcast",contributionLabel:"Ascend's Contribution",url:"https://www.widelenspodcast.com/",displayUrl:"widelenspodcast.com",screenshot:"/portfolio-widelens.webp",whatTheyDo:"The Wide Lens Podcast goes beyond the headlines to reveal the untold stories and hidden layers behind the events you thought you knew. Hosted by Brad Stave, it's one of the fastest-growing new long-form interview podcasts.",whatBradDid:["Produced the full podcast from concept to ongoing episode releases","Engineered all audio production, recording, and post-production","Led all creative development including branding, format, and show identity","Serves as host — conducting every long-form interview and conversation","Built and launched the podcast website","Developed and executed the full promotion strategy and social media presence"],tags:["Podcast Production","Audio Engineering","Creative Development","Hosting","Web Design","Social Media"],accent:"#1B2870"},{name:"Water Mission",contributionLabel:"Brad Stave's Contribution",url:"https://watermission.org/",displayUrl:"watermission.org",screenshot:"/portfolio-watermission.webp",whatTheyDo:"Water Mission is a global, faith-based nonprofit providing safe water, sanitation, and hygiene solutions to communities in need across more than 60 countries.",whatBradDid:["Led the team that built out the full UX and creative design","Developed all content copy across the site","Executed the design build with full existing brand integration","Optimized throughout for SEO, GEO, and AEO/IEO","Developed and launched a paid ad engagement series","Built out the social media plan and engagement strategy"],tags:["UX & Creative Design","Content Copy","Brand Integration","SEO / GEO / AEO","Paid Media","Social Media"],accent:"#F4511E"}];
 
 export const testimonials = [
 	{

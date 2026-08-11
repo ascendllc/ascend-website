@@ -53,6 +53,9 @@ const detailed = [
 		fullSolutionHref: "/legal-marketing",
 		fullSolutionLabel: "See Full Legal Solution",
 		demoHref: "/law",
+		demoImage: "/images/demo-law-home.webp",
+		demoImageAlt: "Washington Law demo site homepage",
+		demoUrlLabel: "yoursite.com/law",
 	},
 	{
 		icon: ChartColumn,
@@ -63,6 +66,9 @@ const detailed = [
 		fullSolutionHref: "/finance-marketing",
 		fullSolutionLabel: "See Full Finance Solution",
 		demoHref: "/finance",
+		demoImage: "/images/demo-finance-home.png",
+		demoImageAlt: "Washington Accounting & Financial Services demo site",
+		demoUrlLabel: "yoursite.com/finance",
 	},
 ];
 ---
@@ -80,7 +86,7 @@ const detailed = [
 					<img src="/images/ascend-logo-color.webp" alt="Ascend Consulting" class="h-8" />
 				</a>
 				<div class="flex items-center gap-3">
-					<a href="/" class="hidden text-sm font-medium text-gray-500 transition-colors hover:text-[#E8622A] sm:inline">
+					<a href="/provisors" class="hidden text-sm font-medium text-gray-500 transition-colors hover:text-[#E8622A] sm:inline">
 						&larr; Back to ProVisors
 					</a>
 					<a
@@ -97,9 +103,7 @@ const detailed = [
 
 		<!-- Hero -->
 		<section class="relative overflow-hidden pt-20 pb-24 text-white" style={`background-color:${NAVY}`}>
-			<div class="absolute inset-0 opacity-10">
-				<img src="/images/hero-desktop.webp" alt="" class="h-full w-full object-cover object-center" />
-			</div>
+			<div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image:url('/images/provisors-hero-bg.jpg')"></div>
 			<div class="relative mx-auto max-w-5xl px-6">
 				<span class="mb-6 inline-block rounded-full border px-3 py-1.5 text-xs font-bold tracking-widest uppercase" style={`background-color:${ORANGE}33; border-color:${ORANGE}66; color:#f0a080`}>
 					Industry Solutions
@@ -218,8 +222,14 @@ const detailed = [
 									<a href={d.demoHref} class="inline-flex items-center gap-2 rounded-sm border px-6 py-3 text-sm font-semibold transition-colors" style={`border-color:${ORANGE}66; color:${ORANGE}`} set:html={`View Demo ${ExternalLink}`} />
 								</div>
 							</div>
-							<div class:list={["overflow-hidden rounded-xl border border-gray-200 shadow-sm", i % 2 === 1 && "md:order-1"]}>
-								<img src="/images/hero-desktop.webp" alt="" class="h-full w-full object-cover" />
+							<div class:list={["overflow-hidden rounded-xl border border-gray-200 shadow-xl", i % 2 === 1 && "md:order-1"]}>
+								<div class="flex items-center gap-2 bg-gray-800 px-4 py-2.5">
+									<span class="h-2.5 w-2.5 rounded-full bg-red-400/70"></span>
+									<span class="h-2.5 w-2.5 rounded-full bg-yellow-400/70"></span>
+									<span class="h-2.5 w-2.5 rounded-full bg-green-400/70"></span>
+									<span class="ml-3 flex-1 truncate rounded bg-gray-700 px-2 py-0.5 font-mono text-xs text-gray-300">{d.demoUrlLabel}</span>
+								</div>
+								<img src={d.demoImage} alt={d.demoImageAlt} class="block w-full" />
 							</div>
 						</div>
 					</div>
@@ -247,7 +257,7 @@ const detailed = [
 			<div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-6 text-sm text-white/35 sm:flex-row">
 				<a href="/" class="transition-colors hover:text-white/60">Ascend Consulting</a>
 				<div class="flex items-center gap-4">
-					<a href="/" class="transition-colors hover:text-white/60">ProVisors</a>
+					<a href="/provisors" class="transition-colors hover:text-white/60">ProVisors</a>
 					<a href="/legal-marketing" class="transition-colors hover:text-white/60">Legal Marketing</a>
 					<a href="/finance-marketing" class="transition-colors hover:text-white/60">Finance Marketing</a>
 					<a href={`mailto:${site.email}`} class="transition-colors hover:text-white/60">{site.email}</a>

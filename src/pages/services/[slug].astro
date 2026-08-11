@@ -66,7 +66,7 @@ const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" vi
 						<h2 class="mb-6 text-3xl leading-snug text-primary md:text-4xl">{service.conceptHeadline}</h2>
 						<div class="mb-8 h-1 w-12 bg-accent"></div>
 						<div class="space-y-5 text-lg leading-relaxed text-gray-600">
-							{service.conceptParagraphs.map((p) => <p>{p}</p>)}
+							{service.conceptBody.map((p) => <p>{p}</p>)}
 						</div>
 					</div>
 					<div class="grid grid-cols-2 gap-4">
@@ -89,9 +89,7 @@ const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" vi
 				<div class="mx-auto mb-16 max-w-2xl text-center">
 					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">The Work</p>
 					<h2 class="mb-4 text-3xl leading-snug text-primary md:text-4xl">What I deliver</h2>
-					<p class="text-lg text-gray-500">
-						Eight specific engagements that build a complete {service.name.toLowerCase()} capability from the ground up.
-					</p>
+					<p class="text-lg text-gray-500">{service.workSubhead}</p>
 				</div>
 				<div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-4">
 					{

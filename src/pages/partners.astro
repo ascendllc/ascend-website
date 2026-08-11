@@ -1,0 +1,332 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+const ArrowRightSm = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+const Phone = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>`;
+const Mail = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>`;
+const Globe = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`;
+const ArrowLeft = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>`;
+
+interface ValuePoint {
+	title: string;
+	desc: string;
+}
+
+interface Partner {
+	name: string;
+	title: string;
+	org: string;
+	photo: string;
+	photoPosition?: string;
+	phone: string;
+	email: string;
+	website: string;
+	websiteLabel: string;
+	bio: string;
+	valuePoints: ValuePoint[];
+	orgPreview: string;
+}
+
+const partners: Partner[] = [
+	{
+		name: "Tyler Carey",
+		title: "Founder",
+		org: "Trellis Leadership",
+		photo: "/images/partners/partner-tyler.webp",
+		phone: "360.809.5640",
+		email: "tyler@trellis-leadership.com",
+		website: "https://trellis-leadership.com",
+		websiteLabel: "trellis-leadership.com",
+		bio: "Tyler Carey is the Founder of Trellis Leadership and a leadership advisor who helps executives and teams build strategic self-awareness, improve decision-making, and operate at a higher level. He blends behavioral insight with practical coaching to strengthen how leaders think, communicate, and execute.",
+		valuePoints: [
+			{ title: "Leadership clarity", desc: "Tyler helps leaders understand their behavioral patterns and make targeted adjustments that improve performance." },
+			{ title: "Team alignment", desc: "Tyler facilitates sessions that strengthen trust, collaboration, and execution across teams." },
+			{ title: "Actionable development plans", desc: "Tyler uses assessments and structured feedback to create clear, practical growth paths for leaders." },
+		],
+		orgPreview: "Trellis Leadership helps organizations elevate leadership effectiveness through strategic self-awareness and practical coaching. Using assessments and insight-driven development, Trellis equips leaders and teams with the clarity and behaviors needed to communicate better, align faster, and execute with confidence.",
+	},
+	{
+		name: "Samuel Ebat",
+		title: "Founder & Creative Director",
+		org: "PIXELtechnics",
+		photo: "/images/partners/partner-samuel.webp",
+		phone: "253.720.7405",
+		email: "samuel@pixeltechnics.com",
+		website: "https://www.pixeltechnics.com",
+		websiteLabel: "pixeltechnics.com",
+		bio: "Samuel Ebat is the Founder and Creative Director of PIXELtechnics, a visual storyteller and filmmaker who partners with organizations to create films that move audiences and inspire action. With a background in branded documentaries and commercial storytelling, Samuel blends creative vision with strategic messaging to help clients communicate what's true, good, and emotionally resonant. His work has earned recognition including a Vimeo Staff Pick and collaborations with brands such as Microsoft, Amazon & AWS, REI Co-op, Brooks Running, Slalom, Swedish, Arbor, and Imperial Motion.",
+		valuePoints: [
+			{ title: "Strategic storytelling and brand clarity", desc: "Samuel helps organizations define their message and translate it into visual stories that connect deeply with audiences and drive engagement." },
+			{ title: "Full-service film production and creative direction", desc: "From concept development to editing, Samuel leads every stage of production with precision and artistry, ensuring each project delivers both emotional impact and professional polish." },
+			{ title: "Collaborative creative partnership", desc: "Samuel thrives on collaboration, guiding clients through a process that honors their vision while elevating it through expert storytelling, pacing, and tone." },
+		],
+		orgPreview: "PIXELtechnics is a creative studio specializing in branded documentaries, commercials, and visual storytelling that inspire audiences to act. The team partners with clients to refine messaging, develop concepts, and produce films that balance authenticity with cinematic quality. Their work combines strategic clarity with emotional resonance, helping organizations communicate their story in a way that truly moves people.",
+	},
+	{
+		name: "Ben Hamilton",
+		title: "Founder & Fractional CSO/CISO",
+		org: "PraeSyn",
+		photo: "/images/partners/partner-ben.webp",
+		phone: "206.303.8742",
+		email: "ben.hamilton@praesyn.com",
+		website: "https://www.praesyn.com",
+		websiteLabel: "praesyn.com",
+		bio: "Ben Hamilton is the Founder of PraeSyn and a fractional CSO/CISO who helps growth-stage and PE-backed companies build investor-ready security programs. With more than two decades of enterprise experience, including his work as an AI Security Architect at Avalara, Ben specializes in designing scalable security frameworks, strengthening risk posture, and guiding organizations through compliance milestones. He blends deep technical expertise with executive-level clarity, helping leadership teams understand and act on security as a business driver.",
+		valuePoints: [
+			{ title: "Security program design and executive leadership", desc: "Ben builds scalable, board-ready security programs that help organizations meet investor expectations, reduce risk, and prepare for rapid growth." },
+			{ title: "Compliance and governance clarity", desc: "He guides companies through SOC 2, ISO 27001, CMMC, and other compliance pathways, creating clear, achievable roadmaps that align with business goals." },
+			{ title: "AI security and governance expertise", desc: "Through PraeSyn and its AI governance layer, Ben helps organizations adopt AI responsibly by integrating frameworks such as ISO 42001 and the NIST AI RMF into their security posture." },
+		],
+		orgPreview: "PraeSyn helps growth-stage and PE-backed companies build strong, scalable security programs that satisfy investors, support compliance, and reduce organizational risk. With a focus on clarity, governance, and practical execution, PraeSyn equips leaders with the systems, reporting, and frameworks needed to operate securely and confidently. Their AI governance capabilities further help organizations adopt emerging technologies responsibly and in alignment with industry standards.",
+	},
+	{
+		name: "Mike Nakamura",
+		title: "Photographer",
+		org: "Mike Nakamura Photography",
+		photo: "/images/partners/partner-mike.jpg",
+		photoPosition: "70% center",
+		phone: "425.260.4033",
+		email: "mike@mikenakamuraphotography.com",
+		website: "https://www.mikenakamuraphotography.com",
+		websiteLabel: "mikenakamuraphotography.com",
+		bio: "Mike Nakamura is a professional photographer based in Kirkland, Washington, specializing in headshots, branding, lifestyle, corporate events, and business photography. With a client list that includes Microsoft, Delta Airlines, NASDAQ, Zillow, Redfin, and Stanford University, Mike brings a refined eye and a people-first approach to every session. His philosophy is simple: great photography reflects your personality. By keeping things easygoing and authentic, he creates images that help professionals and organizations show up with confidence and clarity.",
+		valuePoints: [
+			{ title: "Professional headshots and personal branding", desc: "Mike creates polished, personality-driven headshots that help executives, entrepreneurs, and professionals make a strong first impression. His approach puts clients at ease, resulting in images that feel natural, confident, and true to who they are." },
+			{ title: "Corporate event and business photography", desc: "From team portraits and corporate events to business environment and product sessions, Mike delivers consistent, high-quality photography that strengthens how organizations present themselves to clients and partners." },
+			{ title: "Lifestyle and brand storytelling", desc: "Mike's lifestyle and branding sessions go beyond standard portraits to capture the people and energy behind a business, giving organizations compelling visual content for websites, social media, and marketing materials." },
+		],
+		orgPreview: "Mike Nakamura Photography is a Kirkland, Washington-based professional photography studio serving businesses, executives, and organizations across the Pacific Northwest and beyond. From executive headshots to corporate events and branded lifestyle content, Mike delivers photography that is polished, authentic, and built to support how organizations and individuals show up in the world. His client list includes Microsoft, Delta Airlines, Redfin, NASDAQ, Zillow, and dozens of organizations across industries.",
+	},
+	{
+		name: "Alex Polamero",
+		title: "Chief Growth Officer & Investor",
+		org: "Ninestone Partners",
+		photo: "/images/partners/partner-alex.webp",
+		phone: "909.913.4800",
+		email: "alex@ninestonepartners.com",
+		website: "https://ninestonepartners.com",
+		websiteLabel: "ninestonepartners.com",
+		bio: "Alex Polamero is the Founder and President of Ninestone Partners and a growth strategist with more than 20 years of experience helping accounting, finance, and professional services firms scale. He specializes in building revenue systems, optimizing CRM and marketing automation, and designing omnichannel strategies that drive measurable growth. Alex brings a rare blend of technical expertise and strategic insight, helping organizations strengthen their pipelines, improve conversion, and build the infrastructure needed for sustainable, long-term success.",
+		valuePoints: [
+			{ title: "Revenue and pipeline growth", desc: "Alex helps organizations build predictable, scalable growth engines through CRM optimization, lead generation strategy, and data-driven marketing systems." },
+			{ title: "Strategic marketing and automation", desc: "He designs and implements marketing automation frameworks that streamline operations, improve targeting, and increase engagement across channels." },
+			{ title: "High-impact advisory and leadership insight", desc: "With experience advising firms from $1M to $1B in revenue, Alex brings clarity to complex growth challenges and equips leaders with the tools and strategies needed to scale effectively." },
+		],
+		orgPreview: "Ninestone Partners helps professional services firms grow through strategic marketing, CRM optimization, and revenue system design. Their work blends technology, data, and practical strategy to help organizations attract the right clients, strengthen their pipelines, and scale with confidence. Ninestone equips leaders with the tools and insights needed to build sustainable, repeatable growth.",
+	},
+	{
+		name: "Mitch Roberts",
+		title: "Founder and Executive Coach",
+		org: "Aligned to Purpose",
+		photo: "/images/partners/partner-mitch-roberts.jpg",
+		phone: "206.713.1280",
+		email: "mitch@alignedtopurpose.com",
+		website: "https://www.alignedtopurpose.com",
+		websiteLabel: "alignedtopurpose.com",
+		bio: "Mitch Roberts is the Founder of Aligned to Purpose and the creator of The Gold Mine Method, a 90-day leadership alignment experience. With more than 20 years of experience working with leadership teams including Fortune 500 organizations such as Microsoft, Mitch helps ambitious leaders move from burnout to clarity. He is a certified coach and facilitator for Unreasonable Hospitality and specializes in helping SMB leaders build high-performance cultures by systematizing the customer journey, deploying AI-powered productivity strategies, and applying proven frameworks including the StoryBrand method.",
+		valuePoints: [
+			{ title: "Unreasonable Hospitality workshops", desc: "Mitch leads workshops that systematize the customer journey, turning ordinary touchpoints into unforgettable experiences that drive loyalty, retention, and sustainable growth." },
+			{ title: "AI-driven productivity and execution", desc: "He helps teams deploy custom AI tools as a horizontal marketing and communications layer, multiplying execution speed and freeing leaders to focus on high-value strategy." },
+			{ title: "Burnout-to-clarity leadership coaching", desc: "Mitch provides high-stakes coaching for executives who need to reclaim their time and lead with intentionality, using proven productivity methods and the StoryBrand framework." },
+		],
+		orgPreview: "Aligned to Purpose is a leadership coaching and consulting firm built to help ambitious leaders reclaim clarity, build high-performance cultures, and grow with intention. Through The Gold Mine Method, Unreasonable Hospitality workshops, and AI-powered strategy, Aligned to Purpose equips leaders and teams with the systems, frameworks, and mindset needed to move from burnout to sustainable, high-impact performance.",
+	},
+	{
+		name: "Jay Russo",
+		title: "Owner & President",
+		org: "RB Printing",
+		photo: "/images/partners/partner-jay.webp",
+		phone: "858.486.4540",
+		email: "jay@rbprinting.com",
+		website: "https://www.rbprinting.com",
+		websiteLabel: "rbprinting.com",
+		bio: "Jay Russo is the Owner and President of RB Printing. He has a strong background in servant leadership, operations, team building, and helping organizations move in the right direction with clarity and purpose.\n\nJay is passionate about people, not just production. He believes strong teams, clear communication, and dependable service are what make a business truly valuable. Over the years, he has helped lead teams, improve systems, support clients, and create solutions that make businesses look more professional and operate more effectively.\n\nHis experience in mentoring, speaking, service, and humanitarian work also reflects a bigger commitment: helping people and organizations grow in ways that actually matter.",
+		valuePoints: [
+			{ title: "High-quality commercial printing and production", desc: "Jay provides organizations with professional, reliable printing that makes their brand look sharp and consistent. From marketing materials to business collateral and larger production projects, RB Printing focuses on quality, detail, and getting the job done right." },
+			{ title: "End-to-end project management and fulfillment", desc: 'Printing is rarely just "printing." There are files, deadlines, details, finishing, mailing, fulfillment, and plenty of places where things can go sideways. As a Certified Project Manager, Jay and his team help manage the process from beginning to end so clients do not have to chase every detail or worry about whether the job is moving forward.' },
+			{ title: "Fast, dependable service that supports organizational momentum", desc: "Jay leads RB Printing with a service-first mindset, delivering quick turnaround times, responsive communication, and consistent reliability. His approach keeps organizations, their campaigns, events, and internal operations moving without delays." },
+		],
+		orgPreview: "RB Printing is a 58 year old, full-service commercial printing and production company that helps businesses with high-quality printing, finishing, mailing, fulfillment, and marketing materials. The company is known for reliable service, strong attention to detail, and helping clients look more professional everywhere their brand shows up. From everyday business materials to larger print production needs, RB Printing works to make the process simple, accurate, and dependable.",
+	},
+	{
+		name: "Dr. Tom Tonkin",
+		title: "Founder & Principal",
+		org: "The Tonkin Group",
+		photo: "/images/partners/partner-tom.webp",
+		phone: "720.731.0429",
+		email: "drtom@drtomtonkin.com",
+		website: "https://thetonkingroup.co",
+		websiteLabel: "thetonkingroup.co",
+		bio: "Dr. Tom Tonkin is the Founder and Principal of The Tonkin Group, a fractional sales and marketing consultancy serving professional services firms. With more than 30 years of global sales leadership — including senior roles at Oracle and advisory work with organizations such as AT&T, Salesforce, CBRE, and Cornerstone — Tom helps owner-led firms install the go-to-market discipline that turns capability into consistent revenue. He holds a Ph.D. in Organizational Leadership and combines academic rigor with real-world execution to help firms move from effort to results.",
+		valuePoints: [
+			{ title: "Fractional executive-level GTM leadership", desc: "Tom steps into the senior sales and marketing seat for firms that need CEO-level strategy, accountability, and revenue leadership without the cost or commitment of a full-time executive." },
+			{ title: "Sales process and go-to-market design", desc: "He architects the full revenue motion — ICP definition, qualification criteria, sales process, proposal structure, and CRM operationalization — so that effort translates into predictable, repeatable results." },
+			{ title: "Executive advisory for founders and partners", desc: "Tom serves as a strategic thought partner, helping leaders make the practical decisions around structure, growth, and prioritization that determine whether a firm scales or stalls." },
+		],
+		orgPreview: "The Tonkin Group provides fractional sales and marketing leadership for law firms, accounting firms, and IT consulting practices in the 20–100 employee range — the stage where sales and marketing maturity matters most, and a full-time executive hire is rarely the right answer. Engagements combine go-to-market strategy, sales process design, and executive advisory, with a boutique model that ensures every client receives senior-level attention throughout the engagement.",
+	},
+];
+
+function slugify(name: string) {
+	return name
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, "-")
+		.replace(/(^-|-$)/g, "");
+}
+
+function firstName(name: string) {
+	return name.split(" ").find((part) => !["Dr.", "Mr.", "Ms.", "Mrs."].includes(part));
+}
+---
+
+<Layout
+	title="Trusted Partners | Ascend Consulting"
+	description="Meet the trusted partner network of Ascend Consulting — specialists in leadership development, cybersecurity, creative production, commercial printing, revenue growth, and fractional sales leadership."
+	bare
+	canonical="https://ascendsmartly.com/partners"
+>
+	<div class="min-h-screen bg-white">
+		<header id="partners-header" class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-sm">
+			<div class="container mx-auto flex items-center justify-between gap-6 px-6 py-3 md:px-12">
+				<div class="flex items-center gap-4">
+					<a href="/" class="flex shrink-0 items-center gap-2">
+						<img src="/images/ascend-logo-color.webp" alt="Ascend Consulting" class="h-8" />
+					</a>
+					<span class="hidden text-lg text-gray-300 sm:block">/</span>
+					<a href="/resources" class="hidden text-sm font-medium text-gray-500 transition-colors hover:text-primary sm:block">Resources</a>
+					<span class="hidden text-lg text-gray-300 sm:block">/</span>
+					<span class="hidden text-sm font-semibold text-primary sm:block">Partners</span>
+				</div>
+				<div class="flex items-center gap-3">
+					<a href="/resources" class="hidden items-center gap-1.5 text-sm font-medium text-gray-500 transition-colors hover:text-primary sm:inline-flex" set:html={`${ArrowLeft} Back to Resources`} />
+					<a
+						href={site.booking}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex items-center gap-1.5 rounded-sm bg-accent px-4 py-2 text-sm font-medium text-white transition-all hover:bg-accent/90"
+						set:html={`Consultation ${ArrowRightSm}`}
+					/>
+				</div>
+			</div>
+		</header>
+
+		<!-- Hero -->
+		<section class="relative overflow-hidden bg-primary">
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<div class="absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-accent/10 blur-[120px]"></div>
+				<div class="absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-white/5 blur-[100px]"></div>
+			</div>
+			<div class="container relative z-10 mx-auto px-6 py-20 md:px-12">
+				<div class="max-w-3xl">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">Trusted Partners</p>
+					<h1 class="mb-6 text-4xl leading-tight text-white md:text-5xl lg:text-6xl" style="font-family: var(--font-serif);">
+						Extended Expertise,<br /><span class="text-accent">Built for Your Growth</span>
+					</h1>
+					<p class="text-lg leading-relaxed text-white/80 md:text-xl">
+						Ascend Consulting is built on the belief that organizations grow strongest when clarity, capability, and trusted relationships work together. We collaborate with a select group of partners whose expertise naturally complements our strategic work — each bringing a distinct discipline that strengthens the systems, communication, and execution needed to help organizations rise.
+					</p>
+				</div>
+			</div>
+			<div class="h-2 w-full bg-accent"></div>
+		</section>
+
+		<!-- Partner Profiles -->
+		<section class="py-16 md:py-20">
+			<div class="container mx-auto px-6 md:px-12">
+				<div class="space-y-12">
+					{
+						partners.map((p) => (
+							<div id={slugify(p.name)} class="scroll-mt-[88px] overflow-hidden rounded-sm border border-gray-100 bg-white shadow-lg">
+								<div class="flex flex-col md:flex-row">
+									<div class="flex-shrink-0 md:w-64 lg:w-72">
+										<img
+											src={p.photo}
+											alt={p.name}
+											class="h-80 w-full object-cover md:h-full"
+											style={`object-position:${p.photoPosition ?? "center 15%"}`}
+											loading="lazy"
+										/>
+									</div>
+									<div class="flex-1 p-8 md:p-10">
+										<div class="mb-6">
+											<p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">Trusted Partner</p>
+											<h2 class="mb-1 text-2xl font-bold text-primary md:text-3xl">{p.name}</h2>
+											<p class="mb-1 font-medium text-gray-500">{p.title}</p>
+											<p class="text-lg font-semibold text-primary">{p.org}</p>
+										</div>
+										<div class="mb-6 flex flex-wrap gap-4 text-sm text-gray-600">
+											<a href={`tel:${p.phone}`} class="flex items-center gap-1.5 transition-colors hover:text-primary" set:html={`${Phone} ${p.phone}`} />
+											<a href={`mailto:${p.email}`} class="flex items-center gap-1.5 transition-colors hover:text-primary" set:html={`${Mail} ${p.email}`} />
+											<a href={p.website} target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 transition-colors hover:text-primary" set:html={`${Globe} ${p.websiteLabel}`} />
+										</div>
+										<div class="space-y-3">
+											{p.bio.split("\n\n").map((para) => (
+												<p class="leading-relaxed text-gray-600">{para}</p>
+											))}
+										</div>
+									</div>
+								</div>
+								<div class="grid divide-y divide-gray-100 border-t border-gray-100 md:grid-cols-2 md:divide-x md:divide-y-0">
+									<div class="p-8 md:p-10">
+										<h3 class="mb-6 text-sm font-bold tracking-widest text-primary uppercase">How {firstName(p.name)} Adds Value</h3>
+										<div class="space-y-5">
+											{p.valuePoints.map((vp, i) => (
+												<div class="flex gap-3">
+													<div class="mt-1 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent text-xs font-bold text-white">{i + 1}</div>
+													<div>
+														<p class="mb-1 font-semibold text-primary">{vp.title}</p>
+														<p class="text-sm leading-relaxed text-gray-600">{vp.desc}</p>
+													</div>
+												</div>
+											))}
+										</div>
+									</div>
+									<div class="bg-gray-50 p-8 md:p-10">
+										<h3 class="mb-4 text-sm font-bold tracking-widest text-primary uppercase">About {p.org}</h3>
+										<p class="mb-6 text-sm leading-relaxed text-gray-600">{p.orgPreview}</p>
+										<a
+											href={p.website}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-primary/90"
+											set:html={`Visit ${p.org} &rarr;`}
+										/>
+									</div>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section class="relative overflow-hidden bg-primary py-20">
+			<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+				<div class="absolute top-0 right-0 h-96 w-96 rounded-full bg-accent/10 blur-[100px]"></div>
+			</div>
+			<div class="container relative z-10 mx-auto px-6 text-center md:px-12">
+				<h2 class="mb-4 text-3xl font-bold text-white md:text-4xl">Ready to connect with the right partner?</h2>
+				<p class="mx-auto mb-8 max-w-xl text-lg text-white/75">Reach out to Ascend and we'll help match you with the right expert for your specific needs.</p>
+				<a
+					href={site.booking}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-2 rounded-sm bg-accent px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90"
+					set:html={`Schedule a Consultation &rarr;`}
+				/>
+			</div>
+		</section>
+
+		<footer class="border-t border-gray-800 bg-gray-900 py-8">
+			<div class="container mx-auto flex flex-col items-center justify-between gap-4 px-6 md:flex-row md:px-12">
+				<a href="/" aria-label="Ascend Consulting — Back to home">
+					<img src="/images/ascend-logo-white.webp" alt="" class="h-8" loading="lazy" />
+				</a>
+				<p class="text-sm text-gray-500">&copy; {new Date().getFullYear()} Ascend Consulting. All rights reserved.</p>
+				<a href="/" class="text-sm text-gray-500 transition-colors hover:text-white">&larr; Back to Home</a>
+			</div>
+		</footer>
+	</div>
+</Layout>

@@ -33,12 +33,12 @@ const sections = [
 		title: "Your Contact Details",
 		subtitle: "So we know who we're talking to and can follow up if needed.",
 		fields: [
-			{ type: "text", label: "Full name", required: true },
-			{ type: "text", label: "Organization or business name", required: true },
-			{ type: "email", label: "Email address", required: true },
-			{ type: "tel", label: "Phone number", required: true },
-			{ type: "text", label: "Website (if you have one)" },
-			{ type: "text", label: "City & State / Country" },
+			{ type: "text", label: "Full name", required: true, placeholder: "Jane Smith" },
+			{ type: "text", label: "Organization or business name", required: true, placeholder: "Acme Co." },
+			{ type: "email", label: "Email address", required: true, placeholder: "jane@example.com" },
+			{ type: "tel", label: "Phone number", required: true, placeholder: "+1 (555) 000-0000" },
+			{ type: "url", label: "Website", labelNote: "(if you have one)", placeholder: "https://example.com" },
+			{ type: "text", label: "City & State / Country", placeholder: "Seattle, WA" },
 		],
 	},
 	{
@@ -46,12 +46,24 @@ const sections = [
 		title: "Your Goals",
 		subtitle: "Think about what you're hoping to walk away with — not the tactics, but the outcomes.",
 		fields: [
-			{ type: "textarea", label: "What are the top 1–2 things you want to accomplish in the next 12 months?", required: true },
-			{ type: "textarea", label: "Where do you want this organization to be in 3–5 years?" },
+			{
+				type: "textarea",
+				label: "What are the top 1–2 things you want to accomplish in the next 12 months?",
+				required: true,
+				placeholder: "e.g. Generate more leads through our website, launch a rebrand before our annual conference, get our name out in a new market...",
+			},
+			{
+				type: "textarea",
+				label: "Where do you want this organization to be in 3–5 years?",
+				rows: 3,
+				placeholder: "e.g. Become the go-to provider in our region, expand to two new cities, reach $2M in revenue...",
+			},
 			{
 				type: "textarea",
 				label: "What would a win look like if you hired Ascend to do this work?",
+				rows: 3,
 				help: "Think beyond deliverables — what would feel different? What problem would finally be solved?",
+				placeholder: "e.g. We'd finally have a brand we're proud to put in front of anyone. Our website would actually bring in leads. The team would be aligned on how to talk about us...",
 			},
 		],
 	},
@@ -60,8 +72,12 @@ const sections = [
 		title: "Your Organization",
 		subtitle: "Help us get a feel for who you are and what you're building.",
 		fields: [
-			{ type: "textarea", label: "How would you describe what your organization does — in your own words, like you're explaining it to a friend?" },
-			{ type: "select", label: "How long have you been operating?", options: operatingLengthOptions },
+			{
+				type: "textarea",
+				label: "How would you describe what your organization does — in your own words, like you're explaining it to a friend?",
+				placeholder: "e.g. We help small restaurants manage their social media so they can focus on cooking, not content...",
+			},
+			{ type: "select", label: "How long have you been operating?", options: operatingLengthOptions, selectPlaceholder: "Select one..." },
 		],
 	},
 	{
@@ -70,7 +86,8 @@ const sections = [
 		subtitle: "No judgment — wherever you are is a fine starting point.",
 		fields: [
 			{
-				type: "select",
+				type: "radio",
+				name: "brandAssets",
 				label: "How would you describe the current state of your brand identity?",
 				options: brandStateOptions,
 				help: "A complete brand includes visual identity (logo, colors, typography), verbal identity (messaging, tone of voice, tagline), and guidelines that keep everything consistent across every touchpoint.",
@@ -78,13 +95,22 @@ const sections = [
 			{
 				type: "textarea",
 				label: "How would you describe your brand's personality? If your brand were a person, how would they come across?",
+				rows: 3,
 				help: "Think about tone, values, how you want people to feel after interacting with you.",
+				placeholder: "e.g. Warm and approachable, but authoritative — like a trusted advisor, not a salesperson...",
 			},
-			{ type: "textarea", label: "Is there anything about your current brand you're proud of and want to keep?" },
+			{
+				type: "textarea",
+				label: "Is there anything about your current brand you're proud of and want to keep?",
+				rows: 3,
+				placeholder: "e.g. Our logo has strong recognition in our community. We love our tagline. Our color palette feels right...",
+			},
 			{
 				type: "textarea",
 				label: "List up to five brands you admire and aspire to be like.",
+				rows: 4,
 				help: "These don't need to be in your industry — just brands whose look, feel, or personality resonates with you. A sentence on why helps too.",
+				placeholder: "e.g. 1. Patagonia — values-driven, no-nonsense 2. Mailchimp — friendly and human 3. Apple — clean and premium...",
 			},
 		],
 	},
@@ -93,9 +119,19 @@ const sections = [
 		title: "Marketing & Visibility",
 		subtitle: "Where you show up today and what's actually working (or not).",
 		fields: [
-			{ type: "checkboxes", label: "Where does your organization currently show up?", options: channelOptions },
-			{ type: "textarea", label: "What's been working well with your marketing, even if just a little?" },
-			{ type: "textarea", label: "What's clearly not working — or what feels like a gap?" },
+			{ type: "checkboxes", label: "Where does your organization currently show up?", labelNote: "(check all that apply)", options: channelOptions },
+			{
+				type: "textarea",
+				label: "What's been working well with your marketing, even if just a little?",
+				rows: 3,
+				placeholder: "e.g. Our Instagram gets good engagement. Word of mouth has been strong. Our email open rates are solid...",
+			},
+			{
+				type: "textarea",
+				label: "What's clearly not working — or what feels like a gap?",
+				rows: 3,
+				placeholder: "e.g. We have no consistent presence online. Our website doesn't convert. We've never had a real strategy...",
+			},
 		],
 	},
 	{
@@ -103,8 +139,18 @@ const sections = [
 		title: "Your Customers",
 		subtitle: "Understanding who you serve helps us understand your entire business.",
 		fields: [
-			{ type: "textarea", label: "Describe your ideal customer or client as if they were a real person — who are they, what do they care about, what keeps them up at night?" },
-			{ type: "textarea", label: "What problem do you solve for them that they can't easily get elsewhere?" },
+			{
+				type: "textarea",
+				label: "Describe your ideal customer or client as if they were a real person — who are they, what do they care about, what keeps them up at night?",
+				placeholder:
+					"e.g. Small business owners in their 40s who are great at their craft but overwhelmed by everything that comes with running a business. They care about reputation and don't have time to waste...",
+			},
+			{
+				type: "textarea",
+				label: "What problem do you solve for them that they can't easily get elsewhere?",
+				rows: 3,
+				placeholder: "e.g. We combine strategy and execution under one roof — clients don't have to manage multiple vendors...",
+			},
 		],
 	},
 	{
@@ -112,8 +158,17 @@ const sections = [
 		title: "The Competitive Landscape",
 		subtitle: "You don't need a full market analysis — just your honest read on the field.",
 		fields: [
-			{ type: "textarea", label: "Who are your main competitors, and how are you different from them?" },
-			{ type: "textarea", label: "What do your best customers say about why they chose you over someone else?" },
+			{
+				type: "textarea",
+				label: "Who are your main competitors, and how are you different from them?",
+				placeholder: "e.g. Our main competitors are XYZ and ABC. We're different because we specialize in nonprofits and they serve everyone...",
+			},
+			{
+				type: "textarea",
+				label: "What do your best customers say about why they chose you over someone else?",
+				rows: 3,
+				placeholder: "e.g. They say we feel more personal. We actually listen. We don't oversell...",
+			},
 		],
 	},
 	{
@@ -121,8 +176,22 @@ const sections = [
 		title: "Timeline & What Success Looks Like",
 		subtitle: "Helps us understand urgency and set realistic expectations.",
 		fields: [
-			{ type: "textarea", label: "What would a wildly successful outcome look like 12 months from now?" },
-			{ type: "select", label: "Do you have a specific deadline, launch date, or event you're working toward?", options: deadlineOptions },
+			{
+				type: "textarea",
+				label: "What would a wildly successful outcome look like 12 months from now?",
+				placeholder:
+					"e.g. Our website is generating consistent leads. We have a brand we're proud to show anyone. Our team knows exactly how to talk about us...",
+			},
+			{
+				type: "radio",
+				name: "hasDeadline",
+				label: "Do you have a specific deadline, launch date, or event you're working toward?",
+				options: deadlineOptions,
+				conditional: {
+					value: deadlineOptions[0],
+					field: { label: "What's the date or event?", placeholder: "e.g. Annual conference on October 12, annual board meeting in March..." },
+				},
+			},
 		],
 	},
 	{
@@ -130,11 +199,17 @@ const sections = [
 		title: "Team & Budget",
 		subtitle: "No pressure on exact numbers — a ballpark helps us recommend the right scope.",
 		fields: [
-			{ type: "textarea", label: "Who's currently involved in your marketing — do you have a dedicated team, or is it mostly you?" },
+			{
+				type: "textarea",
+				label: "Who's currently involved in your marketing — do you have a dedicated team, or is it mostly you?",
+				rows: 3,
+				placeholder: "e.g. It's mostly me with help from a part-time assistant. We have a marketing director but no agency yet. Our team of 3 splits it...",
+			},
 			{
 				type: "select",
 				label: "What's your approximate budget range for this kind of work?",
 				options: budgetOptions,
+				selectPlaceholder: "Select a range...",
 				help: "This helps us match you with the right tier — no commitment implied.",
 			},
 		],
@@ -144,8 +219,18 @@ const sections = [
 		title: "Anything Else?",
 		subtitle: "This is the stuff that's easy to miss but often the most important to know upfront.",
 		fields: [
-			{ type: "textarea", label: "Is there anything about your brand or organization that's off-limits or that you're nervous about changing?" },
-			{ type: "textarea", label: "Anything else you'd like us to know before your call?" },
+			{
+				type: "textarea",
+				label: "Is there anything about your brand or organization that's off-limits or that you're nervous about changing?",
+				rows: 3,
+				placeholder: "e.g. Our founder's name is closely tied to the brand. We have stakeholders who are attached to certain visual elements. We've had bad experiences with rebranding before...",
+			},
+			{
+				type: "textarea",
+				label: "Anything else you'd like us to know before your call?",
+				rows: 3,
+				placeholder: "Open floor — share whatever's on your mind.",
+			},
 		],
 	},
 ];
@@ -185,41 +270,73 @@ const sections = [
 							</div>
 						</div>
 						{section.fields.map((field) => (
-							<div class="intake-field" data-label={field.label}>
-								<label class="mb-1.5 block text-sm font-semibold text-primary">
-									{field.label}
-									{field.required && <span class="ml-1 text-accent">*</span>}
-								</label>
-								{field.help && <p class="mb-2 text-xs leading-relaxed text-gray-400">{field.help}</p>}
-								{field.type === "text" && (
-									<input type="text" required={field.required} class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
-								)}
-								{field.type === "email" && (
-									<input type="email" required={field.required} class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
-								)}
-								{field.type === "tel" && (
-									<input type="tel" required={field.required} class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
-								)}
-								{field.type === "textarea" && (
-									<textarea rows="4" required={field.required} class="w-full resize-y rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
-								)}
-								{field.type === "select" && (
-									<select class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none">
-										<option value="">Select one...</option>
-										{field.options?.map((opt) => <option value={opt}>{opt}</option>)}
-									</select>
-								)}
-								{field.type === "checkboxes" && (
-									<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
-										{field.options?.map((opt) => (
-											<label class="flex items-center gap-2 text-sm text-gray-700">
-												<input type="checkbox" value={opt} class="h-4 w-4 rounded border-gray-300 text-accent focus:ring-accent/30" />
-												{opt}
-											</label>
-										))}
+							<>
+								<div class="intake-field" data-label={field.label}>
+									<label class="mb-1.5 block text-sm font-semibold text-primary">
+										{field.label}
+										{field.labelNote && <span class="ml-1 font-normal text-gray-400">{field.labelNote}</span>}
+										{field.required && <span class="ml-1 text-accent">*</span>}
+									</label>
+									{field.help && <p class="mb-2 text-xs leading-relaxed text-gray-400">{field.help}</p>}
+									{(field.type === "text" || field.type === "email" || field.type === "tel" || field.type === "url") && (
+										<input
+											type={field.type}
+											required={field.required}
+											placeholder={field.placeholder}
+											class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none"
+										/>
+									)}
+									{field.type === "textarea" && (
+										<textarea
+											rows={field.rows ?? 4}
+											required={field.required}
+											placeholder={field.placeholder}
+											class="w-full resize-y rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none"
+										/>
+									)}
+									{field.type === "select" && (
+										<select class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none">
+											<option value="">{field.selectPlaceholder ?? "Select one..."}</option>
+											{field.options?.map((opt) => <option value={opt}>{opt}</option>)}
+										</select>
+									)}
+									{field.type === "checkboxes" && (
+										<div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+											{field.options?.map((opt) => (
+												<label class="flex items-center gap-2 text-sm text-gray-700">
+													<input type="checkbox" value={opt} class="h-4 w-4 rounded border-gray-300 text-accent focus:ring-accent/30" />
+													{opt}
+												</label>
+											))}
+										</div>
+									)}
+									{field.type === "radio" && (
+										<div class="mt-1 space-y-2">
+											{field.options?.map((opt) => (
+												<label class="flex items-center gap-3 text-sm text-gray-700">
+													<input type="radio" name={field.name} value={opt} class="h-4 w-4 border-gray-300 text-accent focus:ring-accent/30" />
+													{opt}
+												</label>
+											))}
+										</div>
+									)}
+								</div>
+								{field.conditional && (
+									<div
+										class="intake-field intake-conditional hidden"
+										data-label={field.conditional.field.label}
+										data-conditional-for={field.name}
+										data-conditional-value={field.conditional.value}
+									>
+										<label class="mb-1.5 block text-sm font-semibold text-primary">{field.conditional.field.label}</label>
+										<input
+											type="text"
+											placeholder={field.conditional.field.placeholder}
+											class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none"
+										/>
 									</div>
 								)}
-							</div>
+							</>
 						))}
 					</div>
 				))
@@ -254,6 +371,21 @@ const sections = [
 			const idleEl = document.getElementById("intake-idle") as HTMLDivElement;
 			const successEl = document.getElementById("intake-success") as HTMLDivElement;
 
+			// Toggle conditional follow-up fields (e.g. the "What's the date or event?" field)
+			// based on the selected value of their controlling radio group.
+			form?.querySelectorAll<HTMLElement>("[data-conditional-for]").forEach((wrapper) => {
+				const name = wrapper.dataset.conditionalFor;
+				const targetValue = wrapper.dataset.conditionalValue;
+				if (!name) return;
+				const radios = form.querySelectorAll<HTMLInputElement>(`input[type="radio"][name="${name}"]`);
+				const update = () => {
+					const checked = Array.from(radios).find((r) => r.checked);
+					wrapper.classList.toggle("hidden", !(checked && checked.value === targetValue));
+				};
+				radios.forEach((r) => r.addEventListener("change", update));
+				update();
+			});
+
 			form?.addEventListener("submit", async (e) => {
 				e.preventDefault();
 				if (!form.reportValidity()) return;
@@ -271,6 +403,12 @@ const sections = [
 							.filter((c) => c.checked)
 							.map((c) => c.value);
 						fields.push({ label, value: checked.join(", ") });
+						return;
+					}
+					const radios = wrapper.querySelectorAll<HTMLInputElement>('input[type="radio"]');
+					if (radios.length) {
+						const checked = Array.from(radios).find((r) => r.checked);
+						fields.push({ label, value: checked?.value ?? "" });
 						return;
 					}
 					const input = wrapper.querySelector<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>("input, textarea, select");

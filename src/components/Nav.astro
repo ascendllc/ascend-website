@@ -174,7 +174,7 @@ const menuBtnClass = transparent ? "text-white" : "text-foreground";
 
 		function updateHeader() {
 			if (!header || !logo || !navLinks) return;
-			if (window.scrollY > 40) {
+			if (window.scrollY > 50) {
 				header.className = "fixed top-0 z-50 w-full border-b border-border bg-white/95 py-3 shadow-sm backdrop-blur-sm transition-all duration-300";
 				logo.src = "/images/ascend-logo-color.webp";
 				navLinks.classList.remove("text-white");
