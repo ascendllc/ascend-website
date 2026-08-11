@@ -1,0 +1,228 @@
+---
+import FinanceLandingLayout from "../../../components/finance/FinanceLandingLayout.astro";
+
+const CheckIcon = `<circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path>`;
+const ChevronDownIcon = `<path d="m6 9 6 6 6-6"></path>`;
+
+const phases = [
+	{
+		num: "01",
+		title: "Pre-Transaction Planning",
+		items: [
+			"ABV-certified business valuation to establish current enterprise value",
+			"Entity structure review — asset sale vs. stock sale analysis",
+			"Tax modeling for different deal structures",
+			"Earnings normalization and EBITDA documentation",
+			"Financial statement cleanup and three-year audit preparation",
+			"Owner compensation normalization for buyer due diligence",
+		],
+	},
+	{
+		num: "02",
+		title: "During the Transaction",
+		items: [
+			"Buyer due diligence support and data room preparation",
+			"Quality of earnings (QoE) coordination with buyer advisors",
+			"LOI review and financial representation accuracy",
+			"Tax structuring refinement as deal terms evolve",
+			"Coordination with M&A attorney on deal economics",
+			"Working capital peg analysis and adjustment mechanism modeling",
+		],
+	},
+	{
+		num: "03",
+		title: "Post-Transaction Planning",
+		items: [
+			"Proceeds management and tax payment planning",
+			"Investment of after-tax proceeds with Robert Kimura (CPA, CFP®)",
+			"Estate plan update to reflect post-liquidity wealth",
+			"Earnout monitoring and compliance",
+			"Installment sale management (if applicable)",
+			"Transition to ongoing wealth planning engagement",
+		],
+	},
+];
+
+const faqs = [
+	{
+		q: "What is my business actually worth?",
+		a: "The honest answer is: it depends on factors most business owners underestimate — industry multiples, earnings quality, customer concentration, and deal structure. David Okafor holds the ABV (Accredited in Business Valuation) credential from the AICPA, which means he can provide an independent, defensible, credentialed valuation — not a broker's estimate. Understanding your number before you're in a negotiation is one of the highest-leverage investments you can make.",
+	},
+	{
+		q: "Asset sale or stock sale — does it matter?",
+		a: "Yes. Significantly. In an asset sale, the seller typically pays more in taxes (ordinary income on some asset classes) but buyers prefer it. In a stock sale, sellers pay capital gains rates on most proceeds. The difference in net proceeds can be six figures or more on a mid-size transaction. We model both scenarios before any negotiation begins so you have clarity on your net outcome under different deal structures.",
+	},
+	{
+		q: "What happens to my money after I sell?",
+		a: "Robert Kimura's integrated CPA/CFP® practice means your proceeds move into a coordinated plan — not a separate wealth manager who doesn't know what you paid in taxes. We handle the tax planning, the investment coordination, and the estate plan update as a unified engagement. The goal is to maximize what you actually keep, net of tax and advisors.",
+	},
+	{
+		q: "How early should I start?",
+		a: "Most owners who do the best engage a strategic financial team 12–24 months before they plan to sign anything. That window allows time for entity restructuring (some strategies require 24+ months to be effective), earnings normalization, and financial statement preparation. Owners who engage six months before a LOI have far fewer options. The sooner you start, the more tools we have.",
+	},
+];
+
+const engagements = [
+	{ desc: "Guided $4.5M sale of Seattle professional services firm", detail: "Pre-transaction entity restructure saved approximately $280,000 in federal tax on proceeds." },
+	{ desc: "Provided ABV-certified valuation for 3-partner healthcare practice", detail: "Buy-sell dispute resolved in mediation. Credentialed valuation accepted by all parties." },
+	{ desc: "Prepared investor-ready financial package for $2.1M SBA-backed acquisition", detail: "Three-year audit-ready financials and normalized EBITDA documentation. Transaction closed in 90 days." },
+];
+---
+
+<FinanceLandingLayout title="Sell Your Business in Seattle | M&A Advisory | WAFS" description="Planning to sell your Seattle business? WAFS provides M&A advisory, business valuation, and transaction support.">
+	<!-- Hero -->
+	<section class="relative flex min-h-[80vh] items-center bg-wafs-forest pt-36 pb-28 text-warmwhite">
+		<div class="absolute inset-0 z-0" style="background-image:url('/images/finance/lp-sell-bg.png'); background-size:cover; background-position:center; opacity:0.2;"></div>
+		<div class="absolute inset-0 z-0 bg-gradient-to-b from-wafs-forest via-wafs-forest/45 to-wafs-forest"></div>
+		<div class="relative z-10 container mx-auto max-w-4xl px-6">
+			<p class="mb-6 font-mono text-xs tracking-widest text-wafs-gold uppercase">Business Sale &amp; Exit Planning — Seattle, WA</p>
+			<h1 class="font-display mb-8 max-w-3xl text-5xl leading-[0.95] font-semibold md:text-7xl">Thinking About Selling Your Business? Start Here.</h1>
+			<p class="mb-10 max-w-2xl text-lg leading-relaxed text-warmwhite/85 md:text-xl">The owners who maximize their exit begin planning 12–24 months before they're ready to sign. WAFS provides ABV-certified valuations, pre-transaction tax structuring, and post-sale wealth coordination — all under one roof.</p>
+			<a href="#contact-form" class="inline-flex h-14 items-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Schedule a Confidential Consultation</a>
+			<p class="mt-3 text-xs text-warmwhite/50">All consultations are confidential.</p>
+		</div>
+	</section>
+
+	<!-- Testimonial strip -->
+	<section class="border-y border-lightsage bg-warmcream py-16">
+		<div class="container mx-auto max-w-3xl px-6 text-center">
+			<p class="font-display text-xl leading-relaxed text-wafs-forest italic md:text-2xl">"The owners who do best don't start planning when they're ready to sell — they start planning when they're still ambivalent about it. That window is where the real tax work happens."</p>
+			<p class="mt-4 font-sans text-sm font-semibold text-charcoal">David Okafor, CPA, ABV — Partner, Business Advisory</p>
+		</div>
+	</section>
+
+	<!-- Before/during/after -->
+	<section class="bg-warmwhite py-20">
+		<div class="container mx-auto max-w-5xl px-6">
+			<h2 class="font-display mb-4 text-center text-3xl font-semibold text-wafs-forest md:text-4xl">What WAFS Does — Before, During, and After</h2>
+			<p class="mx-auto mb-14 max-w-2xl text-center text-charcoal">Exit planning is not a single transaction. It's a three-phase financial engagement that starts long before a letter of intent and ends when your post-sale wealth is coordinated and stable.</p>
+			<div class="space-y-6">
+				{phases.map((phase) => (
+					<div class="border border-lightsage bg-warmcream">
+						<div class="flex items-center gap-6 bg-wafs-forest px-8 py-5 text-warmwhite">
+							<span class="font-mono text-3xl text-wafs-gold">{phase.num}</span>
+							<h3 class="font-display text-xl font-semibold">{phase.title}</h3>
+						</div>
+						<div class="grid grid-cols-1 gap-3 px-8 py-6 md:grid-cols-2">
+							{phase.items.map((item) => (
+								<div class="flex items-start gap-3">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-4 w-4 shrink-0 text-wafs-gold" set:html={CheckIcon} />
+									<p class="text-sm text-nearblack">{item}</p>
+								</div>
+							))}
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ -->
+	<section class="border-t border-lightsage bg-warmcream py-20">
+		<div class="container mx-auto max-w-3xl px-6">
+			<h2 class="font-display mb-10 text-center text-3xl font-semibold text-wafs-forest">Common Questions</h2>
+			<div class="space-y-3">
+				{faqs.map((f) => (
+					<details class="group border border-lightsage bg-white">
+						<summary class="flex cursor-pointer list-none items-center justify-between gap-4 p-6 text-left transition-colors hover:bg-warmcream/50">
+							<span class="font-display text-lg font-semibold text-wafs-forest">{f.q}</span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 shrink-0 text-charcoal/60 transition-transform group-open:rotate-180" set:html={ChevronDownIcon} />
+						</summary>
+						<div class="border-t border-lightsage px-6 pb-6">
+							<p class="pt-4 leading-relaxed text-charcoal">{f.a}</p>
+						</div>
+					</details>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Recent engagements -->
+	<section class="border-t border-lightsage bg-warmwhite py-20">
+		<div class="container mx-auto max-w-4xl px-6">
+			<h2 class="font-display mb-4 text-center text-3xl font-semibold text-wafs-forest">Recent Engagements</h2>
+			<p class="mb-12 text-center text-sm text-charcoal">Anonymized to protect client confidentiality.</p>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+				{engagements.map((e) => (
+					<div class="border-t-2 border-wafs-gold bg-warmcream p-8">
+						<p class="font-display mb-3 font-semibold text-wafs-forest">{e.desc}</p>
+						<p class="text-sm leading-relaxed text-charcoal">{e.detail}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Meet David -->
+	<section class="bg-wafs-forest py-20 text-warmwhite">
+		<div class="container mx-auto max-w-4xl px-6">
+			<div class="grid grid-cols-1 items-start gap-10 md:grid-cols-3">
+				<div class="aspect-square overflow-hidden border border-warmwhite/20">
+					<img src="/images/finance/team-david.png" alt="David Okafor" class="h-full w-full object-cover" />
+				</div>
+				<div class="md:col-span-2">
+					<div class="mb-4 flex gap-2">
+						<span class="rounded-sm bg-warmwhite/10 px-2 py-1 font-mono text-xs text-warmwhite">CPA</span>
+						<span class="rounded-sm bg-wafs-gold/20 px-2 py-1 font-mono text-xs text-wafs-gold">ABV</span>
+						<span class="rounded-sm bg-warmwhite/10 px-2 py-1 font-mono text-xs text-warmwhite">Partner</span>
+					</div>
+					<h3 class="font-display mb-2 text-2xl font-semibold text-warmwhite">David Okafor, CPA, ABV</h3>
+					<p class="mb-6 text-sm font-medium text-warmwhite/70">Partner — Business Advisory &amp; CFO Services</p>
+					<p class="leading-relaxed text-warmwhite/85">David joined WAFS in 2016 after serving as CFO at a Seattle-based SaaS company that was acquired for $40M. He has provided expert valuation testimony in mediation and litigation contexts and holds the Accredited in Business Valuation (ABV) credential through the AICPA — one of the most rigorous exit advisory credentials in the country.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact form -->
+	<section id="contact-form" class="bg-warmcream py-20">
+		<div class="container mx-auto max-w-2xl px-6">
+			<div class="mb-10 text-center">
+				<h2 class="font-display mb-4 text-3xl font-semibold text-wafs-forest md:text-4xl">Request a Confidential Consultation</h2>
+				<p class="text-charcoal">All information shared is kept strictly confidential.</p>
+			</div>
+			<form class="space-y-6 border border-lightsage bg-white p-8">
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+					<div>
+						<label for="name" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Full Name</label>
+						<input type="text" id="name" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+					<div>
+						<label for="company" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Company Name</label>
+						<input type="text" id="company" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+				</div>
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+					<div>
+						<label for="email" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Email</label>
+						<input type="email" id="email" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+					<div>
+						<label for="phone" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Phone</label>
+						<input type="tel" id="phone" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+				</div>
+				<div>
+					<label for="revenue" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Approximate Annual Revenue</label>
+					<input type="text" id="revenue" placeholder="e.g. $3.2M" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack placeholder-charcoal/40 focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+				</div>
+				<div>
+					<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Sale Timeline</label>
+					<select class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none">
+						<option value="">When are you thinking?</option>
+						<option value="within-6mo">Within 6 months</option>
+						<option value="within-1yr">Within 1 year</option>
+						<option value="2-plus">2+ years</option>
+						<option value="exploring">Just exploring options</option>
+					</select>
+				</div>
+				<div>
+					<label for="message" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Additional Context (Optional)</label>
+					<textarea id="message" rows="3" placeholder="Any background that would help us prepare for the call..." class="mt-1 w-full resize-y rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack placeholder-charcoal/40 focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none"></textarea>
+				</div>
+				<button type="button" title="This form isn't wired up to send yet — call us directly instead." class="h-14 w-full rounded-md bg-wafs-gold text-base font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Request My Confidential Consultation</button>
+				<p class="text-center text-xs text-charcoal">All consultations are confidential. Information shared is not disclosed outside WAFS without your consent.</p>
+			</form>
+		</div>
+	</section>
+</FinanceLandingLayout>

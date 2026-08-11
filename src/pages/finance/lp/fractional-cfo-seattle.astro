@@ -1,0 +1,192 @@
+---
+import FinanceLandingLayout from "../../../components/finance/FinanceLandingLayout.astro";
+
+const CheckIcon = `<circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path>`;
+const FileTextIcon = `<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path>`;
+const TrendingUpIcon = `<path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path>`;
+const HandshakeIcon = `<path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path>`;
+const DollarSignIcon = `<line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>`;
+const ArrowUpRightIcon = `<path d="M7 7h10v10"></path><path d="M7 17 17 7"></path>`;
+
+const recognitionItems = [
+	"Our cash flow is harder to predict than it should be",
+	"I can't clearly explain our gross margin to a board member",
+	"Our financial reports describe the past, not the future",
+	"We're preparing for a capital raise and our books aren't ready",
+	"I'm still tracking finances in spreadsheets",
+	"I can't tell which services or clients are actually profitable",
+];
+
+const whatCfoDoes = [
+	{ icon: FileTextIcon, title: "Monthly financial close", desc: "Consistent, accurate monthly reporting so you always know where you stand." },
+	{ icon: TrendingUpIcon, title: "Cash flow forecasting", desc: "13-week and annual cash flow models to anticipate and manage shortfalls." },
+	{ icon: DollarSignIcon, title: "Board & investor reporting", desc: "Board-ready packages and investor updates that build credibility." },
+	{ icon: FileTextIcon, title: "Annual budget development", desc: "Bottom-up budgeting tied to operational reality, not wishful thinking." },
+	{ icon: HandshakeIcon, title: "Banking & lender relationships", desc: "Manage banking covenants and lender relationships on your behalf." },
+	{ icon: ArrowUpRightIcon, title: "M&A & exit preparation", desc: "Financial infrastructure and documentation that maximizes enterprise value at exit." },
+];
+---
+
+<FinanceLandingLayout title="Fractional CFO Services Seattle | WAFS" description="Seattle businesses: get CFO-level financial leadership without the full-time cost. WAFS fractional CFO services.">
+	<!-- Hero -->
+	<section class="relative flex min-h-[85vh] items-center bg-wafs-forest pt-36 pb-24 text-warmwhite">
+		<div class="absolute inset-0 z-0" style="background-image:url('/images/finance/lp-cfo-bg.png'); background-size:cover; background-position:center; opacity:0.15;"></div>
+		<div class="absolute inset-0 z-0 bg-gradient-to-b from-wafs-forest/90 to-wafs-forest"></div>
+		<div class="relative z-10 container mx-auto max-w-4xl px-6">
+			<div class="mb-10">
+				<div class="mb-4 inline-flex items-end gap-3">
+					<span class="font-mono text-6xl leading-none font-medium text-wafs-gold md:text-8xl">$300,000+</span>
+				</div>
+				<p class="font-sans text-sm tracking-wide text-warmwhite/60">Median full-time CFO salary in Seattle. There's a better way.</p>
+			</div>
+			<h1 class="font-display mb-8 max-w-3xl text-4xl leading-[0.95] font-semibold md:text-6xl lg:text-7xl">Your Business Needs a CFO. You Don't Need a $300,000 Salary.</h1>
+			<p class="mb-10 max-w-2xl text-lg leading-relaxed text-warmwhite/80">WAFS delivers dedicated senior financial leadership for Pacific Northwest companies. Board-ready reporting. Investor-ready financials. Strategic cash flow oversight. Without the full-time cost.</p>
+			<a href="#contact-form" class="inline-flex h-14 items-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Schedule My CFO Consultation</a>
+		</div>
+	</section>
+
+	<!-- Recognition checklist -->
+	<section class="bg-warmwhite py-20">
+		<div class="container mx-auto max-w-3xl px-6">
+			<h2 class="font-display mb-4 text-center text-3xl font-semibold text-wafs-forest md:text-4xl">Does This Sound Familiar?</h2>
+			<p class="mb-10 text-center text-charcoal">Select any that apply to your business right now.</p>
+			<div class="space-y-4">
+				{recognitionItems.map((item, i) => (
+					<label class="flex w-full cursor-pointer items-center gap-4 rounded-sm border border-lightsage bg-warmcream p-5 text-left transition-all duration-200 hover:border-wafs-forest/40 has-checked:border-wafs-gold has-checked:bg-wafs-forest/5">
+						<input type="checkbox" class="peer sr-only" />
+						<span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border-2 border-charcoal/40 transition-colors peer-checked:border-wafs-gold peer-checked:bg-wafs-gold">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden h-4 w-4 text-wafs-forest peer-checked:block" set:html={CheckIcon} />
+						</span>
+						<span class="font-medium text-nearblack">{item}</span>
+					</label>
+				))}
+			</div>
+			<div class="mt-8 bg-wafs-forest p-6 text-center text-warmwhite">
+				<p class="font-display text-xl font-semibold">You're ready for a Fractional CFO conversation.</p>
+				<a href="#contact-form" class="mt-4 inline-block rounded-md bg-wafs-gold px-6 py-3 font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Schedule My Consultation</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- What a CFO does -->
+	<section class="border-t border-lightsage bg-warmcream py-20">
+		<div class="container mx-auto max-w-5xl px-6">
+			<h2 class="font-display mb-12 text-center text-3xl font-semibold text-wafs-forest md:text-4xl">What a WAFS Fractional CFO Does</h2>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+				{whatCfoDoes.map((c) => (
+					<div class="border border-lightsage bg-white p-8">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 h-8 w-8 text-wafs-gold" set:html={c.icon} />
+						<h3 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{c.title}</h3>
+						<p class="text-sm leading-relaxed text-charcoal">{c.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Financial case -->
+	<section class="border-t border-lightsage bg-warmwhite py-20">
+		<div class="container mx-auto max-w-4xl px-6">
+			<h2 class="font-display mb-10 text-center text-3xl font-semibold text-wafs-forest">The Financial Case</h2>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+				<div class="border border-lightsage bg-warmcream p-8">
+					<p class="mb-4 font-mono text-xs tracking-widest text-charcoal uppercase">Full-Time CFO</p>
+					<p class="mb-6 font-mono text-4xl font-medium text-nearblack">$250K–$350K</p>
+					<ul class="space-y-3 text-sm text-charcoal">
+						<li class="flex items-center gap-2"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-charcoal/40"></span>Plus benefits, equity, and hiring costs</li>
+						<li class="flex items-center gap-2"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-charcoal/40"></span>Full-time, fixed commitment</li>
+						<li class="flex items-center gap-2"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-charcoal/40"></span>One person's perspective</li>
+						<li class="flex items-center gap-2"><span class="h-1.5 w-1.5 shrink-0 rounded-full bg-charcoal/40"></span>Separate from your CPA and tax team</li>
+					</ul>
+				</div>
+				<div class="bg-wafs-forest p-8 text-warmwhite">
+					<p class="mb-4 font-mono text-xs tracking-widest text-wafs-gold uppercase">WAFS Fractional CFO</p>
+					<p class="mb-6 font-mono text-4xl font-medium text-wafs-gold">From $3,500/mo</p>
+					<ul class="space-y-3 text-sm text-warmwhite/85">
+						<li class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 text-wafs-gold" set:html={CheckIcon} />Flexible month-to-month engagement</li>
+						<li class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 text-wafs-gold" set:html={CheckIcon} />Scale up or down as your needs change</li>
+						<li class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 text-wafs-gold" set:html={CheckIcon} />Full WAFS team behind every engagement</li>
+						<li class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0 text-wafs-gold" set:html={CheckIcon} />Integrated with your WAFS tax team</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Meet David -->
+	<section class="border-t border-lightsage bg-warmcream py-20">
+		<div class="container mx-auto max-w-4xl px-6">
+			<div class="grid grid-cols-1 items-start gap-10 md:grid-cols-3">
+				<div class="aspect-square overflow-hidden border border-lightsage bg-warmcream">
+					<img src="/images/finance/team-david.png" alt="David Okafor" class="h-full w-full object-cover" />
+				</div>
+				<div class="md:col-span-2">
+					<div class="mb-4 flex gap-2">
+						<span class="rounded-sm bg-wafs-forest px-2 py-1 font-mono text-xs text-warmwhite">CPA</span>
+						<span class="rounded-sm bg-wafs-forest px-2 py-1 font-mono text-xs text-warmwhite">ABV</span>
+						<span class="rounded-sm bg-wafs-forest px-2 py-1 font-mono text-xs text-warmwhite">Partner</span>
+					</div>
+					<h3 class="font-display mb-2 text-2xl font-semibold text-wafs-forest">David Okafor, CPA, ABV</h3>
+					<p class="mb-6 text-sm font-medium text-wafs-slate">Partner — Business Advisory &amp; CFO Services</p>
+					<p class="mb-6 leading-relaxed text-charcoal">David joined WAFS in 2016 after serving as CFO at a Seattle-based SaaS company he helped grow from 12 employees to a $40 million acquisition. That inside-the-business experience gives him something rare in accounting: he understands what financial leadership looks like from a management chair.</p>
+					<blockquote class="border-l-4 border-wafs-gold pl-6 font-display text-lg text-wafs-forest italic">"David's financial documentation was the thing that impressed our Series A investors most. They specifically asked about the reporting quality."</blockquote>
+					<p class="mt-3 text-sm font-semibold text-charcoal">A. Perreira — Founder, GreenCore Technologies</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact form -->
+	<section id="contact-form" class="bg-wafs-forest py-20 text-warmwhite">
+		<div class="container mx-auto max-w-2xl px-6">
+			<div class="mb-10 text-center">
+				<h2 class="font-display mb-4 text-3xl font-semibold md:text-4xl">Schedule My CFO Consultation</h2>
+				<p class="text-warmwhite/70">Tell us about your business. We'll get back to you within one business day.</p>
+			</div>
+			<form class="space-y-6 bg-white p-8 text-nearblack">
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+					<div>
+						<label for="name" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Full Name</label>
+						<input type="text" id="name" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+					<div>
+						<label for="company" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Company Name</label>
+						<input type="text" id="company" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+				</div>
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+					<div>
+						<label for="email" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Email</label>
+						<input type="email" id="email" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+					<div>
+						<label for="phone" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Phone</label>
+						<input type="tel" id="phone" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+				</div>
+				<div>
+					<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Annual Revenue</label>
+					<select class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none">
+						<option value="">Select revenue range</option>
+						<option value="under-1m">Under $1M</option>
+						<option value="1m-5m">$1M – $5M</option>
+						<option value="5m-10m">$5M – $10M</option>
+						<option value="10m-plus">$10M+</option>
+					</select>
+				</div>
+				<div>
+					<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Primary Need</label>
+					<select class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none">
+						<option value="">What's most urgent for you?</option>
+						<option value="reporting">Financial reporting</option>
+						<option value="investor">Investor readiness</option>
+						<option value="cashflow">Cash flow management</option>
+						<option value="ma">M&amp;A preparation</option>
+						<option value="unsure">Not sure yet</option>
+					</select>
+				</div>
+				<button type="button" title="This form isn't wired up to send yet — call us directly instead." class="h-14 w-full rounded-md bg-wafs-gold text-base font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Schedule My CFO Consultation</button>
+			</form>
+		</div>
+	</section>
+</FinanceLandingLayout>

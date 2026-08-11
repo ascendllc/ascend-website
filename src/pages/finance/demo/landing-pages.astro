@@ -1,0 +1,110 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const whyCards = [
+	{ title: "No Nav, No Distractions", desc: "Every element drives toward a single action: book a consultation. No global navigation, no outbound links." },
+	{ title: "Above-the-Fold Forms", desc: "Lead capture appears before the visitor scrolls — critical for mobile ad traffic where attention is measured in seconds." },
+	{ title: "Google & Meta Ready", desc: "Copy, layout, and compliance language optimized for both ad platforms. Each page matches its traffic source's intent signal." },
+];
+
+const campaigns = [
+	{
+		label: "Google Search",
+		title: "Seattle Small Business Tax Planning",
+		description: "Targets business owners actively searching for tax reduction strategies. Above-the-fold consultation form, social proof from Seattle CFOs, and a tight CTA focused on the WAFS discovery call.",
+		audience: 'Seattle-area business owners, $500K–$10M revenue, searching "small business CPA Seattle" or "reduce business taxes Washington"',
+		path: "/finance/lp/seattle-business-tax",
+	},
+	{
+		label: "LinkedIn Ads",
+		title: "Fractional CFO Services",
+		description: "Built for funded startups and growth-stage companies that need senior financial leadership without a full-time hire. Heavy use of credibility signals and specific outcome language.",
+		audience: "Founders and CEOs at $1M–$20M revenue companies, tech-adjacent, Series A or bootstrapped",
+		path: "/finance/lp/fractional-cfo-seattle",
+	},
+	{
+		label: "Meta · Print QR",
+		title: "Protect Your Legacy",
+		description: "Designed for high net worth families and business owners thinking about estate planning, wealth transfer, and legacy. Warm, editorial tone with trust-focused copy and a soft consultation CTA.",
+		audience: "HNW individuals 50+, business owners nearing exit, families with complex estate situations",
+		path: "/finance/lp/protect-your-legacy",
+	},
+	{
+		label: "LinkedIn · Email",
+		title: "Business Sale & Exit Planning",
+		description: "For owners 12–24 months from a liquidity event. Positions WAFS as the integrated CPA/CFP team that handles tax strategy, deal structure, and post-exit wealth — not just compliance.",
+		audience: "Business owners actively considering a sale, PE-backed or private buyer scenarios, $5M–$50M enterprise value",
+		path: "/finance/lp/sell-your-business-seattle",
+	},
+];
+---
+
+<FinanceLayout title="Paid Ad Landing Pages | WAFS Campaign Showcase" description="A showcase of the four paid-ad landing pages built for WAFS's Google Ads, Meta, and LinkedIn campaigns.">
+	<!-- Hero -->
+	<section class="relative overflow-hidden bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Google Ads · Meta Ads · LinkedIn</p>
+			<h1 class="font-display mb-6 max-w-4xl text-5xl leading-tight font-semibold md:text-7xl">
+				Paid Ad Landing Pages<br />
+				<span class="text-wafs-gold">Built to Convert.</span>
+			</h1>
+			<p class="mb-10 max-w-2xl text-lg leading-relaxed text-warmwhite/80 md:text-xl">A landing page is a standalone web page built for a single purpose: turning a click into a consultation. Unlike a homepage, there's no navigation, no distractions — just the right message for the right audience at the exact moment they're searching.</p>
+			<p class="max-w-2xl leading-relaxed text-warmwhite/60">The four pages below were built for WAFS's Google Ads, Meta, and LinkedIn campaigns. Each one is tailored to a specific service, targets a distinct audience segment, and is engineered to maximize qualified lead volume from paid traffic.</p>
+		</div>
+	</section>
+
+	<!-- Why landing pages -->
+	<section class="border-b border-[#d4e6dc] bg-[#1b3a2a]/5 py-16">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+				{whyCards.map((c) => (
+					<div class="rounded-sm border border-[#d4e6dc] bg-white p-8">
+						<h3 class="font-display mb-3 text-lg font-semibold text-wafs-forest">{c.title}</h3>
+						<p class="text-sm leading-relaxed text-[#4a5568]">{c.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Campaign list -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="mb-16">
+				<p class="mb-3 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">The Campaigns</p>
+				<h2 class="font-display text-4xl font-semibold text-wafs-forest md:text-5xl">Four Pages. Four Audiences.</h2>
+			</div>
+			<div class="grid gap-8">
+				{campaigns.map((c, i) => (
+					<div class="flex flex-col overflow-hidden rounded-sm border border-[#d4e6dc] bg-white md:flex-row">
+						<div class="flex shrink-0 items-center justify-center bg-wafs-forest py-4 text-warmwhite md:w-16 md:py-0">
+							<span class="font-mono text-lg font-bold text-wafs-gold md:rotate-180 md:[writing-mode:vertical-rl]">0{i + 1}</span>
+						</div>
+						<div class="flex flex-1 flex-col justify-between gap-6 p-8 md:flex-row">
+							<div class="flex-1">
+								<span class="mb-4 inline-block rounded-sm bg-[#f0ede8] px-3 py-1 font-mono text-xs font-medium text-wafs-forest">{c.label}</span>
+								<h3 class="font-display mb-3 text-2xl font-semibold text-wafs-forest">{c.title}</h3>
+								<p class="mb-4 text-sm leading-relaxed text-[#4a5568]">{c.description}</p>
+								<div class="flex items-start gap-2">
+									<span class="mt-0.5 shrink-0 text-xs font-semibold tracking-wide text-wafs-slate uppercase">Target:</span>
+									<span class="text-xs leading-relaxed text-[#4a5568]">{c.audience}</span>
+								</div>
+							</div>
+							<div class="flex shrink-0 md:items-center">
+								<a href={c.path} class="inline-flex items-center gap-2 rounded-sm bg-wafs-forest px-6 py-3 text-sm font-semibold text-warmwhite transition-colors hover:bg-wafs-evergreen">
+									View Page <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={ArrowRight} />
+								</a>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+</FinanceLayout>
