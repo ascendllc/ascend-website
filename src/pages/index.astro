@@ -404,7 +404,12 @@ const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="1
 								<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-white/10 text-accent">
 									<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
 								</div>
-								<a href={`mailto:${site.email}`} class="transition-colors hover:text-accent">{site.email}</a>
+								<button
+									type="button"
+									id="contact-form-trigger"
+									class="inline-flex items-center gap-2 rounded-sm bg-accent px-4 py-2 text-sm font-medium text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent/90"
+									set:html={`Contact Form ${ArrowRight}`}
+								/>
 							</div>
 							<div class="flex items-center gap-4 text-white/90">
 								<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-white/10 text-accent">
@@ -427,6 +432,123 @@ const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="1
 			</div>
 		</div>
 	</section>
+
+	<!-- Contact form modal -->
+	<div id="contact-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+		<div id="contact-modal-backdrop" class="absolute inset-0 bg-foreground/60 backdrop-blur-sm"></div>
+		<div class="relative w-full max-w-lg rounded-sm bg-white p-8 shadow-2xl md:p-10">
+			<button
+				type="button"
+				id="contact-modal-close"
+				aria-label="Close"
+				class="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+			</button>
+
+			<div id="contact-form-idle">
+				<h3 class="mb-2 text-2xl text-primary">Get in touch</h3>
+				<p class="mb-6 text-sm leading-relaxed text-muted-foreground">Send a message directly to Brad — we'll get back to you shortly.</p>
+				<form id="contact-form" class="space-y-4">
+					<input type="text" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
+					<div>
+						<label class="mb-1.5 block text-sm font-semibold text-primary">Name <span class="text-accent">*</span></label>
+						<input type="text" id="contact-name" required class="w-full rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+					</div>
+					<div>
+						<label class="mb-1.5 block text-sm font-semibold text-primary">Email <span class="text-accent">*</span></label>
+						<input type="email" id="contact-email" required class="w-full rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+					</div>
+					<div>
+						<label class="mb-1.5 block text-sm font-semibold text-primary">Phone</label>
+						<input type="tel" id="contact-phone" class="w-full rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+					</div>
+					<div>
+						<label class="mb-1.5 block text-sm font-semibold text-primary">Message</label>
+						<textarea id="contact-message" rows="4" class="w-full resize-y rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none"></textarea>
+					</div>
+					<p id="contact-form-error" class="hidden text-sm font-medium text-red-600"></p>
+					<button
+						type="submit"
+						id="contact-form-submit"
+						class="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-accent px-8 py-3.5 text-base font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl disabled:pointer-events-none disabled:opacity-60"
+					>
+						Send Message
+					</button>
+				</form>
+			</div>
+			<div id="contact-form-success" class="hidden py-6 text-center">
+				<h3 class="mb-2 text-2xl text-primary">Thanks — we've got it.</h3>
+				<p class="text-sm leading-relaxed text-muted-foreground">Your message was sent to Brad. We'll be in touch shortly.</p>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const modal = document.getElementById("contact-modal");
+		const trigger = document.getElementById("contact-form-trigger");
+		const closeBtn = document.getElementById("contact-modal-close");
+		const backdrop = document.getElementById("contact-modal-backdrop");
+		const form = document.getElementById("contact-form") as HTMLFormElement;
+		const submitBtn = document.getElementById("contact-form-submit") as HTMLButtonElement;
+		const errorEl = document.getElementById("contact-form-error") as HTMLParagraphElement;
+		const idleEl = document.getElementById("contact-form-idle") as HTMLDivElement;
+		const successEl = document.getElementById("contact-form-success") as HTMLDivElement;
+
+		function openModal() {
+			modal?.classList.remove("hidden");
+			modal?.classList.add("flex");
+			document.body.classList.add("overflow-hidden");
+		}
+		function closeModal() {
+			modal?.classList.add("hidden");
+			modal?.classList.remove("flex");
+			document.body.classList.remove("overflow-hidden");
+		}
+
+		trigger?.addEventListener("click", openModal);
+		closeBtn?.addEventListener("click", closeModal);
+		backdrop?.addEventListener("click", closeModal);
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && !modal?.classList.contains("hidden")) closeModal();
+		});
+
+		form?.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			if (!form.reportValidity()) return;
+
+			errorEl.classList.add("hidden");
+			submitBtn.disabled = true;
+			submitBtn.textContent = "Sending...";
+
+			const fields = [
+				{ label: "Name", value: (document.getElementById("contact-name") as HTMLInputElement).value },
+				{ label: "Email", value: (document.getElementById("contact-email") as HTMLInputElement).value },
+				{ label: "Phone", value: (document.getElementById("contact-phone") as HTMLInputElement).value },
+				{ label: "Message", value: (document.getElementById("contact-message") as HTMLTextAreaElement).value },
+			];
+			const website = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value ?? "";
+
+			try {
+				const res = await fetch("/api/contact-form", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ fields, website }),
+				});
+				if (!res.ok) {
+					const data = await res.json().catch(() => ({}));
+					throw new Error(data.error || "Something went wrong, please try again.");
+				}
+				idleEl.classList.add("hidden");
+				successEl.classList.remove("hidden");
+			} catch (err) {
+				errorEl.textContent = err instanceof Error ? err.message : "Something went wrong, please try again.";
+				errorEl.classList.remove("hidden");
+				submitBtn.disabled = false;
+				submitBtn.textContent = "Send Message";
+			}
+		});
+	</script>
 </Layout>
 
 <script>

@@ -93,3 +93,29 @@ export async function sendIntakeEmail(fields: IntakeField[]) {
 		`,
 	});
 }
+
+export async function sendContactEmail(fields: IntakeField[]) {
+	const resend = getResend();
+
+	const nameField = fields.find((f) => f.label === "Name");
+	const emailField = fields.find((f) => f.label === "Email");
+
+	const rowsHtml = fields
+		.filter((f) => f.value.trim().length > 0)
+		.map(
+			(f) =>
+				`<p style="margin:0 0 14px;"><strong>${escapeHtml(f.label)}</strong><br />${escapeHtml(f.value).replace(/\n/g, "<br />")}</p>`
+		)
+		.join("");
+
+	await resend.emails.send({
+		from: `Contact Form <contact@${SEND_DOMAIN}>`,
+		to: site.email,
+		replyTo: emailField?.value || undefined,
+		subject: `New contact form message${nameField?.value ? `: ${nameField.value}` : ""}`,
+		html: `
+			<h2>New message from the website contact form</h2>
+			${rowsHtml}
+		`,
+	});
+}
