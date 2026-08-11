@@ -1,0 +1,99 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CheckCircle = `<circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path>`;
+
+const focusCards = [
+	{ title: "R&D Tax Credits", desc: "Identifying and documenting qualified research expenses to offset payroll or income taxes, returning crucial runway to early-stage companies." },
+	{ title: "Equity Compensation", desc: "Structuring and tax planning for ISOs, NSOs, RSUs, and 83(b) elections for founders and early employees." },
+	{ title: "Startup CFO Support", desc: "Fractional leadership to manage burn rates, build 13-week cash flow models, and establish scalable SaaS metrics." },
+	{ title: "Series A Readiness", desc: "Upgrading financial statements from cash to GAAP, preparing quality of earnings, and acting as financial liaison to investors." },
+];
+
+const keyFocusAreas = [
+	"Convertible note & SAFE accounting",
+	"SaaS revenue recognition (ASC 606)",
+	"Multi-state sales tax (Economic Nexus)",
+	"Founder exit planning & QSBS (Sec 1202)",
+];
+---
+
+<FinanceLayout title="CPA for Technology Startups | Seattle | WAFS" description="Accounting, tax strategy, and advisory for Seattle tech startups. R&D tax credits, equity compensation planning, investor-ready financials, and M&A support.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/industry-tech.png" alt="Technology background" class="h-full w-full object-cover opacity-60 grayscale" />
+			<div class="absolute inset-0 bg-wafs-forest/80"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Industry Focus: Technology & Startups</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Build fast. Build financially sound.</h1>
+				<p class="text-xl leading-relaxed text-warmwhite/80 md:text-2xl">Seattle is built on innovation. We provide founder-led tech companies with the specialized tax strategy and CFO oversight needed to scale responsibly and raise capital successfully.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Main content -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">Expertise for High-Growth Environments</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">Tech companies face a unique set of financial hurdles: managing burn rates before achieving profitability, navigating complex equity compensation, and ensuring financial documentation is pristine for due diligence. Our technology practice specializes in the exact challenges faced by Pacific Northwest SaaS, hardware, and deep-tech founders.</p>
+					<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+						{focusCards.map((c) => (
+							<div class="rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+								<h4 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{c.title}</h4>
+								<p class="text-sm leading-relaxed text-[#4a5568]">{c.desc}</p>
+							</div>
+						))}
+					</div>
+					<h3 class="mb-6 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Key Focus Areas</h3>
+					<ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
+						{keyFocusAreas.map((f) => (
+							<li class="flex items-center gap-3 text-[#4a5568]">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-wafs-gold" set:html={CheckCircle} />
+								<span class="font-medium">{f}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 space-y-12 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<div>
+							<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Advisory Lead</p>
+							<img src="/images/finance/team-marcus.png" alt="Marcus Webb" class="mb-4 aspect-square w-full rounded-sm object-cover grayscale" />
+							<h3 class="font-display mb-1 text-xl font-semibold text-wafs-forest">Marcus Webb</h3>
+							<p class="mb-3 font-mono text-xs text-[#4a5568]">CPA, MBA | Senior Manager</p>
+							<a href="/finance/team/marcus-webb" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Profile →</a>
+						</div>
+						<div class="border-t border-[#d4e6dc] pt-8">
+							<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Strategic Lead</p>
+							<div class="mb-4 flex items-center gap-4">
+								<img src="/images/finance/team-david.png" alt="David Okafor" class="h-16 w-16 rounded-sm object-cover grayscale" />
+								<div>
+									<h3 class="font-display text-lg font-semibold text-wafs-forest">David Okafor</h3>
+									<p class="font-mono text-xs text-[#4a5568]">CPA, ABV</p>
+								</div>
+							</div>
+							<a href="/finance/team/david-okafor" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Profile →</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-wafs-forest py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-warmwhite">Discuss your startup's financial strategy.</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Consultation
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

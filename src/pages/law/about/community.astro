@@ -1,0 +1,98 @@
+---
+import LawLayout from "../../../components/law/LawLayout.astro";
+
+const initiatives = [
+	{
+		category: "Pro Bono Legal Services",
+		title: "Washington Law Pro Bono Program",
+		description: "Every attorney at Washington Law commits a minimum of 50 pro bono hours per year to serve individuals and families who cannot afford legal representation. We partner with the King County Bar Association's KCBA Legal Aid program and provide direct representation in housing, family, and small-business matters.",
+		stat: "400+",
+		statLabel: "pro bono hours annually",
+	},
+	{
+		category: "Small Business Support",
+		title: "Pacific Northwest Founders Clinic",
+		description: "Twice a year, we open our conference room to early-stage Pacific Northwest entrepreneurs for free two-hour legal consultations. Topics range from entity formation and founder agreements to employment basics and intellectual property strategy. Over 200 founders have participated since 2016.",
+		stat: "200+",
+		statLabel: "founders served since 2016",
+	},
+	{
+		category: "Education & Mentorship",
+		title: "Seattle Law Student Mentorship",
+		description: "Washington Law partners with the University of Washington School of Law and Seattle University School of Law to mentor first-generation law students. Our attorneys speak at orientations, conduct mock interviews, and host two paid summer clerks each year — intentionally recruiting from underrepresented backgrounds.",
+		stat: "2",
+		statLabel: "paid clerkships per year",
+	},
+	{
+		category: "Neighborhood Investment",
+		title: "South Seattle Small Business Initiative",
+		description: "We provide reduced-fee legal services to small businesses in South Seattle neighborhoods that are underserved by commercial legal practices. Participating businesses receive assistance with leases, contracts, employment policies, and regulatory compliance through a sliding-scale fee structure.",
+		stat: "30+",
+		statLabel: "businesses supported per year",
+	},
+];
+
+const civicLeadership = [
+	{ attorney: "Margaret Harrington", role: "Board Member", org: "Seattle Metropolitan Chamber of Commerce" },
+	{ attorney: "David Nguyen", role: "Advisory Board", org: "Washington State LGBTQ+ Bar Association" },
+	{ attorney: "Priya Chandrasekaran", role: "Executive Committee", org: "South Asian Bar Association of Washington" },
+	{ attorney: "James Okafor", role: "Treasurer", org: "African American Chamber of Commerce of Washington" },
+	{ attorney: "Elena Vasquez-Torres", role: "Pro Bono Chair", org: "King County Bar Association" },
+];
+---
+
+<LawLayout title="Community & Pro Bono | Washington Law | Seattle" description="Washington Law is committed to the Seattle community through pro bono legal services, nonprofit partnerships, and civic engagement. Learn about our community initiatives.">
+	<div class="pt-32 pb-24">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mb-24 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+				<div>
+					<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Community</p>
+					<h1 class="font-display mb-8 text-5xl leading-tight font-semibold text-primary lg:text-6xl">Rooted in the Pacific Northwest. Invested in its people.</h1>
+					<p class="font-serif text-xl leading-relaxed text-[#2e2e2e]">We built Washington Law to serve this region — not just its boardrooms, but its neighborhoods, its founders, its families. Community investment is not a line item in our marketing budget. It is part of what it means to practice law here.</p>
+				</div>
+				<div class="relative hidden h-[420px] lg:block">
+					<img src="/images/law/community-hero.png" alt="Washington Law community involvement in Seattle" class="h-full w-full rounded-sm object-cover shadow-2xl" />
+					<div class="absolute -bottom-5 -left-5 max-w-[260px] border-l-4 border-accent bg-white p-6 shadow-xl">
+						<p class="font-display text-lg leading-snug text-primary italic">"Part of what it means to practice law here."</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-24 space-y-12">
+				{initiatives.map((i) => (
+					<div class="grid grid-cols-1 gap-8 border-b border-gray-200 pb-12 lg:grid-cols-12">
+						<div class="lg:col-span-3">
+							<p class="mb-3 font-sans text-xs font-bold tracking-widest text-accent uppercase">{i.category}</p>
+							<p class="font-display text-5xl font-semibold text-primary">{i.stat}</p>
+							<p class="mt-1 font-sans text-sm text-[#5a5a5a]">{i.statLabel}</p>
+						</div>
+						<div class="lg:col-span-9">
+							<h3 class="font-display mb-4 text-2xl font-semibold text-primary lg:text-3xl">{i.title}</h3>
+							<p class="font-serif text-lg leading-relaxed text-[#2e2e2e]">{i.description}</p>
+						</div>
+					</div>
+				))}
+			</div>
+
+			<div class="mb-24">
+				<h2 class="font-display mb-4 text-4xl font-semibold text-primary">Civic Leadership</h2>
+				<p class="mb-10 max-w-2xl font-serif text-lg text-[#2e2e2e]">Our attorneys serve in leadership roles across Seattle's civic and professional organizations — bringing legal expertise where it matters most.</p>
+				<div class="divide-y divide-gray-200">
+					{civicLeadership.map((c) => (
+						<div class="grid grid-cols-1 gap-2 py-5 md:grid-cols-3">
+							<p class="font-sans font-semibold text-primary">{c.attorney}</p>
+							<p class="font-sans text-sm text-[#5a5a5a]">{c.role}</p>
+							<p class="font-sans text-sm text-[#5a5a5a]">{c.org}</p>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<div class="bg-secondary p-12 text-center lg:p-20">
+				<h2 class="font-display mb-6 text-4xl font-semibold text-primary">Partner with a firm that gives back.</h2>
+				<p class="mx-auto mb-10 max-w-2xl font-serif text-xl text-[#2e2e2e]">When you choose Washington Law, your legal work supports a firm genuinely committed to the Pacific Northwest community.</p>
+				<a href="/law/contact" class="inline-block rounded-none bg-primary px-8 py-3.5 font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:bg-primary/90">Schedule a Consultation</a>
+			</div>
+		</div>
+	</div>
+</LawLayout>

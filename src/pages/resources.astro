@@ -177,7 +177,7 @@ const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="1
 							))}
 						</div>
 						<a
-							href={`https://${p.url}`}
+							href={p.url.startsWith("/") ? p.url : `https://${p.url}`}
 							target="_blank"
 							rel="noopener"
 							class="mt-4 text-sm font-semibold text-primary hover:text-accent"

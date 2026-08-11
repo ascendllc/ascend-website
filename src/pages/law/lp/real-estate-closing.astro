@@ -1,0 +1,98 @@
+---
+import LawLandingLayout from "../../../components/law/LawLandingLayout.astro";
+import { lawTeam } from "../../../data/law/team";
+
+const attorney = lawTeam.find((a) => a.slug === "james-ortega")!;
+const CheckIcon = `<path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path>`;
+const HouseIcon = `<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>`;
+
+const typeOptions = [
+	{ value: "commercial_close", label: "Commercial Closing" },
+	{ value: "residential_close", label: "Residential Closing" },
+	{ value: "lease_review", label: "Lease Review / Negotiation" },
+	{ value: "dispute", label: "Property Dispute" },
+	{ value: "other", label: "Other" },
+];
+---
+
+<LawLandingLayout title="Real Estate Attorney Seattle | Washington Law" description="Washington Law's real estate attorneys handle residential and commercial closings, lease negotiations, title disputes, and 1031 exchanges across Seattle and the greater Puget Sound. Free consultation." canonical="/law/lp/real-estate-closing">
+	<div class="w-full">
+		<section id="get-started" class="relative overflow-hidden border-b border-border bg-white px-6 py-16 lg:py-24">
+			<div class="pointer-events-none absolute top-0 right-0 hidden h-full w-1/3 opacity-10 lg:block">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="h-full w-full text-primary" set:html={HouseIcon} />
+			</div>
+			<div class="relative z-10 container mx-auto max-w-7xl">
+				<div class="mb-8 flex flex-wrap items-center gap-x-4 gap-y-2 pb-4 font-sans text-xs font-bold tracking-widest text-[#1B4F72] uppercase">
+					<span class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={CheckIcon} /> 500+ Closings</span>
+					<span class="hidden sm:inline">|</span>
+					<span class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={CheckIcon} /> 15 Years Exp</span>
+				</div>
+				<div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-12">
+					<div class="lg:col-span-7">
+						<h1 class="font-display mb-6 text-5xl leading-[1.1] font-semibold text-primary lg:text-7xl">Close with Clarity.<br /><span class="text-[#1B4F72]">Own with Confidence.</span></h1>
+						<p class="font-body mb-8 max-w-2xl text-xl leading-relaxed text-[#2E2E2E]">Whether you're buying, selling, leasing, or developing — real estate transactions in Washington require legal precision. Washington Law has handled hundreds of closings, commercial leases, and property disputes across the Pacific Northwest.</p>
+					</div>
+					<div class="border-t-4 border-[#1B4F72] bg-secondary p-8 shadow-xl lg:col-span-5">
+						<h3 class="font-display mb-6 text-2xl font-semibold text-primary">Request Legal Counsel</h3>
+						<form class="space-y-4">
+							<input type="text" placeholder="Full Name" class="w-full rounded-none border border-border bg-white px-4 py-2.5 text-sm" />
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<input type="email" placeholder="Email" class="w-full rounded-none border border-border bg-white px-4 py-2.5 text-sm" />
+								<input type="tel" placeholder="Phone" class="w-full rounded-none border border-border bg-white px-4 py-2.5 text-sm" />
+							</div>
+							<select class="w-full rounded-none border border-border bg-white px-4 py-2.5 text-sm text-gray-500">
+								<option value="">Transaction Type</option>
+								{typeOptions.map((t) => <option value={t.value}>{t.label}</option>)}
+							</select>
+							<textarea placeholder="Property address or brief details (optional)" class="min-h-[80px] w-full rounded-none border border-border bg-white px-4 py-2.5 text-sm"></textarea>
+							<button type="button" title="This form isn't wired up to send yet — call us directly instead." class="mt-2 w-full rounded-none bg-[#1B4F72] py-6 font-sans text-sm font-bold tracking-widest text-white uppercase hover:bg-[#1B4F72]/90">Request Counsel →</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-primary px-6 py-20">
+			<div class="container mx-auto max-w-6xl">
+				<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+					<div class="border border-white/10 bg-white/5 p-8 text-white">
+						<h3 class="font-display mb-4 text-2xl font-semibold text-[#1B4F72] brightness-150">Commercial Closings</h3>
+						<p class="font-body text-secondary/80">From multi-family acquisitions to retail spaces, we ensure your transaction closes smoothly and your interests are fully protected.</p>
+					</div>
+					<div class="border border-white/10 bg-white/5 p-8 text-white">
+						<h3 class="font-display mb-4 text-2xl font-semibold text-[#1B4F72] brightness-150">Lease Negotiation</h3>
+						<p class="font-body text-secondary/80">A bad commercial lease is a 10-year mistake. We review, draft, and negotiate terms that protect your business.</p>
+					</div>
+					<div class="border border-white/10 bg-white/5 p-8 text-white">
+						<h3 class="font-display mb-4 text-2xl font-semibold text-[#1B4F72] brightness-150">Property Disputes</h3>
+						<p class="font-body text-secondary/80">Boundary issues, easements, landlord-tenant conflicts, or construction defects — we resolve disputes decisively.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 py-24">
+			<div class="container mx-auto max-w-5xl">
+				<div class="grid grid-cols-1 items-center gap-12 md:grid-cols-12">
+					<div class="md:col-span-5">
+						<img src={attorney.image} alt={attorney.name} class="aspect-[4/5] w-full object-cover shadow-xl" />
+					</div>
+					<div class="md:col-span-7">
+						<h2 class="font-display mb-2 text-4xl font-semibold text-primary">Meet {attorney.name.split(",")[0]}.</h2>
+						<p class="mb-6 font-sans text-sm font-bold tracking-widest text-[#1B4F72] uppercase">Senior Partner | Real Estate</p>
+						<p class="font-body mb-6 text-lg leading-relaxed text-[#2E2E2E]">James is the attorney Seattle's commercial real estate community calls when the transaction is complicated and the stakes are high. He brings a decade of real estate law experience spanning residential closings in Bellevue to complex investment structures across the PNW.</p>
+						<div class="mt-6 border-t border-border pt-6">
+							<p class="mb-2 font-sans text-xs font-bold tracking-widest text-gray-500 uppercase">Recognition</p>
+							<p class="font-body font-medium text-primary">Best Lawyers in America | WSBA Real Property Section Chair</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="fixed bottom-0 left-0 z-50 flex w-full gap-2 border-t border-border bg-white p-4 lg:hidden">
+			<a href="tel:2065551847" class="flex-1 rounded-none bg-[#1B4F72] py-3 text-center font-sans font-bold tracking-widest text-white uppercase hover:bg-[#1B4F72]/90">Call Now: (206) 555-1847</a>
+			<a href="#get-started" class="rounded-none border border-[#1B4F72] px-4 py-3 text-center font-sans text-xs font-bold tracking-widest text-[#1B4F72] uppercase">Consult</a>
+		</div>
+	</div>
+</LawLandingLayout>

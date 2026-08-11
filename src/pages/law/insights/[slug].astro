@@ -1,0 +1,72 @@
+---
+import LawLayout from "../../../components/law/LawLayout.astro";
+import { lawInsights } from "../../../data/law/insights";
+
+export function getStaticPaths() {
+	return lawInsights.map((insight: any) => ({
+		params: { slug: insight.slug },
+		props: { insight },
+	}));
+}
+
+const { insight } = Astro.props;
+
+// Convert the article's markdown-ish content string into HTML: paragraphs separated
+// by blank lines, with any paragraph that is ENTIRELY wrapped in "**...**" rendered
+// as a subheading, and inline "**text**" runs elsewhere rendered as <strong>.
+function renderContent(content: string) {
+	return content
+		.split(/\n\n+/)
+		.map((raw) => raw.trim())
+		.filter(Boolean)
+		.map((block) => {
+			const headingMatch = block.match(/^\*\*(.+?)\*\*$/);
+			if (headingMatch) {
+				return `<h2 class="font-display text-2xl lg:text-3xl text-primary font-semibold mt-12 mb-4">${headingMatch[1]}</h2>`;
+			}
+			const withBold = block.replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-primary">$1</strong>');
+			return `<p class="font-serif text-lg leading-relaxed text-[#2e2e2e] mb-6">${withBold}</p>`;
+		})
+		.join("");
+}
+---
+
+<LawLayout title={`${insight.title} | Legal Insights`} description={insight.excerpt}>
+	<div class="w-full bg-white pt-32 pb-24">
+		<div class="container mx-auto max-w-4xl px-6">
+			<a href="/law/insights" class="mb-10 inline-flex items-center gap-2 font-sans text-xs font-bold tracking-widest text-primary uppercase transition-colors hover:text-accent">
+				<span aria-hidden="true">←</span> Back to Insights
+			</a>
+
+			<div class="mb-6 flex items-center gap-4">
+				<span class="font-sans text-sm font-bold tracking-widest text-accent uppercase">{insight.category}</span>
+				<span class="h-1.5 w-1.5 rounded-full bg-gray-300"></span>
+				<span class="font-sans text-sm text-gray-500 uppercase">{insight.date}</span>
+			</div>
+
+			<h1 class="font-display mb-8 text-4xl leading-tight font-semibold text-primary lg:text-6xl">{insight.title}</h1>
+
+			<div class="mb-12 flex items-center gap-4 border-b border-gray-200 pb-12">
+				<div>
+					<p class="font-sans text-sm font-bold text-primary">By {insight.author}</p>
+					<p class="font-serif text-sm text-gray-500">Washington Law</p>
+				</div>
+			</div>
+
+			<div class="mb-16 aspect-[21/9] w-full overflow-hidden bg-secondary">
+				<img src={insight.image} alt={insight.title} class="h-full w-full object-cover" />
+			</div>
+
+			<div class="max-w-none">
+				<p class="font-display mb-10 border-l-4 border-accent pl-6 text-2xl leading-relaxed text-primary/80 italic">{insight.excerpt}</p>
+				<Fragment set:html={renderContent(insight.content)} />
+			</div>
+
+			<div class="mt-20 border-t border-gray-200 pt-10">
+				<h3 class="font-display mb-6 text-3xl text-primary">Need guidance on this issue?</h3>
+				<p class="mb-8 font-serif text-lg text-[#2e2e2e]">Contact our team to discuss how this affects your specific situation.</p>
+				<a href="/law/contact" class="inline-block rounded-none bg-primary px-8 py-4 font-sans text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:bg-primary/90">Schedule a Consultation</a>
+			</div>
+		</div>
+	</div>
+</LawLayout>

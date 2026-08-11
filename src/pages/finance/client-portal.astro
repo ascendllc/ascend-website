@@ -1,0 +1,27 @@
+---
+import FinanceLayout from "../../components/finance/FinanceLayout.astro";
+---
+
+<FinanceLayout title="Client Portal | WAFS Seattle" description="Securely access your WAFS client portal to view documents, financial reports, and messages from your WAFS team.">
+	<section class="flex min-h-[70vh] items-center justify-center bg-warmwhite py-20">
+		<div class="container mx-auto max-w-2xl px-6 text-center">
+			<div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-wafs-forest/10">
+				<svg class="h-10 w-10 text-wafs-forest" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+				</svg>
+			</div>
+			<h1 class="font-display mb-6 text-4xl font-semibold text-wafs-forest md:text-5xl">Client Portal</h1>
+			<p class="mb-10 text-lg leading-relaxed text-[#4a5568]">Access your secure documents, tax returns, and financial reports. Your WAFS team uses secure document sharing and communication tools to keep your information safe.</p>
+			<a
+				href="#"
+				title="This is a demo site — the client portal login isn't connected."
+				class="mb-8 inline-flex h-14 w-full items-center justify-center rounded-md bg-wafs-forest px-8 text-lg font-semibold text-warmwhite transition-colors hover:bg-wafs-forest/90 sm:w-auto"
+			>
+				Access Client Portal
+			</a>
+			<p class="text-sm text-[#4a5568]">
+				For access assistance, contact your WAFS professional directly or call <a href="tel:2065555555" class="text-wafs-evergreen hover:underline">(206) 555-5555</a>.
+			</p>
+		</div>
+	</section>
+</FinanceLayout>

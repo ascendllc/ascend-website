@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import FinanceHeader from "./FinanceHeader.astro";
+import FinanceFooter from "./FinanceFooter.astro";
+import FinanceChatBubble from "./FinanceChatBubble.astro";
+
+interface Props {
+	title: string;
+	description?: string;
+	noHeaderFooter?: boolean;
+}
+const { title, description, noHeaderFooter = false } = Astro.props;
+---
+
+<Layout title={title} description={description} bare noindex>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+	<div class="fin-site flex min-h-screen flex-col bg-warmwhite font-sans text-nearblack">
+		{!noHeaderFooter && <FinanceHeader />}
+		<main class="flex-1">
+			<slot />
+		</main>
+		{!noHeaderFooter && <FinanceFooter />}
+		<FinanceChatBubble />
+	</div>
+</Layout>
+
+<style is:global>
+	.fin-site {
+		--color-warmwhite: #fafaf8;
+		--color-nearblack: #1a202c;
+		font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+	}
+	.fin-site .font-display {
+		font-family: "Inter", system-ui, sans-serif;
+	}
+	.fin-site .bg-warmwhite {
+		background-color: #fafaf8;
+	}
+	.fin-site .text-warmwhite {
+		color: #fafaf8;
+	}
+	.fin-site .text-nearblack {
+		color: #1a202c;
+	}
+	.fin-site .text-wafs-forest {
+		color: #1b3a2a;
+	}
+	.fin-site .bg-wafs-forest {
+		background-color: #1b3a2a;
+	}
+	.fin-site .text-wafs-evergreen {
+		color: #2d6a4f;
+	}
+	.fin-site .bg-wafs-evergreen {
+		background-color: #2d6a4f;
+	}
+	.fin-site .text-wafs-gold {
+		color: #c9a84c;
+	}
+	.fin-site .bg-wafs-gold {
+		background-color: #c9a84c;
+	}
+	.fin-site .text-wafs-slate {
+		color: #2c5282;
+	}
+	.fin-site .bg-wafs-slate {
+		background-color: #2c5282;
+	}
+</style>

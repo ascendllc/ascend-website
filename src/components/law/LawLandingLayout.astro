@@ -1,0 +1,65 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import LawLogo from "./LawLogo.astro";
+import LawChatBubble from "./LawChatBubble.astro";
+
+interface Props {
+	title: string;
+	description?: string;
+	canonical?: string;
+}
+const { title, description, canonical } = Astro.props;
+
+const PhoneIcon = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>`;
+---
+
+<Layout title={title} description={description} bare noindex canonical={canonical}>
+	<div class="law-site flex min-h-screen flex-col bg-white font-sans text-[#2e2e2e]">
+		<header class="border-b bg-white py-4">
+			<div class="container mx-auto flex max-w-7xl items-center justify-between px-6">
+				<LawLogo />
+				<a href="tel:2065551847" class="flex items-center gap-2 font-sans font-semibold text-primary">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-accent" set:html={PhoneIcon} />
+					<span class="hidden sm:inline">(206) 555-1847</span>
+				</a>
+			</div>
+		</header>
+		<main class="flex-1">
+			<slot />
+		</main>
+		<LawChatBubble />
+	</div>
+</Layout>
+
+<style is:global>
+	.law-site {
+		--law-font-sans: Calibri, Arial, Helvetica, sans-serif;
+		--law-font-display: "Anton", Impact, sans-serif;
+		font-family: var(--law-font-sans);
+	}
+	.law-site .font-display {
+		font-family: var(--law-font-display);
+	}
+	.law-site .font-serif,
+	.law-site .font-body {
+		font-family: var(--law-font-sans);
+	}
+	.law-site .text-primary {
+		color: #162140;
+	}
+	.law-site .bg-primary {
+		background-color: #162140;
+	}
+	.law-site .text-accent {
+		color: #c29129;
+	}
+	.law-site .bg-accent {
+		background-color: #c29129;
+	}
+	.law-site .border-accent {
+		border-color: #c29129;
+	}
+	.law-site .bg-secondary {
+		background-color: #283253;
+	}
+</style>

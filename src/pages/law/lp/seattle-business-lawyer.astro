@@ -1,0 +1,152 @@
+---
+import LawLandingLayout from "../../../components/law/LawLandingLayout.astro";
+import { lawTeam } from "../../../data/law/team";
+
+const attorney = lawTeam.find((a) => a.slug === "margaret-harrington")!;
+
+const FileTextIcon = `<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path>`;
+const HandshakeIcon = `<path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path>`;
+const TrendingIcon = `<path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path>`;
+const BriefcaseIcon = `<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect>`;
+
+const needOptions = [
+	{ value: "formation", label: "Business formation / entity setup" },
+	{ value: "contracts", label: "Contract drafting or review" },
+	{ value: "dispute", label: "Business dispute or litigation" },
+	{ value: "ma", label: "Merger, acquisition, or sale" },
+	{ value: "ip", label: "IP licensing or protection" },
+	{ value: "employment", label: "Employment law compliance" },
+	{ value: "other", label: "Something else" },
+];
+
+const services = [
+	{ icon: FileTextIcon, label: "Contract Drafting & Review" },
+	{ icon: HandshakeIcon, label: "Formation & Partnerships" },
+	{ icon: TrendingIcon, label: "M&A and Due Diligence" },
+	{ icon: BriefcaseIcon, label: "IP Licensing & Protection" },
+];
+
+const stats = [
+	{ stat: "$200M+", label: "In Business Transactions" },
+	{ stat: "500+", label: "Business Clients Served" },
+	{ stat: "15 yrs", label: "Serving the PNW" },
+	{ stat: "8", label: "Dedicated Attorneys" },
+];
+
+const testimonials = [
+	{ quote: "Meg has been my business attorney since day one. She's the reason we didn't make three very expensive mistakes in year two.", name: "Tara L., Founder · PNW Retail Co." },
+	{ quote: "They handled our acquisition from LOI through closing with zero hiccups. Methodical, fast, and completely transparent on fees.", name: "Brian O., CEO · Cascadia Tech" },
+	{ quote: "We've used three different law firms. Washington Law is the only one where I felt like they were on our team, not billing by the breath.", name: "Sonia R., Partner · Meridian Group" },
+];
+---
+
+<LawLandingLayout title="Seattle Business Attorney | Free Consultation | Washington Law" description="Washington Law's business attorneys help Seattle companies with formation, contracts, M&A, and disputes. Flat-fee packages available. Free initial consultation — call (206) 555-1847." canonical="/law/lp/seattle-business-lawyer">
+	<div class="w-full">
+		<div class="border-b-2 border-accent bg-primary px-6 py-3 text-white">
+			<div class="container mx-auto flex max-w-7xl flex-wrap justify-center gap-x-8 gap-y-1 font-sans text-xs font-bold tracking-widest text-accent uppercase">
+				<span>★★★★★ 4.9 Rating</span>
+				<span class="hidden text-white sm:inline">|</span>
+				<span>$200M+ in Transactions</span>
+				<span class="hidden text-white sm:inline">|</span>
+				<span>500+ Business Clients</span>
+				<span class="hidden text-white sm:inline">|</span>
+				<span>Direct Partner Access</span>
+			</div>
+		</div>
+
+		<section id="get-started" class="bg-secondary px-6 py-16 lg:py-24">
+			<div class="container mx-auto max-w-7xl">
+				<div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
+					<div>
+						<div class="mb-8 inline-flex items-center gap-2 bg-primary px-4 py-2 font-sans text-xs font-bold tracking-widest text-accent uppercase">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={BriefcaseIcon} />
+							Seattle Business Attorneys
+						</div>
+						<h1 class="font-display mb-6 text-5xl leading-[1.1] font-semibold text-primary italic lg:text-7xl">Sharp Legal Counsel for Seattle Businesses. <span class="text-accent">From Day One.</span></h1>
+						<p class="font-body mb-10 text-xl leading-relaxed text-[#2E2E2E]">Washington Law has guided Pacific Northwest businesses through formation, contracts, disputes, and growth for 15 years. You get direct access to your attorney — not a billing coordinator.</p>
+						<div class="mb-10 grid grid-cols-2 gap-6">
+							{services.map((s) => (
+								<div class="flex items-center gap-3 border-l-2 border-accent pl-4">
+									<div class="text-accent">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6" set:html={s.icon} />
+									</div>
+									<span class="font-sans text-sm font-semibold text-primary">{s.label}</span>
+								</div>
+							))}
+						</div>
+						<div class="flex items-center gap-5 border-l-4 border-accent bg-white p-6 shadow-sm">
+							<img src={attorney.image} alt={attorney.name} class="h-16 w-16 shrink-0 rounded-full object-cover" />
+							<div>
+								<p class="font-display mb-1 text-lg text-primary italic">"She thinks like a business owner and talks like a human being."</p>
+								<p class="font-sans text-xs font-bold tracking-widest text-accent uppercase">— Client review · Meg Harrington, Founding Partner</p>
+							</div>
+						</div>
+					</div>
+					<div class="relative bg-primary p-8 text-white shadow-2xl">
+						<div class="absolute -top-3 left-8 bg-accent px-4 py-1 font-sans text-xs font-bold tracking-widest text-white uppercase">Free 30-Min Strategy Call</div>
+						<form class="mt-4 space-y-4">
+							<h3 class="mb-2 font-display text-2xl font-semibold">What does your business need?</h3>
+							<input type="text" placeholder="Full Name" class="w-full rounded-none border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/50" />
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<input type="email" placeholder="Email" class="w-full rounded-none border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/50" />
+								<input type="tel" placeholder="Phone" class="w-full rounded-none border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/50" />
+							</div>
+							<select class="w-full rounded-none border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white/70">
+								<option value="">What do you need help with?</option>
+								{needOptions.map((n) => <option value={n.value}>{n.label}</option>)}
+							</select>
+							<textarea placeholder="Brief context (optional)" class="min-h-[80px] w-full rounded-none border border-white/20 bg-white/10 px-4 py-2.5 text-sm text-white placeholder:text-white/50"></textarea>
+							<button type="button" title="This form isn't wired up to send yet — call us directly instead." class="w-full rounded-none bg-accent py-6 font-sans text-sm font-bold tracking-widest text-white uppercase hover:bg-accent/90">Book My Free Strategy Call →</button>
+							<p class="text-center font-sans text-xs text-white/50">🔒 Confidential. Attorney-client privilege begins at first contact.</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-primary px-6 py-16 text-white">
+			<div class="container mx-auto max-w-5xl">
+				<div class="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
+					{stats.map((s) => (
+						<div>
+							<p class="font-display mb-2 text-4xl font-semibold text-accent lg:text-5xl">{s.stat}</p>
+							<p class="font-sans text-sm text-secondary/70 uppercase tracking-widest">{s.label}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-secondary px-6 py-16">
+			<div class="container mx-auto max-w-4xl">
+				<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+					{testimonials.map((t) => (
+						<div class="border-t-4 border-accent bg-white p-6 shadow-sm">
+							<p class="font-body mb-4 text-[#2E2E2E] italic">"{t.quote}"</p>
+							<p class="font-sans text-xs font-bold tracking-widest text-accent uppercase">{t.name}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="border-t-4 border-accent bg-white px-6 py-16 text-center">
+			<h2 class="font-display mb-4 text-4xl font-semibold text-primary">Your business deserves better legal counsel.</h2>
+			<p class="font-body mb-8 text-xl text-[#2E2E2E]">Call us or book a free 30-minute strategy session — no commitment required.</p>
+			<div class="flex flex-col justify-center gap-4 sm:flex-row">
+				<a href="tel:2065551847" class="rounded-none bg-accent px-10 py-6 text-center font-sans text-sm font-bold tracking-wide text-white uppercase hover:bg-accent/90 sm:tracking-widest">(206) 555-1847</a>
+				<a href="#get-started" class="rounded-none border border-primary px-10 py-6 text-center font-sans text-sm font-bold tracking-wide text-primary uppercase hover:bg-primary hover:text-white sm:tracking-widest">Book Free Strategy Call →</a>
+			</div>
+		</section>
+
+		<footer class="bg-primary px-6 py-6 text-center text-xs text-white/50">
+			<p>© {new Date().getFullYear()} Washington Law PLLC · 1420 Fifth Avenue, Suite 1800, Seattle, WA 98101 · <a href="tel:12065551847" class="transition-colors hover:text-white">(206) 555-1847</a></p>
+			<p class="mt-2">Attorney advertising. Past results do not guarantee future outcomes. This page does not constitute legal advice.</p>
+		</footer>
+
+		<div class="fixed bottom-0 left-0 z-50 flex w-full gap-2 border-t-2 border-accent bg-primary p-4 lg:hidden">
+			<a href="tel:2065551847" class="flex-1 rounded-none bg-white py-3 text-center font-sans text-xs font-bold tracking-wider text-primary uppercase hover:bg-secondary">Call Now</a>
+			<a href="#get-started" class="flex-1 rounded-none bg-accent py-3 text-center font-sans text-xs font-bold tracking-wider text-white uppercase hover:bg-accent/90">Free Call</a>
+		</div>
+	</div>
+</LawLandingLayout>

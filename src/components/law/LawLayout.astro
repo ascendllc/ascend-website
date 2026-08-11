@@ -1,0 +1,56 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import LawHeader from "./LawHeader.astro";
+import LawFooter from "./LawFooter.astro";
+import LawChatBubble from "./LawChatBubble.astro";
+
+interface Props {
+	title: string;
+	description?: string;
+	noHeaderFooter?: boolean;
+}
+const { title, description, noHeaderFooter = false } = Astro.props;
+---
+
+<Layout title={title} description={description} bare noindex>
+	<div class="law-site flex min-h-screen flex-col bg-white font-sans text-[#2e2e2e]">
+		{!noHeaderFooter && <LawHeader />}
+		<main class="flex-1">
+			<slot />
+		</main>
+		{!noHeaderFooter && <LawFooter />}
+		<LawChatBubble />
+	</div>
+</Layout>
+
+<style is:global>
+	.law-site {
+		--law-font-sans: Calibri, Arial, Helvetica, sans-serif;
+		--law-font-display: "Anton", Impact, sans-serif;
+		font-family: var(--law-font-sans);
+	}
+	.law-site .font-display {
+		font-family: var(--law-font-display);
+	}
+	.law-site .font-serif {
+		font-family: var(--law-font-sans);
+	}
+	.law-site .text-primary {
+		color: #162140;
+	}
+	.law-site .bg-primary {
+		background-color: #162140;
+	}
+	.law-site .text-accent {
+		color: #c29129;
+	}
+	.law-site .bg-accent {
+		background-color: #c29129;
+	}
+	.law-site .border-accent {
+		border-color: #c29129;
+	}
+	.law-site .bg-secondary {
+		background-color: #283253;
+	}
+</style>

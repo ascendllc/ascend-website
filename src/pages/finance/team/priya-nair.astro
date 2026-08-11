@@ -1,0 +1,107 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowLeft = `<path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path>`;
+const Phone = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>`;
+const Mail = `<rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>`;
+
+const focusAreas = ["Financial statement audits", "Nonprofit audits", "Single audit (Uniform Guidance)", "SOC 1 and SOC 2 reporting", "Employee benefit plan audits", "Internal controls", "Due diligence"];
+const industries = [
+	{ label: "Nonprofits & Foundations", href: "/finance/industries/nonprofits" },
+	{ label: "Healthcare & Medical Practices", href: "/finance/industries/healthcare" },
+	{ label: "Technology & Startups (SOC)", href: "/finance/industries/technology-startups" },
+];
+const credentials = [
+	"Certified Public Accountant (WA)",
+	"Chartered Global Management Accountant (CGMA)",
+	"Master of Prof. Accounting, Seattle University",
+	"B.Com, University of Mumbai",
+	"American Institute of CPAs (AICPA)",
+	"Volunteer Leader, United Way of King County",
+];
+---
+
+<FinanceLayout title="Priya Nair, CPA/CGMA | Partner | WAFS Seattle" description="Priya Nair, CPA/CGMA is a Partner at WAFS specializing in audit & assurance and strategic finance for nonprofits and mid-market businesses in Seattle.">
+	<!-- Hero -->
+	<section class="bg-wafs-forest text-warmwhite pt-32 pb-16">
+		<div class="container mx-auto px-6">
+			<a href="/finance/team" class="text-warmwhite/60 hover:text-wafs-gold text-sm font-medium flex items-center gap-2 mb-8 transition-colors">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={ArrowLeft} /> Back to Team
+			</a>
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+				<div class="relative lg:col-span-5 aspect-[4/5] overflow-hidden rounded-sm border-4 border-wafs-evergreen">
+					<img src="/images/finance/team-priya.png" alt="Priya Nair" class="w-full h-full object-cover" />
+				</div>
+				<div class="lg:col-span-7">
+					<div class="flex flex-wrap gap-2 mb-6">
+						<span class="bg-wafs-gold text-wafs-forest text-xs font-mono px-3 py-1 rounded-full font-semibold">CPA</span>
+						<span class="bg-wafs-evergreen text-warmwhite text-xs font-mono px-3 py-1 rounded-full">CGMA</span>
+					</div>
+					<h1 class="font-display font-semibold text-5xl md:text-6xl mb-2">Priya Nair</h1>
+					<p class="text-2xl text-wafs-gold font-display italic mb-8">Partner — Audit & Assurance</p>
+					<div class="space-y-4 mb-10 text-warmwhite/80 font-sans">
+						<a href="tel:2065555555" class="flex items-center gap-3 hover:text-warmwhite transition-colors">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={Phone} /> (206) 555-5555
+						</a>
+						<a href="mailto:pnair@washingtonacfs.com" class="flex items-center gap-3 hover:text-warmwhite transition-colors">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={Mail} /> pnair@washingtonacfs.com
+						</a>
+						<div class="flex items-center gap-3">
+							<span class="w-5 h-5 flex items-center justify-center text-wafs-gold font-semibold">·</span> Joined WAFS in 2017
+						</div>
+					</div>
+					<a href="/finance/contact" class="inline-flex items-center bg-wafs-gold hover:bg-wafs-gold/90 text-wafs-forest font-semibold text-lg px-8 py-4 rounded-md transition-colors">Schedule a Call with Priya</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Body -->
+	<section class="py-24 bg-warmwhite">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+				<div class="lg:col-span-8 space-y-12">
+					<div>
+						<h2 class="font-display text-3xl font-semibold text-wafs-forest mb-6">Biography</h2>
+						<div class="prose-wafs space-y-6 text-[#4a5568] leading-relaxed">
+							<p>Priya Nair leads WAFS's Audit & Assurance practice with a philosophy that an audit shouldn't just validate the past — it should give an organization tools to build a better future.</p>
+							<p>She spent her first ten years in public accounting at a Big Four firm, rising to Senior Manager and working on complex public and private audits. She joined WAFS in 2017 to apply that same rigorous, risk-based audit methodology to middle-market organizations and nonprofits that deserve national-quality audit work without the national-firm overhead.</p>
+							<p>Her nonprofit expertise is particularly deep. She manages audit relationships with more than a dozen prominent Seattle-area foundations and social service organizations, navigating complex Uniform Guidance requirements and restricted funding compliance. She also leads WAFS's expanding SOC reporting practice, helping tech companies demonstrate control environments to enterprise customers.</p>
+							<p>Priya earned her degree from the University of Mumbai and her Master's in Professional Accounting from Seattle University. She volunteers extensively with United Way of King County and frequently presents on board governance at regional nonprofit conferences. She speaks English, Hindi, and Marathi.</p>
+						</div>
+					</div>
+					<div class="bg-[#f0ede8] p-8 border-l-4 border-wafs-gold">
+						<p class="font-display text-2xl leading-relaxed italic text-wafs-forest">"Too many organizations see an audit as a stressful compliance exercise. When done right, it is a powerful diagnostic tool that highlights operational inefficiencies before they become material problems."</p>
+					</div>
+				</div>
+				<div class="lg:col-span-4 space-y-10">
+					<div>
+						<h3 class="font-sans font-semibold text-sm uppercase tracking-widest text-wafs-slate mb-4 border-b border-[#d4e6dc] pb-2">Focus Areas</h3>
+						<ul class="space-y-3">
+							{focusAreas.map((e) => (
+								<li class="flex items-start gap-2 text-[#4a5568]">
+									<div class="w-1.5 h-1.5 rounded-full bg-wafs-gold mt-2 shrink-0"></div>
+									<span>{e}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+					<div>
+						<h3 class="font-sans font-semibold text-sm uppercase tracking-widest text-wafs-slate mb-4 border-b border-[#d4e6dc] pb-2">Industry Expertise</h3>
+						<ul class="space-y-3">
+							{industries.map((i) => (
+								<li><a href={i.href} class="text-wafs-forest font-medium hover:text-wafs-gold transition-colors">{i.label}</a></li>
+							))}
+						</ul>
+					</div>
+					<div>
+						<h3 class="font-sans font-semibold text-sm uppercase tracking-widest text-wafs-slate mb-4 border-b border-[#d4e6dc] pb-2">Credentials & Affiliations</h3>
+						<ul class="space-y-3 text-sm text-[#4a5568]">
+							{credentials.map((c) => (<li>{c}</li>))}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

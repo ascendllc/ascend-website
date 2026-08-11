@@ -1,0 +1,179 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const Check = `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path>`;
+const CheckSm = `<path d="M20 6 9 17l-5-5"></path>`;
+
+const whyWafs = [
+	"You will work directly with senior partners from day one — no handoffs to junior staff after the first meeting",
+	"We operate year-round, not seasonally — planning and relationships, not tax season sprints",
+	"Our four service disciplines share a floor and a client roster — you will understand the full financial picture",
+	"We hire for growth — our senior managers came from associate roles at WAFS",
+];
+
+const positions = [
+	{
+		title: "Tax Senior Associate",
+		department: "Tax Strategy & Compliance",
+		type: "Full-Time",
+		location: "Seattle, WA",
+		experience: "3–5 years",
+		summary: "Work directly with Managing Partner Maggie Chen on complex business tax engagements for Pacific Northwest clients. This is not a processing role — it is a planning and advisory role for someone who wants to grow into a senior advisor.",
+		responsibilities: [
+			"Prepare and review complex business tax returns (partnerships, S-corps, C-corps)",
+			"Assist in year-round tax planning engagements for closely held businesses",
+			"Research multi-state and Washington B&O tax issues",
+			"Support pre-transaction tax structuring engagements",
+			"Communicate findings and recommendations directly to clients",
+		],
+		requirements: [
+			"CPA license (Washington) required or sitting candidate within 6 months",
+			"3–5 years of public accounting experience with business entity tax",
+			"Experience with pass-through entity taxation",
+			"Strong written and verbal communication skills",
+			"Pacific Northwest presence preferred",
+		],
+	},
+	{
+		title: "Financial Planning Associate",
+		department: "Wealth & Financial Planning",
+		type: "Full-Time",
+		location: "Seattle, WA",
+		experience: "1–3 years",
+		summary: "Support Partner Robert Kimura and Analyst James Thornton in WAFS's growing Wealth & Financial Planning practice. The ideal candidate is pursuing the CFP designation and wants to work at the intersection of tax strategy and personal financial planning.",
+		responsibilities: [
+			"Prepare retirement income projections and Roth conversion analyses",
+			"Assist in estate planning coordination with client attorneys",
+			"Support investment oversight reviews and portfolio analysis",
+			"Draft client-ready financial planning summaries and meeting materials",
+			"Coordinate with the tax practice to align planning recommendations",
+		],
+		requirements: [
+			"CFP candidate or CFP certificant strongly preferred",
+			"1–3 years of financial planning or wealth management experience",
+			"Comfort working with planning software (eMoney, MoneyGuide preferred)",
+			"Detail-oriented, client-service focused",
+			"CPA or CPA candidate is a meaningful plus",
+		],
+	},
+	{
+		title: "Audit Senior",
+		department: "Audit & Assurance",
+		type: "Full-Time",
+		location: "Seattle, WA",
+		experience: "2–4 years",
+		summary: "Join Priya Nair's audit team to support financial statement audits, nonprofit audits, and SOC reporting engagements. WAFS's audit practice is relationship-driven and serves clients who deserve national-quality work without national-firm overhead.",
+		responsibilities: [
+			"Lead audit fieldwork for financial statement and nonprofit audit engagements",
+			"Prepare and review workpapers in accordance with GAAS and GAGAS",
+			"Assist with Uniform Guidance (Single Audit) engagements",
+			"Support SOC 1 and SOC 2 reporting engagements",
+			"Communicate findings with client leadership",
+		],
+		requirements: [
+			"CPA license (Washington) or CPA candidate",
+			"2–4 years of public accounting audit experience",
+			"Nonprofit audit experience is a meaningful plus",
+			"Familiarity with Uniform Guidance (2 CFR Part 200) preferred",
+			"Collaborative team player with strong documentation skills",
+		],
+	},
+];
+---
+
+<FinanceLayout title="Careers at WAFS | CPA & Finance Jobs in Seattle" description="Join the WAFS team — career opportunities for CPAs, financial advisors, and accounting professionals in Seattle, Washington. Partner track available.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-36 pb-24 text-warmwhite">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto max-w-4xl px-6">
+			<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Join the Team</p>
+			<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-6xl lg:text-7xl">Join a Firm That Does Things Differently.</h1>
+			<p class="max-w-2xl text-lg leading-relaxed text-warmwhite/80 md:text-xl">We left national firms to build something better. If you are a serious accountant or financial planner who wants to do high-impact work with senior mentorship and real client relationships, we should talk.</p>
+		</div>
+	</section>
+
+	<!-- Why WAFS -->
+	<section class="bg-[#f0ede8] py-20">
+		<div class="container mx-auto max-w-4xl px-6">
+			<h2 class="font-display mb-10 text-3xl font-semibold text-wafs-forest">Why WAFS</h2>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+				{whyWafs.map((reason) => (
+					<div class="flex items-start gap-4 border border-[#d4e6dc] bg-white p-6">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-5 w-5 shrink-0 text-wafs-gold" set:html={Check} />
+						<p class="leading-relaxed text-[#4a5568]">{reason}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Open Positions -->
+	<section class="bg-warmwhite py-20">
+		<div class="container mx-auto max-w-4xl px-6">
+			<h2 class="font-display mb-4 text-3xl font-semibold text-wafs-forest">Open Positions</h2>
+			<p class="mb-12 text-[#4a5568]">Three openings as of June 2025. We hire carefully and grow slowly.</p>
+			<div class="space-y-12">
+				{positions.map((p) => (
+					<div class="border border-[#d4e6dc] bg-white">
+						<div class="bg-wafs-forest px-8 py-6 text-warmwhite">
+							<div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+								<div>
+									<h3 class="font-display mb-1 text-2xl font-semibold">{p.title}</h3>
+									<p class="font-sans text-sm text-warmwhite/70">{p.department}</p>
+								</div>
+								<div class="flex flex-wrap gap-3">
+									<span class="rounded-sm bg-white/10 px-3 py-1 font-mono text-xs text-warmwhite">{p.type}</span>
+									<span class="rounded-sm bg-white/10 px-3 py-1 font-mono text-xs text-warmwhite">{p.location}</span>
+									<span class="rounded-sm bg-wafs-gold/20 px-3 py-1 font-mono text-xs text-wafs-gold">{p.experience}</span>
+								</div>
+							</div>
+						</div>
+						<div class="space-y-8 px-8 py-8">
+							<p class="leading-relaxed text-[#4a5568]">{p.summary}</p>
+							<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+								<div>
+									<h4 class="font-sans mb-4 font-semibold text-wafs-forest">Responsibilities</h4>
+									<ul class="space-y-2">
+										{p.responsibilities.map((r) => (
+											<li class="flex items-start gap-3 text-sm text-[#4a5568]">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-4 w-4 shrink-0 text-wafs-gold" set:html={CheckSm} />
+												{r}
+											</li>
+										))}
+									</ul>
+								</div>
+								<div>
+									<h4 class="font-sans mb-4 font-semibold text-wafs-forest">Requirements</h4>
+									<ul class="space-y-2">
+										{p.requirements.map((r) => (
+											<li class="flex items-start gap-3 text-sm text-[#4a5568]">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-4 w-4 shrink-0 text-wafs-gold" set:html={Check} />
+												{r}
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+							<div class="border-t border-[#d4e6dc] pt-4">
+								<a href={`mailto:careers@washingtonacfs.com?subject=Application: ${p.title}`} class="inline-flex items-center justify-center rounded-md bg-wafs-gold px-6 py-3 font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Apply for This Role</a>
+								<p class="mt-3 text-xs text-[#4a5568]">Send your resume and a brief note to <a href="mailto:careers@washingtonacfs.com" class="text-wafs-slate underline">careers@washingtonacfs.com</a></p>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-wafs-forest py-20 text-warmwhite">
+		<div class="container mx-auto max-w-3xl px-6 text-center">
+			<h2 class="font-display mb-6 text-4xl font-semibold">Don't See the Right Role?</h2>
+			<p class="mb-8 text-lg leading-relaxed text-warmwhite/80">We occasionally make exceptions for exceptional people. If you're a credentialed tax, audit, or financial planning professional who wants to bring serious skills to a firm that will actually use them, send us a note.</p>
+			<a href="mailto:careers@washingtonacfs.com?subject=General Inquiry" class="inline-flex h-12 items-center justify-center rounded-md bg-wafs-gold px-8 font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Send a General Inquiry</a>
+		</div>
+	</section>
+</FinanceLayout>

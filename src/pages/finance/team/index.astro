@@ -1,0 +1,80 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const partners = [
+	{ name: "Maggie Chen", img: "team-maggie.png", href: "/finance/team/maggie-chen", creds: "CPA, MT", title: "Managing Partner", role: "Tax Strategy" },
+	{ name: "David Okafor", img: "team-david.png", href: "/finance/team/david-okafor", creds: "CPA, ABV", title: "Partner", role: "Business Advisory & CFO" },
+	{ name: "Priya Nair", img: "team-priya.png", href: "/finance/team/priya-nair", creds: "CPA, CGMA", title: "Partner", role: "Audit & Assurance" },
+	{ name: "Robert Kimura", img: "team-robert.png", href: "/finance/team/robert-kimura", creds: "CPA, CFP®", title: "Partner", role: "Wealth Planning" },
+];
+
+const seniorStaff = [
+	{ name: "Sarah Holloway", img: "team-sarah.png", href: "/finance/team/sarah-holloway", creds: "CPA", title: "Senior Manager", role: "Tax Strategy" },
+	{ name: "Marcus Webb", img: "team-marcus.png", href: "/finance/team/marcus-webb", creds: "CPA, MBA", title: "Senior Manager", role: "Business Advisory" },
+	{ name: "Elena Vasquez", img: "team-elena.png", href: "/finance/team/elena-vasquez", creds: "CPA", title: "Tax Manager", role: "Individual & Real Estate" },
+	{ name: "James Thornton", img: "team-james.png", href: "/finance/team/james-thornton", creds: "CFA, CPA", title: "Financial Planning Analyst", role: "Wealth Planning" },
+];
+---
+
+<FinanceLayout title="Our Team | Seattle CPAs & Financial Advisors | WAFS" description="Meet the WAFS partner team — CPAs, CFPs, and financial advisors serving Pacific Northwest businesses and families since 2014. Partner-level attention on every engagement.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest text-warmwhite pt-40 pb-24 md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="w-full h-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="container mx-auto px-6 relative z-10">
+			<div class="max-w-4xl text-center mx-auto">
+				<h1 class="font-display font-semibold text-5xl md:text-7xl leading-tight mb-8">Eight Professionals.<br />One Firm. Fully Committed to You.</h1>
+				<p class="text-xl text-warmwhite/80 font-sans leading-relaxed max-w-2xl mx-auto">We left national firms to build something better: a practice where our most experienced professionals are deeply involved in your business, year-round.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Team grids -->
+	<section class="py-24 bg-warmwhite">
+		<div class="container mx-auto px-6">
+			<div class="flex items-center gap-4 mb-16">
+				<h2 class="font-display text-3xl font-semibold text-wafs-forest uppercase tracking-widest text-sm">Partners</h2>
+				<div class="h-px bg-[#d4e6dc] flex-1"></div>
+			</div>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 mb-24">
+				{partners.map((e) => (
+					<a href={e.href} class="group block text-left">
+						<div class="relative mb-6 overflow-hidden rounded-sm aspect-[4/5] bg-[#f0ede8] border border-[#d4e6dc]">
+							<img src={`/images/finance/${e.img}`} alt={e.name} class="absolute top-0 left-0 w-full h-[120%] object-cover object-top transition-all duration-700 group-hover:scale-105 group-hover:grayscale" />
+						</div>
+						<h3 class="font-display text-2xl font-semibold text-wafs-forest mb-1 group-hover:text-wafs-gold transition-colors">{e.name}</h3>
+						<div class="font-mono text-xs text-[#4a5568] mb-3">{e.creds}</div>
+						<p class="text-wafs-slate font-medium text-sm mb-4">{e.title} <br class="hidden lg:block" /> <span class="text-[#4a5568] font-normal">{e.role}</span></p>
+						<div class="text-sm font-semibold text-wafs-forest flex items-center gap-2 group-hover:text-wafs-gold transition-colors">
+							View Profile <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform" set:html={ArrowRight} />
+						</div>
+					</a>
+				))}
+			</div>
+
+			<div class="flex items-center gap-4 mb-16">
+				<h2 class="font-display text-3xl font-semibold text-wafs-forest uppercase tracking-widest text-sm">Senior Staff</h2>
+				<div class="h-px bg-[#d4e6dc] flex-1"></div>
+			</div>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+				{seniorStaff.map((e) => (
+					<a href={e.href} class="group block text-left">
+						<div class="relative mb-6 overflow-hidden rounded-sm aspect-[4/5] bg-[#f0ede8] border border-[#d4e6dc]">
+							<img src={`/images/finance/${e.img}`} alt={e.name} class="absolute top-0 left-0 w-full h-[120%] object-cover object-top transition-all duration-700 group-hover:scale-105 group-hover:grayscale" />
+						</div>
+						<h3 class="font-display text-2xl font-semibold text-wafs-forest mb-1 group-hover:text-wafs-gold transition-colors">{e.name}</h3>
+						<div class="font-mono text-xs text-[#4a5568] mb-3">{e.creds}</div>
+						<p class="text-wafs-slate font-medium text-sm mb-4">{e.title} <br class="hidden lg:block" /> <span class="text-[#4a5568] font-normal">{e.role}</span></p>
+						<div class="text-sm font-semibold text-wafs-forest flex items-center gap-2 group-hover:text-wafs-gold transition-colors">
+							View Profile <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform" set:html={ArrowRight} />
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

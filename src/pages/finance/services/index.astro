@@ -1,0 +1,168 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CheckCircle = `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path>`;
+const TaxIcon = `<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path>`;
+const CFOIcon = `<rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>`;
+const AuditIcon = `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path>`;
+const WealthIcon = `<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline>`;
+
+const taxBullets = ["Business Tax Planning", "Real Estate Taxation", "State & Local Tax (SALT)", "IRS Representation"];
+const cfoBullets = ["Fractional CFO", "Business Valuation (ABV)", "M&A Advisory", "Cash Flow Management"];
+const auditBullets = ["Financial Statement Audit", "Nonprofit Audit", "SOC Reporting", "Internal Controls"];
+const wealthBullets = ["Personal Financial Planning", "Retirement Planning", "Estate Coordination", "Investment Oversight"];
+---
+
+<FinanceLayout title="Accounting & Advisory Services | Seattle CPA | WAFS" description="Comprehensive CPA services including tax strategy, business advisory, audit & assurance, and wealth planning. Partner-led engagements for Pacific Northwest businesses.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Four Services.<br />One Integrated Strategy.</h1>
+				<p class="font-sans text-xl leading-relaxed text-warmwhite/80 md:text-2xl">At most firms, tax happens in one department, advisory in another, and wealth management with a completely separate company. At Washington Accounting & Financial Services, we build your financial strategy as a single interconnected system.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Venn circles -->
+	<section class="bg-[#f0ede8] py-24">
+		<div class="container mx-auto px-6">
+			<div class="relative mx-auto flex max-w-5xl flex-col items-center justify-center gap-4 md:flex-row md:gap-0">
+				<div class="relative z-10 aspect-square w-full rounded-full border-4 border-[#2d6a4f] bg-white p-8 text-center shadow-xl mix-blend-multiply md:-mr-8 md:w-1/4 flex items-center justify-center">
+					<span class="font-display text-lg font-semibold text-wafs-forest">Tax<br />Strategy</span>
+				</div>
+				<div class="relative z-20 aspect-square w-full rounded-full border-4 border-[#c9a84c] bg-white p-8 text-center shadow-xl mix-blend-multiply md:-mr-8 md:w-1/4 flex items-center justify-center">
+					<span class="font-display text-lg font-semibold text-wafs-forest">Business<br />Advisory</span>
+				</div>
+				<div class="relative z-30 aspect-square w-full rounded-full border-4 border-[#2c5282] bg-white p-8 text-center shadow-xl mix-blend-multiply md:-mr-8 md:w-1/4 flex items-center justify-center">
+					<span class="font-display text-lg font-semibold text-wafs-forest">Audit &<br />Assurance</span>
+				</div>
+				<div class="relative z-40 aspect-square w-full rounded-full border-4 border-[#d4e6dc] bg-white p-8 text-center shadow-xl mix-blend-multiply md:w-1/4 flex items-center justify-center">
+					<span class="font-display text-lg font-semibold text-wafs-forest">Wealth<br />Planning</span>
+				</div>
+			</div>
+			<p class="mx-auto mt-12 max-w-2xl text-center font-medium text-[#4a5568]">Our unique partnership structure ensures that insights from one practice immediately inform the strategy of the others.</p>
+		</div>
+	</section>
+
+	<!-- Tax Strategy -->
+	<section class="border-b border-[#d4e6dc] bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+				<div>
+					<div class="mb-8 flex h-16 w-16 items-center justify-center rounded-sm bg-wafs-forest">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={TaxIcon} />
+					</div>
+					<p class="mb-4 font-sans text-sm font-semibold tracking-widest text-wafs-slate uppercase">Tax Strategy & Compliance</p>
+					<h2 class="font-display mb-6 text-4xl font-semibold text-wafs-forest">Stop filing. Start planning.</h2>
+					<p class="mb-8 text-lg leading-relaxed text-[#4a5568]">There's a difference between a CPA who files your taxes and one who minimizes them. We provide proactive, year-round planning to reduce liability.</p>
+					<ul class="mb-10 space-y-3">
+						{taxBullets.map((b) => (
+							<li class="flex items-center gap-3 text-[#4a5568]"><div class="h-1.5 w-1.5 rounded-full bg-wafs-gold"></div>{b}</li>
+						))}
+					</ul>
+					<div class="mb-8 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-6">
+						<p class="mb-2 text-sm text-[#4a5568]">Lead Partner</p>
+						<a href="/finance/team/maggie-chen" class="font-display block text-xl font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Maggie Chen, <span class="font-mono font-sans text-sm font-normal">CPA, MT</span></a>
+					</div>
+					<a href="/finance/services/tax-strategy" class="inline-flex items-center justify-center rounded-md bg-wafs-forest px-6 py-3 font-semibold text-warmwhite transition-colors hover:bg-wafs-forest/90">Explore Tax Strategy</a>
+				</div>
+				<div class="relative hidden aspect-[4/3] overflow-hidden rounded-sm lg:block">
+					<img src="/images/finance/industry-professional.png" alt="Tax Strategy" class="h-full w-full object-cover grayscale" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Business Advisory -->
+	<section class="border-b border-[#d4e6dc] bg-[#f0ede8] py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+				<div class="relative order-2 hidden aspect-[4/3] overflow-hidden rounded-sm lg:order-1 lg:block">
+					<img src="/images/finance/industry-tech.png" alt="Business Advisory" class="h-full w-full object-cover grayscale" />
+				</div>
+				<div class="order-1 lg:order-2">
+					<div class="mb-8 flex h-16 w-16 items-center justify-center rounded-sm bg-wafs-forest">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={CFOIcon} />
+					</div>
+					<p class="mb-4 font-sans text-sm font-semibold tracking-widest text-wafs-slate uppercase">Business Advisory & CFO Services</p>
+					<h2 class="font-display mb-6 text-4xl font-semibold text-wafs-forest">Your business needs a CFO. You don't need a $300k salary.</h2>
+					<p class="mb-8 text-lg leading-relaxed text-[#4a5568]">Strategic financial leadership for growing companies, including board-ready reporting and startup financial infrastructure.</p>
+					<ul class="mb-10 space-y-3">
+						{cfoBullets.map((b) => (
+							<li class="flex items-center gap-3 text-[#4a5568]"><div class="h-1.5 w-1.5 rounded-full bg-wafs-gold"></div>{b}</li>
+						))}
+					</ul>
+					<div class="mb-8 rounded-sm border border-[#d4e6dc] bg-white p-6">
+						<p class="mb-2 text-sm text-[#4a5568]">Lead Partner</p>
+						<a href="/finance/team/david-okafor" class="font-display block text-xl font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">David Okafor, <span class="font-mono font-sans text-sm font-normal">CPA, ABV</span></a>
+					</div>
+					<a href="/finance/services/business-advisory" class="inline-flex items-center justify-center rounded-md bg-wafs-forest px-6 py-3 font-semibold text-warmwhite transition-colors hover:bg-wafs-forest/90">Explore Business Advisory</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Audit & Assurance -->
+	<section class="border-b border-[#d4e6dc] bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+				<div>
+					<div class="mb-8 flex h-16 w-16 items-center justify-center rounded-sm bg-wafs-forest">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={AuditIcon} />
+					</div>
+					<p class="mb-4 font-sans text-sm font-semibold tracking-widest text-wafs-slate uppercase">Audit & Assurance</p>
+					<h2 class="font-display mb-6 text-4xl font-semibold text-wafs-forest">An audit that tells you something you didn't already know.</h2>
+					<p class="mb-8 text-lg leading-relaxed text-[#4a5568]">Rigorous financial statement audits, SOC reporting, and due diligence that goes beyond basic compliance to uncover strategic insights.</p>
+					<ul class="mb-10 space-y-3">
+						{auditBullets.map((b) => (
+							<li class="flex items-center gap-3 text-[#4a5568]"><div class="h-1.5 w-1.5 rounded-full bg-wafs-gold"></div>{b}</li>
+						))}
+					</ul>
+					<div class="mb-8 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-6">
+						<p class="mb-2 text-sm text-[#4a5568]">Lead Partner</p>
+						<a href="/finance/team/priya-nair" class="font-display block text-xl font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Priya Nair, <span class="font-mono font-sans text-sm font-normal">CPA, CGMA</span></a>
+					</div>
+					<a href="/finance/services/audit-assurance" class="inline-flex items-center justify-center rounded-md bg-wafs-forest px-6 py-3 font-semibold text-warmwhite transition-colors hover:bg-wafs-forest/90">Explore Audit & Assurance</a>
+				</div>
+				<div class="relative hidden aspect-[4/3] overflow-hidden rounded-sm lg:block">
+					<img src="/images/finance/industry-nonprofit.png" alt="Audit & Assurance" class="h-full w-full object-cover grayscale" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Wealth Planning -->
+	<section class="border-b border-[#d4e6dc] bg-[#f0ede8] py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+				<div class="relative order-2 hidden aspect-[4/3] overflow-hidden rounded-sm lg:order-1 lg:block">
+					<img src="/images/finance/industry-family.png" alt="Wealth Planning" class="h-full w-full object-cover grayscale" />
+				</div>
+				<div class="order-1 lg:order-2">
+					<div class="mb-8 flex h-16 w-16 items-center justify-center rounded-sm bg-wafs-forest">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={WealthIcon} />
+					</div>
+					<p class="mb-4 font-sans text-sm font-semibold tracking-widest text-wafs-slate uppercase">Wealth & Financial Planning</p>
+					<h2 class="font-display mb-6 text-4xl font-semibold text-wafs-forest">Your CPA and your financial planner should be talking to each other.</h2>
+					<p class="mb-8 text-lg leading-relaxed text-[#4a5568]">Integrated tax and wealth planning to ensure every investment decision, estate update, and tax move is coordinated.</p>
+					<ul class="mb-10 space-y-3">
+						{wealthBullets.map((b) => (
+							<li class="flex items-center gap-3 text-[#4a5568]"><div class="h-1.5 w-1.5 rounded-full bg-wafs-gold"></div>{b}</li>
+						))}
+					</ul>
+					<div class="mb-8 rounded-sm border border-[#d4e6dc] bg-white p-6">
+						<p class="mb-2 text-sm text-[#4a5568]">Lead Partner</p>
+						<a href="/finance/team/robert-kimura" class="font-display block text-xl font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Robert Kimura, <span class="font-mono font-sans text-sm font-normal">CPA, CFP®</span></a>
+					</div>
+					<a href="/finance/services/wealth-planning" class="inline-flex items-center justify-center rounded-md bg-wafs-forest px-6 py-3 font-semibold text-warmwhite transition-colors hover:bg-wafs-forest/90">Explore Wealth Planning</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

@@ -1,0 +1,142 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CheckCircle = `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path>`;
+const UsersIcon = `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>`;
+const ScaleIcon = `<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>`;
+const HandshakeIcon = `<path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="m22 14-3 3"></path><path d="m18 14-3-3"></path>`;
+const LineChartIcon = `<path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path>`;
+
+const serviceCards = [
+	{ icon: UsersIcon, title: "Fractional CFO", desc: "Executive financial leadership, board participation, and strategic planning on a part-time basis." },
+	{ icon: ScaleIcon, title: "Business Valuation", desc: "ABV-certified independent valuations for M&A, partner buyouts, and estate planning." },
+	{ icon: HandshakeIcon, title: "M&A Advisory", desc: "Financial due diligence, quality of earnings reports, and post-merger integration." },
+	{ icon: LineChartIcon, title: "Cash Flow Management", desc: "Advanced modeling, 13-week cash flow forecasts, and working capital optimization." },
+];
+
+const additionalCapabilities = [
+	"Startup Accounting & Infrastructure",
+	"Investor & Board Reporting",
+	"Bank & Lender Relationship Management",
+	"KPI Dashboard Development",
+	"Compensation Modeling",
+	"Software Stack Implementation",
+];
+
+const fullTimeCons = ["Massive fixed overhead cost", "Requires equity compensation", "One individual's perspective", "Disconnected from tax preparation"];
+const fractionalPros = ["Flexible scaling month-to-month", "Zero equity dilution required", "Backed by entire WAFS senior team", "Fully integrated with tax strategy"];
+---
+
+<FinanceLayout title="Business Advisory & Fractional CFO Services | Seattle | WAFS" description="Fractional CFO services, financial modeling, M&A advisory, and strategic finance for Pacific Northwest businesses. CFO-level insight without the full-time cost.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Business Advisory & CFO Services</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Your business needs a CFO. You don't need a $300,000 salary.</h1>
+				<p class="font-sans text-xl leading-relaxed text-warmwhite/80 md:text-2xl">Strategic financial leadership for growing Pacific Northwest companies. We bring board-ready rigor to organizations that have outgrown their bookkeeper.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Bridging the Gap -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">Bridging the Gap</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">There is a critical phase in a company's growth where the financial complexity demands a CFO, but the revenues cannot justify a full-time executive compensation package. WAFS provides that executive leadership on a fractional basis, delivering the strategic oversight, cash flow management, and investor-ready reporting you need to scale.</p>
+					<h3 class="mb-8 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Service Areas</h3>
+					<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+						{serviceCards.map((c) => (
+							<div class="rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 text-wafs-gold" set:html={c.icon} />
+								<h4 class="font-display mb-2 text-xl font-semibold text-wafs-forest">{c.title}</h4>
+								<p class="text-sm leading-relaxed text-[#4a5568]">{c.desc}</p>
+							</div>
+						))}
+					</div>
+					<h3 class="mb-8 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Additional Capabilities</h3>
+					<ul class="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+						{additionalCapabilities.map((a) => (
+							<li class="flex items-center gap-3 text-[#4a5568]">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 shrink-0 text-wafs-gold" set:html={CheckCircle} />
+								<span class="font-medium">{a}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Practice Leader</p>
+						<img src="/images/finance/team-david.png" alt="David Okafor" class="mb-6 aspect-square w-full rounded-sm object-cover grayscale" />
+						<h3 class="font-display mb-2 text-2xl font-semibold text-wafs-forest">David Okafor</h3>
+						<p class="mb-4 font-mono text-sm text-[#4a5568]">CPA, ABV</p>
+						<p class="mb-6 text-sm leading-relaxed text-[#4a5568]">David brings inside-the-business experience to his advisory clients. Having served as CFO for a SaaS company he helped grow to a $40M acquisition, he understands financial leadership from a management chair.</p>
+						<a href="/finance/team/david-okafor" class="flex items-center gap-2 font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">
+							View Full Profile <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={ArrowRight} />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Cost of Leadership -->
+	<section class="bg-wafs-forest py-24 text-warmwhite">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-16 text-center text-4xl font-semibold">The Cost of Leadership</h2>
+			<div class="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
+				<div class="rounded-sm border border-white/10 bg-white/5 p-8">
+					<h3 class="font-display mb-6 text-2xl font-semibold text-warmwhite">Full-Time CFO</h3>
+					<div class="mb-8 font-mono text-4xl font-semibold text-warmwhite/50">$250k–$350k<span class="text-xl">+</span></div>
+					<ul class="space-y-4">
+						{fullTimeCons.map((c) => (
+							<li class="flex gap-3">
+								<div class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white/20"></div>
+								<span class="text-warmwhite/80">{c}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div class="transform rounded-sm bg-wafs-gold p-8 text-wafs-forest shadow-xl md:-translate-y-4">
+					<h3 class="font-display mb-6 text-2xl font-semibold">WAFS Fractional CFO</h3>
+					<div class="mb-8 font-mono text-4xl font-semibold">Fractional</div>
+					<ul class="space-y-4 font-medium">
+						{fractionalPros.map((p) => (
+							<li class="flex gap-3">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 shrink-0" set:html={CheckCircle} />
+								<span>{p}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonial -->
+	<section class="bg-[#f0ede8] py-24">
+		<div class="container mx-auto px-6">
+			<div class="mx-auto max-w-4xl text-center">
+				<p class="font-display mb-8 text-2xl leading-relaxed text-wafs-forest italic md:text-3xl">"David was the first CFO-caliber person who understood our business model on day one."</p>
+				<p class="font-semibold text-[#4a5568]">— K. Hoang, Founder, Northgate Analytics</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-warmwhite py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-wafs-forest">Ready to upgrade your financial leadership?</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center justify-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Business Advisory Consultation <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-5 w-5" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

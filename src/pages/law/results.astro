@@ -1,0 +1,93 @@
+---
+import LawLayout from "../../components/law/LawLayout.astro";
+import { lawPracticeAreas } from "../../data/law/practiceAreas";
+
+const caseResults = [
+	{ id: "1", amount: "$3.2M", category: "Business Law", title: "Shareholder Buyout Dispute", description: "Secured $3.2M settlement in shareholder buyout dispute for Seattle-area tech company. Terms negotiated in 90 days, avoiding costly litigation.", year: "2024" },
+	{ id: "2", amount: "$890K", category: "Employment Law", title: "Wrongful Termination Settlement", description: "Settlement secured for 11-year employee wrongfully terminated.", year: "2023" },
+	{ id: "3", amount: "$475K", category: "Employment Law", title: "Wage Theft Class Action", description: "Wage theft class action settlement for 12 restaurant workers.", year: "2023" },
+	{ id: "4", amount: "Dismissed", category: "Employment Law", title: "Discrimination Claim Resolved", description: "Discrimination claim resolved; client returned to work with back pay.", year: "2024" },
+	{ id: "5", amount: "$1.5M", category: "Civil Litigation", title: "Commercial Contract Breach", description: "Jury verdict in favor of our client for breach of commercial contract.", year: "2022" },
+	{ id: "6", amount: "$2.1M", category: "Real Estate", title: "Commercial Lease Dispute", description: "Favorable settlement in complex commercial lease dispute.", year: "2023" },
+	{ id: "7", amount: "$500K", category: "Business Law", title: "IP Licensing Resolution", description: "Settlement achieved in intellectual property licensing dispute without litigation.", year: "2023" },
+	{ id: "8", amount: "Confidential", category: "Estate Planning", title: "Complex Trust Administration", description: "Successfully navigated complex trust administration involving multiple international properties.", year: "2024" },
+	{ id: "9", amount: "$750K", category: "Civil Litigation", title: "Business Tort Settlement", description: "Secured settlement for client in business tort involving tortious interference.", year: "2022" },
+	{ id: "10", amount: "$1.2M", category: "Real Estate", title: "Construction Defect Resolution", description: "Arbitration award for client regarding major commercial construction defects.", year: "2021" },
+	{ id: "11", amount: "$250K", category: "Employment Law", title: "Retaliation Settlement", description: "Pre-litigation settlement for employee facing retaliation after reporting safety violations.", year: "2024" },
+	{ id: "12", amount: "Defense Verdict", category: "Business Law", title: "Frivolous Lawsuit Defense", description: "Secured complete defense verdict and attorney fees in frivolous partnership dispute.", year: "2023" },
+];
+
+const categories = ["All", ...Array.from(new Set(caseResults.map((c) => c.category)))];
+
+function colorFor(category: string) {
+	return lawPracticeAreas.find((p: any) => p.title === category)?.color ?? "#162040";
+}
+---
+
+<LawLayout title="Case Results | Washington Law | Seattle Law Firm" description="Washington Law's track record: $3.2M shareholder settlement, $285K wrongful termination recovery, $1.1M commercial lease reduction, and more. Real results for Seattle-area clients.">
+	<div class="min-h-screen bg-secondary/20 pt-32 pb-24">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mx-auto mb-16 max-w-3xl text-center">
+				<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Case Results</p>
+				<h1 class="font-display mb-6 text-5xl font-semibold text-primary lg:text-6xl">Outcomes That Matter.</h1>
+				<p class="font-serif text-xl text-[#2e2e2e]">A track record of securing favorable judgments, settlements, and resolutions for our clients across the Pacific Northwest.</p>
+			</div>
+
+			<div id="results-filters" class="mb-16 flex flex-wrap justify-center gap-4">
+				{categories.map((c, idx) => (
+					<button
+						type="button"
+						data-filter={c}
+						class:list={[
+							"rounded-none border px-6 py-3 font-sans text-xs font-bold tracking-widest uppercase transition-colors",
+							idx === 0 ? "border-primary bg-primary text-white" : "border-gray-200 bg-white text-primary hover:border-primary",
+						]}
+					>
+						{c}
+					</button>
+				))}
+			</div>
+
+			<div id="results-grid" class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{caseResults.map((r) => (
+					<div
+						class="flex h-full flex-col border border-gray-200 bg-white p-8 transition-all hover:shadow-lg"
+						style={`border-top-width:4px;border-top-color:${colorFor(r.category)}`}
+						data-category={r.category}
+					>
+						<p class="mb-4 font-sans text-xs font-bold tracking-widest uppercase" style={`color:${colorFor(r.category)}`}>{r.category}</p>
+						<div class="font-display mb-2 text-4xl font-semibold text-primary">{r.amount}</div>
+						<h3 class="mb-4 font-sans text-lg font-bold text-primary">{r.title}</h3>
+						<p class="mb-6 font-serif text-[#2e2e2e]">{r.description}</p>
+						<p class="mt-auto border-t border-gray-200 pt-4 font-sans text-xs text-gray-400">Resolved: {r.year}</p>
+					</div>
+				))}
+			</div>
+
+			<div class="mt-16 text-center">
+				<p class="mx-auto max-w-3xl font-serif text-sm text-gray-500 italic">*Past results do not guarantee future outcomes. Every case is unique and must be evaluated on its own merits. Confidential settlements have been generalized to protect client privacy.</p>
+			</div>
+		</div>
+	</div>
+</LawLayout>
+
+<script>
+	const buttons = document.querySelectorAll<HTMLButtonElement>("#results-filters [data-filter]");
+	const cards = document.querySelectorAll<HTMLElement>("#results-grid [data-category]");
+
+	buttons.forEach((btn) => {
+		btn.addEventListener("click", () => {
+			buttons.forEach((b) => {
+				b.classList.remove("border-primary", "bg-primary", "text-white");
+				b.classList.add("border-gray-200", "bg-white", "text-primary");
+			});
+			btn.classList.remove("border-gray-200", "bg-white", "text-primary");
+			btn.classList.add("border-primary", "bg-primary", "text-white");
+
+			const filter = btn.dataset.filter;
+			cards.forEach((card) => {
+				card.style.display = filter === "All" || card.dataset.category === filter ? "" : "none";
+			});
+		});
+	});
+</script>

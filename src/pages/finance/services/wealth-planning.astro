@@ -1,0 +1,100 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CheckCircle = `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path>`;
+
+const wealthServices = [
+	{ title: "Personal Financial Planning", desc: "Comprehensive modeling to clarify your trajectory and required action steps." },
+	{ title: "Retirement Planning", desc: "Income sequencing, withdrawal strategies, and Roth conversion optimization during low-income years." },
+	{ title: "Estate Planning Coordination", desc: "Working alongside your attorneys to ensure your tax and investment structures align with your legacy goals." },
+	{ title: "Investment Oversight", desc: "Independent, tax-aware portfolio analysis and asset location strategies." },
+	{ title: "Insurance Review", desc: "Objective analysis of life, disability, and long-term care policies to identify gaps or over-coverage." },
+	{ title: "Family Wealth Transfer", desc: "Generational education, gifting strategies, and trust taxation advisory." },
+];
+---
+
+<FinanceLayout title="Wealth Planning & Investment Advisory | Seattle | WAFS" description="Comprehensive wealth management for Seattle business owners and families. Investment oversight, retirement planning, estate strategy, and Roth conversion planning.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Wealth & Financial Planning</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Your CPA and your financial planner should be talking to each other.</h1>
+				<p class="font-sans text-xl leading-relaxed text-warmwhite/80 md:text-2xl">For high-net-worth families and business owners, every investment decision is a tax decision. We integrate both under one roof.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Integration Advantage -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">The Integration Advantage</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">When your wealth manager doesn't know your business tax strategy, you leave money on the table. When your CPA doesn't understand your retirement timeline, planning happens in a vacuum. At WAFS, your wealth plan is built in the same room as your tax strategy, ensuring maximum efficiency.</p>
+
+					<div class="relative mb-16 flex h-64 items-center justify-center overflow-hidden py-4">
+						<div class="absolute z-10 flex h-48 w-48 -translate-x-12 items-center justify-center rounded-full border-4 border-[#1b3a2a] bg-[#1b3a2a]/5 p-4 text-center font-semibold text-wafs-forest backdrop-blur-sm">Tax<br />Planning</div>
+						<div class="absolute z-10 flex h-48 w-48 translate-x-12 items-center justify-center rounded-full border-4 border-[#c9a84c] bg-[#c9a84c]/10 p-4 text-center font-semibold text-wafs-forest backdrop-blur-sm">Investment<br />Oversight</div>
+						<div class="absolute z-10 flex h-48 w-48 translate-y-24 items-center justify-center rounded-full border-4 border-[#2c5282] bg-[#2c5282]/5 p-4 text-center font-semibold text-wafs-forest backdrop-blur-sm">Estate<br />Coordination</div>
+						<div class="pointer-events-none absolute inset-0 z-20 flex items-center justify-center pt-8">
+							<span class="font-display rounded bg-white/90 px-3 py-1 text-xl font-semibold text-wafs-forest shadow-sm">WAFS</span>
+						</div>
+					</div>
+
+					<h3 class="mt-20 mb-8 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Wealth Services</h3>
+					<div class="space-y-6">
+						{wealthServices.map((s) => (
+							<div class="flex gap-4">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-6 w-6 shrink-0 text-wafs-gold" set:html={CheckCircle} />
+								<div>
+									<h4 class="font-display mb-2 text-xl font-semibold text-wafs-forest">{s.title}</h4>
+									<p class="leading-relaxed text-[#4a5568]">{s.desc}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Practice Leader</p>
+						<div class="relative mb-6 aspect-square overflow-hidden rounded-sm">
+							<img src="/images/finance/team-robert.png" alt="Robert Kimura" class="absolute top-0 left-0 h-[120%] w-full object-cover object-top grayscale" />
+						</div>
+						<h3 class="font-display mb-2 text-2xl font-semibold text-wafs-forest">Robert Kimura</h3>
+						<p class="mb-4 font-mono text-sm text-[#4a5568]">CPA, CFP®</p>
+						<p class="mb-6 text-sm leading-relaxed text-[#4a5568]">Robert's dual CPA and CFP® credentials allow him to serve as the integrating voice — seeing how a Roth conversion affects this year's tax bill and how estate documents align with investment strategy, all in a single conversation.</p>
+						<a href="/finance/team/robert-kimura" class="flex items-center gap-2 font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">
+							View Full Profile <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={ArrowRight} />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonial -->
+	<section class="bg-[#f0ede8] py-24">
+		<div class="container mx-auto px-6">
+			<div class="mx-auto max-w-4xl text-center">
+				<p class="font-display mb-8 text-2xl leading-relaxed text-wafs-forest italic md:text-3xl">"Robert was the first advisor who showed me how a Roth conversion would interact with my business sale taxes."</p>
+				<p class="font-semibold text-[#4a5568]">— M. Callahan, Retired Healthcare Executive</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="border-t border-[#d4e6dc] bg-warmwhite py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-wafs-forest">Ready to align your wealth and taxes?</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center justify-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Wealth Planning Conversation <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-5 w-5" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

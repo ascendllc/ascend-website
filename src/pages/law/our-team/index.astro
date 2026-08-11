@@ -1,0 +1,62 @@
+---
+import LawLayout from "../../../components/law/LawLayout.astro";
+import { lawTeam } from "../../../data/law/team";
+
+const featured = lawTeam.find((a) => a.slug === "margaret-harrington")!;
+const rest = lawTeam.filter((a) => a.slug !== "margaret-harrington");
+---
+
+<LawLayout title="Our Attorneys | Seattle Law Firm | Washington Law" description="Meet Washington Law's eight Seattle attorneys: Meg Harrington (Business), James Ortega (Real Estate), Serena Voss (Estate Planning), Nathan Pierce (Civil Litigation), and four dedicated associates.">
+	<div class="min-h-screen bg-secondary/30 pt-32 pb-24">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mx-auto mb-20 max-w-3xl text-center">
+				<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Our People</p>
+				<h1 class="font-display mb-6 text-5xl font-semibold text-primary lg:text-6xl">Meet the Team</h1>
+				<p class="font-serif text-xl text-[#2e2e2e]">We are not the biggest firm in Seattle. We are exactly the right size to know you, fight for you, and win.</p>
+			</div>
+
+			<div class="mb-12">
+				<a href={`/law/team/${featured.slug}`}>
+					<div class="group grid grid-cols-1 overflow-hidden border border-border bg-white transition-all duration-500 hover:shadow-2xl lg:grid-cols-2">
+						<div class="relative aspect-[4/3] overflow-hidden lg:aspect-auto lg:min-h-[520px]">
+							<img src={featured.image} alt={featured.name} class="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105" />
+							<div class="absolute inset-0 bg-gradient-to-r from-transparent to-primary/10 transition-colors duration-300 group-hover:to-primary/20"></div>
+						</div>
+						<div class="flex flex-col justify-center p-10 lg:p-16">
+							<span class="mb-6 h-0.5 w-12 bg-accent"></span>
+							<p class="mb-3 font-sans text-xs font-bold tracking-widest text-accent uppercase">Managing Partner</p>
+							<h2 class="font-display mb-3 text-4xl font-semibold text-primary transition-colors duration-300 group-hover:text-accent lg:text-5xl">{featured.name.split(",")[0]}</h2>
+							<p class="mb-6 border-b border-border pb-6 font-sans text-xs font-semibold tracking-widest text-gray-400 uppercase">{featured.practiceAreas.join("  ·  ")}</p>
+							<p class="mb-8 font-serif text-lg leading-relaxed text-[#2e2e2e]">{featured.bio[0]}</p>
+							<span class="font-sans text-sm font-semibold tracking-widest text-primary uppercase transition-colors group-hover:text-accent">View Full Profile →</span>
+						</div>
+					</div>
+				</a>
+			</div>
+
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{rest.map((a) => (
+					<a href={`/law/team/${a.slug}`}>
+						<div class="group flex h-full flex-col border border-border bg-white transition-all duration-300 hover:shadow-xl">
+							<div class="relative aspect-[4/5] overflow-hidden">
+								<img src={a.image} alt={a.name} class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+								<div class="absolute inset-0 bg-primary/0 transition-colors duration-300 group-hover:bg-primary/15"></div>
+							</div>
+							<div class="flex flex-1 flex-col items-center border-t-4 border-transparent p-6 text-center transition-colors duration-300 group-hover:border-accent">
+								<h3 class="font-display mb-1 text-2xl font-semibold text-primary transition-colors group-hover:text-accent">{a.name.split(",")[0]}</h3>
+								<p class="mb-4 font-sans text-xs font-bold tracking-widest text-gray-400 uppercase">{a.title.split("—")[0].trim()}</p>
+								<p class="mt-auto font-serif text-sm text-[#2e2e2e]">{a.practiceAreas.join(" · ")}</p>
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+
+			<div class="mt-24 border border-border bg-white p-12 text-center">
+				<h2 class="font-display mb-4 text-3xl font-semibold text-primary">Join Washington Law</h2>
+				<p class="mx-auto mb-8 max-w-2xl font-serif text-[#2e2e2e]">We are always looking for sharp, dedicated attorneys and legal professionals who share our commitment to client-centered practice.</p>
+				<a href="/law/contact" class="inline-block rounded-none border border-primary px-8 py-3.5 font-sans text-sm font-semibold tracking-widest text-primary uppercase transition-all hover:bg-primary hover:text-white">Inquire About Opportunities</a>
+			</div>
+		</div>
+	</div>
+</LawLayout>

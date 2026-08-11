@@ -1,0 +1,64 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowLeft = `<path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path>`;
+const DownloadIcon = `<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line>`;
+
+const downloads = [
+	{ title: "2025 Seattle Business Tax Planning Guide", author: "Maggie Chen, CPA, MT", img: "dl-tax-guide.png", desc: "A 12-page comprehensive guide to structuring your Pacific Northwest business for maximum tax efficiency this year.", pages: "12 Pages", type: "PDF Guide" },
+	{ title: "Fractional CFO vs. Full-Time CFO: The Financial Case", author: "David Okafor, CPA, ABV", img: "dl-cfo-guide.png", desc: "An 8-page cost-benefit analysis breaking down exactly when growing companies should hire financial leadership.", pages: "8 Pages", type: "Whitepaper" },
+	{ title: "Pacific Northwest Wealth Planning Checklist", author: "Robert Kimura, CPA, CFP®", img: "dl-wealth-guide.png", desc: "A 4-page actionable checklist integrating estate coordination, tax optimization, and investment strategy.", pages: "4 Pages", type: "Checklist" },
+];
+---
+
+<FinanceLayout title="Free Tax & Financial Guides | Downloads | WAFS Seattle" description="Download free tax planning checklists, financial guides, and business resources from Washington Accounting & Financial Services.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<a href="/finance/resources" class="mb-8 flex items-center gap-2 text-sm font-medium text-wafs-gold transition-colors hover:text-warmwhite">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 rotate-180" set:html={ArrowLeft} /> Back to Resources
+				</a>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Firm Publications</h1>
+				<p class="font-sans text-xl leading-relaxed text-warmwhite/80">In-depth guides, checklists, and whitepapers developed by our partners for Pacific Northwest business owners.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Downloads -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+				{downloads.map((d) => (
+					<div class="group flex h-full flex-col rounded-sm border border-[#d4e6dc] bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+						<div class="mb-6 flex aspect-[3/4] items-center justify-center overflow-hidden rounded border border-[#d4e6dc]/50 bg-[#f0ede8]">
+							<img src={`/images/finance/${d.img}`} alt={d.title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+						</div>
+						<div class="flex flex-1 flex-col">
+							<div class="mb-3 flex items-center justify-between">
+								<p class="font-mono text-xs font-semibold tracking-wider text-wafs-gold uppercase">{d.type}</p>
+								<p class="font-mono text-xs text-nearblack/70">{d.pages}</p>
+							</div>
+							<h3 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{d.title}</h3>
+							<p class="mb-6 text-sm leading-relaxed text-[#4a5568]">{d.desc}</p>
+							<div class="mt-auto border-t border-[#d4e6dc] pt-6">
+								<p class="mb-4 text-xs font-semibold tracking-widest text-wafs-slate uppercase">Authored By: {d.author}</p>
+								<a
+									href="/finance/contact"
+									title="Downloads aren't wired up yet — reach out to request this document directly."
+									class="flex w-full items-center justify-center gap-2 rounded-sm bg-[#f0ede8] py-3 text-sm font-semibold text-wafs-forest transition-colors hover:bg-wafs-forest hover:text-warmwhite"
+								>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={DownloadIcon} /> Request Document
+								</a>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

@@ -1,0 +1,72 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const focusCards = [
+	{ title: "Financial Statement Audits", desc: "Rigorous, independent audits designed to meet the demands of major donors, foundations, and government funding sources." },
+	{ title: "Single Audit (Uniform Guidance)", desc: "Specialized compliance audits required for organizations expending $750,000 or more in federal awards." },
+	{ title: "Form 990 Preparation", desc: "Strategic preparation of the core informational return, treating it as a key public relations document, not just a tax filing." },
+	{ title: "Internal Controls & Governance", desc: "Assessing organizational risk, evaluating segregation of duties, and providing best-practice recommendations to management." },
+];
+---
+
+<FinanceLayout title="Nonprofit CPA & Audit Services | Seattle | WAFS" description="Form 990 preparation, financial statement audits, single audits, and advisory for nonprofits and foundations in Washington State.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/industry-nonprofit.png" alt="Nonprofit background" class="h-full w-full object-cover opacity-60 grayscale" />
+			<div class="absolute inset-0 bg-wafs-forest/80"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Industry Focus: Nonprofits & Foundations</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Mission-driven. Financially rigorous.</h1>
+				<p class="text-xl leading-relaxed text-warmwhite/80 md:text-2xl">We provide Pacific Northwest nonprofits with the sophisticated audit and compliance services needed to satisfy grantors, reassure donors, and empower boards.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Main content -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">Transparency that Drives Impact</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">Nonprofit financial compliance is under more scrutiny than ever. From restricted fund accounting to complex federal grant reporting, the accounting standards for exempt organizations are distinct and demanding. Our specialized nonprofit practice brings Big Four rigor to regional charities, foundations, and social service organizations.</p>
+					<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+						{focusCards.map((c) => (
+							<div class="rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+								<h4 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{c.title}</h4>
+								<p class="text-sm leading-relaxed text-[#4a5568]">{c.desc}</p>
+							</div>
+						))}
+					</div>
+					<h3 class="mb-6 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Beyond the Audit</h3>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">Our engagement doesn't end with the issuance of a report. We consider board financial education to be a core part of our service. Our partners routinely present audit findings to boards of directors in clear, accessible language, helping volunteer leaders understand their fiduciary duties and the true financial health of the organization.</p>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Practice Leader</p>
+						<img src="/images/finance/team-priya.png" alt="Priya Nair" class="mb-4 aspect-square w-full rounded-sm object-cover grayscale" />
+						<h3 class="font-display mb-1 text-xl font-semibold text-wafs-forest">Priya Nair</h3>
+						<p class="mb-3 font-mono text-xs text-[#4a5568]">CPA, CGMA | Partner</p>
+						<p class="mb-6 text-sm leading-relaxed text-[#4a5568]">Priya brings national-firm audit expertise to the region's most impactful nonprofits. She manages audit relationships with more than a dozen Seattle-area foundations and organizations, and is a frequent speaker at regional nonprofit conferences.</p>
+						<a href="/finance/team/priya-nair" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Profile →</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-wafs-forest py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-warmwhite">Discuss your organization's audit needs.</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Consultation
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

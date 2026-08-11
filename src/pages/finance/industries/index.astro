@@ -1,0 +1,54 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const industries = [
+	{ title: "Technology & Startups", href: "/finance/industries/technology-startups", img: "industry-tech.png", desc: "From early-stage burn rate management and R&D credits to Series A readiness and exit structuring." },
+	{ title: "Real Estate", href: "/finance/industries/real-estate", img: "industry-realestate.png", desc: "Cost segregation, 1031 exchanges, and portfolio entity structuring for investors and developers." },
+	{ title: "Healthcare", href: "/finance/industries/healthcare", img: "industry-healthcare.png", desc: "Practice accounting, compensation modeling, and buy-sell planning for medical professionals." },
+	{ title: "Nonprofits", href: "/finance/industries/nonprofits", img: "industry-nonprofit.png", desc: "Rigorous financial statement audits, Uniform Guidance compliance, and board education." },
+	{ title: "Professional Services", href: "/finance/industries/professional-services", img: "industry-professional.png", desc: "Partner compensation structures and succession strategies for legal, architecture, and consulting firms." },
+	{ title: "Family Business", href: "/finance/industries/family-business", img: "industry-family.png", desc: "Navigating the intersection of business strategy, family governance, and wealth transfer." },
+];
+---
+
+<FinanceLayout title="Industries We Serve | Seattle CPA Firm | WAFS" description="WAFS serves technology startups, real estate, healthcare, nonprofits, professional services, and family businesses across Seattle and the Pacific Northwest.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">
+					Your industry shapes your financial challenges.<br />Our expertise should match.
+				</h1>
+				<p class="text-xl leading-relaxed text-warmwhite/80 md:text-2xl">Generalist accounting doesn't cut it when you are navigating specialized tax credits, complex regulatory environments, or industry-specific business models. We bring deep, focused expertise to the sectors that drive the Pacific Northwest.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Industries grid -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+				{industries.map((i) => (
+					<a href={i.href} class="group relative block h-96 overflow-hidden rounded-sm border border-[#d4e6dc] shadow-sm transition-all duration-300 hover:shadow-lg">
+						<img src={`/images/finance/${i.img}`} alt={i.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+						<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/60 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-95"></div>
+						<div class="absolute inset-0 flex flex-col justify-end p-10">
+							<h2 class="font-display mb-4 text-3xl font-semibold text-warmwhite transition-colors group-hover:text-wafs-gold">{i.title}</h2>
+							<p class="mb-8 max-w-md text-warmwhite/80 line-clamp-2">{i.desc}</p>
+							<div class="flex items-center gap-2 text-sm font-semibold tracking-wider text-wafs-gold uppercase">
+								Explore Expertise
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1" set:html={ArrowRight} />
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

@@ -1,0 +1,84 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const focusCards = [
+	{ title: "Partner Compensation", desc: "Structuring tiered compensation models, managing guaranteed payments, and navigating self-employment tax optimization." },
+	{ title: "Entity Structure", desc: "Analyzing the ongoing benefits of PLLCs vs. S-Corporations as firm size, liability profiles, and state tax laws evolve." },
+	{ title: "Succession & Buy-Sell", desc: "Valuating the practice and structuring buy-ins for new partners and buy-outs for retiring founders." },
+	{ title: "Cash Flow Management", desc: "Smoothing the predictable variability of professional service revenue cycles through disciplined distribution models." },
+];
+---
+
+<FinanceLayout title="CPA for Professional Services Firms | Seattle | WAFS" description="Tax strategy, accounting, and CFO advisory for Seattle law firms, consultancies, and professional service businesses.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/industry-professional.png" alt="Professional services background" class="h-full w-full object-cover opacity-60 grayscale" />
+			<div class="absolute inset-0 bg-wafs-forest/80"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Industry Focus: Professional Services</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Advisors who understand your advisory business.</h1>
+				<p class="text-xl leading-relaxed text-warmwhite/80 md:text-2xl">Law firms, architecture studios, and consulting practices have unique capital structures and partnership dynamics. We provide the financial clarity needed to manage compensation, mitigate taxes, and plan for succession.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Main content -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">Built on Human Capital</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">In professional services, the primary asset goes home every night. Managing a practice requires balancing the immediate tax implications of partner distributions with the long-term need for working capital and transition planning. As a professional services firm ourselves, we possess an intimate understanding of the operational and tax realities our peers face.</p>
+					<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+						{focusCards.map((c) => (
+							<div class="rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+								<h4 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{c.title}</h4>
+								<p class="text-sm leading-relaxed text-[#4a5568]">{c.desc}</p>
+							</div>
+						))}
+					</div>
+					<h3 class="mb-6 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">State & Local Nuances</h3>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">For firms operating in Washington State, navigating the Service and Other Activities B&O tax classification, apportionment for out-of-state clients, and local city taxes requires constant vigilance to prevent margin erosion. We manage SALT compliance proactively.</p>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 space-y-12 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<div>
+							<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Practice Leader</p>
+							<img src="/images/finance/team-maggie.png" alt="Maggie Chen" class="mb-4 aspect-square w-full rounded-sm object-cover grayscale" />
+							<h3 class="font-display mb-1 text-xl font-semibold text-wafs-forest">Maggie Chen</h3>
+							<p class="mb-3 font-mono text-xs text-[#4a5568]">CPA, MT | Managing Partner</p>
+							<a href="/finance/team/maggie-chen" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Profile →</a>
+						</div>
+						<div class="border-t border-[#d4e6dc] pt-8">
+							<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Tax Lead</p>
+							<div class="mb-4 flex items-center gap-4">
+								<img src="/images/finance/team-sarah.png" alt="Sarah Holloway" class="h-16 w-16 rounded-sm object-cover grayscale" />
+								<div>
+									<h3 class="font-display text-lg font-semibold text-wafs-forest">Sarah Holloway</h3>
+									<p class="font-mono text-xs text-[#4a5568]">CPA</p>
+								</div>
+							</div>
+							<a href="/finance/team/sarah-holloway" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Profile →</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-wafs-forest py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-warmwhite">Discuss your firm's financial strategy.</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Consultation
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

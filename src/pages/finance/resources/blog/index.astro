@@ -1,0 +1,56 @@
+---
+import FinanceLayout from "../../../../components/finance/FinanceLayout.astro";
+
+const ArrowLeft = `<path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path>`;
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const posts = [
+	{ title: "Washington State B&O Tax Explained", author: "Maggie Chen, CPA, MT", img: "blog-bo-tax.png", href: "/finance/resources/blog/washington-state-bo-tax-explained", date: "March 12, 2025" },
+	{ title: "When Do You Actually Need a Fractional CFO?", author: "David Okafor, CPA, ABV", img: "blog-cfo.png", href: "/finance/resources/blog/when-you-need-a-fractional-cfo", date: "February 28, 2025" },
+	{ title: "Roth Conversion Strategy in Seattle: 2025 Guide", author: "Robert Kimura, CPA, CFP®", img: "blog-roth.png", href: "/finance/resources/blog/roth-conversion-strategy-seattle", date: "January 15, 2025" },
+];
+---
+
+<FinanceLayout title="Accounting & Tax Blog | Seattle CPA Insights | WAFS" description="Expert insights on Seattle business taxes, financial planning, and accounting from the partners at Washington Accounting & Financial Services.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<a href="/finance/resources" class="mb-8 flex items-center gap-2 text-sm font-medium text-wafs-gold transition-colors hover:text-warmwhite">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 rotate-180" set:html={ArrowLeft} /> Back to Resources
+				</a>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Firm Insights & Articles</h1>
+				<p class="font-sans text-xl leading-relaxed text-warmwhite/80">Practical analysis on tax strategy, business advisory, and wealth management from the partners at WAFS.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Posts -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{posts.map((p) => (
+					<a href={p.href} class="group flex h-full flex-col overflow-hidden rounded-sm border border-[#d4e6dc] bg-white transition-shadow hover:shadow-md">
+						<div class="aspect-[16/9] overflow-hidden">
+							<img src={`/images/finance/${p.img}`} alt={p.title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+						</div>
+						<div class="flex flex-1 flex-col p-6">
+							<div class="mb-3 flex items-center justify-between">
+								<p class="font-mono text-xs tracking-wider text-wafs-slate uppercase">{p.date}</p>
+							</div>
+							<h3 class="font-display mb-4 text-xl font-semibold text-wafs-forest transition-colors group-hover:text-wafs-gold">{p.title}</h3>
+							<div class="mt-auto flex items-center justify-between border-t border-[#d4e6dc] pt-4 text-sm text-[#4a5568]">
+								<span class="font-medium">{p.author}</span>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-wafs-gold transition-transform group-hover:translate-x-1" set:html={ArrowRight} />
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

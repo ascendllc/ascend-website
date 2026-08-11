@@ -1,0 +1,83 @@
+---
+const services = [
+	{ title: "Tax Strategy & Compliance", href: "/finance/services/tax-strategy" },
+	{ title: "Business Advisory & CFO", href: "/finance/services/business-advisory" },
+	{ title: "Audit & Assurance", href: "/finance/services/audit-assurance" },
+	{ title: "Wealth & Financial Planning", href: "/finance/services/wealth-planning" },
+];
+const industries = [
+	{ title: "Technology & Startups", href: "/finance/industries/technology-startups" },
+	{ title: "Real Estate", href: "/finance/industries/real-estate" },
+	{ title: "Healthcare", href: "/finance/industries/healthcare" },
+	{ title: "Nonprofits", href: "/finance/industries/nonprofits" },
+	{ title: "Professional Services", href: "/finance/industries/professional-services" },
+	{ title: "Family Business", href: "/finance/industries/family-business" },
+];
+const company = [
+	{ title: "About Us", href: "/finance/about" },
+	{ title: "Our Team", href: "/finance/team" },
+	{ title: "Resources Hub", href: "/finance/resources" },
+	{ title: "FAQ", href: "/finance/faq" },
+	{ title: "Client Portal", href: "/finance/client-portal" },
+	{ title: "Careers", href: "/finance/about/careers" },
+	{ title: "Contact Us", href: "/finance/contact" },
+];
+const campaigns = [
+	{ title: "Small Business Tax Planning", href: "/finance/lp/seattle-business-tax" },
+	{ title: "Fractional CFO Services", href: "/finance/lp/fractional-cfo-seattle" },
+	{ title: "Protect Your Legacy", href: "/finance/lp/protect-your-legacy" },
+	{ title: "Sell Your Business", href: "/finance/lp/sell-your-business-seattle" },
+];
+---
+
+<footer class="bg-wafs-forest pt-20 pb-10 text-warmwhite">
+	<div class="container mx-auto px-6">
+		<div class="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+			<div>
+				<h4 class="font-display mb-6 text-xl font-semibold text-wafs-gold">Services</h4>
+				<ul class="space-y-4">
+					{services.map((s) => (<li><a href={s.href} class="text-warmwhite/80 transition-colors hover:text-warmwhite">{s.title}</a></li>))}
+				</ul>
+			</div>
+			<div>
+				<h4 class="font-display mb-6 text-xl font-semibold text-wafs-gold">Industries</h4>
+				<ul class="space-y-4">
+					{industries.map((i) => (<li><a href={i.href} class="text-warmwhite/80 transition-colors hover:text-warmwhite">{i.title}</a></li>))}
+				</ul>
+			</div>
+			<div>
+				<h4 class="font-display mb-6 text-xl font-semibold text-wafs-gold">Company</h4>
+				<ul class="space-y-4">
+					{company.map((c) => (<li><a href={c.href} class="text-warmwhite/80 transition-colors hover:text-warmwhite">{c.title}</a></li>))}
+				</ul>
+			</div>
+			<div>
+				<h4 class="font-display mb-6 text-xl font-semibold text-wafs-gold">Contact</h4>
+				<div class="space-y-4 text-warmwhite/80">
+					<p>Washington Accounting & <br />Financial Services</p>
+					<p>1420 Fifth Avenue, Suite 1200<br />Seattle, WA 98101</p>
+					<p><a href="tel:2065555555" class="transition-colors hover:text-warmwhite">(206) 555-5555</a></p>
+					<p><a href="mailto:hello@washingtonacfs.com" class="transition-colors hover:text-warmwhite">hello@washingtonacfs.com</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="flex flex-col items-center justify-between gap-4 border-t border-warmwhite/10 pt-8 text-sm text-warmwhite/60 md:flex-row">
+			<p>© 2025 Washington Accounting & Financial Services. All rights reserved.</p>
+			<div class="flex gap-4">
+				<a href="/finance/privacy-policy" class="transition-colors hover:text-warmwhite">Privacy Policy</a>
+			</div>
+		</div>
+		<div class="mt-8 border-t border-warmwhite/10 pt-8 text-center text-xs text-warmwhite/40">
+			<p class="mb-2">Paid Campaign Landing Pages:</p>
+			<div class="flex flex-wrap justify-center gap-x-4 gap-y-2">
+				{campaigns.map((c, idx) => (
+					<>
+						<a href={c.href} class="transition-colors hover:text-warmwhite">{c.title}</a>
+						<span>·</span>
+					</>
+				))}
+				<a href="/finance/demo/landing-pages" class="font-medium text-warmwhite/60 transition-colors hover:text-warmwhite">All Campaigns →</a>
+			</div>
+		</div>
+	</div>
+</footer>

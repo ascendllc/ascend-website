@@ -1,0 +1,202 @@
+---
+import FinanceLandingLayout from "../../../components/finance/FinanceLandingLayout.astro";
+
+const AlertIcon = `<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path>`;
+const CalendarIcon = `<path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path>`;
+const TrendingDownIcon = `<path d="M16 17h6v-6"></path><path d="m22 17-8.5-8.5-5 5L2 7"></path>`;
+const CheckIcon = `<circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path>`;
+
+const painPoints = [
+	{
+		icon: AlertIcon,
+		title: "Wrong entity structure",
+		desc: "Many owners still operating as sole proprietors or LLCs years after they should have elected S-corp status. The wrong structure is the most expensive mistake in business taxes.",
+	},
+	{
+		icon: CalendarIcon,
+		title: "Reactive filing, not proactive planning",
+		desc: "Meeting your CPA in February means you've lost most planning opportunities. Tax savings happen in the calendar year, not during filing season.",
+	},
+	{
+		icon: TrendingDownIcon,
+		title: "Missed and undocumented deductions",
+		desc: "Home office, vehicle use, retirement contributions, equipment depreciation — the most valuable deductions require year-round documentation.",
+	},
+];
+
+const whatWeDo = [
+	"Entity structure analysis and annual review",
+	"Annual tax strategy meeting (not just April filing)",
+	"S-Corporation, partnership, and sole proprietor returns",
+	"Estimated quarterly tax payment scheduling",
+	"Washington B&O tax planning and filing",
+	"Payroll tax setup and compliance",
+	"Deduction audit and year-round documentation",
+];
+
+const steps = [
+	{ num: "01", title: "Submit your info", desc: "Fill out the form below — it takes about 90 seconds." },
+	{ num: "02", title: "We schedule a call", desc: "A member of our tax team will reach out within one business day to schedule a free 30-minute discovery call." },
+	{ num: "03", title: "Leave with clarity", desc: "You'll leave the call with an honest assessment of your current tax situation and specific areas where planning could reduce your liability." },
+];
+---
+
+<FinanceLandingLayout title="Seattle Business Tax Planning | WAFS" description="Reduce your Seattle business tax burden with proactive B&O tax planning and strategy from WAFS partners.">
+	<!-- Hero -->
+	<section class="relative flex min-h-[80vh] items-center bg-wafs-forest pt-36 pb-24 text-warmwhite">
+		<div class="absolute inset-0 z-0" style="background-image:url('/images/finance/lp-tax-bg.png'); background-size:cover; background-position:center; opacity:0.2;"></div>
+		<div class="absolute inset-0 z-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		<div class="relative z-10 container mx-auto max-w-4xl px-6">
+			<p class="mb-6 font-mono text-xs tracking-widest text-wafs-gold uppercase">Seattle Small Business Tax Planning</p>
+			<h1 class="font-display mb-8 text-5xl leading-[0.95] font-semibold md:text-7xl">Overpaying Business Taxes? Let's Fix That.</h1>
+			<p class="mb-10 max-w-2xl text-lg leading-relaxed text-warmwhite/85 md:text-xl">Most Seattle small business owners file taxes reactively. We plan proactively — building year-round strategies that reduce your liability and put more money back into your business.</p>
+			<div class="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+				<a href="#contact-form" class="h-14 rounded-md bg-wafs-gold px-10 py-4 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Get My Free Tax Assessment</a>
+				<p class="text-sm text-warmwhite/60">No commitment. Just an honest conversation.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonial strip -->
+	<section class="border-y border-lightsage bg-warmcream py-12">
+		<div class="container mx-auto max-w-3xl px-6 text-center">
+			<p class="font-display text-xl leading-relaxed text-wafs-forest italic md:text-2xl">"We reduced our effective tax rate by 11 points in year one. That's not luck — that's planning."</p>
+			<p class="mt-4 font-sans font-semibold text-charcoal">J. Hollenbeck — Owner, Westside Plumbing &amp; Heating</p>
+		</div>
+	</section>
+
+	<!-- Why overpay -->
+	<section class="bg-warmwhite py-20">
+		<div class="container mx-auto max-w-5xl px-6">
+			<h2 class="font-display mb-4 text-center text-3xl font-semibold text-wafs-forest md:text-4xl">Why Most Business Owners Overpay</h2>
+			<p class="mx-auto mb-14 max-w-2xl text-center text-charcoal">It's rarely negligence — it's the way most CPA engagements are structured. Three predictable gaps account for the majority of avoidable tax liability.</p>
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+				{painPoints.map((p) => (
+					<div class="border-t-2 border-wafs-gold bg-warmcream p-8">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-4 h-8 w-8 text-wafs-gold" set:html={p.icon} />
+						<h3 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{p.title}</h3>
+						<p class="text-sm leading-relaxed text-charcoal">{p.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- What we do instead -->
+	<section class="border-t border-lightsage bg-warmcream py-20">
+		<div class="container mx-auto max-w-4xl px-6">
+			<div class="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+				<div>
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest md:text-4xl">What We Do Instead</h2>
+					<p class="mb-8 leading-relaxed text-charcoal">WAFS engages year-round with every business tax client. Our first meeting is a strategy session, not a document-gathering appointment. We work with you throughout the year to actively manage your liability — so April is a confirmation, not a surprise.</p>
+				</div>
+				<div class="space-y-3">
+					{whatWeDo.map((item) => (
+						<div class="flex items-start gap-3">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 h-5 w-5 shrink-0 text-wafs-gold" set:html={CheckIcon} />
+							<p class="font-medium text-nearblack">{item}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Meet Maggie -->
+	<section class="border-t border-lightsage bg-warmwhite py-20">
+		<div class="container mx-auto max-w-4xl px-6">
+			<div class="grid grid-cols-1 items-start gap-10 md:grid-cols-3">
+				<div class="md:col-span-1">
+					<div class="aspect-square overflow-hidden bg-warmcream">
+						<img src="/images/finance/team-maggie.png" alt="Maggie Chen, CPA, MT" class="h-full w-full object-cover" />
+					</div>
+				</div>
+				<div class="md:col-span-2">
+					<div class="mb-4 flex gap-2">
+						<span class="rounded-sm bg-wafs-forest px-2 py-1 font-mono text-xs text-warmwhite">CPA</span>
+						<span class="rounded-sm bg-wafs-forest px-2 py-1 font-mono text-xs text-warmwhite">MT</span>
+						<span class="rounded-sm bg-wafs-forest px-2 py-1 font-mono text-xs text-warmwhite">Managing Partner</span>
+					</div>
+					<h3 class="font-display mb-2 text-2xl font-semibold text-wafs-forest">Maggie Chen, CPA, MT</h3>
+					<p class="mb-6 text-sm font-medium text-wafs-slate">Lead — Tax Strategy &amp; Compliance</p>
+					<p class="leading-relaxed text-charcoal">Maggie Chen leads WAFS's tax practice. A former Deloitte tax director with a Master of Taxation from UW Foster, she founded WAFS in 2014 specifically to bring senior-level tax strategy to Pacific Northwest small business owners. Her clients pay less in taxes — and understand exactly why.</p>
+					<p class="font-display mt-4 text-lg text-wafs-forest italic">"The highest-impact tax work I do isn't filing returns — it's preventing the tax bills that most business owners don't even know they're paying."</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Three steps -->
+	<section class="bg-wafs-forest py-20 text-warmwhite">
+		<div class="container mx-auto max-w-4xl px-6">
+			<h2 class="font-display mb-14 text-center text-3xl font-semibold">Three Easy Steps</h2>
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+				{steps.map((s) => (
+					<div class="text-center">
+						<div class="mb-4 font-mono text-5xl text-wafs-gold">{s.num}</div>
+						<h3 class="font-display mb-3 text-xl font-semibold">{s.title}</h3>
+						<p class="text-sm leading-relaxed text-warmwhite/75">{s.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact form -->
+	<section id="contact-form" class="border-t border-lightsage bg-warmcream py-20">
+		<div class="container mx-auto max-w-2xl px-6">
+			<div class="mb-10 text-center">
+				<h2 class="font-display mb-4 text-3xl font-semibold text-wafs-forest md:text-4xl">Request Your Free Tax Assessment</h2>
+				<p class="text-charcoal">No commitment. No obligation. Just an honest look at your tax situation.</p>
+			</div>
+			<form class="space-y-6 border border-lightsage bg-white p-8">
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+					<div>
+						<label for="firstName" class="mb-1.5 block text-sm font-semibold text-wafs-forest">First Name</label>
+						<input type="text" id="firstName" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+					<div>
+						<label for="lastName" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Last Name</label>
+						<input type="text" id="lastName" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+				</div>
+				<div>
+					<label for="businessName" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Business Name</label>
+					<input type="text" id="businessName" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+				</div>
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+					<div>
+						<label for="email" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Email</label>
+						<input type="email" id="email" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+					<div>
+						<label for="phone" class="mb-1.5 block text-sm font-semibold text-wafs-forest">Phone</label>
+						<input type="tel" id="phone" class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+					</div>
+				</div>
+				<div>
+					<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Annual Revenue</label>
+					<select class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none">
+						<option value="">Select revenue range</option>
+						<option value="under-500k">Under $500K</option>
+						<option value="500k-2m">$500K – $2M</option>
+						<option value="2m-5m">$2M – $5M</option>
+						<option value="5m-plus">$5M+</option>
+					</select>
+				</div>
+				<div>
+					<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Current CPA Situation</label>
+					<select class="mt-1 w-full rounded-sm border border-lightsage bg-white px-4 py-2.5 text-sm text-nearblack focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none">
+						<option value="">Select your situation</option>
+						<option value="no-cpa">No CPA currently</option>
+						<option value="unsatisfied">Have a CPA, but unsatisfied</option>
+						<option value="switching">Looking to switch firms</option>
+						<option value="first-time">First time seeking professional help</option>
+					</select>
+				</div>
+				<button type="button" title="This form isn't wired up to send yet — call us directly instead." class="h-14 w-full rounded-md bg-wafs-gold text-base font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Request My Free Tax Assessment</button>
+				<p class="text-center text-xs text-charcoal">Your information is kept strictly confidential and is not shared outside WAFS without your consent.</p>
+			</form>
+		</div>
+	</section>
+</FinanceLandingLayout>

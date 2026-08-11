@@ -1,0 +1,165 @@
+---
+import LawLandingLayout from "../../../components/law/LawLandingLayout.astro";
+import { lawTeam } from "../../../data/law/team";
+
+const attorney = lawTeam.find((a) => a.slug === "serena-voss")!;
+const It = "#7C5C3E";
+const Nj = "#A07850";
+
+const HeartHandshakeIcon = `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="m12 5-2 2 4 4-2 2"></path>`;
+const UsersIcon = `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>`;
+const ClockIcon = `<path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle>`;
+const GraduationCapIcon = `<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>`;
+const CheckIcon = `<path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path>`;
+
+const stageOptions = [
+	{ value: "no_plan", label: "I have no plan in place" },
+	{ value: "outdated", label: "My existing plan needs updating" },
+	{ value: "life_event", label: "I had a major life event (marriage, child, home purchase)" },
+	{ value: "business", label: "I own a business and need succession planning" },
+	{ value: "high_net_worth", label: "Complex estate — multiple assets or properties" },
+	{ value: "other", label: "Not sure — want to explore" },
+];
+
+const highlights = [
+	{ icon: HeartHandshakeIcon, text: "Protect your home, savings, and assets from unnecessary probate" },
+	{ icon: UsersIcon, text: "Ensure your family knows your wishes — no court battles" },
+	{ icon: ClockIcon, text: "Complete your full estate plan in 3–4 weeks, not months" },
+	{ icon: GraduationCapIcon, text: "Dr. Serena Voss holds a Ph.D. in family systems — she understands more than just the legal side" },
+];
+
+const consequences = [
+	{ stat: "18 months", label: "Average Washington probate process — your family's assets tied up in court while they grieve" },
+	{ stat: "3–9%", label: "Of your estate's value lost to probate costs, court fees, and attorney expenses" },
+	{ stat: "0 say", label: "In who raises your children or receives your assets if you die without a will" },
+];
+
+const includes = [
+	"Last Will & Testament",
+	"Revocable Living Trust",
+	"Durable Power of Attorney",
+	"Healthcare Directive & Living Will",
+	"Beneficiary Designations Review",
+	"Letter of Instruction for Your Family",
+	"Digital Assets & Accounts Plan",
+	"Business Succession (if applicable)",
+];
+---
+
+<LawLandingLayout title="Estate Planning Seattle | Protect Your Legacy | Washington Law" description="Create a comprehensive estate plan with Washington Law's Seattle estate planning attorneys. Wills, trusts, powers of attorney, and probate avoidance. Free consultation available." canonical="/law/lp/protect-your-legacy">
+	<div class="w-full">
+		<div style={`background-color:${It}`} class="px-6 py-3 text-white">
+			<div class="container mx-auto flex max-w-7xl flex-wrap justify-center gap-x-8 gap-y-1 font-sans text-xs font-bold tracking-widest uppercase">
+				<span>★★★★★ 4.9 Rating</span>
+				<span class="hidden opacity-50 sm:inline">|</span>
+				<span>Complete in 3–4 Weeks</span>
+				<span class="hidden opacity-50 sm:inline">|</span>
+				<span>Family & Estate Specialists</span>
+				<span class="hidden opacity-50 sm:inline">|</span>
+				<span>15 Years · Seattle</span>
+			</div>
+		</div>
+
+		<section id="get-started" style={`border-color:${It}`} class="border-b-4 bg-[#FAF7F2] px-6 py-16 lg:py-24">
+			<div class="container mx-auto max-w-7xl">
+				<div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
+					<div>
+						<div style={`background-color:${It}`} class="mb-8 inline-flex items-center gap-2 px-4 py-2 font-sans text-xs font-bold tracking-widest text-white uppercase">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={GraduationCapIcon} />
+							Estate Planning · Seattle, WA
+						</div>
+						<h1 class="font-display mb-6 text-5xl leading-[1.1] font-semibold text-primary italic lg:text-7xl">You've Spent a Lifetime Building This. <span style={`color:${It}`}>Now Protect It.</span></h1>
+						<p class="font-body mb-8 text-xl leading-relaxed text-[#2E2E2E]">Most people keep meaning to get an estate plan done. Then life gets busy. Then something happens. Don't let your family navigate an 18-month probate process because you ran out of time. We make it simple — <strong>complete in 3–4 weeks</strong>.</p>
+						<div class="mb-10 space-y-4">
+							{highlights.map((h) => (
+								<div class="flex items-start gap-4">
+									<div style={`color:${It}`} class="mt-0.5 shrink-0">
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" set:html={h.icon} />
+									</div>
+									<p class="font-body text-lg text-[#2E2E2E]">{h.text}</p>
+								</div>
+							))}
+						</div>
+						<div style={`border-color:${It}`} class="flex items-center gap-4 border-l-4 bg-white p-5 shadow-sm">
+							<img src={attorney.image} alt={attorney.name} class="h-16 w-16 shrink-0 rounded-full object-cover" />
+							<div>
+								<p class="font-sans font-bold text-primary text-sm">{attorney.name}</p>
+								<p style={`color:${It}`} class="font-body text-sm">Partner · Estate Planning & Trusts</p>
+								<p class="mt-1 font-body text-xs text-[#2E2E2E]">Ph.D. in Family Systems · 12 years estate planning</p>
+							</div>
+						</div>
+					</div>
+					<div style={`border-color:${It}`} class="relative border-t-4 bg-white p-8 text-primary shadow-2xl">
+						<div style={`background-color:${It}`} class="absolute -top-3 left-8 px-4 py-1 font-sans text-xs font-bold tracking-widest text-white uppercase">Free Planning Session</div>
+						<form class="mt-4 space-y-4">
+							<h3 class="font-display mb-2 text-2xl font-semibold text-primary">Start your estate plan today.</h3>
+							<input type="text" placeholder="Full Name" class="w-full rounded-none border border-border px-4 py-2.5 text-sm" />
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<input type="email" placeholder="Email" class="w-full rounded-none border border-border px-4 py-2.5 text-sm" />
+								<input type="tel" placeholder="Phone" class="w-full rounded-none border border-border px-4 py-2.5 text-sm" />
+							</div>
+							<select class="w-full rounded-none border border-border px-4 py-2.5 text-sm text-gray-500">
+								<option value="">Where are you in the process?</option>
+								{stageOptions.map((s) => <option value={s.value}>{s.label}</option>)}
+							</select>
+							<textarea placeholder="Anything you'd like us to know ahead of the session (optional)" class="min-h-[80px] w-full rounded-none border border-border px-4 py-2.5 text-sm"></textarea>
+							<button type="button" title="This form isn't wired up to send yet — call us directly instead." style={`background-color:${It}`} class="w-full rounded-none py-6 font-sans text-sm font-bold tracking-widest text-white uppercase hover:opacity-90">Book My Free Planning Session →</button>
+							<p class="text-center font-sans text-xs text-gray-500">🔒 Completely confidential. No commitment required.</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-primary px-6 py-16 text-white">
+			<div class="container mx-auto max-w-4xl text-center">
+				<h2 class="font-display mb-8 text-4xl font-semibold lg:text-5xl">What happens if you don't have a plan.</h2>
+				<div class="grid grid-cols-1 gap-8 text-left md:grid-cols-3">
+					{consequences.map((c) => (
+						<div style={`border-color:${Nj}`} class="border-l-4 pl-6">
+							<p style={`color:${Nj}`} class="font-display mb-2 text-4xl font-semibold">{c.stat}</p>
+							<p class="font-body text-secondary/80">{c.label}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-[#FAF7F2] px-6 py-16">
+			<div class="container mx-auto max-w-4xl">
+				<p style={`color:${It}`} class="mb-8 text-center font-sans text-sm font-bold tracking-widest uppercase">What your estate plan includes:</p>
+				<div class="grid grid-cols-1 gap-x-12 gap-y-5 md:grid-cols-2">
+					{includes.map((item) => (
+						<div class="flex items-center gap-4 border-b border-[#D5C8B8] pb-4">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 shrink-0" style={`color:${It}`} set:html={CheckIcon} />
+							<span class="font-body text-lg font-medium text-primary">{item}</span>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section style={`background-color:${It}`} class="px-6 py-16 text-white">
+			<div class="container mx-auto max-w-3xl text-center">
+				<p class="font-display mb-6 text-3xl leading-relaxed italic lg:text-4xl">"Estate planning is rarely just about assets — it's about family dynamics, legacy, and giving people peace of mind."</p>
+				<p class="font-sans text-sm font-bold tracking-widest uppercase opacity-80">— Dr. Serena Voss, J.D. · Estate Planning Partner</p>
+			</div>
+		</section>
+
+		<section style={`border-color:${It}`} class="border-t-4 bg-white px-6 py-16 text-center">
+			<h2 class="font-display mb-4 text-4xl font-semibold text-primary">Your family deserves a clear plan.</h2>
+			<p class="font-body mb-8 text-xl text-[#2E2E2E]">Free planning session · No commitment · Completes in 3–4 weeks</p>
+			<a href="#get-started" style={`background-color:${It}`} class="inline-block w-full rounded-none px-10 py-6 text-center font-sans text-sm font-bold tracking-wide text-white uppercase hover:opacity-90 sm:w-auto sm:tracking-widest">Start My Estate Plan →</a>
+		</section>
+
+		<footer class="bg-primary px-6 py-6 text-center text-xs text-white/50">
+			<p>© {new Date().getFullYear()} Washington Law PLLC · 1420 Fifth Avenue, Suite 1800, Seattle, WA 98101 · <a href="tel:12065551847" class="transition-colors hover:text-white">(206) 555-1847</a></p>
+			<p class="mt-2">Attorney advertising. Past results do not guarantee future outcomes. This page does not constitute legal advice.</p>
+		</footer>
+
+		<div style={`border-color:${It}`} class="fixed bottom-0 left-0 z-50 flex w-full gap-2 border-t-2 bg-white p-4 lg:hidden">
+			<a href="tel:2065551847" style={`background-color:${It}`} class="flex-1 rounded-none py-3 text-center font-sans text-xs font-bold tracking-wider text-white uppercase hover:opacity-90">Call Now: (206) 555-1847</a>
+			<a href="#get-started" style={`border-color:${It}; color:${It}`} class="rounded-none border px-4 py-3 text-center font-sans text-xs font-bold tracking-wider uppercase">Free Session</a>
+		</div>
+	</div>
+</LawLandingLayout>

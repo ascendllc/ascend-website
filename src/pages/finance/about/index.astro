@@ -1,0 +1,117 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const Check = `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path>`;
+
+const timeline = [
+	{ year: "2014", desc: "Firm founded by Maggie Chen and Robert Kimura in downtown Seattle." },
+	{ year: "2016", desc: "David Okafor joins to launch the Business Advisory & Fractional CFO practice." },
+	{ year: "2017", desc: "Priya Nair joins from Big Four to launch the Audit & Assurance practice." },
+	{ year: "2019-2023", desc: "Firm expands senior management layer, adding deep expertise in real estate and startup sectors." },
+	{ year: "Today", desc: "8 credentialed professionals serving 200+ of the region's most dynamic businesses and families." },
+];
+
+const values = [
+	{ title: "Senior Partnership Always", desc: "You hire our partners, you work with our partners. We don't bait-and-switch with junior staff." },
+	{ title: "Integrated by Design", desc: "Tax, wealth, audit, and advisory collaborate internally so you receive unified strategies." },
+	{ title: "Pacific Northwest Rooted", desc: "We understand the local economy, the state tax codes, and the business culture of Seattle." },
+	{ title: "Year-Round Engagement", desc: "Strategic planning happens all year. If we only speak in April, we've both failed." },
+];
+
+const team = [
+	{ name: "Maggie Chen", img: "team-maggie.png" },
+	{ name: "David Okafor", img: "team-david.png" },
+	{ name: "Priya Nair", img: "team-priya.png" },
+	{ name: "Robert Kimura", img: "team-robert.png" },
+];
+---
+
+<FinanceLayout title="About WAFS | Seattle CPA Firm Founded in 2014" description="Washington Accounting & Financial Services was founded in 2014 by Seattle CPA Maggie Chen to deliver Big-Four expertise with boutique responsiveness to Pacific Northwest businesses.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/about-hero.png" alt="Seattle office" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="mx-auto max-w-4xl text-center">
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Built for the Pacific Northwest. Built to Stay.</h1>
+				<p class="mx-auto max-w-2xl font-sans text-xl leading-relaxed text-warmwhite/80 md:text-2xl">We left national firms to build a practice where senior strategy is the rule, not the exception.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Founding Story -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="mx-auto mb-24 max-w-3xl">
+				<h2 class="font-display mb-8 text-center text-3xl font-semibold text-wafs-forest md:text-4xl">The Founding Story</h2>
+				<div>
+					<p class="mb-8 text-center text-xl leading-relaxed text-[#4a5568] italic">Washington Accounting & Financial Services was founded in 2014 by Maggie Chen and Robert Kimura — a tax strategist and a financial planner who shared a conviction that Pacific Northwest business owners deserved better.</p>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">At their respective large national firms, Maggie and Robert noticed a recurring problem: successful local founders and families were being assigned to junior staff because they weren't Fortune 500 accounts. Worse, these clients were receiving disjointed advice because their tax CPA, their wealth manager, and their corporate auditor never spoke to one another.</p>
+					<p class="leading-relaxed text-[#4a5568]">They built WAFS to be the antidote. The firm was designed around three non-negotiable principles: senior access always, integrated services under one roof, and year-round engagement (not just tax season). What began as a two-partner operation has grown selectively, adding partners David Okafor (CFO Services) and Priya Nair (Audit) to complete the firm's comprehensive capability set.</p>
+				</div>
+			</div>
+
+			<h2 class="font-display mb-12 text-center text-3xl font-semibold text-wafs-forest">Firm Timeline</h2>
+			<div class="mx-auto max-w-4xl">
+				<div class="space-y-0">
+					{timeline.map((t) => (
+						<div class="group flex">
+							<div class="w-32 flex-shrink-0 pt-1 pr-6 text-right">
+								<span class="font-mono text-xl font-semibold text-wafs-gold">{t.year}</span>
+							</div>
+							<div class="relative border-l-2 border-[#d4e6dc] pb-12 pl-6 transition-colors group-last:border-transparent group-hover:border-wafs-gold">
+								<div class="absolute -left-[9px] top-1.5 h-4 w-4 rounded-full bg-wafs-forest transition-colors group-hover:bg-wafs-gold"></div>
+								<p class="text-lg leading-relaxed text-[#4a5568]">{t.desc}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Core Values -->
+	<section class="bg-[#f0ede8] py-24">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-12 text-center text-3xl font-semibold text-wafs-forest">Core Values</h2>
+			<div class="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
+				{values.map((v) => (
+					<div class="h-full rounded-sm border border-[#d4e6dc] bg-white p-8">
+						<div class="mb-6 flex h-12 w-12 items-center justify-center rounded bg-wafs-forest">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-wafs-gold" set:html={Check} />
+						</div>
+						<h3 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{v.title}</h3>
+						<p class="leading-relaxed text-[#4a5568]">{v.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Meet the Team -->
+	<section class="bg-wafs-forest py-24 text-warmwhite">
+		<div class="container mx-auto px-6 text-center">
+			<h2 class="font-display mb-12 text-4xl font-semibold">Meet the Team</h2>
+			<div class="mb-16 flex flex-wrap justify-center gap-4">
+				{team.map((m) => (
+					<div class="h-24 w-24 overflow-hidden rounded-full border-2 border-wafs-gold md:h-32 md:w-32">
+						<img src={`/images/finance/${m.img}`} alt={m.name} class="h-full w-full object-cover grayscale transition-all hover:grayscale-0" />
+					</div>
+				))}
+			</div>
+			<a href="/finance/team" class="mb-12 inline-flex items-center justify-center rounded-md bg-wafs-gold px-8 py-3 font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">View All Professional Profiles</a>
+			<div class="mx-auto grid max-w-2xl grid-cols-1 gap-6 border-t border-white/10 pt-12 md:grid-cols-2">
+				<a href="/finance/about/community" class="group rounded-sm border border-white/20 p-6 transition-colors hover:bg-white/5">
+					<h3 class="font-display mb-2 text-xl font-semibold text-wafs-gold transition-colors group-hover:text-warmwhite">Community Involvement</h3>
+					<p class="text-sm text-warmwhite/60">See how we support the Pacific Northwest.</p>
+				</a>
+				<a href="/finance/about/careers" class="group rounded-sm border border-white/20 p-6 transition-colors hover:bg-white/5">
+					<h3 class="font-display mb-2 text-xl font-semibold text-wafs-gold transition-colors group-hover:text-warmwhite">Careers at WAFS</h3>
+					<p class="text-sm text-warmwhite/60">Join a firm that does things differently.</p>
+				</a>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

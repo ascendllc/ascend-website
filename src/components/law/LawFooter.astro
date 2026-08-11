@@ -1,0 +1,72 @@
+---
+import LawLogo from "./LawLogo.astro";
+
+const firm = {
+	name: "Washington Law",
+	phone: "(206) 555-1847",
+	address: "1420 Fifth Avenue, Suite 1800, Seattle, WA 98101",
+	email: "hello@washingtonlaw.com",
+	tagline: "Sharp Minds. Steady Counsel.",
+};
+
+const practiceAreas = [
+	{ id: "business-corporate", slug: "business-corporate-law", title: "Business & Corporate Law" },
+	{ id: "estate-planning", slug: "estate-planning-trusts", title: "Estate Planning" },
+	{ id: "employment", slug: "employment-law", title: "Employment Law" },
+	{ id: "real-estate", slug: "real-estate-law", title: "Real Estate Law" },
+	{ id: "civil-litigation", slug: "civil-litigation", title: "Civil Litigation" },
+];
+
+const year = 2026;
+---
+
+<footer class="bg-[#1A1F2D] pt-20 pb-8 text-white">
+	<div class="container mx-auto max-w-7xl px-6">
+		<div class="mb-16 grid grid-cols-1 gap-12 md:grid-cols-12 lg:gap-8">
+			<div class="flex flex-col gap-6 md:col-span-5 lg:col-span-4">
+				<LawLogo light class="mb-2" />
+				<p class="max-w-xs font-serif text-lg leading-relaxed text-white/70">{firm.tagline}</p>
+				<div class="mt-2 flex gap-4">
+					<a href="https://linkedin.com" target="_blank" rel="noreferrer" class="text-white transition-colors hover:text-[#c29129]">LinkedIn</a>
+				</div>
+			</div>
+			<div class="flex flex-col gap-4 md:col-span-3 lg:col-span-4">
+				<h4 class="mb-2 text-sm font-semibold tracking-widest text-[#c29129] uppercase">Practice Areas</h4>
+				<ul class="flex flex-col gap-3">
+					{practiceAreas.map((p) => (
+						<li><a href={`/law/practice-areas/${p.slug}`} class="text-white/80 transition-colors hover:text-white">{p.title}</a></li>
+					))}
+				</ul>
+			</div>
+			<div class="flex flex-col gap-4 md:col-span-2 lg:col-span-2">
+				<h4 class="mb-2 text-sm font-semibold tracking-widest text-[#c29129] uppercase">Get Started</h4>
+				<ul class="flex flex-col gap-3">
+					<li><a href="/law/lp/fired-in-seattle" class="text-white/80 transition-colors hover:text-white">Wrongful Termination</a></li>
+					<li><a href="/law/lp/seattle-business-lawyer" class="text-white/80 transition-colors hover:text-white">Business Law Intake</a></li>
+					<li><a href="/law/lp/protect-your-legacy" class="text-white/80 transition-colors hover:text-white">Estate Planning</a></li>
+					<li><a href="/law/lp/civil-dispute-seattle" class="text-white/80 transition-colors hover:text-white">Civil Dispute Intake</a></li>
+					<li><a href="/law/demo/landing-pages" class="text-[#c29129] transition-colors hover:text-white">All Campaigns →</a></li>
+				</ul>
+			</div>
+			<div class="flex flex-col gap-4 md:col-span-2 lg:col-span-2">
+				<h4 class="mb-2 text-sm font-semibold tracking-widest text-[#c29129] uppercase">Contact</h4>
+				<div class="space-y-2 text-white/80">
+					<p>{firm.address}</p>
+					<p><a href={`tel:${firm.phone.replace(/[^0-9]/g, "")}`} class="transition-colors hover:text-white">{firm.phone}</a></p>
+					<p><a href={`mailto:${firm.email}`} class="transition-colors hover:text-white">{firm.email}</a></p>
+				</div>
+				<div class="mt-4">
+					<p class="text-sm text-white/80">Hours: Mon-Fri 8:00 AM – 6:00 PM</p>
+				</div>
+			</div>
+		</div>
+		<div class="mb-8 h-px w-full bg-white/10"></div>
+		<div class="flex flex-col items-center justify-between gap-4 text-xs text-white/50 md:flex-row">
+			<p>© {year} {firm.name}. All rights reserved.</p>
+			<div class="flex gap-6">
+				<a href="/law/privacy-policy" class="transition-colors hover:text-white">Privacy Policy</a>
+				<a href="/law/disclaimer" class="transition-colors hover:text-white">Disclaimer</a>
+			</div>
+		</div>
+	</div>
+</footer>

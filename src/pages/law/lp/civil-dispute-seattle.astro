@@ -1,0 +1,164 @@
+---
+import LawLandingLayout from "../../../components/law/LawLandingLayout.astro";
+import { lawTeam } from "../../../data/law/team";
+
+const attorney = lawTeam.find((a) => a.slug === "nathan-pierce")!;
+const xn = "#4A235A";
+const Ej = "#7B4F8E";
+
+const ScaleIcon = `<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>`;
+const HandshakeIcon = `<path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"></path><path d="m21 3 1 11h-2"></path><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"></path><path d="M3 4h8"></path>`;
+const HouseIcon = `<path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>`;
+const UsersIcon = `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>`;
+const CheckIcon = `<path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path>`;
+
+const disputeOptions = [
+	{ value: "contract", label: "Breach of contract" },
+	{ value: "business", label: "Business dispute or fraud" },
+	{ value: "property", label: "Property or boundary dispute" },
+	{ value: "partnership", label: "Partner or shareholder dispute" },
+	{ value: "personal_injury", label: "Personal injury or negligence" },
+	{ value: "debt", label: "Debt collection or enforcement" },
+	{ value: "other", label: "Other civil matter" },
+];
+
+const disputeTypes = [
+	{ icon: ScaleIcon, label: "Business & Contract Disputes" },
+	{ icon: HouseIcon, label: "Property & Boundary Disputes" },
+	{ icon: HandshakeIcon, label: "Business Torts & Fraud" },
+	{ icon: UsersIcon, label: "Partnership & Shareholder Disputes" },
+];
+
+const stats = [
+	{ stat: "200+", label: "Civil Disputes Handled" },
+	{ stat: "Top 100", label: "National Trial Lawyers" },
+	{ stat: "9th Circuit", label: "Federal Court Admitted" },
+	{ stat: "Super Lawyers", label: "2020–2026" },
+];
+
+const consequences = [
+	{ heading: "Statutes of limitations are real.", body: "Washington civil claims can expire in as little as 3 years — and some much sooner. Once the clock runs out, your claim is gone." },
+	{ heading: "Evidence disappears.", body: "Emails get deleted. Witnesses forget. The sooner you act, the stronger your case." },
+	{ heading: "The other side is already strategizing.", body: "If they've hired counsel, they're building a defense right now. You should be too." },
+];
+---
+
+<LawLandingLayout title="Civil Dispute Attorney Seattle | Free Consultation | Washington Law" description="Facing a contract dispute, business tort, or civil claim in Seattle? Washington Law's litigators prepare every case for trial — which is exactly what makes opposing parties settle. Free consultation." canonical="/law/lp/civil-dispute-seattle">
+	<div class="w-full">
+		<div style={`background-color:${xn}`} class="px-6 py-3 text-white">
+			<div class="container mx-auto flex max-w-7xl flex-wrap justify-center gap-x-8 gap-y-1 font-sans text-xs font-bold tracking-widest uppercase">
+				<span>★★★★★ 4.9 Rating</span>
+				<span class="hidden opacity-50 sm:inline">|</span>
+				<span>National Trial Lawyers Top 100</span>
+				<span class="hidden opacity-50 sm:inline">|</span>
+				<span>$50M+ in Outcomes</span>
+				<span class="hidden opacity-50 sm:inline">|</span>
+				<span>9th Circuit Admitted</span>
+			</div>
+		</div>
+
+		<section id="get-started" class="bg-primary px-6 py-16 text-white lg:py-24">
+			<div class="container mx-auto max-w-7xl">
+				<div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
+					<div>
+						<div style={`background-color:${xn}`} class="mb-8 inline-flex items-center gap-2 px-4 py-2 font-sans text-xs font-bold tracking-widest text-white uppercase">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={HandshakeIcon} />
+							Civil Litigation · Seattle
+						</div>
+						<h1 class="font-display mb-6 text-5xl leading-[1.1] font-semibold italic lg:text-7xl">When the Other Side Won't Back Down, <span style="color:#C49BE0">Neither Do We.</span></h1>
+						<p class="font-body mb-10 text-xl leading-relaxed text-secondary/90">If you've tried everything — negotiation, mediation, demand letters — and the other side is still ignoring you, it's time for a litigator. Nathan Pierce has secured favorable outcomes in over 200 civil disputes across Washington State and federal courts.</p>
+						<div class="mb-10 grid grid-cols-2 gap-5">
+							{disputeTypes.map((d) => (
+								<div class="flex items-center gap-3 border-l-2 border-[#7B4F8E] pl-4">
+									<div style={`color:${Ej}`}>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6" set:html={d.icon} />
+									</div>
+									<span class="font-sans text-sm font-semibold text-secondary">{d.label}</span>
+								</div>
+							))}
+						</div>
+						<div class="flex items-center gap-5 border-t border-white/10 pt-8">
+							<img src={attorney.image} alt={attorney.name} style={`border-color:${Ej}`} class="h-16 w-16 shrink-0 rounded-full border-2 object-cover" />
+							<div>
+								<p class="font-sans font-bold text-white text-sm">{attorney.name}</p>
+								<p class="font-body text-sm text-secondary/70">Partner · Civil Litigation · Stanford Law</p>
+								<p class="mt-1 font-body text-xs text-secondary/60">National Trial Lawyers Top 100 · Super Lawyers 2020–2026</p>
+							</div>
+						</div>
+					</div>
+					<div style={`border-color:${xn}`} class="relative border-t-4 bg-white p-8 text-primary shadow-2xl">
+						<div style={`background-color:${xn}`} class="absolute -top-3 left-8 px-4 py-1 font-sans text-xs font-bold tracking-widest text-white uppercase">Free Case Evaluation</div>
+						<form class="mt-4 space-y-4">
+							<h3 class="font-display mb-2 text-2xl font-semibold text-primary">Tell us about your dispute.</h3>
+							<input type="text" placeholder="Full Name" class="w-full rounded-none border border-border px-4 py-2.5 text-sm" />
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<input type="email" placeholder="Email" class="w-full rounded-none border border-border px-4 py-2.5 text-sm" />
+								<input type="tel" placeholder="Phone" class="w-full rounded-none border border-border px-4 py-2.5 text-sm" />
+							</div>
+							<select class="w-full rounded-none border border-border px-4 py-2.5 text-sm text-gray-500">
+								<option value="">Type of dispute</option>
+								{disputeOptions.map((d) => <option value={d.value}>{d.label}</option>)}
+							</select>
+							<textarea placeholder="Briefly describe your situation — what happened, who's involved, and what you're hoping to achieve" class="min-h-[100px] w-full rounded-none border border-border px-4 py-2.5 text-sm"></textarea>
+							<button type="button" title="This form isn't wired up to send yet — call us directly instead." style={`background-color:${xn}`} class="w-full rounded-none py-6 font-sans text-sm font-bold tracking-widest text-white uppercase hover:opacity-90">Get My Free Case Evaluation →</button>
+							<p class="text-center font-sans text-xs text-gray-500">🔒 Confidential. Attorney-client privilege begins at first contact.</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section style={`background-color:${xn}`} class="px-6 py-16">
+			<div class="container mx-auto max-w-5xl">
+				<div class="grid grid-cols-2 gap-8 text-center text-white md:grid-cols-4">
+					{stats.map((s) => (
+						<div>
+							<p class="font-display mb-2 text-3xl font-semibold lg:text-4xl" style="color:#C49BE0">{s.stat}</p>
+							<p class="font-sans text-sm text-white/70 uppercase tracking-widest">{s.label}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-secondary px-6 py-16">
+			<div class="container mx-auto max-w-4xl">
+				<h2 class="font-display mb-10 text-center text-4xl font-semibold text-primary">Every day you wait has consequences.</h2>
+				<div class="space-y-6">
+					{consequences.map((c, i) => (
+						<div style={`border-color:${xn}`} class="flex items-start gap-6 border-l-4 bg-white p-6 shadow-sm">
+							<div style={`color:${xn}`} class="font-display shrink-0 text-4xl font-semibold">{i + 1}</div>
+							<div>
+								<h3 class="mb-1 font-sans text-lg font-bold text-primary">{c.heading}</h3>
+								<p class="font-body text-[#2E2E2E]">{c.body}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-primary px-6 py-16 text-white">
+			<div class="container mx-auto max-w-3xl text-center">
+				<p class="font-display mb-6 text-3xl leading-relaxed italic lg:text-4xl">"Nathan is a litigator's litigator. He thrives in the courtroom but understands that the best litigation strategy often avoids trial altogether."</p>
+				<p class="font-sans text-sm font-bold tracking-widest uppercase opacity-70">— Washington Law · Nathan Pierce, J.D., Partner</p>
+			</div>
+		</section>
+
+		<section style={`border-color:${xn}`} class="border-t-4 bg-white px-6 py-16 text-center">
+			<h2 class="font-display mb-4 text-4xl font-semibold text-primary">Don't let the other side win by default.</h2>
+			<p class="font-body mb-8 text-xl text-[#2E2E2E]">Free case evaluation · No commitment · Response within 24 hours</p>
+			<a href="#get-started" style={`background-color:${xn}`} class="inline-block w-full rounded-none px-10 py-6 text-center font-sans text-sm font-bold tracking-wide text-white uppercase hover:opacity-90 sm:w-auto sm:tracking-widest">Get My Free Case Evaluation →</a>
+		</section>
+
+		<footer class="bg-primary px-6 py-6 text-center text-xs text-white/50">
+			<p>© {new Date().getFullYear()} Washington Law PLLC · 1420 Fifth Avenue, Suite 1800, Seattle, WA 98101 · <a href="tel:12065551847" class="transition-colors hover:text-white">(206) 555-1847</a></p>
+			<p class="mt-2">Attorney advertising. Past results do not guarantee future outcomes. This page does not constitute legal advice.</p>
+		</footer>
+
+		<div style={`border-color:${xn}`} class="fixed bottom-0 left-0 z-50 flex w-full gap-2 border-t-2 bg-white p-4 lg:hidden">
+			<a href="tel:2065551847" style={`background-color:${xn}`} class="flex-1 rounded-none py-3 text-center font-sans text-xs font-bold tracking-wider text-white uppercase hover:opacity-90">Call Now: (206) 555-1847</a>
+			<a href="#get-started" style={`border-color:${xn}; color:${xn}`} class="rounded-none border px-4 py-3 text-center font-sans text-xs font-bold tracking-wider uppercase">Free Review</a>
+		</div>
+	</div>
+</LawLandingLayout>

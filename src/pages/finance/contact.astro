@@ -1,0 +1,137 @@
+---
+import FinanceLayout from "../../components/finance/FinanceLayout.astro";
+
+const MapPin = `<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle>`;
+const Phone = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.44 1.25l-.464.354a1 1 0 0 0-.302 1.214 14.11 14.11 0 0 0 6.038 6.05Z"></path>`;
+const Mail = `<rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>`;
+
+const situations = ["Small Business Owner", "Individual/Family", "Nonprofit", "Startup", "Other"];
+---
+
+<FinanceLayout title="Contact WAFS | Schedule a Free Consultation | Seattle CPA" description="Schedule a free 30-minute discovery call with a WAFS partner. Contact our Seattle CPA firm at (206) 555-5555 or complete our online contact form.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-32 pb-20 text-warmwhite">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto max-w-3xl px-6 text-center">
+			<h1 class="font-display mb-6 text-5xl font-semibold md:text-6xl">Let's Start the Conversation</h1>
+			<p class="text-lg text-warmwhite/80 md:text-xl">Whether you're ready to engage or just exploring options, we'll give you an honest assessment of how WAFS can help. The first conversation is free.</p>
+		</div>
+	</section>
+
+	<!-- Form + info -->
+	<section class="bg-warmwhite py-20">
+		<div class="container mx-auto px-6">
+			<div class="mx-auto grid max-w-6xl grid-cols-1 gap-16 lg:grid-cols-2">
+				<!-- Form -->
+				<div class="rounded-xl border border-[#d4e6dc] bg-white p-8 shadow-lg md:p-12">
+					<h2 class="font-display mb-8 text-3xl font-semibold text-wafs-forest">Send a Message</h2>
+					<form class="space-y-6">
+						<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">First Name</label>
+								<input type="text" name="firstName" placeholder="Jane" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+							</div>
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Last Name</label>
+								<input type="text" name="lastName" placeholder="Doe" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+							</div>
+						</div>
+						<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Email</label>
+								<input type="email" name="email" placeholder="jane@example.com" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+							</div>
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">Phone</label>
+								<input type="tel" name="phone" placeholder="(206) 555-0123" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none" />
+							</div>
+						</div>
+						<div>
+							<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">What best describes your situation?</label>
+							<select name="situation" class="w-full rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none">
+								<option value="">Select an option</option>
+								{situations.map((s) => <option value={s}>{s}</option>)}
+							</select>
+						</div>
+						<div>
+							<label class="mb-1.5 block text-sm font-semibold text-wafs-forest">How can we help?</label>
+							<textarea name="message" rows="5" placeholder="Tell us a bit about your financial needs..." class="w-full resize-y rounded-md border border-[#d4e6dc] bg-warmwhite px-4 py-2.5 text-sm text-nearblack transition-colors focus:border-wafs-gold focus:ring-2 focus:ring-wafs-gold/30 focus:outline-none"></textarea>
+						</div>
+						<button
+							type="button"
+							title="This form isn't wired up to send yet — call or email us directly instead."
+							class="h-14 w-full rounded-md bg-wafs-forest text-lg font-semibold text-warmwhite transition-colors hover:bg-wafs-forest/90"
+						>
+							Send Message
+						</button>
+					</form>
+				</div>
+
+				<!-- Contact info -->
+				<div class="space-y-12">
+					<div>
+						<h2 class="font-display mb-8 text-3xl font-semibold text-wafs-forest">Contact Information</h2>
+						<div class="space-y-6">
+							<div class="flex items-start gap-4">
+								<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-wafs-gold/20">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-wafs-forest" set:html={MapPin} />
+								</div>
+								<div>
+									<h3 class="text-lg font-semibold text-nearblack">Office</h3>
+									<p class="mt-1 leading-relaxed text-[#4a5568]">1420 Fifth Avenue, Suite 1200<br />Seattle, WA 98101</p>
+								</div>
+							</div>
+							<div class="flex items-start gap-4">
+								<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-wafs-gold/20">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-wafs-forest" set:html={Phone} />
+								</div>
+								<div>
+									<h3 class="text-lg font-semibold text-nearblack">Phone</h3>
+									<p class="mt-1 leading-relaxed text-[#4a5568]">(206) 555-5555</p>
+								</div>
+							</div>
+							<div class="flex items-start gap-4">
+								<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-wafs-gold/20">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-wafs-forest" set:html={Mail} />
+								</div>
+								<div>
+									<h3 class="text-lg font-semibold text-nearblack">Email</h3>
+									<p class="mt-1 leading-relaxed text-[#4a5568]">hello@washingtonacfs.com</p>
+								</div>
+							</div>
+						</div>
+						<div class="mt-8 border-t border-[#d4e6dc] pt-8">
+							<h3 class="mb-2 text-lg font-semibold text-nearblack">Office Hours</h3>
+							<p class="text-[#4a5568]">Monday – Friday: 8:00 AM – 5:30 PM PT</p>
+						</div>
+					</div>
+
+					<div class="rounded-xl border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<h3 class="font-display mb-6 text-2xl font-semibold text-wafs-forest">Partner Quick-Connect</h3>
+						<div class="space-y-6">
+							<div class="flex items-center gap-4">
+								<img src="/images/finance/team-maggie.png" alt="Maggie Chen" class="h-16 w-16 rounded-full object-cover" />
+								<div>
+									<h4 class="font-semibold text-nearblack">Maggie Chen, CPA, MT</h4>
+									<p class="mb-1 text-sm text-[#4a5568]">Tax Strategy</p>
+									<a href="mailto:mchen@washingtonacfs.com" class="text-sm text-wafs-evergreen hover:underline">mchen@washingtonacfs.com</a>
+								</div>
+							</div>
+							<div class="flex items-center gap-4">
+								<img src="/images/finance/team-david.png" alt="David Okafor" class="h-16 w-16 rounded-full object-cover" />
+								<div>
+									<h4 class="font-semibold text-nearblack">David Okafor, CPA, ABV</h4>
+									<p class="mb-1 text-sm text-[#4a5568]">Business Advisory & CFO</p>
+									<a href="mailto:dokafor@washingtonacfs.com" class="text-sm text-wafs-evergreen hover:underline">dokafor@washingtonacfs.com</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

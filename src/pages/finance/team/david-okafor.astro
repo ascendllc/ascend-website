@@ -1,0 +1,107 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowLeft = `<path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path>`;
+const Phone = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>`;
+const Mail = `<rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>`;
+
+const focusAreas = ["Fractional CFO services", "Business valuation", "M&A advisory", "Strategic financial planning", "Cash flow management", "Startup financial infrastructure", "Investor-ready reporting"];
+const industries = [
+	{ label: "Technology & Startups", href: "/finance/industries/technology-startups" },
+	{ label: "Family-Owned Business", href: "/finance/industries/family-business" },
+	{ label: "Professional Services", href: "/finance/industries/professional-services" },
+];
+const credentials = [
+	"Certified Public Accountant (WA, DC)",
+	"Accredited in Business Valuation (ABV)",
+	"B.B.A. Accounting, Howard University",
+	"American Institute of CPAs (AICPA)",
+	"Advisory Board, Seattle SCORE",
+	"Member, ProVisors Seattle",
+];
+---
+
+<FinanceLayout title="David Okafor, CPA/ABV | Partner | WAFS Seattle" description="David Okafor, CPA/ABV is a Partner at WAFS specializing in business valuation, M&A advisory, and transaction support across the Pacific Northwest.">
+	<!-- Hero -->
+	<section class="bg-wafs-forest text-warmwhite pt-32 pb-16">
+		<div class="container mx-auto px-6">
+			<a href="/finance/team" class="text-warmwhite/60 hover:text-wafs-gold text-sm font-medium flex items-center gap-2 mb-8 transition-colors">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={ArrowLeft} /> Back to Team
+			</a>
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+				<div class="relative lg:col-span-5 aspect-[4/5] overflow-hidden rounded-sm border-4 border-wafs-evergreen">
+					<img src="/images/finance/team-david.png" alt="David Okafor" class="w-full h-full object-cover" />
+				</div>
+				<div class="lg:col-span-7">
+					<div class="flex flex-wrap gap-2 mb-6">
+						<span class="bg-wafs-gold text-wafs-forest text-xs font-mono px-3 py-1 rounded-full font-semibold">CPA</span>
+						<span class="bg-wafs-evergreen text-warmwhite text-xs font-mono px-3 py-1 rounded-full">ABV</span>
+					</div>
+					<h1 class="font-display font-semibold text-5xl md:text-6xl mb-2">David Okafor</h1>
+					<p class="text-2xl text-wafs-gold font-display italic mb-8">Partner — Business Advisory & CFO Services</p>
+					<div class="space-y-4 mb-10 text-warmwhite/80 font-sans">
+						<a href="tel:2065555555" class="flex items-center gap-3 hover:text-warmwhite transition-colors">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={Phone} /> (206) 555-5555
+						</a>
+						<a href="mailto:dokafor@washingtonacfs.com" class="flex items-center gap-3 hover:text-warmwhite transition-colors">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={Mail} /> dokafor@washingtonacfs.com
+						</a>
+						<div class="flex items-center gap-3">
+							<span class="w-5 h-5 flex items-center justify-center text-wafs-gold font-semibold">·</span> Joined WAFS in 2016
+						</div>
+					</div>
+					<a href="/finance/contact" class="inline-flex items-center bg-wafs-gold hover:bg-wafs-gold/90 text-wafs-forest font-semibold text-lg px-8 py-4 rounded-md transition-colors">Schedule a Call with David</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Body -->
+	<section class="py-24 bg-warmwhite">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+				<div class="lg:col-span-8 space-y-12">
+					<div>
+						<h2 class="font-display text-3xl font-semibold text-wafs-forest mb-6">Biography</h2>
+						<div class="prose-wafs space-y-6 text-[#4a5568] leading-relaxed">
+							<p>David Okafor joined WAFS in 2016 after serving as CFO at a Seattle-based SaaS company he helped grow from 12 employees to a $40 million acquisition. That inside-the-business experience gives David something rare in the accounting world: he understands what financial leadership looks like from a management chair, not just an auditor's desk.</p>
+							<p>Before his time in industry, David spent nine years at a regional firm focused on business valuation and transaction advisory. At WAFS, he leads the Business Advisory & CFO Services practice, providing fractional executive leadership to founder-led and family-owned businesses scaling past $5 million in revenue.</p>
+							<p>He holds the Accredited in Business Valuation (ABV) credential through the AICPA and has provided expert valuation testimony in mediation and litigation contexts. His approach to financial reporting is uncompromising: he believes founders should be able to explain their margins to a board member clearly, confidently, and without hesitation.</p>
+							<p>He serves on the advisory board of Seattle SCORE and speaks frequently on business valuation and exit strategy for ProVisors groups throughout the Pacific Northwest.</p>
+						</div>
+					</div>
+					<div class="bg-[#f0ede8] p-8 border-l-4 border-wafs-gold">
+						<p class="font-display text-2xl leading-relaxed italic text-wafs-forest">"Most companies don't need a full-time CFO until they cross $20 million in revenue. But they need CFO-level thinking the moment they take outside capital or prepare for a transition. We fill that gap."</p>
+					</div>
+				</div>
+				<div class="lg:col-span-4 space-y-10">
+					<div>
+						<h3 class="font-sans font-semibold text-sm uppercase tracking-widest text-wafs-slate mb-4 border-b border-[#d4e6dc] pb-2">Focus Areas</h3>
+						<ul class="space-y-3">
+							{focusAreas.map((e) => (
+								<li class="flex items-start gap-2 text-[#4a5568]">
+									<div class="w-1.5 h-1.5 rounded-full bg-wafs-gold mt-2 shrink-0"></div>
+									<span>{e}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+					<div>
+						<h3 class="font-sans font-semibold text-sm uppercase tracking-widest text-wafs-slate mb-4 border-b border-[#d4e6dc] pb-2">Industry Expertise</h3>
+						<ul class="space-y-3">
+							{industries.map((i) => (
+								<li><a href={i.href} class="text-wafs-forest font-medium hover:text-wafs-gold transition-colors">{i.label}</a></li>
+							))}
+						</ul>
+					</div>
+					<div>
+						<h3 class="font-sans font-semibold text-sm uppercase tracking-widest text-wafs-slate mb-4 border-b border-[#d4e6dc] pb-2">Credentials & Affiliations</h3>
+						<ul class="space-y-3 text-sm text-[#4a5568]">
+							{credentials.map((c) => (<li>{c}</li>))}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

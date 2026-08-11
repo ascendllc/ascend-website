@@ -1,0 +1,89 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CheckCircle = `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path>`;
+
+const assuranceServices = [
+	{ title: "Financial Statement Audit", desc: "Independent, objective examinations of financial statements for stakeholders, lenders, and investors." },
+	{ title: "Review & Compilation", desc: "Lower-level assurance services appropriate for companies not requiring a full audit but needing credible financial reporting." },
+	{ title: "Nonprofit Audit", desc: "Specialized audits for exempt organizations, focusing on net asset classification, revenue recognition, and functional expense allocation." },
+	{ title: "Single Audit (Uniform Guidance)", desc: "Rigorous compliance audits for organizations expending significant federal awards." },
+	{ title: "Employee Benefit Plan Audit", desc: "ERISA compliance audits for 401(k), 403(b), and pension plans." },
+	{ title: "SOC Reporting", desc: "System and Organization Controls (SOC 1 and SOC 2) examinations for service organizations." },
+	{ title: "Due Diligence", desc: "Quality of earnings analysis and financial review for mergers and acquisitions." },
+];
+---
+
+<FinanceLayout title="Audit & Assurance Services | Seattle CPA Firm | WAFS" description="Independent financial statement audits, reviews, and compilations for Seattle businesses and nonprofits. PCAOB-aware methodology with partner involvement on every engagement.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Audit & Assurance</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">An audit that tells you something you didn't already know.</h1>
+				<p class="font-sans text-xl leading-relaxed text-warmwhite/80 md:text-2xl">We believe compliance should create value. Our assurance services deliver rigorous financial validation alongside actionable insights for management and boards.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Beyond the Checkbox -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">Beyond the Checkbox</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">A basic audit verifies the past. A strategic audit strengthens the future. Under the leadership of Big Four alumni, our assurance practice brings national-firm rigor to Pacific Northwest businesses and nonprofits, delivering transparent reporting that satisfies stakeholders while identifying operational improvements.</p>
+					<h3 class="mb-8 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Assurance Services</h3>
+					<div class="space-y-8">
+						{assuranceServices.map((s) => (
+							<div class="flex gap-4">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-6 w-6 shrink-0 text-wafs-gold" set:html={CheckCircle} />
+								<div>
+									<h4 class="font-display mb-2 text-xl font-semibold text-wafs-forest">{s.title}</h4>
+									<p class="leading-relaxed text-[#4a5568]">{s.desc}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Practice Leader</p>
+						<img src="/images/finance/team-priya.png" alt="Priya Nair" class="mb-6 aspect-square w-full rounded-sm object-cover grayscale" />
+						<h3 class="font-display mb-2 text-2xl font-semibold text-wafs-forest">Priya Nair</h3>
+						<p class="mb-4 font-mono text-sm text-[#4a5568]">CPA, CGMA</p>
+						<p class="mb-6 text-sm leading-relaxed text-[#4a5568]">Priya leads WAFS's Audit & Assurance practice with a philosophy that an audit shouldn't just validate the past — it should give an organization tools to build a better future. She spent her first ten years in public accounting at a Big Four firm.</p>
+						<a href="/finance/team/priya-nair" class="flex items-center gap-2 font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">
+							View Full Profile <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={ArrowRight} />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonial -->
+	<section class="bg-[#f0ede8] py-24">
+		<div class="container mx-auto px-6">
+			<div class="mx-auto max-w-4xl text-center">
+				<p class="font-display mb-8 text-2xl leading-relaxed text-wafs-forest italic md:text-3xl">"Priya's team treated our audit like a relationship, not a transaction."</p>
+				<p class="font-semibold text-[#4a5568]">— C. Hoffman, Executive Director, Puget Sound Environmental Coalition</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="border-t border-[#d4e6dc] bg-warmwhite py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-wafs-forest">Require an independent audit or review?</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center justify-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule an Audit Consultation <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-5 w-5" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

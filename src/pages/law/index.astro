@@ -1,0 +1,237 @@
+---
+import LawLayout from "../../components/law/LawLayout.astro";
+import { lawPracticeAreas } from "../../data/law/practiceAreas";
+import { lawTeam } from "../../data/law/team";
+import { lawInsights } from "../../data/law/insights";
+import { lawTestimonials } from "../../data/law/testimonials";
+
+const iconMap: Record<string, string> = {
+	Briefcase: `<rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>`,
+	ScaleHeart: `<path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"></path>`,
+	Users: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>`,
+	Building: `<rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path>`,
+	Gavel: `<path d="m14.5 12.5-8 8a2.119 2.119 0 1 1-3-3l8-8"></path><path d="m16 16 6-6"></path><path d="m8 8 6-6"></path><path d="m9 7 8 8"></path><path d="m21 11-8-8"></path>`,
+};
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const stats = [
+	{ end: "50M+", label: "Client Outcomes" },
+	{ end: "200+", label: "5-Star Reviews" },
+	{ end: "15+", label: "Years Combined Experience" },
+	{ end: "97%", label: "Client Retention Rate" },
+];
+---
+
+<LawLayout title="Washington Law | Seattle Boutique Law Firm" description="Washington Law is a Seattle boutique law firm with eight dedicated attorneys specializing in Business Law, Real Estate, Employment, and Estate Planning. Free consultation. Call (206) 555-1847.">
+	<!-- Hero -->
+	<section class="relative flex min-h-[90vh] flex-col justify-center overflow-hidden bg-primary pt-20">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/law/hero-seattle.png" alt="Seattle Skyline" class="h-full w-full object-cover opacity-40" />
+			<div class="absolute inset-0 bg-primary/60 mix-blend-multiply"></div>
+			<div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto max-w-7xl px-6 py-20">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-xs font-bold tracking-widest text-accent uppercase lg:text-sm">Seattle Boutique Law Firm — Founded 2009</p>
+				<h1 class="font-display mb-8 text-5xl leading-[1.1] font-semibold text-white italic md:text-7xl lg:text-[80px]">Sharp Minds.<br />Steady Counsel.</h1>
+				<p class="mb-12 max-w-2xl font-serif text-xl leading-relaxed text-[#c7cede] lg:text-2xl">Eight dedicated attorneys. Four practice areas. One commitment — to know your case as well as you do, and fight for you like it matters. Because it does.</p>
+				<div class="flex flex-col gap-4 sm:flex-row">
+					<a href="/law/contact" class="rounded-none bg-accent px-8 py-3.5 text-center font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:scale-105 hover:bg-accent/90">Book a Free Consultation →</a>
+					<a href="/law/practice-areas" class="rounded-none border border-white px-8 py-3.5 text-center font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:bg-white hover:text-primary">Explore Our Practice Areas</a>
+				</div>
+			</div>
+		</div>
+		<div class="absolute bottom-0 hidden w-full border-t border-white/10 bg-primary/80 backdrop-blur-sm md:block">
+			<div class="container mx-auto max-w-7xl px-6 py-4">
+				<div class="flex items-center justify-between font-sans text-xs font-semibold tracking-wider text-[#c7cede]/80 uppercase">
+					<span>15+ Years Serving the PNW</span>
+					<span class="text-accent">★★★★★ 200+ Client Reviews</span>
+					<span>$50M+ in Outcomes</span>
+					<span>8 Dedicated Attorneys</span>
+					<span>Avvo Rating: 10.0</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- What brings clients -->
+	<section class="bg-secondary py-24 lg:py-32">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="grid grid-cols-1 items-center gap-12 md:grid-cols-12 lg:gap-24">
+				<div class="md:col-span-6 lg:col-span-7">
+					<p class="mb-4 font-sans text-sm font-bold tracking-widest text-primary uppercase">What Brings Most Clients To Us</p>
+					<h2 class="font-display mb-8 text-4xl leading-tight font-semibold text-primary lg:text-5xl">You need an attorney who will actually pick up the phone.</h2>
+					<div class="space-y-6 font-serif text-lg leading-relaxed text-[#2e2e2e]">
+						<p>Most people come to us after a frustrating experience with a firm where they felt like a file number. Where calls went unanswered. Where they were billed for emails they never received. Where the attorney assigned to their case had never actually met them.</p>
+						<p>We built Washington Law as the answer to that problem.</p>
+						<p class="font-medium text-primary">You work directly with a named attorney from day one. That attorney knows your case, your goals, and your stress level. And yes — they pick up their own phone.</p>
+					</div>
+				</div>
+				<div class="relative md:col-span-6 lg:col-span-5">
+					<div class="absolute top-0 bottom-0 left-0 hidden w-[2px] bg-accent/30 md:block"></div>
+					<div class="flex flex-col gap-12 pl-0 md:pl-12">
+						<div class="flex gap-6">
+							<div class="shrink-0 text-accent"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg></div>
+							<div>
+								<h3 class="mb-2 font-sans font-bold tracking-wide text-primary">Direct Access</h3>
+								<p class="font-serif text-[#2e2e2e]">No call centers. Your attorney, always.</p>
+							</div>
+						</div>
+						<div class="flex gap-6">
+							<div class="shrink-0 text-accent"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
+							<div>
+								<h3 class="mb-2 font-sans font-bold tracking-wide text-primary">Transparent Billing</h3>
+								<p class="font-serif text-[#2e2e2e]">Know your costs before we begin.</p>
+							</div>
+						</div>
+						<div class="flex gap-6">
+							<div class="shrink-0 text-accent"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path></svg></div>
+							<div>
+								<h3 class="mb-2 font-sans font-bold tracking-wide text-primary">Proven Outcomes</h3>
+								<p class="font-serif text-[#2e2e2e]">$50M+ secured for our clients.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Practice areas grid -->
+	<section class="bg-white py-24 lg:py-32">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mb-16 text-center">
+				<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">How We Can Help</p>
+				<h2 class="font-display text-4xl font-semibold text-primary lg:text-5xl">The Right Expertise. Right When You Need It.</h2>
+			</div>
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{lawPracticeAreas.map((p: any) => (
+					<a href={`/law/practice-areas/${p.slug}`}>
+						<div class="group relative flex h-full flex-col overflow-hidden border border-gray-200 border-t-4 border-t-transparent bg-white p-8 transition-all hover:border-t-accent hover:shadow-xl">
+							<div class="mb-6 text-primary transition-colors group-hover:text-accent">
+								<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconMap[p.icon] ?? ""} />
+							</div>
+							<h3 class="font-display mb-4 text-2xl font-semibold text-primary transition-colors group-hover:text-accent">{p.title}</h3>
+							<p class="mb-8 flex-1 font-serif text-[#2e2e2e]">{p.shortDescription}</p>
+							<span class="mt-auto flex items-center gap-2 font-sans text-sm font-semibold tracking-widest text-accent uppercase">
+								Explore <span class="transition-transform group-hover:translate-x-2">→</span>
+							</span>
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- By the numbers -->
+	<section class="relative bg-primary py-24 text-white lg:py-32">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mb-20 text-center">
+				<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">By The Numbers</p>
+				<h2 class="font-display text-3xl font-semibold text-[#c7cede] italic lg:text-4xl">"Results you can measure. Relationships that last."</h2>
+			</div>
+			<div class="mb-24 grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
+				{stats.map((s) => (
+					<div class="text-center">
+						<p class="font-display mb-2 text-4xl font-bold text-accent lg:text-5xl">{s.end}</p>
+						<p class="font-sans text-xs font-semibold tracking-widest text-[#c7cede]/80 uppercase">{s.label}</p>
+					</div>
+				))}
+			</div>
+			<div class="mx-auto max-w-4xl">
+				<div class="relative flex min-h-[250px] flex-col items-center justify-center gap-8 text-center">
+					{lawTestimonials.map((t: any) => (
+						<div>
+							<p class="font-display mb-8 text-2xl leading-relaxed text-[#c7cede] italic lg:text-3xl">"{t.quote}"</p>
+							<div class="flex flex-col items-center">
+								<span class="font-sans font-bold tracking-wide text-accent uppercase">{t.author}</span>
+								<span class="mt-1 font-serif text-[#c7cede]/80">{t.title} | {t.category}</span>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Team preview -->
+	<section class="bg-secondary py-24 lg:py-32">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+				<div class="flex flex-col justify-center lg:col-span-5">
+					<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Your Legal Team</p>
+					<h2 class="font-display mb-6 text-4xl font-semibold text-primary lg:text-5xl">Eight Attorneys. One Standard: Excellence.</h2>
+					<p class="mb-10 font-serif text-lg leading-relaxed text-[#2e2e2e]">Every attorney at Washington Law was chosen for expertise, character, and the ability to explain a complex situation in plain language. Meet the team you'll actually work with.</p>
+					<div>
+						<a href="/law/our-team" class="inline-block rounded-none border border-primary px-8 py-3 font-sans text-sm font-semibold tracking-widest text-primary uppercase transition-all hover:bg-primary hover:text-white">Meet the Full Team →</a>
+					</div>
+				</div>
+				<div class="lg:col-span-7">
+					<div class="grid grid-cols-2 gap-4">
+						{lawTeam.slice(0, 4).map((a: any) => (
+							<a href={`/law/team/${a.slug}`}>
+								<div class="group relative aspect-[3/4] overflow-hidden bg-white">
+									<img src={a.image} alt={a.name} class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+									<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-80 transition-opacity group-hover:opacity-100"></div>
+									<div class="absolute bottom-0 left-0 w-full p-4">
+										<h3 class="mb-1 line-clamp-1 font-sans text-sm font-bold text-white">{a.name.split(",")[0]}</h3>
+										<p class="font-serif text-xs text-accent">{a.practiceAreas[0]}</p>
+									</div>
+								</div>
+							</a>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Insights preview -->
+	<section class="bg-white py-24 lg:py-32">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
+				<div>
+					<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Legal Insights</p>
+					<h2 class="font-display text-4xl font-semibold text-primary lg:text-5xl">Answers to the questions you're already asking.</h2>
+				</div>
+				<a href="/law/insights" class="font-sans text-sm font-semibold tracking-widest text-primary uppercase transition-colors hover:text-accent">View All Articles →</a>
+			</div>
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+				{lawInsights.slice(0, 3).map((i: any) => (
+					<a href={`/law/insights/${i.slug}`} class="group flex h-full flex-col">
+						<div class="mb-6 aspect-video overflow-hidden">
+							<img src={i.image} alt={i.title} class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+						</div>
+						<div class="mb-4 flex items-center gap-4">
+							<span class="font-sans text-xs font-semibold tracking-widest text-accent uppercase">{i.category}</span>
+							<span class="h-1 w-1 rounded-full bg-gray-300"></span>
+							<span class="font-sans text-xs text-[#2e2e2e] uppercase">{i.date}</span>
+						</div>
+						<h3 class="font-display mb-3 text-2xl font-semibold text-primary transition-colors group-hover:text-accent">{i.title}</h3>
+						<p class="mb-4 flex-1 font-serif text-[#2e2e2e]">{i.excerpt}</p>
+						<span class="flex items-center gap-2 font-sans text-sm font-semibold tracking-widest text-primary uppercase transition-colors group-hover:text-accent">
+							Read Article <span class="transition-transform group-hover:translate-x-2">→</span>
+						</span>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Final CTA -->
+	<section class="relative border-t-[3px] border-accent bg-[#2e2e2e] py-24 text-center">
+		<div class="container mx-auto max-w-4xl px-6">
+			<h2 class="font-display mb-6 text-4xl font-semibold text-white lg:text-5xl">Your case deserves more than a form.</h2>
+			<p class="mb-12 font-serif text-xl leading-relaxed text-[#c7cede]/80">Schedule a complimentary 30-minute consultation with one of our attorneys. No pressure. Real guidance.</p>
+			<div class="mb-12 flex flex-col justify-center gap-6 sm:flex-row">
+				<a href="/law/contact" class="rounded-none bg-accent px-10 py-3.5 font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:scale-105 hover:bg-accent/90">Book Online Now →</a>
+				<a href="tel:2065551847" class="rounded-none border border-white/20 bg-white/5 px-10 py-3.5 font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:bg-white hover:text-primary">Call Us: (206) 555-1847</a>
+			</div>
+			<div class="flex flex-wrap justify-center gap-6 font-sans text-xs font-semibold tracking-widest text-[#c7cede]/60 uppercase">
+				<span>✓ No obligation</span>
+				<span>✓ Confidential</span>
+				<span>✓ Available same week</span>
+			</div>
+		</div>
+	</section>
+</LawLayout>

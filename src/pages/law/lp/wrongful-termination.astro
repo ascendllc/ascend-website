@@ -1,0 +1,109 @@
+---
+import LawLandingLayout from "../../../components/law/LawLandingLayout.astro";
+import { lawTeam } from "../../../data/law/team";
+
+const attorney = lawTeam.find((a) => a.slug === "amara-thompson")!;
+
+const CheckIcon = `<path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path>`;
+const ShieldAlertIcon = `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path>`;
+
+const reasonOptions = [
+	{ value: "no_cause", label: "Fired without cause/explanation" },
+	{ value: "retaliation", label: "Fired after reporting misconduct (retaliation)" },
+	{ value: "discrimination", label: "Fired due to age, race, gender, or disability" },
+	{ value: "harassment", label: "Harassed or discriminated against" },
+	{ value: "wage", label: "Wage theft or unpaid overtime" },
+	{ value: "other", label: "Something else" },
+];
+
+const results = [
+	{ amount: "$890K", desc: "Settlement secured for 11-year employee wrongfully terminated." },
+	{ amount: "$475K", desc: "Wage theft class action settlement for 12 restaurant workers." },
+	{ amount: "Case Dismissed", desc: "Discrimination claim resolved; client returned to work with back pay." },
+];
+---
+
+<LawLandingLayout title="Employment Attorney Seattle | Wrongful Termination | Washington Law" description="Washington Law's employment attorneys represent employees who have been wrongfully fired, discriminated against, or retaliated against in Seattle and across Washington state. Free consultation." canonical="/law/lp/wrongful-termination">
+	<div class="w-full">
+		<section id="get-started" class="border-b-8 border-[#2D6A4F] bg-white px-6 py-16 lg:py-24">
+			<div class="container mx-auto max-w-7xl">
+				<div class="grid grid-cols-1 items-start gap-16 lg:grid-cols-12">
+					<div class="lg:col-span-7">
+						<div class="mb-8 inline-flex items-center gap-2 bg-[#2D6A4F]/10 px-4 py-2 font-sans text-xs font-bold tracking-widest text-[#2D6A4F] uppercase">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={ShieldAlertIcon} /> Confidential Case Review
+						</div>
+						<h1 class="font-display mb-6 text-5xl leading-[1.1] font-semibold text-primary lg:text-7xl">Wrongfully Terminated? You May Have a Claim.</h1>
+						<p class="font-body mb-8 text-xl leading-relaxed text-[#2E2E2E]">Washington's at-will employment law has limits. If your termination was based on discrimination, retaliation, or violated your contract — you may be entitled to significant compensation.</p>
+						<div class="flex flex-wrap items-center gap-6 font-sans text-sm font-bold tracking-widest text-[#2D6A4F] uppercase">
+							<span class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" set:html={CheckIcon} /> Free case review</span>
+							<span class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" set:html={CheckIcon} /> Completely confidential</span>
+							<span class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" set:html={CheckIcon} /> No fee unless we win</span>
+						</div>
+					</div>
+					<div class="border border-border bg-secondary p-8 shadow-xl lg:col-span-5">
+						<h3 class="font-display mb-6 text-2xl font-semibold text-primary">Get a Free Case Review</h3>
+						<form class="space-y-4">
+							<input type="text" placeholder="Full Name" class="w-full rounded-none border border-white px-4 py-2.5 text-sm" />
+							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+								<input type="email" placeholder="Email" class="w-full rounded-none border border-white px-4 py-2.5 text-sm" />
+								<input type="tel" placeholder="Phone" class="w-full rounded-none border border-white px-4 py-2.5 text-sm" />
+							</div>
+							<select class="w-full rounded-none border border-white px-4 py-2.5 text-sm text-gray-500">
+								<option value="">What happened?</option>
+								{reasonOptions.map((r) => <option value={r.value}>{r.label}</option>)}
+							</select>
+							<textarea placeholder="Brief description (optional)" class="min-h-[80px] w-full rounded-none border border-white px-4 py-2.5 text-sm"></textarea>
+							<button type="button" title="This form isn't wired up to send yet — call us directly instead." class="mt-2 w-full rounded-none bg-[#2D6A4F] py-6 font-sans text-sm font-bold tracking-widest text-white uppercase hover:bg-[#2D6A4F]/90">Get a Free Case Review →</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="bg-primary px-6 py-20 text-white">
+			<div class="container mx-auto max-w-4xl text-center">
+				<h2 class="font-display mb-12 text-4xl font-semibold lg:text-5xl">Washington state has some of the strongest employee protection laws in the country.</h2>
+				<div class="mx-auto mb-12 max-w-3xl border border-white/10 bg-white/5 p-8 text-left">
+					<p class="mb-6 font-sans font-bold tracking-widest text-accent uppercase">Your employer may have violated the law if they:</p>
+					<ul class="font-body space-y-4 text-lg">
+						<li class="flex gap-3"><span class="text-[#2D6A4F]">→</span> Fired you for reporting safety violations or fraud</li>
+						<li class="flex gap-3"><span class="text-[#2D6A4F]">→</span> Discriminated based on race, gender, age, disability, or religion</li>
+						<li class="flex gap-3"><span class="text-[#2D6A4F]">→</span> Retaliated after a workers' comp or FMLA claim</li>
+						<li class="flex gap-3"><span class="text-[#2D6A4F]">→</span> Violated your employment contract or severance agreement</li>
+						<li class="flex gap-3"><span class="text-[#2D6A4F]">→</span> Failed to pay wages, overtime, or commissions</li>
+					</ul>
+				</div>
+				<p class="font-body text-xl text-secondary/80 italic">The statute of limitations in Washington is limited. Call us today to protect your rights.</p>
+			</div>
+		</section>
+
+		<section class="bg-white px-6 py-24">
+			<div class="container mx-auto max-w-5xl">
+				<div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+					<div>
+						<h3 class="font-display mb-8 text-4xl font-semibold text-primary">Recent Results</h3>
+						<div class="space-y-6">
+							{results.map((r) => (
+								<div class="border-b border-border pb-6">
+									<p class="font-display mb-2 text-3xl font-semibold text-[#2D6A4F]">{r.amount}</p>
+									<p class="font-body text-[#2E2E2E]">{r.desc}</p>
+								</div>
+							))}
+						</div>
+					</div>
+					<div class="flex flex-col items-center border border-border bg-secondary p-8 text-center">
+						<img src={attorney.image} alt={attorney.name} class="mb-6 h-48 w-48 rounded-full object-cover shadow-lg" />
+						<p class="font-display mb-6 text-xl text-primary italic">"I've been there when clients told me their story for the first time. They're often embarrassed. Scared. Convinced they did something wrong. They almost never did."</p>
+						<p class="mb-8 font-sans text-sm font-bold tracking-widest text-[#2D6A4F] uppercase">Amara Thompson, J.D.<br />Employment Law Associate</p>
+						<a href="#get-started" class="w-full rounded-none bg-primary py-6 text-center font-sans text-sm font-bold tracking-widest text-white uppercase hover:bg-primary/90">Start Free Case Review</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="fixed bottom-0 left-0 z-50 flex w-full gap-2 border-t border-border bg-white p-4 lg:hidden">
+			<a href="tel:2065551847" class="flex-1 rounded-none bg-[#2D6A4F] py-3 text-center font-sans font-bold tracking-widest text-white uppercase hover:bg-[#2D6A4F]/90">Call Now: (206) 555-1847</a>
+			<a href="#get-started" class="rounded-none border border-[#2D6A4F] px-4 py-3 text-center font-sans text-xs font-bold tracking-widest text-[#2D6A4F] uppercase">Free Review</a>
+		</div>
+	</div>
+</LawLandingLayout>

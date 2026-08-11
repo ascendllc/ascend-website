@@ -20,9 +20,9 @@ const disciplines = [
 		title: "A complete marketing system built for attorneys and law firms.",
 		body: "Brand identity, website, go-to-market strategy, SEO, AEO/IEO optimization, content creation, Google and Meta ad campaigns, and a 24/7 AI chat assistant — built for legal professionals.",
 		includes: ["Brand identity & website", "Go-to-market strategy", "SEO + AEO/IEO optimization", "Content creation", "Google Ads + Meta Ads", "Dedicated ad landing pages", "24/7 AI chat assistant"],
-		fullSolutionHref: "https://ascendsmartly.com/legal-marketing",
-		demoHref: "https://law.ascendsmartly.com/",
-		demoLabel: "law.ascendsmartly.com",
+		fullSolutionHref: "/legal-marketing",
+		demoHref: "/law",
+		demoLabel: "yoursite.com/law",
 	},
 	{
 		icon: ChartColumn,
@@ -30,9 +30,9 @@ const disciplines = [
 		title: "A complete marketing system built for CPAs and financial advisors.",
 		body: "Brand identity, website, go-to-market strategy, SEO, AEO/IEO optimization, content creation, Google, Meta and LinkedIn ad campaigns, and a 24/7 AI chat assistant — built for accounting and financial professionals.",
 		includes: ["Brand identity & website", "Go-to-market strategy", "SEO + AEO/IEO optimization", "Content creation", "Google Ads + Meta Ads + LinkedIn", "Dedicated ad landing pages", "24/7 AI chat assistant"],
-		fullSolutionHref: "https://ascendsmartly.com/finance-marketing",
-		demoHref: "https://finance.ascendsmartly.com/",
-		demoLabel: "finance.ascendsmartly.com",
+		fullSolutionHref: "/finance-marketing",
+		demoHref: "/finance",
+		demoLabel: "yoursite.com/finance",
 	},
 ];
 
@@ -50,9 +50,9 @@ const detailed = [
 		title: "Marketing for attorneys and law firms.",
 		body: "Ascend delivers a complete marketing system purpose-built for legal professionals — brand identity, website, SEO, content, Google and Meta ad campaigns with dedicated landing pages, and an AI assistant that captures leads around the clock.",
 		note: 'Ascend built a complete demo site for a fictitious Seattle law firm — Washington Law — to showcase every capability in action. Everything you see in the demo represents an actual deliverable.',
-		fullSolutionHref: "https://ascendsmartly.com/legal-marketing",
+		fullSolutionHref: "/legal-marketing",
 		fullSolutionLabel: "See Full Legal Solution",
-		demoHref: "https://law.ascendsmartly.com/",
+		demoHref: "/law",
 	},
 	{
 		icon: ChartColumn,
@@ -60,9 +60,9 @@ const detailed = [
 		title: "Marketing for CPAs and financial advisory firms.",
 		body: "Ascend delivers a complete marketing system for accounting and financial professionals — brand identity, website, SEO, content, Google, Meta and LinkedIn ad campaigns with dedicated landing pages, and an AI assistant that captures inquiries around the clock.",
 		note: "Ascend built a complete demo site for a fictitious Seattle accounting firm — Washington Accounting & Financial Services — to showcase every capability in action.",
-		fullSolutionHref: "https://ascendsmartly.com/finance-marketing",
+		fullSolutionHref: "/finance-marketing",
 		fullSolutionLabel: "See Full Finance Solution",
-		demoHref: "https://finance.ascendsmartly.com/",
+		demoHref: "/finance",
 	},
 ];
 ---
@@ -151,8 +151,8 @@ const detailed = [
 									</ul>
 								</div>
 								<div class="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 p-8">
-									<a href={d.fullSolutionHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold text-white transition-all" style={`background-color:${ORANGE}`} set:html={`${d.fullSolutionHref.includes("legal") ? "See Full Legal Solution" : "See Full Finance Solution"} ${ArrowRight}`} />
-									<a href={d.demoHref} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors" style={`color:${ORANGE}`} set:html={`View Live Demo ${ExternalLink}`} />
+									<a href={d.fullSolutionHref} class="inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold text-white transition-all" style={`background-color:${ORANGE}`} set:html={`${d.fullSolutionHref.includes("legal") ? "See Full Legal Solution" : "See Full Finance Solution"} ${ArrowRight}`} />
+									<a href={d.demoHref} class="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors" style={`color:${ORANGE}`} set:html={`View Live Demo ${ExternalLink}`} />
 								</div>
 							</div>
 						))
@@ -214,8 +214,8 @@ const detailed = [
 								<p class="mb-4 leading-relaxed text-gray-600">{d.body}</p>
 								<p class="mb-6 text-sm leading-relaxed text-gray-500 italic">{d.note}</p>
 								<div class="flex flex-wrap items-center gap-4">
-									<a href={d.fullSolutionHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-bold text-white transition-colors" style={`background-color:${ORANGE}`} set:html={`${d.fullSolutionLabel} ${ArrowRight}`} />
-									<a href={d.demoHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-sm border px-6 py-3 text-sm font-semibold transition-colors" style={`border-color:${ORANGE}66; color:${ORANGE}`} set:html={`View Demo ${ExternalLink}`} />
+									<a href={d.fullSolutionHref} class="inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-bold text-white transition-colors" style={`background-color:${ORANGE}`} set:html={`${d.fullSolutionLabel} ${ArrowRight}`} />
+									<a href={d.demoHref} class="inline-flex items-center gap-2 rounded-sm border px-6 py-3 text-sm font-semibold transition-colors" style={`border-color:${ORANGE}66; color:${ORANGE}`} set:html={`View Demo ${ExternalLink}`} />
 								</div>
 							</div>
 							<div class:list={["overflow-hidden rounded-xl border border-gray-200 shadow-sm", i % 2 === 1 && "md:order-1"]}>
@@ -248,8 +248,8 @@ const detailed = [
 				<a href="/" class="transition-colors hover:text-white/60">Ascend Consulting</a>
 				<div class="flex items-center gap-4">
 					<a href="/" class="transition-colors hover:text-white/60">ProVisors</a>
-					<a href="https://ascendsmartly.com/legal-marketing" target="_blank" rel="noopener" class="transition-colors hover:text-white/60">Legal Marketing</a>
-					<a href="https://ascendsmartly.com/finance-marketing" target="_blank" rel="noopener" class="transition-colors hover:text-white/60">Finance Marketing</a>
+					<a href="/legal-marketing" class="transition-colors hover:text-white/60">Legal Marketing</a>
+					<a href="/finance-marketing" class="transition-colors hover:text-white/60">Finance Marketing</a>
 					<a href={`mailto:${site.email}`} class="transition-colors hover:text-white/60">{site.email}</a>
 				</div>
 			</div>

@@ -1,0 +1,120 @@
+---
+import LawLayout from "../../components/law/LawLayout.astro";
+
+const practiceAreas = [
+	{ id: "business-corporate", title: "Business & Corporate Law" },
+	{ id: "estate-planning", title: "Estate Planning" },
+	{ id: "employment", title: "Employment Law" },
+	{ id: "real-estate", title: "Real Estate Law" },
+	{ id: "civil-litigation", title: "Civil Litigation" },
+];
+
+const firm = {
+	phone: "(206) 555-1847",
+	address: "1420 Fifth Avenue, Suite 1800, Seattle, WA 98101",
+	email: "hello@washingtonlaw.com",
+};
+
+const PhoneIcon = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>`;
+const MailIcon = `<rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>`;
+const MapPinIcon = `<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle>`;
+---
+
+<LawLayout title="Contact Washington Law | Free Consultation | Seattle Law Firm" description="Schedule a free consultation with Washington Law. Located at 1420 Fifth Avenue, Suite 1800, Seattle, WA 98101. Call (206) 555-1847 or complete the form online.">
+	<div class="min-h-screen bg-secondary/30 pt-32 pb-24">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-12">
+				<div class="lg:col-span-5">
+					<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Get in Touch</p>
+					<h1 class="font-display mb-6 text-5xl leading-tight font-semibold text-primary lg:text-6xl">Your case deserves more than a form.</h1>
+					<p class="mb-12 font-serif text-xl text-[#2e2e2e]">Contact us to schedule a complimentary 30-minute consultation. No pressure. Real guidance.</p>
+
+					<div class="space-y-8">
+						<div class="flex items-start gap-4">
+							<div class="shrink-0 rounded-full border border-gray-200 bg-white p-3 text-accent">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={PhoneIcon} />
+							</div>
+							<div>
+								<h3 class="mb-1 font-sans text-sm font-bold tracking-widest text-primary uppercase">Call Us</h3>
+								<p class="font-serif text-lg text-[#2e2e2e]">
+									<a href={`tel:${firm.phone.replace(/[^0-9]/g, "")}`} class="hover:text-accent">{firm.phone}</a>
+								</p>
+								<p class="mt-1 font-serif text-sm text-gray-500">Available 24/7 for urgent matters.</p>
+							</div>
+						</div>
+						<div class="flex items-start gap-4">
+							<div class="shrink-0 rounded-full border border-gray-200 bg-white p-3 text-accent">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={MailIcon} />
+							</div>
+							<div>
+								<h3 class="mb-1 font-sans text-sm font-bold tracking-widest text-primary uppercase">Email Us</h3>
+								<p class="font-serif text-lg text-[#2e2e2e]">
+									<a href={`mailto:${firm.email}`} class="hover:text-accent">{firm.email}</a>
+								</p>
+							</div>
+						</div>
+						<div class="flex items-start gap-4">
+							<div class="shrink-0 rounded-full border border-gray-200 bg-white p-3 text-accent">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={MapPinIcon} />
+							</div>
+							<div>
+								<h3 class="mb-1 font-sans text-sm font-bold tracking-widest text-primary uppercase">Office</h3>
+								<p class="max-w-[200px] font-serif text-lg leading-relaxed text-[#2e2e2e]">{firm.address}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="lg:col-span-7">
+					<div class="border-t-4 border-t-accent bg-white p-8 shadow-xl md:p-12">
+						<form class="space-y-6">
+							<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+								<div>
+									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">First Name *</label>
+									<input type="text" placeholder="Jane" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+								</div>
+								<div>
+									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Last Name *</label>
+									<input type="text" placeholder="Doe" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+								</div>
+							</div>
+							<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+								<div>
+									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Email Address *</label>
+									<input type="email" placeholder="jane@example.com" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+								</div>
+								<div>
+									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Phone Number *</label>
+									<input type="tel" placeholder="(206) 555-0100" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+								</div>
+							</div>
+							<div>
+								<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Area of Interest *</label>
+								<select required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none">
+									<option value="">Select a practice area</option>
+									{practiceAreas.map((p) => <option value={p.id}>{p.title}</option>)}
+									<option value="other">Other / Not Sure</option>
+								</select>
+							</div>
+							<div>
+								<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Brief Description *</label>
+								<textarea rows="5" placeholder="Please describe your legal issue. Do not include highly sensitive or confidential information yet." required class="min-h-[120px] w-full resize-y rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"></textarea>
+							</div>
+							<button
+								type="button"
+								title="This form isn't wired up to send yet — please call or email us directly."
+								class="w-full rounded-none bg-accent px-8 py-4 font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:bg-accent/90"
+							>
+								Submit Request
+							</button>
+							<p class="mt-4 flex flex-col gap-1 text-center font-sans text-xs text-gray-500">
+								<span class="font-semibold text-primary">Your information is confidential. No unsolicited marketing.</span>
+								<span>Attorney-client privilege begins at first contact.</span>
+							</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</LawLayout>

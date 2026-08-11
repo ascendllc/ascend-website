@@ -123,14 +123,14 @@ export const portfolio = [
 	},
 	{
 		name: "Washington Accounting & Financial Services",
-		url: "finance.ascendsmartly.com",
+		url: "/finance",
 		description: "Demo CPA/finance firm site.",
 		contributions: ["Full brand identity", "Multi-page website", "Creative & copy", "AI assistant", "Paid landing pages for 4 segments", "SEO/GEO/AEO"],
 		tags: ["Branding", "Web Design", "AI Assistant", "Paid Media", "SEO/GEO/AEO"],
 	},
 	{
 		name: "Washington Law",
-		url: "law.ascendsmartly.com",
+		url: "/law",
 		description: "Demo boutique law firm site — 8 practice areas, attorney bios, results showcase, client insights, booking flow.",
 		contributions: ["Full brand identity", "Multi-page website", "Creative & copy", "AI assistant", "Paid landing pages", "SEO/GEO/AEO"],
 		tags: ["Branding", "Web Design", "AI Assistant", "Paid Media", "SEO/GEO/AEO"],

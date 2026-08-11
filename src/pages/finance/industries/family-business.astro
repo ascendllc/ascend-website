@@ -1,0 +1,104 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CheckCircle = `<circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path>`;
+
+const focusCards = [
+	{ title: "Succession Planning", desc: "Modeling scenarios for internal transitions vs. external sales to ensure the founding generation is secured while the next generation is positioned for success." },
+	{ title: "Family Governance", desc: "Establishing buy-sell agreements, family LLC structures, and formal policies for family member compensation and equity participation." },
+	{ title: "Wealth Transfer", desc: "Integrating the business valuation with the founders' estate plan to minimize the tax burden of passing the company to heirs." },
+	{ title: "Fractional CFO Support", desc: "Professionalizing financial operations and bringing objective, board-level reporting to family management teams." },
+];
+
+const specializedExpertise = [
+	"ABV-certified independent business valuations",
+	"Structuring Family Limited Partnerships (FLPs)",
+	"Non-voting vs voting stock recapitalizations",
+	"Phantom stock and key-employee retention",
+];
+
+const team = [
+	{ name: "David Okafor", creds: "CPA, ABV", role: "Valuation & CFO", img: "team-david.png" },
+	{ name: "Robert Kimura", creds: "CPA, CFP®", role: "Wealth & Estate", img: "team-robert.png" },
+	{ name: "Maggie Chen", creds: "CPA, MT", role: "Tax Strategy", img: "team-maggie.png" },
+];
+---
+
+<FinanceLayout title="Family Business CPA & Succession Planning | Seattle | WAFS" description="Succession planning, estate strategy, and integrated financial advisory for family-owned businesses in the Pacific Northwest.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/industry-family.png" alt="Family business background" class="h-full w-full object-cover opacity-60 grayscale" />
+			<div class="absolute inset-0 bg-wafs-forest/80"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Industry Focus: Family-Owned Business</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Built by family. Advised by partners who get it.</h1>
+				<p class="text-xl leading-relaxed text-warmwhite/80 md:text-2xl">The most complex businesses aren't necessarily the largest—they are the ones where corporate structure and family dynamics intersect. We help multi-generational enterprises plan for succession, minimize estate taxes, and govern wealth.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Main content -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">Navigating the Transition</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">A family business requires a fundamentally different advisory approach. Decisions aren't just about maximizing shareholder value; they are about legacy, fairness, and generational stewardship. Our partners act as objective sounding boards, providing the financial architecture needed to separate emotional decisions from operational ones.</p>
+					<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+						{focusCards.map((c) => (
+							<div class="rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+								<h4 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{c.title}</h4>
+								<p class="text-sm leading-relaxed text-[#4a5568]">{c.desc}</p>
+							</div>
+						))}
+					</div>
+					<h3 class="mb-6 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Specialized Expertise</h3>
+					<ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
+						{specializedExpertise.map((f) => (
+							<li class="flex items-center gap-3 text-[#4a5568]">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-wafs-gold" set:html={CheckCircle} />
+								<span class="font-medium">{f}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 space-y-10 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<p class="mb-2 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Integrated Advisory Team</p>
+						<p class="mb-6 text-sm text-[#4a5568]">Family business planning requires our full suite of expertise.</p>
+						<div class="space-y-6">
+							{team.map((m) => (
+								<div class="flex items-center gap-4">
+									<img src={`/images/finance/${m.img}`} alt={m.name} class="h-16 w-16 rounded-sm object-cover grayscale" />
+									<div>
+										<h3 class="font-display font-semibold text-wafs-forest">{m.name}</h3>
+										<p class="font-mono text-xs text-[#4a5568]">{m.creds}</p>
+										<p class="mt-1 text-xs text-wafs-slate">{m.role}</p>
+									</div>
+								</div>
+							))}
+						</div>
+						<div class="border-t border-[#d4e6dc] pt-6 text-center">
+							<a href="/finance/team" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Meet the Full Team →</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-wafs-forest py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-warmwhite">Discuss your family enterprise.</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Confidential Consultation
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

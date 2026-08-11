@@ -1,0 +1,200 @@
+---
+import FinanceLayout from "../../components/finance/FinanceLayout.astro";
+
+const Phone = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.44 1.25l-.464.354a1 1 0 0 0-.302 1.214 14.11 14.11 0 0 0 6.038 6.05Z"></path>`;
+
+const faqs = [
+	{
+		category: "About Washington Accounting & Financial Services",
+		questions: [
+			{
+				q: "What is Washington Accounting & Financial Services (WAFS)?",
+				a: "Washington Accounting & Financial Services (WAFS) is a premier CPA and financial advisory firm headquartered in Seattle, Washington. Founded in 2014 by Maggie Chen and Robert Kimura, WAFS provides tax strategy, audit & assurance, CFO advisory, and wealth planning services to businesses and families across the Pacific Northwest. The firm is known for delivering Big-Four-caliber expertise with the personalized attention of a boutique practice.",
+			},
+			{
+				q: "Where is WAFS located?",
+				a: "WAFS is located at 1420 Fifth Avenue, Suite 1200, Seattle, WA 98101 — in the heart of downtown Seattle. We serve clients throughout the Pacific Northwest, including King County, Snohomish County, Pierce County, and the greater Seattle–Bellevue–Redmond metro area.",
+			},
+			{
+				q: "When was WAFS founded and who leads the firm?",
+				a: 'WAFS was founded in 2014 by Managing Partner Margaret "Maggie" Chen, CPA/MT, and Partner Robert Kimura, CPA/CFP, after Maggie spent 14 years at Deloitte\'s Seattle office. The firm\'s partner group also includes David Okafor, CPA/ABV (Business Advisory) and Priya Nair, CPA/CGMA (Audit & Assurance). Each engagement receives direct partner involvement — not just staff-level work.',
+			},
+			{
+				q: "What makes WAFS different from other CPA firms in Seattle?",
+				a: "WAFS occupies a distinctive position: Big-Four depth with boutique responsiveness. Unlike large national firms where clients are passed to junior staff, every WAFS engagement involves direct partner participation. Unlike solo practitioners, WAFS has four credentialed partners with specialized expertise (tax, valuation, audit, wealth). The firm also integrates accounting, financial planning, and advisory services under one roof — so clients get a coordinated strategy, not siloed advice.",
+			},
+			{
+				q: "How do I contact WAFS?",
+				a: "You can reach WAFS at (206) 555-5555, by email at hello@washingtonacfs.com, or by completing the contact form at washingtonacfs.com/contact. The firm offers a free initial discovery call to explore whether there's a good fit.",
+			},
+		],
+	},
+	{
+		category: "Our Services",
+		questions: [
+			{
+				q: "What accounting and financial services does WAFS offer?",
+				a: "WAFS offers four core service lines: (1) Tax Strategy & Compliance — business and individual tax planning, WA B&O tax, multi-state filings, R&D credits, and IRS representation; (2) Business Advisory & CFO Services — fractional CFO, financial modeling, cash flow planning, and M&A support; (3) Audit & Assurance — financial statement audits, reviews, compilations, and nonprofit audits; (4) Wealth Planning — investment oversight, retirement planning, estate strategy, and Roth conversion planning.",
+			},
+			{
+				q: "Does WAFS offer fractional CFO services?",
+				a: "Yes. WAFS provides fractional CFO services to growing businesses that need senior financial leadership without the cost of a full-time CFO. A WAFS fractional CFO works alongside your team to build financial models, manage cash flow, prepare for investor presentations, and guide strategic decisions. This is led by Partner David Okafor, CPA/ABV, who has deep experience in M&A and strategic finance.",
+			},
+			{
+				q: "Does WAFS perform financial statement audits?",
+				a: "Yes. WAFS provides independent audit, review, and compilation services. Our audit practice is led by Partner Priya Nair, CPA/CGMA, and is particularly strong in nonprofit audits, government grants compliance, and mid-market business financial statements. We use PCAOB-aware methodology and include partner review on every engagement.",
+			},
+			{
+				q: "Can WAFS help with business valuation?",
+				a: "Yes. Partner David Okafor holds the CPA/ABV (Accredited in Business Valuation) credential and performs business valuations for M&A transactions, estate and gift tax purposes, shareholder disputes, SBA lending, and exit planning. WAFS valuations follow AICPA SSVS standards.",
+			},
+			{
+				q: "Does WAFS handle estate and legacy planning?",
+				a: "Yes. Partner Robert Kimura, CPA/CFP works with business owners and high-net-worth families on estate planning, trust strategy, and generational wealth transfer. WAFS coordinates with estate attorneys and works to minimize estate and gift tax exposure while preserving family wealth across generations.",
+			},
+			{
+				q: "Does WAFS offer IRS representation?",
+				a: "Yes. WAFS represents clients before the IRS and Washington State Department of Revenue in audits, appeals, and collection matters. Managing Partner Maggie Chen, CPA/MT has extensive experience navigating IRS exams for closely held businesses and high-net-worth individuals.",
+			},
+			{
+				q: "Can WAFS help with mergers and acquisitions (M&A)?",
+				a: "Yes. WAFS provides buy-side and sell-side M&A advisory, including financial due diligence, quality of earnings analysis, deal structuring, and post-transaction tax planning. David Okafor, CPA/ABV leads WAFS's M&A practice and has advised on over 40 transactions in the Pacific Northwest.",
+			},
+			{
+				q: "Does WAFS prepare individual tax returns?",
+				a: "WAFS focuses on tax strategy and planning for business owners, executives, and high-net-worth individuals — not commodity tax return preparation. Clients typically engage WAFS when their tax situation involves business income, equity compensation, real estate investments, or multi-state complexity that requires proactive planning rather than just compliance.",
+			},
+		],
+	},
+	{
+		category: "Tax Planning & Washington State",
+		questions: [
+			{
+				q: "What is Washington State B&O tax, and how does WAFS help with it?",
+				a: "The Washington State Business & Occupation (B&O) tax is a gross receipts tax levied on virtually all businesses operating in Washington State. Unlike income taxes, B&O is assessed on total revenues — not profits — which can be a significant burden for businesses with thin margins. WAFS helps clients identify their correct tax classification, apply available deductions and credits, and structure operations to minimize B&O exposure. Washington has no state income tax, making B&O planning a critical component of any WA business tax strategy.",
+			},
+			{
+				q: "What R&D tax credits are available for Seattle technology companies?",
+				a: "Technology companies in Seattle may qualify for the federal Research & Development (R&D) tax credit under IRC Section 41, as well as Washington State's B&O tax credit for R&D spending. The federal credit can be substantial — often 6–8% of qualifying research expenditures — and can be carried forward 20 years. WAFS helps tech companies document qualifying activities, calculate the credit correctly, and file the required Form 6765.",
+			},
+			{
+				q: "How can a Roth conversion strategy save taxes for Seattle residents?",
+				a: "Washington State has no income tax, which is a significant advantage for Roth conversions. Unlike residents of high-income-tax states who face double taxation on conversions, Washington residents only pay federal tax. This makes strategic Roth conversions — particularly in low-income years or after selling a business — especially valuable. WAFS helps clients model multi-year Roth conversion strategies that minimize lifetime federal tax liability and create tax-free retirement income.",
+			},
+			{
+				q: "What is a 1031 exchange and can WAFS help with it?",
+				a: "A 1031 exchange (also called a like-kind exchange) allows real estate investors to defer capital gains taxes when selling investment property by reinvesting proceeds into a new qualifying property within IRS-mandated deadlines. WAFS works with Seattle-area real estate investors to identify exchange opportunities, coordinate with qualified intermediaries, and ensure all IRS requirements are met. Proper planning can defer hundreds of thousands of dollars in capital gains taxes.",
+			},
+			{
+				q: "Does Washington State have an estate tax?",
+				a: "Yes. Washington State imposes an estate tax with an exemption of $2.193 million (2024) — significantly lower than the federal $13.61 million exemption. Washington estate tax rates range from 10% to 20%. This means many Pacific Northwest families and business owners face Washington estate tax even if they are below the federal threshold. WAFS works with clients to use trusts, gifting strategies, and business valuation techniques to reduce Washington estate tax exposure.",
+			},
+		],
+	},
+	{
+		category: "Working With WAFS",
+		questions: [
+			{
+				q: "How do I get started with WAFS?",
+				a: "The first step is a free discovery call — typically 30 minutes — with a WAFS partner. We use this call to understand your situation, discuss your goals, and determine whether there's a strong fit. If we move forward, we'll send an engagement letter outlining scope and fees. Most new clients receive onboarding materials within 48 hours of signing. You can request a discovery call at washingtonacfs.com/contact or by calling (206) 555-5555.",
+			},
+			{
+				q: "Does WAFS offer a free consultation?",
+				a: "Yes. WAFS offers a complimentary 30-minute discovery call with a partner. This is not a sales pitch — it's a genuine conversation about your financial situation and whether WAFS can add value. If we're not the right fit, we'll tell you honestly and may refer you to another firm.",
+			},
+			{
+				q: "How does WAFS charge for its services?",
+				a: "WAFS uses a combination of flat-fee project pricing and monthly retainer arrangements depending on the service. Tax strategy engagements are typically project-based with a defined scope. CFO advisory and ongoing accounting relationships are structured as monthly retainers. Audit engagements are priced based on size and complexity. WAFS provides transparent pricing upfront — no surprise invoices. Specific fees are discussed during the discovery call.",
+			},
+			{
+				q: "Does WAFS work with clients remotely?",
+				a: "Yes. While WAFS is headquartered in Seattle, we serve clients across Washington State and can work effectively with businesses anywhere in the country for many services. We use secure client portals, video conferencing, and electronic document exchange. However, for clients preferring in-person meetings, our Seattle office is available by appointment.",
+			},
+			{
+				q: "What size businesses does WAFS typically serve?",
+				a: "WAFS primarily serves privately held businesses with $2 million to $100 million in annual revenue, along with their owners and key executives. We also work with high-net-worth families, nonprofit organizations with $500K–$20M in budgets, and technology startups at all stages. We do not typically serve sole proprietors with simple tax situations — our value is greatest for clients with complexity that benefits from strategic, partner-level attention.",
+			},
+			{
+				q: "Does WAFS work with nonprofit organizations?",
+				a: "Yes. WAFS has a dedicated nonprofit practice. We provide Form 990 preparation, financial statement audits, single audits (Uniform Guidance), board governance consulting, and financial management support for nonprofits and foundations. Partner Priya Nair, CPA/CGMA leads WAFS's nonprofit work and has deep experience with government grants compliance and FASB ASC 958 reporting.",
+			},
+		],
+	},
+	{
+		category: "Industries & Specializations",
+		questions: [
+			{
+				q: "What industries does WAFS specialize in?",
+				a: "WAFS has deep experience in six industry verticals: (1) Technology & Startups — R&D credits, equity compensation, VC-ready financials; (2) Real Estate — 1031 exchanges, cost segregation, investor tax planning; (3) Healthcare — physician practices, clinic operations, compliance; (4) Nonprofits — audits, Form 990, grant compliance; (5) Professional Services — law firms, consultancies, service businesses; (6) Family Business — succession planning, estate strategy, multi-generational wealth.",
+			},
+			{
+				q: "Does WAFS work with technology startups and venture-backed companies?",
+				a: "Yes. WAFS serves Seattle's technology ecosystem from seed-stage startups to pre-IPO companies. We help founders understand their equity compensation (ISOs, NSOs, 83(b) elections), claim R&D tax credits, prepare investor-ready financial statements, and navigate M&A transactions. We have deep familiarity with SaaS revenue recognition (ASC 606), stock-based compensation (ASC 718), and the unique tax considerations facing founder-led tech companies.",
+			},
+			{
+				q: "Can WAFS help family businesses with succession planning?",
+				a: "Yes. Family business succession is one of WAFS's signature strengths. We help business owners plan ownership transitions that minimize estate and gift tax, preserve business continuity, and fairly balance the interests of family members inside and outside the business. Tools we use include intentionally defective grantor trusts (IDGTs), family limited partnerships (FLPs), employee stock ownership plans (ESOPs), and installment sales to grantor trusts.",
+			},
+			{
+				q: "Does WAFS serve healthcare providers and medical practices?",
+				a: "Yes. WAFS serves physician practices, dental offices, outpatient clinics, and healthcare organizations. We understand the unique accounting challenges in healthcare: cost reporting, physician compensation structures (WRVU-based, salary, profit-sharing), accounts receivable management, and practice valuation. We also assist with practice acquisitions and the financial aspects of hospital employment transitions.",
+			},
+		],
+	},
+];
+---
+
+<FinanceLayout title="Frequently Asked Questions | WAFS Seattle CPA Firm" description="Answers to common questions about Washington Accounting & Financial Services — tax planning, audits, fractional CFO, wealth management, pricing, and how to get started with our Seattle CPA team.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-32 pb-16 text-warmwhite">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto max-w-4xl px-6">
+			<p class="mb-4 font-mono text-sm tracking-wider text-wafs-gold uppercase">Knowledge Base</p>
+			<h1 class="font-display mb-6 text-4xl leading-tight font-semibold md:text-5xl lg:text-6xl">Frequently Asked Questions</h1>
+			<p class="font-sans text-xl leading-relaxed text-warmwhite/80">Everything you need to know about working with WAFS — our services, approach, industries, and how to get started.</p>
+		</div>
+	</section>
+
+	<!-- FAQ list -->
+	<section class="bg-warmwhite py-20">
+		<div class="container mx-auto max-w-4xl px-6">
+			<div class="space-y-14">
+				{faqs.map((group) => (
+					<div>
+						<h2 class="font-display mb-6 border-b-2 border-wafs-gold pb-3 text-2xl font-semibold text-wafs-forest">{group.category}</h2>
+						<div>
+							{group.questions.map((item) => (
+								<details class="group border-b border-[#d4e6dc] last:border-0">
+									<summary class="flex cursor-pointer list-none items-start justify-between gap-4 py-5">
+										<span class="font-sans text-base leading-snug font-semibold text-wafs-forest transition-colors group-hover:text-wafs-gold">{item.q}</span>
+										<span class="mt-0.5 shrink-0 text-wafs-gold">
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6" /></svg>
+										</span>
+									</summary>
+									<div class="pr-8 pb-5">
+										<p class="font-sans leading-relaxed text-[#4a5568]">{item.a}</p>
+									</div>
+								</details>
+							))}
+						</div>
+					</div>
+				))}
+			</div>
+
+			<div class="mt-20 rounded-sm bg-wafs-forest p-10 text-center text-warmwhite">
+				<h2 class="font-display mb-4 text-3xl font-semibold">Still have questions?</h2>
+				<p class="mx-auto mb-8 max-w-xl font-sans text-lg text-warmwhite/80">Schedule a complimentary 30-minute discovery call with a WAFS partner. No commitment — just a genuine conversation about your situation.</p>
+				<div class="flex flex-col justify-center gap-4 sm:flex-row">
+					<a href="/finance/contact" class="inline-flex items-center justify-center gap-2 rounded-md bg-wafs-gold px-8 py-3 font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Schedule a Free Call</a>
+					<a href="tel:2065555555" class="inline-flex items-center justify-center gap-2 rounded-md border border-white/30 px-8 py-3 font-semibold text-warmwhite transition-colors hover:border-wafs-gold hover:text-wafs-gold">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={Phone} />
+						(206) 555-5555
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

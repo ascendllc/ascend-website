@@ -1,0 +1,103 @@
+---
+import LawLayout from "../../../components/law/LawLayout.astro";
+import { lawTeam } from "../../../data/law/team";
+import { lawPracticeAreas } from "../../../data/law/practiceAreas";
+
+export function getStaticPaths() {
+	return lawTeam.map((attorney) => ({
+		params: { slug: attorney.slug },
+		props: { attorney },
+	}));
+}
+
+const { attorney } = Astro.props as { attorney: (typeof lawTeam)[number] };
+const t = attorney;
+
+const practiceAreaSlug = (name: string) => lawPracticeAreas.find((p) => p.title === name)?.slug;
+
+const firstName = t.name.split(",")[0].split(" ")[0];
+const metaDescription = `${t.bio[0].substring(0, 150)}${t.bio[0].length > 150 ? "..." : ""}`;
+---
+
+<LawLayout title={`${t.name.split(",")[0]} | ${t.title}`} description={metaDescription}>
+	<div class="w-full bg-white pt-32 pb-24">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mb-12 flex items-center gap-2 font-sans text-xs font-bold tracking-widest text-gray-400 uppercase">
+				<a href="/law/our-team" class="transition-colors hover:text-primary">Our Team</a>
+				<span>›</span>
+				<span class="text-primary">{t.name.split(",")[0]}</span>
+			</div>
+
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-12">
+				<div class="lg:col-span-4">
+					<img src={t.image} alt={t.name} class="mb-8 aspect-[4/5] w-full object-cover shadow-xl" />
+					<div class="space-y-6 border border-border bg-secondary p-8">
+						<div>
+							<h4 class="mb-2 flex items-center gap-2 font-sans text-xs font-bold tracking-widest text-accent uppercase">Education</h4>
+							<p class="font-serif text-sm leading-relaxed text-[#2e2e2e]">
+								{t.education.split(" | ").map((s) => (
+									<span class="mb-1 block">{s}</span>
+								))}
+							</p>
+						</div>
+						<div class="h-px w-full bg-border"></div>
+						<div>
+							<h4 class="mb-2 font-sans text-xs font-bold tracking-widest text-accent uppercase">Bar Admissions</h4>
+							<p class="font-serif text-sm text-[#2e2e2e]">{t.admissions}</p>
+						</div>
+						<div class="h-px w-full bg-border"></div>
+						<div>
+							<h4 class="mb-2 font-sans text-xs font-bold tracking-widest text-accent uppercase">Languages</h4>
+							<p class="font-serif text-sm text-[#2e2e2e]">{t.languages}</p>
+						</div>
+						<div class="h-px w-full bg-border"></div>
+						<a href={t.social} target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 font-sans text-xs font-bold tracking-widest text-primary uppercase transition-colors hover:text-accent">
+							LinkedIn Profile
+						</a>
+					</div>
+				</div>
+
+				<div class="lg:col-span-8">
+					<h1 class="font-display mb-4 text-4xl font-semibold text-primary lg:text-5xl">{t.name}</h1>
+					<p class="mb-8 font-sans text-lg tracking-wide text-accent">{t.title}</p>
+					<div class="mb-10 flex flex-wrap gap-2 border-b border-border pb-10">
+						{t.practiceAreas.map((s) => {
+							const slug = practiceAreaSlug(s);
+							return slug ? (
+								<a href={`/law/practice-areas/${slug}`} class="bg-primary/5 px-4 py-2 font-sans text-sm font-semibold tracking-wider text-primary transition-colors hover:bg-primary/10">{s}</a>
+							) : (
+								<span class="bg-primary/5 px-4 py-2 font-sans text-sm font-semibold tracking-wider text-primary">{s}</span>
+							);
+						})}
+					</div>
+
+					<div class="mb-12 space-y-6 font-serif text-lg leading-relaxed text-[#2e2e2e]">
+						{t.bio.map((p) => (
+							<p>{p}</p>
+						))}
+					</div>
+
+					{t.recognition && (
+						<div class="mb-12">
+							<h3 class="font-display mb-4 flex items-center gap-3 text-2xl font-semibold text-primary">Recognition</h3>
+							<ul class="space-y-2">
+								{t.recognition.split(" | ").map((s) => (
+									<li class="flex items-center gap-2 font-serif text-[#2e2e2e]">
+										<span class="h-1.5 w-1.5 rounded-full bg-accent"></span> {s}
+									</li>
+								))}
+							</ul>
+						</div>
+					)}
+
+					<div class="bg-primary p-8 text-center sm:p-10">
+						<h3 class="font-display mb-6 text-2xl text-white italic sm:text-3xl">Ready to speak with {firstName}?</h3>
+						<a href="/law/contact" class="inline-block w-full min-h-[52px] rounded-none bg-accent px-6 py-5 text-center font-sans text-xs font-semibold tracking-wide text-white uppercase leading-tight whitespace-normal transition-all hover:bg-accent/90 sm:w-auto sm:px-8 sm:py-6 sm:tracking-widest sm:text-sm">
+							{t.contactCta}
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</LawLayout>

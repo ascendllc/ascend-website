@@ -1,0 +1,129 @@
+---
+import LawLayout from "../../components/law/LawLayout.astro";
+
+const resources = [
+	{
+		id: "small-business-legal-checklist",
+		title: "The Washington Small Business Legal Checklist",
+		description: "A comprehensive 20-point checklist covering entity formation, contract essentials, employment basics, and IP protection. Essential reading before your first hire or first client contract.",
+		category: "Business Law",
+		icon: "Briefcase",
+	},
+	{
+		id: "estate-planning-beyond-a-will",
+		title: "Estate Planning: What You Need Beyond a Will",
+		description: "Understand the roles of trusts, healthcare directives, and powers of attorney in a complete Washington state estate plan. Includes a probate cost calculator.",
+		category: "Estate Planning",
+		icon: "FileHeart",
+	},
+	{
+		id: "employee-handbook-essentials",
+		title: "Employee Handbook Essentials 2024",
+		description: "Key policies every Washington employer must include to stay compliant and protect against wrongful termination claims. Updated for Washington's 2024 paid leave and non-compete changes.",
+		category: "Employment Law",
+		icon: "Users",
+	},
+	{
+		id: "commercial-lease-red-flags",
+		title: "Commercial Lease Red Flags",
+		description: "The top 5 clauses that trap small businesses in expensive commercial leases — personal guarantees, CAM surprises, and relocation rights — and how to negotiate them.",
+		category: "Real Estate",
+		icon: "Building",
+	},
+];
+
+const iconMap: Record<string, string> = {
+	Briefcase: `<rect width="20" height="14" x="2" y="7" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>`,
+	FileHeart: `<path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M4.71 19.5c-.8-1.13-.38-3.11 1.14-3.59A2.6 2.6 0 0 1 9 17.09a2.6 2.6 0 0 1 3.15-1.18c1.52.48 1.94 2.46 1.14 3.59-.7 1-3.44 2.5-4.29 3-.85-.5-3.59-2-4.29-3Z"></path>`,
+	Users: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>`,
+	Building: `<rect width="16" height="20" x="4" y="2" rx="2" ry="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path>`,
+};
+
+const DownloadIcon = `<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>`;
+const CloseIcon = `<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>`;
+---
+
+<LawLayout title="Free Legal Resources | Washington Law | Seattle Attorneys" description="Download free legal guides from Washington Law's attorneys: LLC checklists, estate planning worksheets, employment rights guides, and commercial lease reviews for Washington state.">
+	<div class="min-h-screen bg-white pt-32 pb-24">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mb-20">
+				<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Free Resources</p>
+				<h1 class="font-display mb-6 text-5xl font-semibold text-primary lg:text-6xl">Legal Guides & Checklists</h1>
+				<p class="max-w-3xl font-serif text-xl text-[#2e2e2e]">Downloadable resources prepared by our attorneys to help you navigate common legal challenges in Washington state.</p>
+			</div>
+
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+				{resources.map((r) => (
+					<div class="flex h-full flex-col border border-gray-200 bg-secondary p-8 lg:p-10">
+						<div class="mb-6 flex items-start gap-4">
+							<div class="shrink-0 border border-gray-200 bg-white p-3 text-accent">
+								<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={iconMap[r.icon] ?? ""} />
+							</div>
+							<div>
+								<span class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">{r.category}</span>
+								<h3 class="font-display text-2xl font-semibold text-primary">{r.title}</h3>
+							</div>
+						</div>
+						<p class="mb-8 flex-1 font-serif text-[#2e2e2e]">{r.description}</p>
+						<button
+							type="button"
+							data-open-modal={r.id}
+							class="flex w-full items-center justify-center gap-2 self-start rounded-none border border-primary bg-transparent px-6 py-3 font-sans text-sm font-semibold tracking-widest text-primary uppercase transition-colors hover:bg-primary hover:text-white sm:w-auto"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={DownloadIcon} />
+							Download Free Guide
+						</button>
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+
+	{resources.map((r) => (
+		<dialog id={`modal-${r.id}`} class="law-resource-modal m-auto w-full max-w-lg border-0 bg-transparent p-0 backdrop:bg-black/60">
+			<div class="relative w-full bg-white p-10 shadow-2xl">
+				<button type="button" data-close-modal class="absolute top-4 right-4 text-gray-400 transition-colors hover:text-gray-700" aria-label="Close">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={CloseIcon} />
+				</button>
+				<span class="mb-6 inline-block h-0.5 w-10 bg-accent"></span>
+				<h2 class="font-display mb-2 text-3xl font-semibold text-primary">Get Your Free Guide</h2>
+				<p class="mb-8 font-serif text-[#2e2e2e]"><span class="font-semibold">{r.title}</span> — enter your name and email and we'll send the PDF straight to your inbox.</p>
+				<form class="space-y-4">
+					<input type="text" placeholder="Full Name *" class="h-12 w-full rounded-none border border-gray-200 px-4 font-serif focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent" />
+					<input type="email" placeholder="Email Address *" class="h-12 w-full rounded-none border border-gray-200 px-4 font-serif focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent" />
+					<button
+						type="button"
+						title="This form isn't wired up to send yet — call us directly instead."
+						class="h-14 w-full rounded-none bg-accent font-sans text-sm font-semibold tracking-widest text-white uppercase transition-colors hover:bg-accent/90"
+					>
+						Send My Guide →
+					</button>
+					<p class="text-center font-sans text-xs text-gray-400">No spam. No unsolicited marketing. Unsubscribe any time.</p>
+				</form>
+			</div>
+		</dialog>
+	))}
+</LawLayout>
+
+<style>
+	.law-resource-modal::backdrop {
+		background: rgba(0, 0, 0, 0.6);
+	}
+</style>
+
+<script>
+	document.querySelectorAll<HTMLButtonElement>("[data-open-modal]").forEach((btn) => {
+		btn.addEventListener("click", () => {
+			const id = btn.dataset.openModal;
+			const dialog = document.getElementById(`modal-${id}`) as HTMLDialogElement | null;
+			dialog?.showModal();
+		});
+	});
+
+	document.querySelectorAll<HTMLDialogElement>(".law-resource-modal").forEach((dialog) => {
+		dialog.querySelector("[data-close-modal]")?.addEventListener("click", () => dialog.close());
+		dialog.addEventListener("click", (e) => {
+			if (e.target === dialog) dialog.close();
+		});
+	});
+</script>

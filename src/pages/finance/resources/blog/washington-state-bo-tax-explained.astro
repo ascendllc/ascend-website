@@ -1,0 +1,89 @@
+---
+import FinanceLayout from "../../../../components/finance/FinanceLayout.astro";
+
+const ArrowLeft = `<path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path>`;
+---
+
+<FinanceLayout title="Washington State B&O Tax Explained | Seattle CPA | WAFS" description="A complete guide to Washington State Business & Occupation (B&O) tax — rates, tax classifications, available exemptions, and strategic planning for Seattle businesses.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-32 pb-16 text-warmwhite">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="mx-auto max-w-4xl">
+				<a href="/finance/resources/blog" class="mb-8 flex items-center gap-2 text-sm font-medium text-warmwhite/60 transition-colors hover:text-wafs-gold">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 rotate-180" set:html={ArrowLeft} /> Back to Blog
+				</a>
+				<div>
+					<p class="mb-4 font-mono text-sm tracking-wider text-wafs-gold uppercase">March 12, 2025</p>
+					<h1 class="font-display mb-8 text-4xl leading-tight font-semibold md:text-5xl lg:text-6xl">Washington State B&O Tax Explained</h1>
+					<div class="flex items-center gap-4 border-t border-white/10 pt-8">
+						<img src="/images/finance/team-maggie.png" alt="Maggie Chen" class="h-12 w-12 rounded-full object-cover grayscale" />
+						<div>
+							<p class="font-semibold">Maggie Chen, CPA, MT</p>
+							<p class="text-sm text-warmwhite/60">Managing Partner — Tax Strategy</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Body -->
+	<section class="bg-warmwhite py-12">
+		<div class="container mx-auto px-6">
+			<div class="mx-auto max-w-4xl">
+				<img src="/images/finance/blog-bo-tax.png" alt="Seattle skyline B&O tax" class="mb-16 aspect-[2/1] w-full rounded-sm object-cover shadow-md" />
+
+				<div class="prose-wafs max-w-none">
+					<p class="mb-8 text-xl leading-relaxed text-wafs-forest italic">Washington is one of the few states without a personal or corporate income tax. Instead, the state generates revenue primarily through the Business & Occupation (B&O) tax. Because it taxes gross receipts rather than net profit, a misunderstanding of how the B&O tax works can severely erode your margins.</p>
+
+					<h2 class="font-display mt-12 mb-4 text-3xl font-semibold text-wafs-forest">What is the B&O Tax?</h2>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">The Washington State B&O tax is a gross receipts tax. This means it is measured on the value of products, gross proceeds of sale, or gross income of the business.</p>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">Unlike a traditional income tax, <strong class="font-semibold text-wafs-forest">there are no deductions for labor, materials, rent, or other costs of doing business.</strong> If your business brings in $1,000,000 in gross revenue, you owe tax on that $1,000,000—even if your net profit was zero or you operated at a loss.</p>
+
+					<h2 class="font-display mt-12 mb-4 text-3xl font-semibold text-wafs-forest">Major B&O Classifications and Rates</h2>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">The rate you pay depends entirely on the classification of your business activity. Many businesses perform activities that fall under multiple classifications and must segregate their revenue accordingly. The three most common classifications are:</p>
+
+					<h3 class="font-display mt-8 mb-3 text-xl font-semibold text-wafs-forest">1. Service and Other Activities (1.5%)</h3>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">This is a catch-all category for businesses providing professional or personal services. It carries the highest major rate.</p>
+					<ul class="mb-6 list-disc space-y-2 pl-5 text-[#4a5568]">
+						<li><strong class="font-semibold text-wafs-forest">Who falls here:</strong> Consultants, accountants, attorneys, doctors, real estate agents, software developers.</li>
+						<li><strong class="font-semibold text-wafs-forest">Rate:</strong> 1.5% (plus an advanced computing surcharge for certain high-revenue tech companies).</li>
+					</ul>
+
+					<h3 class="font-display mt-8 mb-3 text-xl font-semibold text-wafs-forest">2. Retailing (0.471%)</h3>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">Selling goods or certain services directly to the end consumer. If you are subject to the Retailing B&O tax, you must also collect retail sales tax from the buyer (unless an exemption applies).</p>
+					<ul class="mb-6 list-disc space-y-2 pl-5 text-[#4a5568]">
+						<li><strong class="font-semibold text-wafs-forest">Who falls here:</strong> Retail stores, restaurants, construction contractors.</li>
+						<li><strong class="font-semibold text-wafs-forest">Rate:</strong> 0.471%</li>
+					</ul>
+
+					<h3 class="font-display mt-8 mb-3 text-xl font-semibold text-wafs-forest">3. Wholesaling (0.484%)</h3>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">Selling goods to buyers who will resell them in the regular course of business. To qualify, you must obtain a reseller permit from your buyer.</p>
+					<ul class="mb-6 list-disc space-y-2 pl-5 text-[#4a5568]">
+						<li><strong class="font-semibold text-wafs-forest">Who falls here:</strong> Manufacturers selling to distributors, distributors selling to retailers.</li>
+						<li><strong class="font-semibold text-wafs-forest">Rate:</strong> 0.484%</li>
+					</ul>
+
+					<h2 class="font-display mt-12 mb-4 text-3xl font-semibold text-wafs-forest">The Local Layer: City B&O Taxes</h2>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">The state isn't the only entity collecting B&O. Nearly 50 cities in Washington—including Seattle, Bellevue, Tacoma, and Everett—impose their own local B&O taxes.</p>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">If your business is located in Seattle, or if you make sales to customers in Seattle (nexus), you must file a separate Seattle B&O return. Seattle's service classification rate is currently 0.427%, meaning a service business in Seattle pays a combined State and City B&O tax near 2% of gross revenue.</p>
+
+					<h2 class="font-display mt-12 mb-4 text-3xl font-semibold text-wafs-forest">Common Mistakes We See</h2>
+					<ol class="mb-6 list-decimal space-y-3 pl-5 text-[#4a5568]">
+						<li><strong class="font-semibold text-wafs-forest">Apportionment Errors:</strong> Service businesses selling to clients outside of Washington often mistakenly pay B&O tax on all revenue. Washington allows service businesses to apportion income based on where the benefit of the service is received. If 40% of your clients are in Oregon, you may only owe WA B&O on 60% of your revenue.</li>
+						<li><strong class="font-semibold text-wafs-forest">Failure to Collect Reseller Permits:</strong> If you claim the wholesale rate but cannot produce valid reseller permits during an audit, the state will reclassify the sales as retail—and assess you for both the higher B&O rate AND the uncollected sales tax, plus penalties.</li>
+						<li><strong class="font-semibold text-wafs-forest">Intercompany Transfers:</strong> Moving money between two related LLCs without proper documentation can inadvertently trigger B&O tax on the transfer.</li>
+					</ol>
+
+					<h2 class="font-display mt-12 mb-4 text-3xl font-semibold text-wafs-forest">Planning Strategy: Action Steps</h2>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">Because the B&O tax targets top-line revenue, it cannot be managed with end-of-year expense planning (like buying equipment or pre-paying rent). It must be managed through proper structural classification and rigorous apportionment tracking year-round.</p>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">If you haven't reviewed your B&O classifications and out-of-state apportionment percentages in the last 12 months, <a href="/finance/contact" class="text-wafs-evergreen underline hover:text-wafs-gold">schedule a review with our tax strategy team</a>. Correcting an apportionment error can yield immediate, dollar-for-dollar savings to your bottom line.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

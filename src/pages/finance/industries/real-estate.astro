@@ -1,0 +1,107 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CheckCircle = `<circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path>`;
+
+const focusCards = [
+	{ title: "Cost Segregation Studies", desc: "Accelerating depreciation deductions by reclassifying property components, generating immediate cash flow benefits." },
+	{ title: "1031 Exchanges", desc: "Strategic planning to defer capital gains taxes when transitioning properties or upgrading your portfolio." },
+	{ title: "Entity Structuring", desc: "Designing multi-tiered LLC structures that isolate liability while maintaining tax efficiency." },
+	{ title: "Passive Loss Optimization", desc: "Navigating Real Estate Professional Status (REPS) and material participation rules to unlock deductions against active income." },
+];
+
+const keyFocusAreas = [
+	"Short-term rental taxation (STRs)",
+	"NNN lease accounting",
+	"Opportunity Zone investments",
+	"Washington real estate excise tax (REET)",
+];
+---
+
+<FinanceLayout title="Real Estate CPA | 1031 Exchange & Tax Planning Seattle | WAFS" description="Real estate tax planning, 1031 exchanges, cost segregation, and investor advisory for Pacific Northwest real estate businesses and investors.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/industry-realestate.png" alt="Real estate background" class="h-full w-full object-cover opacity-60 grayscale" />
+			<div class="absolute inset-0 bg-wafs-forest/80"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Industry Focus: Real Estate</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Your properties deserve a smarter tax strategy.</h1>
+				<p class="text-xl leading-relaxed text-warmwhite/80 md:text-2xl">Real estate is one of the most tax-advantaged asset classes—if navigated correctly. We help Pacific Northwest developers, owners, and operators maximize returns through sophisticated structuring and tax mitigation.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Main content -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">Expertise in Property Taxation</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">From single-property investors to complex multi-entity development groups, managing real estate portfolios requires specialized accounting knowledge. Our team brings deep expertise in the highly specific tax codes governing real estate, ensuring you capture every available depreciation benefit while protecting your assets.</p>
+					<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+						{focusCards.map((c) => (
+							<div class="rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+								<h4 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{c.title}</h4>
+								<p class="text-sm leading-relaxed text-[#4a5568]">{c.desc}</p>
+							</div>
+						))}
+					</div>
+					<h3 class="mb-6 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Key Focus Areas</h3>
+					<ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
+						{keyFocusAreas.map((f) => (
+							<li class="flex items-center gap-3 text-[#4a5568]">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-wafs-gold" set:html={CheckCircle} />
+								<span class="font-medium">{f}</span>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 space-y-12 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<div>
+							<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Practice Leader</p>
+							<img src="/images/finance/team-maggie.png" alt="Maggie Chen" class="mb-4 aspect-square w-full rounded-sm object-cover grayscale" />
+							<h3 class="font-display mb-1 text-xl font-semibold text-wafs-forest">Maggie Chen</h3>
+							<p class="mb-3 font-mono text-xs text-[#4a5568]">CPA, MT | Managing Partner</p>
+							<a href="/finance/team/maggie-chen" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Profile →</a>
+						</div>
+						<div class="border-t border-[#d4e6dc] pt-8">
+							<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Key Team Members</p>
+							<div class="space-y-6">
+								<div class="flex items-center gap-4">
+									<img src="/images/finance/team-sarah.png" alt="Sarah Holloway" class="h-12 w-12 rounded-sm object-cover grayscale" />
+									<div>
+										<h3 class="font-display font-semibold text-wafs-forest">Sarah Holloway</h3>
+										<p class="font-mono text-xs text-[#4a5568]">CPA | Senior Manager</p>
+									</div>
+								</div>
+								<div class="flex items-center gap-4">
+									<img src="/images/finance/team-elena.png" alt="Elena Vasquez" class="h-12 w-12 rounded-sm object-cover grayscale" />
+									<div>
+										<h3 class="font-display font-semibold text-wafs-forest">Elena Vasquez</h3>
+										<p class="font-mono text-xs text-[#4a5568]">CPA | Tax Manager</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-wafs-forest py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-warmwhite">Discuss your real estate tax strategy.</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Consultation
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

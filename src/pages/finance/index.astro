@@ -1,0 +1,230 @@
+---
+import FinanceLayout from "../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const stats = [
+	{ value: "10+", label: "Years Serving Seattle" },
+	{ value: "8", label: "Credentialed Professionals" },
+	{ value: "4", label: "Integrated Service Areas" },
+	{ value: "98%", label: "Client Retention Rate" },
+];
+
+const services = [
+	{ title: "Tax Strategy & Compliance", href: "/finance/services/tax-strategy", desc: "Proactive, year-round planning that minimizes liability and puts more money back into your business." },
+	{ title: "Business Advisory & CFO Services", href: "/finance/services/business-advisory", desc: "Dedicated senior financial leadership, board-ready reporting, and strategic cash flow oversight." },
+	{ title: "Audit & Assurance", href: "/finance/services/audit-assurance", desc: "Rigorous financial statement audits and SOC reporting that give you tools to build a better future." },
+	{ title: "Wealth & Financial Planning", href: "/finance/services/wealth-planning", desc: "Integrated tax and wealth planning to ensure your investments, estate, and taxes align seamlessly." },
+];
+
+const industries = [
+	{ title: "Technology & Startups", href: "/finance/industries/technology-startups", img: "industry-tech.png" },
+	{ title: "Real Estate", href: "/finance/industries/real-estate", img: "industry-realestate.png" },
+	{ title: "Healthcare", href: "/finance/industries/healthcare", img: "industry-healthcare.png" },
+	{ title: "Nonprofits", href: "/finance/industries/nonprofits", img: "industry-nonprofit.png" },
+	{ title: "Professional Services", href: "/finance/industries/professional-services", img: "industry-professional.png" },
+	{ title: "Family Business", href: "/finance/industries/family-business", img: "industry-family.png" },
+];
+
+const team = [
+	{ name: "Maggie Chen", title: "Managing Partner", role: "Tax Strategy", img: "team-maggie.png", href: "/finance/team/maggie-chen", creds: ["CPA", "MT"] },
+	{ name: "David Okafor", title: "Partner", role: "Business Advisory", img: "team-david.png", href: "/finance/team/david-okafor", creds: ["CPA", "ABV"] },
+	{ name: "Priya Nair", title: "Partner", role: "Audit & Assurance", img: "team-priya.png", href: "/finance/team/priya-nair", creds: ["CPA", "CGMA"] },
+	{ name: "Robert Kimura", title: "Partner", role: "Wealth Planning", img: "team-robert.png", href: "/finance/team/robert-kimura", creds: ["CPA", "CFP®"] },
+];
+
+const testimonials = [
+	{ quote: `"Maggie and her team saved us more in year one than we'd paid in three years of CPA fees at our previous firm. But the bigger gift was actually understanding our numbers for the first time."`, author: "T. Nakamura", title: "CEO, Pacific Logistics Co." },
+	{ quote: `"David joined us as Fractional CFO when we were at $3M in revenue. When we closed our Series A two years later, the investors specifically called out the quality of our financial documentation. That's David's work."`, author: "A. Perreira", title: "Founder, GreenCore Technologies" },
+	{ quote: `"Robert doesn't just manage my wealth — he makes sure my taxes, my investments, and my estate plan actually talk to each other. I don't know why every CPA firm doesn't approach it this way."`, author: "L. Blackstone", title: "Retired Physician" },
+];
+
+const model = [
+	{ title: "Year-Round Engagement", desc: "We don't just see you in April. Tax strategy and business planning happen year-round to actively manage outcomes." },
+	{ title: "Senior Access, Always", desc: "You work directly with experienced partners and senior managers who intimately understand your financial picture." },
+	{ title: "Integrated Disciplines", desc: "Tax, audit, advisory, and wealth management operate under one roof, sharing insights to optimize your complete financial life." },
+	{ title: "Pacific Northwest Rooted", desc: "We are deeply embedded in the Seattle business community and understand the unique local and regional landscape." },
+];
+
+const blog = [
+	{ title: "Washington State B&O Tax Explained", author: "Maggie Chen", img: "blog-bo-tax.png", href: "/finance/resources/blog/washington-state-bo-tax-explained" },
+	{ title: "When Do You Actually Need a Fractional CFO?", author: "David Okafor", img: "blog-cfo.png", href: "/finance/resources/blog/when-you-need-a-fractional-cfo" },
+	{ title: "Roth Conversion Strategy in Seattle: 2025 Guide", author: "Robert Kimura", img: "blog-roth.png", href: "/finance/resources/blog/roth-conversion-strategy-seattle" },
+];
+---
+
+<FinanceLayout title="Washington Accounting & Financial Services | Seattle CPA Firm" description="Premier CPA and financial advisory firm in Seattle, WA. Strategic tax planning, audit & assurance, CFO advisory, and wealth management for Pacific Northwest businesses and families. Schedule a free consultation.">
+	<!-- Hero -->
+	<section class="relative flex h-screen min-h-[600px] items-center bg-wafs-forest pt-20 text-warmwhite">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline at dusk with Mt Rainier" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Strategic CPA & Advisory Firm | Seattle, WA</p>
+				<h1 class="font-display mb-8 text-5xl leading-[0.9] font-semibold md:text-7xl lg:text-[96px]">Beyond the Balance Sheet.</h1>
+				<p class="mb-10 max-w-2xl text-lg leading-relaxed text-warmwhite/90 md:text-xl">Washington Accounting & Financial Services partners with Pacific Northwest businesses and families to deliver strategic tax, advisory, audit, and wealth services — year-round, not just at tax time.</p>
+				<div class="flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+					<a href="/finance/contact" class="rounded-md bg-wafs-gold px-8 py-4 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">Schedule a Free Discovery Call</a>
+					<a href="/finance/services" class="group flex items-center gap-2 font-semibold transition-colors hover:text-wafs-gold">
+						Explore Our Services <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1" set:html={ArrowRight} />
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Stats -->
+	<section class="border-t border-white/10 bg-wafs-forest py-16 text-warmwhite">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-2 divide-x-0 gap-8 text-center md:grid-cols-4 md:divide-x md:divide-white/10">
+				{stats.map((s) => (
+					<div>
+						<div class="mb-4 font-mono text-5xl font-medium text-wafs-gold md:text-6xl">{s.value}</div>
+						<div class="font-sans text-sm tracking-wide text-warmwhite/80 uppercase">{s.label}</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- What we do -->
+	<section class="bg-warmwhite py-24 md:py-32">
+		<div class="container mx-auto px-6">
+			<div class="mb-16 max-w-3xl">
+				<h2 class="font-display mb-6 text-4xl font-semibold text-wafs-forest md:text-5xl">What We Do — And Why It's Different</h2>
+				<p class="text-lg leading-relaxed text-[#4a5568]">At most firms, tax happens in one department, advisory in another, and wealth management with a completely separate company. We build your financial strategy as a single interconnected system.</p>
+			</div>
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+				{services.map((s) => (
+					<a href={s.href} class="group block h-full rounded-sm border border-[#d4e6dc] bg-white p-10 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+						<h3 class="font-display mb-4 flex items-center justify-between text-2xl font-semibold text-wafs-forest transition-colors group-hover:text-wafs-gold">
+							{s.title}
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="-translate-x-4 text-wafs-gold opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" set:html={ArrowRight} />
+						</h3>
+						<p class="text-[#4a5568]">{s.desc}</p>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Industries -->
+	<section class="bg-[#f0ede8] py-24 md:py-32">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-16 text-center text-4xl font-semibold text-wafs-forest md:text-5xl">We Know Your Industry</h2>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+				{industries.map((i) => (
+					<a href={i.href} class="group relative block h-64 overflow-hidden rounded-sm">
+						<img src={`/images/finance/${i.img}`} alt={i.title} class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+						<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest/90 via-wafs-forest/40 to-transparent transition-opacity duration-300 group-hover:opacity-90"></div>
+						<div class="absolute right-6 bottom-6 left-6 flex items-end justify-between">
+							<h3 class="font-display text-2xl font-semibold text-warmwhite">{i.title}</h3>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold transition-transform duration-300 group-hover:translate-x-2" set:html={ArrowRight} />
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Team preview -->
+	<section class="bg-warmwhite py-24 md:py-32">
+		<div class="container mx-auto px-6">
+			<div class="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
+				<div class="max-w-2xl">
+					<h2 class="font-display mb-6 text-4xl font-semibold text-wafs-forest md:text-5xl">Eight Professionals. One Partnership.</h2>
+					<p class="text-lg text-[#4a5568]">We left national firms to build something better: a practice where our most experienced partners are deeply involved in your business, year-round.</p>
+				</div>
+				<a href="/finance/team" class="group flex items-center gap-2 font-semibold whitespace-nowrap text-wafs-forest transition-colors hover:text-wafs-gold">
+					Meet the Full Team <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1" set:html={ArrowRight} />
+				</a>
+			</div>
+			<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+				{team.map((m) => (
+					<a href={m.href} class="group block text-center">
+						<div class="relative mb-6 aspect-square overflow-hidden rounded-sm bg-[#f0ede8]">
+							<img src={`/images/finance/${m.img}`} alt={m.name} class="absolute top-0 left-0 h-[120%] w-full object-cover object-top transition-all duration-500 group-hover:scale-105 group-hover:grayscale" />
+						</div>
+						<h3 class="font-display mb-1 text-xl font-semibold text-wafs-forest">{m.name}</h3>
+						<p class="mb-3 text-sm font-medium text-wafs-slate">{m.title} — {m.role}</p>
+						<div class="flex justify-center gap-2">
+							{m.creds.map((c) => (<span class="rounded-sm bg-[#f0ede8] px-2 py-0.5 font-mono text-xs text-[#4a5568]">{c}</span>))}
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonials -->
+	<section class="bg-wafs-forest py-24 text-warmwhite md:py-32">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-16 text-center text-4xl font-semibold text-warmwhite md:text-5xl">What Our Clients Say</h2>
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+				{testimonials.map((t) => (
+					<div class="flex flex-col justify-between rounded-sm border border-white/10 bg-white/5 p-8">
+						<p class="font-display mb-8 text-lg leading-relaxed text-warmwhite/90 italic">{t.quote}</p>
+						<div>
+							<p class="font-semibold text-wafs-gold">{t.author}</p>
+							<p class="text-sm text-warmwhite/60">{t.title}</p>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Partnership model -->
+	<section class="bg-warmwhite py-24 md:py-32">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-16 text-center text-4xl font-semibold text-wafs-forest md:text-5xl">The Partnership Model, Not the Vendor Model</h2>
+			<div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+				{model.map((m) => (
+					<div class="border-t-2 border-wafs-gold bg-[#f0ede8]/50 p-8">
+						<h3 class="mb-4 font-sans text-xl font-semibold text-wafs-forest">{m.title}</h3>
+						<p class="text-sm leading-relaxed text-[#4a5568]">{m.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Insights -->
+	<section class="border-t border-[#d4e6dc] bg-[#f0ede8] py-24 md:py-32">
+		<div class="container mx-auto px-6">
+			<div class="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
+				<h2 class="font-display text-4xl font-semibold text-wafs-forest">Insights Worth Reading</h2>
+				<a href="/finance/resources/blog" class="group flex items-center gap-2 font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">
+					View All Articles <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1" set:html={ArrowRight} />
+				</a>
+			</div>
+			<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+				{blog.map((b) => (
+					<a href={b.href} class="group block h-full overflow-hidden border border-[#d4e6dc] bg-white transition-shadow hover:shadow-md">
+						<div class="aspect-[16/9] overflow-hidden">
+							<img src={`/images/finance/${b.img}`} alt={b.title} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+						</div>
+						<div class="p-6">
+							<p class="mb-3 font-mono text-xs tracking-wider text-wafs-slate uppercase">By {b.author}</p>
+							<h3 class="font-display text-xl font-semibold text-wafs-forest transition-colors group-hover:text-wafs-gold">{b.title}</h3>
+						</div>
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Final CTA -->
+	<section class="relative overflow-hidden bg-wafs-forest py-24 text-center text-warmwhite md:py-32">
+		<div class="absolute inset-0 opacity-10" style="background-image:url('/images/finance/hero-seattle.png'); background-size:cover; background-position:center; filter:grayscale(100%);"></div>
+		<div class="relative z-10 container mx-auto px-6">
+			<h2 class="font-display mb-8 text-5xl font-semibold md:text-7xl">Ready to move beyond the balance sheet?</h2>
+			<p class="mx-auto mb-10 max-w-2xl font-sans text-xl text-warmwhite/80">Schedule a discovery call with one of our partners to discuss your tax, advisory, or wealth management needs.</p>
+			<a href="/finance/contact" class="inline-flex items-center rounded-md bg-wafs-gold px-10 py-5 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule Your Free Discovery Call <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

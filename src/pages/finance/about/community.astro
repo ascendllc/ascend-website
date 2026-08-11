@@ -1,0 +1,127 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const Heart = `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>`;
+
+const involvement = [
+	{
+		person: "Maggie Chen",
+		title: "Managing Partner — Tax Strategy",
+		items: [
+			{ org: "Seattle Metropolitan Chamber of Commerce", role: "Board Member" },
+			{ org: "UW Foster School of Business Alumni Network", role: "Mentor, First-Generation Student Program" },
+		],
+	},
+	{
+		person: "David Okafor",
+		title: "Partner — Business Advisory",
+		items: [
+			{ org: "Seattle SCORE", role: "Advisory Board Member" },
+			{ org: "ProVisors Pacific Northwest", role: "Speaker — Business Valuation & Exit Strategy" },
+		],
+	},
+	{
+		person: "Priya Nair",
+		title: "Partner — Audit & Assurance",
+		items: [
+			{ org: "United Way of King County", role: "Volunteer Leader" },
+			{ org: "Washington Nonprofits Annual Conference", role: "Speaker — Nonprofit Financial Management" },
+		],
+	},
+	{
+		person: "Robert Kimura",
+		title: "Partner — Wealth & Financial Planning",
+		items: [
+			{ org: "Seattle Estate Planning Council", role: "Member" },
+			{ org: "Japanese American Citizens League — Seattle Chapter", role: "Board Member" },
+		],
+	},
+	{
+		person: "Sarah Holloway",
+		title: "Senior Manager — Tax",
+		items: [
+			{ org: "Ballard Youth Soccer", role: "Coach" },
+			{ org: "Seattle Small Business Network", role: "Member" },
+		],
+	},
+	{
+		person: "Marcus Webb",
+		title: "Senior Manager — Business Advisory",
+		items: [
+			{ org: "Seattle Impact Institute", role: "Volunteer Mentor" },
+			{ org: "UW Foster School of Business", role: "Guest Speaker — Startup Finance" },
+		],
+	},
+	{
+		person: "Elena Vasquez",
+		title: "Tax Manager",
+		items: [
+			{ org: "Consejo Counseling and Referral Service", role: "Board Member" },
+			{ org: "Latino Community Fund", role: "Volunteer Financial Educator" },
+		],
+	},
+	{
+		person: "James Thornton",
+		title: "Financial Planning Analyst",
+		items: [
+			{ org: "Treehouse — Foster Youth Education", role: "Volunteer" },
+			{ org: "CFA Society Seattle", role: "Member" },
+		],
+	},
+];
+---
+
+<FinanceLayout title="Community Involvement | WAFS Seattle CPA Firm" description="WAFS is committed to the Seattle community — supporting local nonprofits, financial literacy programs, and Pacific Northwest civic organizations.">
+	<!-- Hero -->
+	<section class="relative overflow-hidden bg-wafs-forest pt-36 pb-24 text-warmwhite">
+		<div class="absolute inset-0 opacity-10" style="background-image:url('/images/finance/about-hero.png'); background-size:cover; background-position:center; filter:grayscale(100%);"></div>
+		<div class="relative z-10 container mx-auto max-w-4xl px-6">
+			<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Community Involvement</p>
+			<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-6xl lg:text-7xl">Rooted in the Community We Serve.</h1>
+			<p class="max-w-2xl text-lg leading-relaxed text-warmwhite/80 md:text-xl">Every member of the WAFS team is involved beyond the office. We invest in the organizations and communities that make the Pacific Northwest thrive.</p>
+		</div>
+	</section>
+
+	<!-- Intro + list -->
+	<section class="bg-warmwhite py-20">
+		<div class="container mx-auto max-w-5xl px-6">
+			<div class="mb-16 flex items-center gap-3">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 shrink-0 text-wafs-gold" set:html={Heart} />
+				<p class="font-sans text-lg leading-relaxed text-[#4a5568]">At WAFS, community service is not a marketing initiative. It is how our people live. Each of our eight professionals dedicates meaningful time to organizations they believe in — from nonprofit boards to youth mentorship programs to professional education.</p>
+			</div>
+			<div class="space-y-12">
+				{involvement.map((e) => (
+					<div class="grid grid-cols-1 items-start gap-6 border-b border-[#d4e6dc] pb-12 md:grid-cols-3">
+						<div>
+							<h3 class="font-display mb-1 text-xl font-semibold text-wafs-forest">{e.person}</h3>
+							<p class="font-sans text-sm text-[#4a5568]">{e.title}</p>
+						</div>
+						<div class="space-y-4 md:col-span-2">
+							{e.items.map((n) => (
+								<div class="flex items-start gap-4">
+									<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-wafs-gold"></span>
+									<div>
+										<p class="font-semibold text-nearblack">{n.org}</p>
+										<p class="text-sm text-[#4a5568]">{n.role}</p>
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Closing statement -->
+	<section class="border-t border-[#d4e6dc] bg-[#f0ede8] py-20">
+		<div class="container mx-auto max-w-3xl px-6 text-center">
+			<h2 class="font-display mb-6 text-4xl font-semibold text-wafs-forest">A Culture of Contribution</h2>
+			<p class="mb-8 text-lg leading-relaxed text-[#4a5568]">From the founding of WAFS, Maggie Chen and Robert Kimura believed that a thriving firm had an obligation to contribute to a thriving community. That conviction has shaped every hiring decision we've made. The people on our team don't just work in Seattle — they are invested in Seattle.</p>
+			<a href="/finance/about" class="group inline-flex items-center gap-2 font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">
+				Back to About Us <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

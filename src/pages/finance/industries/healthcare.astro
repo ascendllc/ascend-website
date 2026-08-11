@@ -1,0 +1,84 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+
+const focusCards = [
+	{ title: "Practice Accounting", desc: "Specialized benchmarking, overhead analysis, and cash flow management tailored specifically to medical and dental clinics." },
+	{ title: "Partner Compensation", desc: "Designing, reviewing, and updating equitable compensation formulas and profit-sharing agreements." },
+	{ title: "Buy-Sell & Succession", desc: "Structuring transitions for retiring partners, onboarding new associates, and independent practice valuation." },
+	{ title: "DSO/MSO Advisory", desc: "Financial preparation and due diligence representation when considering private equity or corporate acquisition offers." },
+];
+---
+
+<FinanceLayout title="CPA for Healthcare Practices | Seattle | WAFS" description="Accounting and advisory services for Seattle medical practices, dental offices, and healthcare organizations. Physician compensation, compliance, and practice valuation.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/industry-healthcare.png" alt="Healthcare background" class="h-full w-full object-cover opacity-60 grayscale" />
+			<div class="absolute inset-0 bg-wafs-forest/80"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Industry Focus: Healthcare & Medical Practices</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Complex compliance. Dedicated expertise.</h1>
+				<p class="text-xl leading-relaxed text-warmwhite/80 md:text-2xl">Medical and dental practices require highly specialized financial oversight. We help healthcare providers manage profitability, navigate partner transitions, and build long-term wealth.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Main content -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">The Business of Medicine</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">Running a successful practice while delivering exceptional patient care leaves little room for financial guesswork. Our healthcare practice group understands the nuances of revenue cycle challenges, complex partner compensation formulas, and the increasing presence of Dental and Medical Service Organizations (DSOs/MSOs) in the market.</p>
+					<div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+						{focusCards.map((c) => (
+							<div class="rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+								<h4 class="font-display mb-3 text-xl font-semibold text-wafs-forest">{c.title}</h4>
+								<p class="text-sm leading-relaxed text-[#4a5568]">{c.desc}</p>
+							</div>
+						))}
+					</div>
+					<h3 class="mb-6 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Integrated Wealth Planning</h3>
+					<p class="mb-6 leading-relaxed text-[#4a5568]">Because medical professionals often face delayed earning years followed by high-income brackets, traditional retirement planning is insufficient. We integrate the practice's tax strategy directly with the partners' personal wealth management, optimizing cash balance plans, medical real estate ownership, and asset protection.</p>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 space-y-12 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<div>
+							<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Assurance Lead</p>
+							<img src="/images/finance/team-priya.png" alt="Priya Nair" class="mb-4 aspect-square w-full rounded-sm object-cover grayscale" />
+							<h3 class="font-display mb-1 text-xl font-semibold text-wafs-forest">Priya Nair</h3>
+							<p class="mb-3 font-mono text-xs text-[#4a5568]">CPA, CGMA | Partner</p>
+							<a href="/finance/team/priya-nair" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Profile →</a>
+						</div>
+						<div class="border-t border-[#d4e6dc] pt-8">
+							<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Wealth Lead</p>
+							<div class="mb-4 flex items-center gap-4">
+								<img src="/images/finance/team-robert.png" alt="Robert Kimura" class="h-16 w-16 rounded-sm object-cover grayscale" />
+								<div>
+									<h3 class="font-display text-lg font-semibold text-wafs-forest">Robert Kimura</h3>
+									<p class="font-mono text-xs text-[#4a5568]">CPA, CFP®</p>
+								</div>
+							</div>
+							<a href="/finance/team/robert-kimura" class="text-sm font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">Profile →</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-wafs-forest py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-warmwhite">Discuss your practice's financial health.</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Consultation
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

@@ -1,0 +1,220 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowLeft = `<path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path>`;
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CalcIcon = `<rect width="16" height="20" x="4" y="2" rx="2"></rect><line x1="8" x2="16" y1="6" y2="6"></line><line x1="16" x2="16" y1="14" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path>`;
+const TrendIcon = `<path d="M16 7h6v6"></path><path d="m22 7-8.5 8.5-5-5L2 17"></path>`;
+const PiggyIcon = `<path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2h0V5z"></path><path d="M2 9v1c0 1.1.9 2 2 2h1"></path><path d="M16 11h0"></path>`;
+---
+
+<FinanceLayout title="Financial Calculators | WAFS Seattle CPA Firm" description="Free financial calculators for Seattle businesses and families — tax estimates, retirement projections, savings analysis, and more from Washington Accounting & Financial Services.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<a href="/finance/resources" class="mb-8 flex items-center gap-2 text-sm font-medium text-wafs-gold transition-colors hover:text-warmwhite">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 rotate-180" set:html={ArrowLeft} /> Back to Resources
+				</a>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Interactive Calculators</h1>
+				<p class="font-sans text-xl leading-relaxed text-warmwhite/80">Explore the mathematical impact of structural tax changes, fractional CFO engagements, and disciplined wealth planning.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Calculators -->
+	<section class="bg-[#f0ede8] py-24">
+		<div class="container mx-auto space-y-24 px-6">
+			<!-- Business Tax Strategy Estimator -->
+			<div class="flex flex-col overflow-hidden rounded-sm border border-[#d4e6dc] bg-white shadow-sm lg:flex-row">
+				<div class="w-full border-b border-[#d4e6dc] bg-warmwhite p-10 lg:w-1/2 lg:border-r lg:border-b-0">
+					<div class="mb-8 flex items-center gap-3">
+						<div class="flex h-10 w-10 items-center justify-center rounded bg-wafs-forest">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-wafs-gold" set:html={CalcIcon} />
+						</div>
+						<h2 class="font-display text-2xl font-semibold text-wafs-forest">Business Tax Strategy Estimator</h2>
+					</div>
+					<div class="space-y-8">
+						<div>
+							<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+								<span>Annual Revenue</span>
+								<span class="font-mono text-wafs-slate">$500,000</span>
+							</label>
+							<input type="range" min="100000" max="5000000" step="50000" value="500000" disabled class="w-full accent-wafs-evergreen" />
+						</div>
+						<div>
+							<label class="mb-3 block text-sm font-semibold text-wafs-forest">Current Entity Structure</label>
+							<select disabled class="w-full rounded border border-[#d4e6dc] bg-white p-3 text-[#4a5568] outline-none">
+								<option selected>Sole Proprietor</option>
+								<option>LLC</option>
+								<option>S-Corp</option>
+								<option>C-Corp</option>
+							</select>
+						</div>
+						<div>
+							<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+								<span>Current Effective Tax Rate</span>
+								<span class="font-mono text-wafs-slate">25%</span>
+							</label>
+							<input type="range" min="15" max="45" value="25" disabled class="w-full accent-wafs-evergreen" />
+						</div>
+					</div>
+				</div>
+				<div class="flex w-full flex-col items-center justify-center bg-wafs-forest p-10 text-center text-warmwhite lg:w-1/2">
+					<p class="mb-4 font-sans text-sm tracking-widest text-warmwhite/80 uppercase">Estimated Annual Savings Potential</p>
+					<div class="mb-6 font-mono text-6xl font-semibold text-wafs-gold md:text-7xl">$13,770</div>
+					<p class="mb-8 max-w-sm text-sm text-warmwhite/60">Based on potential self-employment tax savings via S-Corp election and reasonable salary optimization.</p>
+					<a href="/finance/contact" class="flex items-center gap-2 font-semibold text-wafs-gold transition-colors hover:text-warmwhite">
+						Discuss Tax Strategy <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={ArrowRight} />
+					</a>
+					<p class="mt-8 max-w-sm text-[10px] text-warmwhite/40">For illustrative purposes only. Does not constitute tax advice. Actual results depend on net margin, state nexus, and individual tax circumstances.</p>
+				</div>
+			</div>
+
+			<!-- Fractional CFO ROI -->
+			<div class="flex flex-col overflow-hidden rounded-sm border border-[#d4e6dc] bg-white shadow-sm lg:flex-row">
+				<div class="w-full border-b border-[#d4e6dc] bg-warmwhite p-10 lg:w-1/2 lg:border-r lg:border-b-0">
+					<div class="mb-8 flex items-center gap-3">
+						<div class="flex h-10 w-10 items-center justify-center rounded bg-wafs-forest">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-wafs-gold" set:html={TrendIcon} />
+						</div>
+						<h2 class="font-display text-2xl font-semibold text-wafs-forest">Fractional CFO ROI</h2>
+					</div>
+					<div class="space-y-8">
+						<div>
+							<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+								<span>Annual Revenue</span>
+								<span class="font-mono text-wafs-slate">$3,000,000</span>
+							</label>
+							<input type="range" min="1000000" max="20000000" step="500000" value="3000000" disabled class="w-full accent-wafs-evergreen" />
+						</div>
+						<div>
+							<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+								<span>Cash Flow / Margin Improvement</span>
+								<span class="font-mono text-wafs-slate">5%</span>
+							</label>
+							<input type="range" min="1" max="15" value="5" disabled class="w-full accent-wafs-evergreen" />
+							<p class="mt-2 text-xs text-[#4a5568]">Targeted improvement via pricing optimization, vendor renegotiation, and overhead reduction.</p>
+						</div>
+						<div>
+							<label class="mb-3 block text-sm font-semibold text-wafs-forest">Engagement Level</label>
+							<select disabled class="w-full rounded border border-[#d4e6dc] bg-white p-3 text-[#4a5568] outline-none">
+								<option>Quarterly Review (~$1,500/mo)</option>
+								<option selected>Monthly Advisory (~$3,500/mo)</option>
+								<option>Weekly Leadership (~$6,500/mo)</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="flex w-full flex-col justify-center bg-wafs-forest p-10 text-warmwhite lg:w-1/2">
+					<div class="space-y-6">
+						<div class="flex items-end justify-between border-b border-white/20 pb-4">
+							<span class="font-sans text-sm tracking-widest text-warmwhite/80 uppercase">Value Created (Annual)</span>
+							<span class="font-mono text-3xl font-semibold text-wafs-gold">+$150,000</span>
+						</div>
+						<div class="flex items-end justify-between border-b border-white/20 pb-4">
+							<span class="font-sans text-sm tracking-widest text-warmwhite/80 uppercase">WAFS CFO Cost (Annual)</span>
+							<span class="font-mono text-3xl font-semibold text-white/50">-$42,000</span>
+						</div>
+						<div class="flex items-end justify-between pt-4">
+							<span class="font-sans text-lg font-semibold text-warmwhite">Net ROI</span>
+							<span class="rounded bg-white px-3 py-1 font-mono text-5xl font-semibold text-wafs-evergreen">$108,000</span>
+						</div>
+					</div>
+					<div class="mt-10 border-t border-white/10 pt-8 text-center">
+						<a href="/finance/lp/fractional-cfo-seattle" class="flex items-center justify-center gap-2 font-semibold text-wafs-gold transition-colors hover:text-warmwhite">
+							Learn about Fractional CFO Services <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={ArrowRight} />
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Retirement Projection -->
+			<div class="flex flex-col overflow-hidden rounded-sm border border-[#d4e6dc] bg-white shadow-sm lg:flex-row">
+				<div class="w-full border-b border-[#d4e6dc] bg-warmwhite p-10 lg:w-1/2 lg:border-r lg:border-b-0">
+					<div class="mb-8 flex items-center gap-3">
+						<div class="flex h-10 w-10 items-center justify-center rounded bg-wafs-forest">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-wafs-gold" set:html={PiggyIcon} />
+						</div>
+						<h2 class="font-display text-2xl font-semibold text-wafs-forest">Retirement Projection</h2>
+					</div>
+					<div class="space-y-8">
+						<div class="grid grid-cols-2 gap-4">
+							<div>
+								<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+									<span>Current Age</span>
+									<span class="font-mono text-wafs-slate">45</span>
+								</label>
+								<input type="range" min="30" max="65" value="45" disabled class="w-full accent-wafs-evergreen" />
+							</div>
+							<div>
+								<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+									<span>Retire Age</span>
+									<span class="font-mono text-wafs-slate">65</span>
+								</label>
+								<input type="range" min="50" max="75" value="65" disabled class="w-full accent-wafs-evergreen" />
+							</div>
+						</div>
+						<div>
+							<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+								<span>Current Savings</span>
+								<span class="font-mono text-wafs-slate">$250,000</span>
+							</label>
+							<input type="range" min="0" max="3000000" step="50000" value="250000" disabled class="w-full accent-wafs-evergreen" />
+						</div>
+						<div>
+							<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+								<span>Monthly Contribution</span>
+								<span class="font-mono text-wafs-slate">$2,000</span>
+							</label>
+							<input type="range" min="0" max="20000" step="500" value="2000" disabled class="w-full accent-wafs-evergreen" />
+						</div>
+						<div>
+							<label class="mb-3 flex justify-between text-sm font-semibold text-wafs-forest">
+								<span>Expected Return</span>
+								<span class="font-mono text-wafs-slate">7%</span>
+							</label>
+							<input type="range" min="3" max="12" value="7" disabled class="w-full accent-wafs-evergreen" />
+						</div>
+					</div>
+				</div>
+				<div class="flex w-full flex-col p-10 lg:w-1/2">
+					<div class="mb-8 grid grid-cols-2 gap-4">
+						<div class="rounded border border-[#d4e6dc] bg-[#f0ede8] p-4">
+							<p class="mb-1 text-xs font-semibold tracking-widest text-nearblack uppercase">Target Balance</p>
+							<p class="font-mono text-2xl font-semibold text-wafs-forest">$2,051,538</p>
+						</div>
+						<div class="rounded bg-wafs-forest p-4 text-warmwhite">
+							<p class="mb-1 text-xs font-semibold tracking-widest text-warmwhite/70 uppercase">Est. Monthly Income</p>
+							<p class="font-mono text-2xl font-semibold text-wafs-gold">$6,838</p>
+						</div>
+					</div>
+					<div class="min-h-[250px] w-full flex-1">
+						<svg viewBox="0 0 300 150" class="h-full w-full" preserveAspectRatio="none">
+							<line x1="10" y1="10" x2="10" y2="140" stroke="#D4E6DC" stroke-width="1" />
+							<line x1="10" y1="140" x2="290" y2="140" stroke="#D4E6DC" stroke-width="1" />
+							<polyline points="10,124 80,109 150,86 220,55 290,10" fill="none" stroke="#C9A84C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+							<circle cx="10" cy="124" r="3" fill="#1B3A2A" />
+							<circle cx="80" cy="109" r="3" fill="#1B3A2A" />
+							<circle cx="150" cy="86" r="3" fill="#1B3A2A" />
+							<circle cx="220" cy="55" r="3" fill="#1B3A2A" />
+							<circle cx="290" cy="10" r="4" fill="#1B3A2A" stroke="#C9A84C" stroke-width="2" />
+						</svg>
+						<div class="mt-2 flex justify-between px-1 font-mono text-xs text-[#4a5568]">
+							<span>Age 45</span>
+							<span>Age 50</span>
+							<span>Age 55</span>
+							<span>Age 60</span>
+							<span>Age 65</span>
+						</div>
+					</div>
+					<p class="mt-4 text-center text-[10px] text-nearblack/60">Assumes constant return. Monthly income based on 4% safe withdrawal rate.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

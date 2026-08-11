@@ -38,16 +38,16 @@ const industryCards = [
 		title: "A complete marketing system built for attorneys and law firms.",
 		body: "Brand identity, website, SEO, AEO/IEO optimization, content, Google & Meta ad campaigns with dedicated landing pages, and a 24/7 AI chat assistant. Demo site available.",
 		includes: ["Brand identity & website", "SEO + AEO/IEO", "Google Ads + Meta Ads", "Dedicated landing pages", "24/7 AI chat assistant"],
-		fullSolutionHref: "https://ascendsmartly.com/legal-marketing",
-		demoHref: "https://law.ascendsmartly.com/",
+		fullSolutionHref: "/legal-marketing",
+		demoHref: "/law",
 	},
 	{
 		badge: "Accounting & Finance",
 		title: "A complete marketing system built for CPAs and financial advisors.",
 		body: "Brand identity, website, SEO, AEO/IEO optimization, content, Google, Meta & LinkedIn ad campaigns with dedicated landing pages, and a 24/7 AI chat assistant. Demo site available.",
 		includes: ["Brand identity & website", "SEO + AEO/IEO", "Google Ads + Meta Ads + LinkedIn", "Dedicated landing pages", "24/7 AI chat assistant"],
-		fullSolutionHref: "https://ascendsmartly.com/finance-marketing",
-		demoHref: "https://finance.ascendsmartly.com/",
+		fullSolutionHref: "/finance-marketing",
+		demoHref: "/finance",
 	},
 ];
 
@@ -285,8 +285,8 @@ const navItems = [
 									</div>
 								</div>
 								<div class="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 p-6">
-									<a href={c.fullSolutionHref} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold text-white transition-all" style={`background-color:${ORANGE}`} set:html={`See Full Solution ${ArrowRight}`} />
-									<a href={c.demoHref} target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-bold transition-colors hover:underline" style={`color:${ORANGE}`} set:html={`View Demo Site ${ArrowRight}`} />
+									<a href={c.fullSolutionHref} class="inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold text-white transition-all" style={`background-color:${ORANGE}`} set:html={`See Full Solution ${ArrowRight}`} />
+									<a href={c.demoHref} class="inline-flex items-center gap-1.5 text-sm font-bold transition-colors hover:underline" style={`color:${ORANGE}`} set:html={`View Demo Site ${ArrowRight}`} />
 								</div>
 							</div>
 						))

@@ -1,0 +1,115 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowRight = `<path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>`;
+const CheckCircle = `<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="m9 11 3 3L22 4"></path>`;
+
+const serviceAreas = [
+	{ title: "Business Tax Planning", desc: "Entity selection, restructuring, and comprehensive planning for closely held businesses, partnerships, and S-Corps." },
+	{ title: "Individual & Family Tax", desc: "High-net-worth individual tax compliance integrated with wealth and estate planning strategies." },
+	{ title: "Real Estate Taxation", desc: "Cost segregation, 1031 exchanges, and passive loss optimization for real estate investors and developers." },
+	{ title: "State & Local Tax (SALT)", desc: "Washington State B&O tax strategy, multi-state nexus analysis, and sales tax compliance." },
+	{ title: "Corporate Transactions", desc: "Pre-sale tax structuring, buy-sell agreements, and M&A tax diligence." },
+	{ title: "Tax Credits & Incentives", desc: "R&D tax credit studies, Work Opportunity Tax Credits, and local incentives." },
+	{ title: "IRS Representation", desc: "Audit defense, penalty abatement, and dispute resolution with federal and state tax authorities." },
+];
+
+const process = [
+	{ step: "01", title: "Discovery", desc: "Deep dive into your current structure and past returns." },
+	{ step: "02", title: "Assessment", desc: "Identifying missed opportunities and areas of exposure." },
+	{ step: "03", title: "Strategy", desc: "Developing a customized, multi-year tax plan." },
+	{ step: "04", title: "Execution", desc: "Implementation of entity changes or accounting methods." },
+	{ step: "05", title: "Quarterly Review", desc: "Ongoing monitoring to adjust strategy as your business changes." },
+];
+---
+
+<FinanceLayout title="Tax Strategy & Compliance | Seattle Business Tax Planning | WAFS" description="Strategic tax planning and compliance for Seattle businesses. Corporate tax, WA B&O tax, multi-state filings, R&D credits, and IRS representation. Save more with proactive tax strategy.">
+	<!-- Hero -->
+	<section class="relative bg-wafs-forest pt-40 pb-24 text-warmwhite md:pt-48 md:pb-32">
+		<div class="absolute inset-0 z-0">
+			<img src="/images/finance/hero-seattle.png" alt="Seattle skyline" class="h-full w-full object-cover opacity-60" />
+			<div class="absolute inset-0 bg-gradient-to-t from-wafs-forest via-wafs-forest/45 to-transparent"></div>
+		</div>
+		<div class="relative z-10 container mx-auto px-6">
+			<div class="max-w-4xl">
+				<p class="mb-6 font-sans text-sm font-semibold tracking-widest text-wafs-gold uppercase">Tax Strategy & Compliance</p>
+				<h1 class="font-display mb-8 text-5xl leading-tight font-semibold md:text-7xl">Stop filing. Start planning.</h1>
+				<p class="font-sans text-xl leading-relaxed text-warmwhite/80 md:text-2xl">There's a difference between a CPA who files your taxes and one who minimizes them. We built WAFS around that difference.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Approach + Service Areas -->
+	<section class="bg-warmwhite py-24">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 gap-16 lg:grid-cols-3">
+				<div class="lg:col-span-2">
+					<h2 class="font-display mb-6 text-3xl font-semibold text-wafs-forest">A Year-Round Approach</h2>
+					<p class="mb-12 text-lg leading-relaxed text-[#4a5568]">Most business owners meet with their CPA in February or March, looking back at the previous year. By then, it's too late. The best tax strategies require action before December 31st. We engage with our clients year-round, analyzing financial data quarterly to identify optimization opportunities while there is still time to act.</p>
+					<h3 class="mb-8 border-b border-[#d4e6dc] pb-4 font-sans text-xl font-semibold tracking-wider text-wafs-forest uppercase">Service Areas</h3>
+					<div class="space-y-8">
+						{serviceAreas.map((s) => (
+							<div class="flex gap-4">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-1 h-6 w-6 shrink-0 text-wafs-gold" set:html={CheckCircle} />
+								<div>
+									<h4 class="font-display mb-2 text-xl font-semibold text-wafs-forest">{s.title}</h4>
+									<p class="leading-relaxed text-[#4a5568]">{s.desc}</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+				<div class="lg:col-span-1">
+					<div class="sticky top-32 rounded-sm border border-[#d4e6dc] bg-[#f0ede8] p-8">
+						<p class="mb-6 text-sm font-semibold tracking-widest text-wafs-slate uppercase">Practice Leader</p>
+						<div class="relative mb-6 aspect-square overflow-hidden rounded-sm">
+							<img src="/images/finance/team-maggie.png" alt="Maggie Chen" class="absolute top-0 left-0 h-[120%] w-full object-cover object-top grayscale" />
+						</div>
+						<h3 class="font-display mb-2 text-2xl font-semibold text-wafs-forest">Maggie Chen</h3>
+						<p class="mb-4 font-mono text-sm text-[#4a5568]">CPA, Master of Taxation</p>
+						<p class="mb-6 text-sm leading-relaxed text-[#4a5568]">Maggie leads WAFS's tax practice and personally handles the firm's most complex engagements, drawing on her 14 years at Deloitte managing closely held business accounts.</p>
+						<a href="/finance/team/maggie-chen" class="flex items-center gap-2 font-semibold text-wafs-forest transition-colors hover:text-wafs-gold">
+							View Full Profile <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" set:html={ArrowRight} />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Engagement Process -->
+	<section class="bg-wafs-forest py-24 text-warmwhite">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-16 text-center text-4xl font-semibold">Our Engagement Process</h2>
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-5">
+				{process.map((p) => (
+					<div class="relative overflow-hidden rounded-sm border border-white/10 bg-white/5 p-6">
+						<div class="absolute -top-4 -right-2 font-mono text-5xl font-semibold text-white/5">{p.step}</div>
+						<h3 class="font-display relative z-10 mb-3 text-xl font-semibold text-wafs-gold">{p.title}</h3>
+						<p class="relative z-10 text-sm leading-relaxed text-warmwhite/80">{p.desc}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Testimonial -->
+	<section class="bg-[#f0ede8] py-24">
+		<div class="container mx-auto px-6">
+			<div class="mx-auto max-w-4xl text-center">
+				<p class="font-display mb-8 text-2xl leading-relaxed text-wafs-forest italic md:text-3xl">"Working with Maggie changed what I thought accounting was supposed to be. I went from dreading April to actually looking forward to our quarterly calls."</p>
+				<p class="font-semibold text-[#4a5568]">— B. Takahashi, Owner, Cascade Design Studio</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="bg-warmwhite py-24 text-center">
+		<div class="container mx-auto px-6">
+			<h2 class="font-display mb-8 text-4xl font-semibold text-wafs-forest">Ready to optimize your tax strategy?</h2>
+			<a href="/finance/contact" class="inline-flex h-16 items-center justify-center rounded-md bg-wafs-gold px-10 text-lg font-semibold text-wafs-forest transition-colors hover:bg-wafs-gold/90">
+				Schedule a Tax Consultation <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 h-5 w-5" set:html={ArrowRight} />
+			</a>
+		</div>
+	</section>
+</FinanceLayout>

@@ -1,0 +1,52 @@
+---
+import FinanceLayout from "../../../components/finance/FinanceLayout.astro";
+
+const ArrowLeft = `<path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path>`;
+const Phone = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>`;
+---
+
+<FinanceLayout title="Marcus Webb, CPA | Senior Business Advisory Manager | WAFS Seattle" description="Marcus Webb, CPA is a Senior Manager at WAFS specializing in CFO advisory services, financial modeling, and M&A support.">
+	<!-- Hero -->
+	<section class="bg-wafs-forest text-warmwhite pt-32 pb-16">
+		<div class="container mx-auto px-6">
+			<a href="/finance/team" class="text-warmwhite/60 hover:text-wafs-gold text-sm font-medium flex items-center gap-2 mb-8 transition-colors">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={ArrowLeft} /> Back to Team
+			</a>
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+				<div class="relative lg:col-span-4 lg:col-start-2 aspect-[4/5] overflow-hidden rounded-sm border-2 border-[#d4e6dc]/20">
+					<img src="/images/finance/team-marcus.png" alt="Marcus Webb" class="w-full h-full object-cover grayscale" />
+				</div>
+				<div class="lg:col-span-6">
+					<div class="flex flex-wrap gap-2 mb-4">
+						<span class="bg-wafs-gold text-wafs-forest text-xs font-mono px-3 py-1 rounded-full font-semibold">CPA</span>
+						<span class="bg-wafs-evergreen text-warmwhite text-xs font-mono px-3 py-1 rounded-full">MBA</span>
+					</div>
+					<h1 class="font-display font-semibold text-4xl md:text-5xl mb-2">Marcus Webb</h1>
+					<p class="text-xl text-wafs-gold font-display italic mb-6">Senior Manager — Business Advisory</p>
+					<div class="space-y-3 mb-8 text-warmwhite/80 font-sans">
+						<a href="tel:2065555555" class="flex items-center gap-3 hover:text-warmwhite transition-colors">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-wafs-gold" set:html={Phone} /> (206) 555-5555
+						</a>
+						<div class="flex items-center gap-3">
+							<span class="w-4 h-4 flex items-center justify-center text-wafs-gold font-semibold">·</span> Joined WAFS in 2021
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Body -->
+	<section class="py-24 bg-warmwhite">
+		<div class="container mx-auto px-6">
+			<div class="max-w-3xl mx-auto">
+				<h2 class="font-display text-3xl font-semibold text-wafs-forest mb-6">Biography</h2>
+				<div class="prose-wafs space-y-6 text-[#4a5568] leading-relaxed">
+					<p>Marcus Webb joined WAFS in 2021 focused on how growing companies build financial systems that scale. His background spans startup operations, corporate finance, and public accounting.</p>
+					<p>After earning his MBA at the UW Foster School of Business, he worked as a financial analyst at a Series B SaaS company, helping build reporting infrastructure from early spreadsheets to a full NetSuite implementation. At WAFS, he works with founder-led companies in the $500K–$10M range, serving as their fractional financial leadership.</p>
+					<p>He has helped three clients close SBA 7(a) loans, supported two in preparing financial packages for angel investment rounds, and regularly helps technology founders navigate complex equity compensation models. He volunteers as a mentor at the Seattle Impact Institute.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</FinanceLayout>

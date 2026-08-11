@@ -1,0 +1,72 @@
+---
+import LawLayout from "../../../components/law/LawLayout.astro";
+
+const values = [
+	{
+		icon: `<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path>`,
+		title: "Integrity Without Exception",
+		body: "We tell clients the truth — including the parts they may not want to hear. Candor builds trust, and trust is the foundation of every lasting attorney-client relationship. We will never shade advice to preserve a fee.",
+	},
+	{
+		icon: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle>`,
+		title: "Deep Client Partnership",
+		body: "We measure success not in billable hours but in the longevity of our relationships. When a client's business grows, their family is protected, or their dispute resolves favorably, that outcome matters more to us than any invoice.",
+	},
+	{
+		icon: `<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path>`,
+		title: "Strategic Clarity",
+		body: "Legal complexity should never paralyze a client. We translate nuanced law into clear, actionable strategy so business owners and families can move forward with confidence — not confusion.",
+	},
+	{
+		icon: `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>`,
+		title: "Tenacious Advocacy",
+		body: "Inside the courtroom or across a negotiating table, we fight hard for the people we represent. Our attorneys prepare as if every matter will go to trial, which is precisely why so many matters settle on favorable terms.",
+	},
+	{
+		icon: `<path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"></path>`,
+		title: "Genuine Care",
+		body: "Legal problems are rarely just legal problems. They are business stresses, family worries, and sleepless nights. We treat our clients as whole people and bring real human concern to every engagement.",
+	},
+	{
+		icon: `<path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path><circle cx="12" cy="8" r="6"></circle>`,
+		title: "Excellence in Craft",
+		body: "We hold ourselves to a standard that goes beyond competence. Every brief, every agreement, every argument is crafted with precision. Exceptional legal work is not accidental — it is the product of rigorous attention and genuine expertise.",
+	},
+];
+---
+
+<LawLayout title="Our Values | Washington Law | Seattle Law Firm" description="The principles that guide Washington Law: client-centered representation, radical transparency, deep specialization, and genuine commitment to justice for Seattle businesses and families.">
+	<div class="pt-32 pb-24">
+		<div class="container mx-auto max-w-7xl px-6">
+			<div class="mb-24 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+				<div>
+					<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Our Values</p>
+					<h1 class="font-display mb-8 text-5xl leading-tight font-semibold text-primary lg:text-6xl">The principles we practice, not just profess.</h1>
+					<p class="font-serif text-xl leading-relaxed text-[#2e2e2e]">Law firms talk about values. We built ours into the way we hire, the way we work, and the way we measure whether we are doing our jobs well. These six commitments guide every decision we make on behalf of a client.</p>
+				</div>
+				<div class="relative hidden h-[420px] lg:block">
+					<img src="/images/law/values-hero.png" alt="Washington Law attorneys — integrity and trust" class="h-full w-full rounded-sm object-cover shadow-2xl" />
+					<div class="absolute -bottom-5 -left-5 max-w-[260px] border-l-4 border-accent bg-white p-6 shadow-xl">
+						<p class="font-display text-lg leading-snug text-primary italic">"We tell clients the truth — including the parts they may not want to hear."</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="mb-24 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+				{values.map((v) => (
+					<div class="border-t-2 border-accent pt-8">
+						<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mb-5 h-8 w-8 text-accent" set:html={v.icon} />
+						<h3 class="font-display mb-4 text-2xl font-semibold text-primary">{v.title}</h3>
+						<p class="font-serif leading-relaxed text-[#2e2e2e]">{v.body}</p>
+					</div>
+				))}
+			</div>
+
+			<div class="bg-primary p-12 text-center text-white lg:p-20">
+				<p class="font-display mx-auto mb-6 max-w-3xl text-3xl leading-snug italic lg:text-4xl">"A firm's values are only as real as the attorneys willing to live by them on a difficult day."</p>
+				<p class="mb-10 font-sans text-xs font-bold tracking-widest text-accent uppercase">— Margaret "Meg" Harrington, Managing Partner</p>
+				<a href="/law/our-team" class="inline-block rounded-none bg-accent px-8 py-3.5 font-sans text-sm font-semibold tracking-widest text-white uppercase transition-all hover:bg-accent/90">Meet the Team</a>
+			</div>
+		</div>
+	</div>
+</LawLayout>

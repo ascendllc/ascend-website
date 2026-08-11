@@ -1,0 +1,212 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import LawLogo from "../../../components/law/LawLogo.astro";
+import LawChatBubble from "../../../components/law/LawChatBubble.astro";
+
+const firm = {
+	phone: "(206) 555-1847",
+	email: "hello@washingtonlaw.com",
+	address: "1420 Fifth Avenue, Suite 1800, Seattle, WA 98101",
+};
+
+const campaigns = [
+	{
+		title: "Wrongful Termination",
+		slug: "fired-in-seattle",
+		route: "/law/lp/fired-in-seattle",
+		screenshot: "/images/law/lp-fired-in-seattle.jpeg",
+		practice: "Employment Law",
+		platforms: ["Google Ads", "Meta Ads"],
+		accent: "#2D6A4F",
+		headline: "Fired in Seattle? You May Have More Rights Than You Think.",
+		description:
+			"Targets Seattle workers recently let go — captures high-intent searches like 'wrongfully fired Seattle' and 'employment lawyer Seattle.' Leads with a $890K settlement, no-fee-unless-we-win guarantee, and a 5-field intake form above the fold.",
+		audience: "Seattle employees facing discrimination, retaliation, or wrongful termination",
+	},
+	{
+		title: "Business Law Intake",
+		slug: "seattle-business-lawyer",
+		route: "/law/lp/seattle-business-lawyer",
+		screenshot: "/images/law/lp-seattle-business-lawyer.jpeg",
+		practice: "Business & Corporate Law",
+		platforms: ["Google Ads", "Meta Ads"],
+		accent: "#162040",
+		headline: "Sharp Legal Counsel for Seattle Businesses. From Day One.",
+		description:
+			"Built for founders, operators, and growing companies searching for business legal help. Anchors on $200M+ in transactions handled, features lead attorney Meg Harrington, and a service-selector form to qualify the intake.",
+		audience: "Seattle entrepreneurs, startups, and established businesses",
+	},
+	{
+		title: "Estate Planning",
+		slug: "protect-your-legacy",
+		route: "/law/lp/protect-your-legacy",
+		screenshot: "/images/law/lp-protect-your-legacy.jpeg",
+		practice: "Estate Planning",
+		platforms: ["Google Ads", "Meta Ads"],
+		accent: "#7C5C3E",
+		headline: "You've Spent a Lifetime Building This. Now Protect It.",
+		description:
+			"Emotionally-led campaign for families and individuals thinking about wills, trusts, and estate planning. Highlights probate-cost statistics, a clear 3–4 week process timeline, and spotlights estate attorney Dr. Serena Voss.",
+		audience: "Individuals and families protecting assets, legacy, and loved ones",
+	},
+	{
+		title: "Civil Dispute Intake",
+		slug: "civil-dispute-seattle",
+		route: "/law/lp/civil-dispute-seattle",
+		screenshot: "/images/law/lp-civil-dispute-seattle.jpeg",
+		practice: "Civil Litigation",
+		platforms: ["Google Ads", "Meta Ads"],
+		accent: "#4A235A",
+		headline: "When the Other Side Won't Back Down, Neither Do We.",
+		description:
+			"For individuals and businesses already in — or approaching — active civil disputes. Urgency-driven copy around statutes of limitations. Features trial attorney Nathan Pierce's 200+ dispute record and Top 100 Trial Lawyers recognition.",
+		audience: "Businesses and individuals facing contracts, property, or tort disputes",
+	},
+];
+
+const GoogleG = `<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>`;
+const MetaF = `<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"></path>`;
+---
+
+<Layout title="Paid Ad Landing Pages | Washington Law Campaign Assets" description="A showcase of the paid-ad landing pages built for Washington Law's Google Ads and Meta Ads campaigns — one per practice area and audience segment." bare noindex canonical="/law/demo/landing-pages">
+	<div class="law-site min-h-screen bg-[#F7F5F0] font-sans">
+		<header class="border-b border-primary/20 bg-primary px-6 py-5">
+			<div class="container mx-auto flex max-w-7xl items-center justify-between">
+				<LawLogo light />
+				<div class="text-right">
+					<p class="font-sans text-xs font-bold tracking-widest text-accent uppercase">Campaign Assets</p>
+					<p class="mt-0.5 font-body text-xs text-white/50">Paid Advertising Landing Pages</p>
+				</div>
+			</div>
+		</header>
+		<div class="h-1 w-full bg-accent"></div>
+
+		<section class="bg-primary px-6 py-20 text-white">
+			<div class="container mx-auto max-w-7xl">
+				<div class="max-w-3xl">
+					<p class="mb-6 font-sans text-xs font-bold tracking-widest text-accent uppercase">Google Ads · Meta Ads</p>
+					<h1 class="font-display mb-6 text-5xl leading-tight lg:text-6xl">Paid Ad Landing Pages<br /><span class="text-accent">Built to Convert.</span></h1>
+					<p class="mb-8 max-w-2xl font-body text-lg leading-relaxed text-white/75">A landing page is a standalone web page designed for a single purpose: turning a click into a consultation. Unlike a homepage, there's no navigation, no distractions — just the right message for the right audience at the exact moment they're searching.</p>
+					<p class="max-w-2xl font-body text-lg leading-relaxed text-white/75">The four pages below were built for Washington Law's Google Ads and Meta Ads campaigns. Each one is tailored to a specific practice area, targets a distinct audience segment, and is engineered to maximize qualified lead volume from paid traffic.</p>
+				</div>
+				<div class="mt-16 grid grid-cols-1 gap-px border border-white/10 sm:grid-cols-3">
+					<div class="bg-white/5 px-8 py-8">
+						<p class="font-display mb-3 text-xl text-accent">No Nav, No Distractions</p>
+						<p class="font-body text-sm leading-relaxed text-white/60">Every element drives toward one action: book a consultation.</p>
+					</div>
+					<div class="bg-white/5 px-8 py-8">
+						<p class="font-display mb-3 text-xl text-accent">Above-the-Fold Forms</p>
+						<p class="font-body text-sm leading-relaxed text-white/60">Lead capture appears before the visitor scrolls — critical for mobile ad traffic.</p>
+					</div>
+					<div class="bg-white/5 px-8 py-8">
+						<p class="font-display mb-3 text-xl text-accent">Google & Meta Ready</p>
+						<p class="font-body text-sm leading-relaxed text-white/60">Copy, layout, and compliance language optimized for both ad platforms.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="px-6 py-20">
+			<div class="container mx-auto max-w-7xl">
+				<div class="mb-12">
+					<p class="mb-3 font-sans text-xs font-bold tracking-widest text-accent uppercase">The Campaigns</p>
+					<h2 class="font-display text-4xl text-primary">Four Pages. Four Audiences.</h2>
+				</div>
+				<div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+					{campaigns.map((lp, index) => (
+						<div class="group flex flex-col overflow-hidden border border-[#E2E8F0] bg-white" style="box-shadow: 0 2px 16px rgba(22,32,64,0.07)">
+							<a href={lp.route} class="relative block overflow-hidden" style="height:220px">
+								<div class="absolute top-0 right-0 left-0 z-10 flex items-center gap-1.5 bg-[#F1F3F4] px-3 py-2">
+									<span class="h-2.5 w-2.5 rounded-full bg-[#FF5F57]"></span>
+									<span class="h-2.5 w-2.5 rounded-full bg-[#FFBD2E]"></span>
+									<span class="h-2.5 w-2.5 rounded-full bg-[#28CA41]"></span>
+									<div class="mx-3 flex-1 truncate rounded bg-white px-2 py-0.5 font-mono text-[9px] text-gray-400">washingtonlaw.com{lp.route}</div>
+								</div>
+								<img src={lp.screenshot} alt={`${lp.title} landing page preview`} class="absolute inset-0 w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]" style="top:32px;height:calc(100% - 32px)" />
+								<div class="absolute top-9 right-3 z-10 flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold text-white" style={`background-color:${lp.accent}`}>{index + 1}</div>
+							</a>
+							<div class="flex flex-1 flex-col p-6">
+								<div class="mb-3 flex items-start justify-between gap-3">
+									<div>
+										<p class="mb-1 text-xs font-semibold tracking-widest uppercase" style={`color:${lp.accent}`}>{lp.practice}</p>
+										<h3 class="font-display text-xl leading-tight text-primary">{lp.title}</h3>
+									</div>
+								</div>
+								<div class="mb-4 border-l-4 pl-3" style={`border-color:${lp.accent}`}>
+									<p class="font-body text-sm leading-snug text-gray-600 italic">"{lp.headline}"</p>
+								</div>
+								<p class="mb-4 flex-1 font-body text-sm leading-relaxed text-gray-600">{lp.description}</p>
+								<div class="mb-4">
+									<p class="mb-2 text-[10px] font-semibold tracking-widest text-gray-400 uppercase">Target Audience</p>
+									<p class="font-body text-xs text-gray-600">{lp.audience}</p>
+								</div>
+								<div class="mb-5">
+									<p class="mb-2 text-[10px] font-semibold tracking-widest text-gray-400 uppercase">Ad Platforms</p>
+									<div class="flex flex-wrap gap-2">
+										{lp.platforms.map((label) => {
+											const isGoogle = label.includes("Google");
+											return (
+												<span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold" style={`background-color:${isGoogle ? "#FEEFC3" : "#E7F3FF"}; color:${isGoogle ? "#B45309" : "#1A56DB"}`}>
+													<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" set:html={isGoogle ? GoogleG : MetaF} />
+													{label}
+												</span>
+											);
+										})}
+									</div>
+								</div>
+								<a href={lp.route} class="block px-5 py-3 text-center font-sans text-sm font-bold tracking-widest text-white uppercase transition-opacity hover:opacity-90" style={`background-color:${lp.accent}`}>View Live Page →</a>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<footer class="mt-4 bg-primary px-6 py-10">
+			<div class="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
+				<LawLogo light />
+				<div class="text-center md:text-right">
+					<p class="font-body text-xs text-white/50">{firm.address}</p>
+					<p class="mt-1 font-body text-xs text-white/50">{firm.phone} · {firm.email}</p>
+				</div>
+			</div>
+			<div class="container mx-auto mt-8 max-w-7xl border-t border-white/10 pt-6">
+				<p class="text-center font-body text-xs text-white/30">Washington Law · Paid Ad Campaign Assets · Prepared by Ascend Consulting</p>
+			</div>
+		</footer>
+		<LawChatBubble />
+	</div>
+</Layout>
+
+<style is:global>
+	.law-site {
+		--law-font-sans: Calibri, Arial, Helvetica, sans-serif;
+		--law-font-display: "Anton", Impact, sans-serif;
+		font-family: var(--law-font-sans);
+	}
+	.law-site .font-display {
+		font-family: var(--law-font-display);
+	}
+	.law-site .font-serif,
+	.law-site .font-body {
+		font-family: var(--law-font-sans);
+	}
+	.law-site .text-primary {
+		color: #162140;
+	}
+	.law-site .bg-primary {
+		background-color: #162140;
+	}
+	.law-site .text-accent {
+		color: #c29129;
+	}
+	.law-site .bg-accent {
+		background-color: #c29129;
+	}
+	.law-site .border-accent {
+		border-color: #c29129;
+	}
+	.law-site .bg-secondary {
+		background-color: #283253;
+	}
+</style>
