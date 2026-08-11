@@ -8,14 +8,14 @@ const { light = false, class: className = "" } = Astro.props;
 
 <a href="/law" class={`group flex items-center gap-3 ${className}`}>
 	<div
-		class="h-12 w-10 shrink-0 transition-transform duration-500 group-hover:scale-105"
+		class="law-logo-mask h-12 w-10 shrink-0 transition-transform duration-500 group-hover:scale-105"
 		style={`background-color:${light ? "#F8F4EE" : "#162140"}; -webkit-mask-image:url('/images/law/washington-silhouette-transparent.png'); mask-image:url('/images/law/washington-silhouette-transparent.png'); -webkit-mask-size:contain; mask-size:contain; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; -webkit-mask-position:center; mask-position:center;`}
 		aria-hidden="true"
 	>
 	</div>
 	<div class="flex flex-col">
-		<span class={`font-display text-xl leading-none font-semibold tracking-[0.3em] ${light ? "text-white" : "text-[#162140]"}`}>WASHINGTON</span>
+		<span class={`law-logo-text font-display text-xl leading-none font-semibold tracking-[0.3em] ${light ? "text-white" : "text-[#162140]"}`}>WASHINGTON</span>
 		<span class="my-[2px] block h-[1px] w-full bg-[#c29129]"></span>
-		<span class={`font-display text-xl leading-none font-semibold tracking-[0.3em] ${light ? "text-white" : "text-[#162140]"}`}>LAW</span>
+		<span class={`law-logo-text font-display text-xl leading-none font-semibold tracking-[0.3em] ${light ? "text-white" : "text-[#162140]"}`}>LAW</span>
 	</div>
 </a>

@@ -12,7 +12,7 @@ interface Props {
 const { title, description, noHeaderFooter = false } = Astro.props;
 ---
 
-<Layout title={title} description={description} bare noindex>
+<Layout title={title} description={description} bare hideChat noindex>
 	<div class="law-site flex min-h-screen flex-col bg-white font-sans text-[#2e2e2e]">
 		{!noHeaderFooter && <LawHeader />}
 		<main class="flex-1">
@@ -50,7 +50,14 @@ const { title, description, noHeaderFooter = false } = Astro.props;
 	.law-site .border-accent {
 		border-color: #c29129;
 	}
+	/* Live's "secondary" section background is a warm cream, not a dark slate —
+	   confirmed by inspecting computed styles on law.ascendsmartly.com directly.
+	   All 50+ usages across this sub-site pair it with dark navy/near-black text
+	   (never white), so this is a safe global fix. */
 	.law-site .bg-secondary {
-		background-color: #283253;
+		background-color: #f9f4eb;
+	}
+	.law-site .text-secondary {
+		color: #f9f4eb;
 	}
 </style>

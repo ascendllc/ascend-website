@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import LawLogo from "./LawLogo.astro";
-import LawChatBubble from "./LawChatBubble.astro";
+import LawDeferredChatWidget from "./LawDeferredChatWidget.tsx";
 
 interface Props {
 	title: string;
@@ -13,7 +13,7 @@ const { title, description, canonical } = Astro.props;
 const PhoneIcon = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path>`;
 ---
 
-<Layout title={title} description={description} bare noindex canonical={canonical}>
+<Layout title={title} description={description} bare hideChat noindex canonical={canonical}>
 	<div class="law-site flex min-h-screen flex-col bg-white font-sans text-[#2e2e2e]">
 		<header class="border-b bg-white py-4">
 			<div class="container mx-auto flex max-w-7xl items-center justify-between px-6">
@@ -27,7 +27,7 @@ const PhoneIcon = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 
 		<main class="flex-1">
 			<slot />
 		</main>
-		<LawChatBubble />
+		<LawDeferredChatWidget client:load />
 	</div>
 </Layout>
 
@@ -60,6 +60,9 @@ const PhoneIcon = `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 
 		border-color: #c29129;
 	}
 	.law-site .bg-secondary {
-		background-color: #283253;
+		background-color: #f9f4eb;
+	}
+	.law-site .text-secondary {
+		color: #f9f4eb;
 	}
 </style>

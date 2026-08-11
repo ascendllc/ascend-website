@@ -12,7 +12,7 @@ interface Props {
 const { title, description, noHeaderFooter = false } = Astro.props;
 ---
 
-<Layout title={title} description={description} bare noindex>
+<Layout title={title} description={description} bare hideChat noindex>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />

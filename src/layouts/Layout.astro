@@ -9,13 +9,15 @@ interface Props {
 	title: string;
 	description: string;
 	transparentHeader?: boolean;
-	/** Skip the site Nav, Footer, and chat bubble — used by standalone pages like Terms. */
+	/** Skip the site Nav and Footer — used by standalone pages like Terms, or pages with their own custom header/footer. */
 	bare?: boolean;
+	/** Skip the default Ava chat widget — used by sub-sites (e.g. /law, /finance) that inject their own themed chat widget instead. */
+	hideChat?: boolean;
 	noindex?: boolean;
 	canonical?: string;
 }
 
-const { title, description, transparentHeader = false, bare = false, noindex = false, canonical } = Astro.props;
+const { title, description, transparentHeader = false, bare = false, hideChat = false, noindex = false, canonical } = Astro.props;
 ---
 
 <!doctype html>
@@ -37,6 +39,47 @@ const { title, description, transparentHeader = false, bare = false, noindex = f
 			<slot />
 		</main>
 		{!bare && <Footer />}
-		{!bare && <DeferredChatWidget client:load />}
+		{!hideChat && <DeferredChatWidget client:load />}
+
+		<script>
+			// Site-wide smooth scroll: applies to every page (main site, /law, /finance, and
+			// all their landing pages), regardless of which header/nav markup that page uses.
+			// Individual components (e.g. Nav.astro's data-scroll-to buttons) that already
+			// implement their own smooth scroll call preventDefault(), so this delegated
+			// handler backs off for those via the e.defaultPrevented check below.
+			document.addEventListener("click", (e) => {
+				if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+				const link = (e.target as HTMLElement).closest("a[href]");
+				if (!link) return;
+				const href = link.getAttribute("href");
+				if (!href) return;
+
+				// Same-page anchor link (e.g. href="#faq"): smooth-scroll to the target,
+				// offset for whatever fixed/sticky header this page has (if any).
+				if (href.startsWith("#") && href.length > 1) {
+					const target = document.getElementById(href.slice(1));
+					if (!target) return;
+					e.preventDefault();
+					const header = document.querySelector("header.fixed, header.sticky") as HTMLElement | null;
+					const offset = (header?.offsetHeight ?? 0) + 12;
+					const top = target.getBoundingClientRect().top + window.scrollY - offset;
+					window.scrollTo({ top, behavior: "smooth" });
+					return;
+				}
+
+				// Logo / nav link pointing back to the exact page already open (e.g. clicking
+				// the logo while already home): scroll to top smoothly instead of reloading.
+				let url: URL;
+				try {
+					url = new URL(href, window.location.href);
+				} catch {
+					return;
+				}
+				if (url.origin === window.location.origin && url.pathname === window.location.pathname && !url.hash && !url.search) {
+					e.preventDefault();
+					window.scrollTo({ top: 0, behavior: "smooth" });
+				}
+			});
+		</script>
 	</body>
 </html>

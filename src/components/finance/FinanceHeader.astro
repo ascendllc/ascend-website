@@ -160,6 +160,17 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 	.fin-header-home:not(.fin-scrolled) .fin-nav-link:hover {
 		color: rgba(250, 250, 248, 0.8);
 	}
+	/* The logo's light/dark colors are baked in at render time via the `light` prop
+	   (based on whether this is the homepage), but the header's background flips
+	   from transparent to solid on scroll — so once scrolled, force the logo back
+	   to its dark colors regardless of what the prop rendered, or it becomes
+	   invisible (white-on-white). */
+	.fin-header-home.fin-scrolled :global(.fin-logo-mask) {
+		background-color: #1b3a2a !important;
+	}
+	.fin-header-home.fin-scrolled :global(.fin-logo-text) {
+		color: #1b3a2a !important;
+	}
 	.fin-dropdown.fin-open .fin-dropdown-panel {
 		opacity: 1;
 		visibility: visible;

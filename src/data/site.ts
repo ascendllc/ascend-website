@@ -53,7 +53,7 @@ export const mainNav = [
 		scrollTo: "services",
 		children: [
 			{ label: "BrandRise™", href: "/brandrise", description: "Full brand launch packages" },
-			{ label: "Industry Solutions", href: "/industry-solutions", description: "Finance & legal marketing" },
+			{ label: "Industry Solutions", href: "/industry", description: "Finance & legal marketing" },
 			{ label: "Exit-Ready Brand", href: "/exit-ready-brand", description: "M&A brand readiness" },
 			{ label: "Real Estate Marketing", href: "/real-estate-marketing", description: "Listing marketing systems" },
 			{ label: "All Solutions →", scrollTo: "services" },

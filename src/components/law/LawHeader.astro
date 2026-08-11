@@ -115,6 +115,17 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 	.law-nav-link:hover {
 		color: #c29129;
 	}
+	/* The logo's light/dark colors are baked in at render time via the `light` prop
+	   (based on whether this is the homepage), but the header's background flips
+	   from transparent to solid white on scroll — so once scrolled, force the logo
+	   back to its dark colors regardless of what the prop rendered, or it becomes
+	   invisible (white-on-white). */
+	.law-header-home.law-scrolled :global(.law-logo-mask) {
+		background-color: #162140 !important;
+	}
+	.law-header-home.law-scrolled :global(.law-logo-text) {
+		color: #162140 !important;
+	}
 	.law-dropdown.law-open .law-dropdown-panel {
 		opacity: 1;
 		visibility: visible;

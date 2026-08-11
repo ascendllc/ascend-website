@@ -1,0 +1,267 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+const NAVY = "#0A1628";
+const ORANGE = "#E8622A";
+
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>`;
+const Calendar = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path></svg>`;
+const Mail = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>`;
+const ExternalLink = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>`;
+const Scale = `<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>`;
+const ChartColumn = `<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>`;
+
+const disciplines = [
+	{
+		icon: Scale,
+		badge: "Legal Industry",
+		title: "A complete marketing system built for attorneys and law firms.",
+		body: "Brand identity, website, go-to-market strategy, SEO, AEO/IEO optimization, content creation, Google and Meta ad campaigns, and a 24/7 AI chat assistant — built for legal professionals.",
+		includes: ["Brand identity & website", "Go-to-market strategy", "SEO + AEO/IEO optimization", "Content creation", "Google Ads + Meta Ads", "Dedicated ad landing pages", "24/7 AI chat assistant"],
+		fullSolutionHref: "/legal-marketing",
+		demoHref: "/law",
+		demoLabel: "yoursite.com/law",
+	},
+	{
+		icon: ChartColumn,
+		badge: "Accounting & Finance",
+		title: "A complete marketing system built for CPAs and financial advisors.",
+		body: "Brand identity, website, go-to-market strategy, SEO, AEO/IEO optimization, content creation, Google, Meta and LinkedIn ad campaigns, and a 24/7 AI chat assistant — built for accounting and financial professionals.",
+		includes: ["Brand identity & website", "Go-to-market strategy", "SEO + AEO/IEO optimization", "Content creation", "Google Ads + Meta Ads + LinkedIn", "Dedicated ad landing pages", "24/7 AI chat assistant"],
+		fullSolutionHref: "/finance-marketing",
+		demoHref: "/finance",
+		demoLabel: "yoursite.com/finance",
+	},
+];
+
+const whyItMatters = [
+	{ heading: "Trust-first positioning", body: "Your marketing needs to project authority before a client ever picks up the phone. Ascend builds systems that earn trust through every touchpoint." },
+	{ heading: "Search intent that converts", body: "Legal and financial buyers search with high intent. Ascend targets those precise searches — and builds landing pages engineered to convert them." },
+	{ heading: "AI-powered 24/7 lead capture", body: "Every Ascend industry site includes a trained AI chat assistant that answers questions, qualifies leads, and captures inquiries around the clock." },
+	{ heading: "Live demos prove the work", body: "You don't have to imagine the result. Ascend has built complete demo sites for both disciplines — see exactly what you'll receive before you commit." },
+];
+
+const detailed = [
+	{
+		icon: Scale,
+		badge: "Legal Industry",
+		title: "Marketing for attorneys and law firms.",
+		body: "Ascend delivers a complete marketing system purpose-built for legal professionals — brand identity, website, SEO, content, Google and Meta ad campaigns with dedicated landing pages, and an AI assistant that captures leads around the clock.",
+		note: 'Ascend built a complete demo site for a fictitious Seattle law firm — Washington Law — to showcase every capability in action. Everything you see in the demo represents an actual deliverable.',
+		fullSolutionHref: "/legal-marketing",
+		fullSolutionLabel: "See Full Legal Solution",
+		demoHref: "/law",
+		demoImage: "/images/demo-law-home.webp",
+		demoImageAlt: "Washington Law demo site homepage",
+		demoUrlLabel: "yoursite.com/law",
+	},
+	{
+		icon: ChartColumn,
+		badge: "Accounting & Finance",
+		title: "Marketing for CPAs and financial advisory firms.",
+		body: "Ascend delivers a complete marketing system for accounting and financial professionals — brand identity, website, SEO, content, Google, Meta and LinkedIn ad campaigns with dedicated landing pages, and an AI assistant that captures inquiries around the clock.",
+		note: "Ascend built a complete demo site for a fictitious Seattle accounting firm — Washington Accounting & Financial Services — to showcase every capability in action.",
+		fullSolutionHref: "/finance-marketing",
+		fullSolutionLabel: "See Full Finance Solution",
+		demoHref: "/finance",
+		demoImage: "/images/demo-finance-home.png",
+		demoImageAlt: "Washington Accounting & Financial Services demo site",
+		demoUrlLabel: "yoursite.com/finance",
+	},
+];
+---
+
+<Layout
+	title="Industry Marketing Solutions | Legal & Accounting/Finance | Ascend Consulting"
+	description="Ascend Consulting delivers complete, end-to-end marketing systems purpose-built for professional service firms — with deep expertise across the legal and accounting/finance sectors."
+	bare
+	canonical="https://ascendsmartly.com/industry"
+>
+	<div class="min-h-screen bg-white font-sans">
+		<header class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm">
+			<div class="container mx-auto flex items-center justify-between gap-6 px-6 py-3 md:px-12">
+				<a href="/" class="flex shrink-0 items-center gap-2">
+					<img src="/images/ascend-logo-color.webp" alt="Ascend Consulting" class="h-8" />
+				</a>
+				<div class="flex items-center gap-3">
+					<a href="/" class="hidden text-sm font-medium text-gray-500 transition-colors hover:text-[#E8622A] sm:inline">
+						&larr; Back to Home
+					</a>
+					<a
+						href={site.booking}
+						target="_blank"
+						rel="noopener"
+						class="flex items-center gap-1.5 rounded-sm px-4 py-2 text-sm font-medium text-white transition-all"
+						style={`background-color:${ORANGE}`}
+						set:html={`Meet with Brad ${ArrowRight}`}
+					/>
+				</div>
+			</div>
+		</header>
+
+		<!-- Hero -->
+		<section class="relative overflow-hidden pt-20 pb-24 text-white" style={`background-color:${NAVY}`}>
+			<div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image:url('/images/provisors-hero-bg.jpg')"></div>
+			<div class="relative mx-auto max-w-5xl px-6">
+				<span class="mb-6 inline-block rounded-full border px-3 py-1.5 text-xs font-bold tracking-widest uppercase" style={`background-color:${ORANGE}33; border-color:${ORANGE}66; color:#f0a080`}>
+					Industry Solutions
+				</span>
+				<h1 class="mb-5 max-w-3xl text-4xl leading-tight md:text-5xl lg:text-6xl">
+					Marketing built for your <span style={`color:${ORANGE}`}>industry.</span>
+				</h1>
+				<p class="mb-8 max-w-2xl text-lg leading-relaxed text-white/65">
+					Ascend Consulting delivers complete, end-to-end marketing systems purpose-built for professional
+					service firms — with deep expertise across the legal and accounting/finance sectors. Every system
+					includes brand, website, strategy, SEO, paid advertising, and AI-powered lead capture.
+				</p>
+				<div class="flex flex-col gap-4 sm:flex-row">
+					<a href={site.booking} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-sm px-7 py-3.5 font-bold text-white transition-colors" style={`background-color:${ORANGE}`} set:html={`${Calendar} Schedule a Free Consultation`} />
+					<a href="/#contact" class="inline-flex items-center gap-2 rounded-sm border border-white/25 px-7 py-3.5 font-semibold text-white/75 transition-colors hover:border-white/50 hover:text-white" set:html={`${Mail} Contact Brad`} />
+				</div>
+			</div>
+		</section>
+
+		<!-- Two Disciplines -->
+		<section class="border-b border-gray-200 bg-gray-50 py-16">
+			<div class="mx-auto max-w-5xl px-6">
+				<div class="mb-10 text-center">
+					<p class="mb-3 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>Two Disciplines. One Standard of Excellence.</p>
+					<h2 class="text-3xl md:text-4xl" style={`color:${NAVY}`}>Purpose-built for professionals.</h2>
+					<p class="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-gray-500">
+						Ascend has built complete marketing demo systems for both legal and accounting/finance firms — so
+						you can see exactly what a finished engagement looks like before you commit.
+					</p>
+				</div>
+				<div class="grid gap-6 md:grid-cols-2">
+					{
+						disciplines.map((d) => (
+							<div class="flex flex-col overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-[#0A1628] to-[#162447]">
+								<div class="flex-1 p-8">
+									<div class="mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold tracking-widest uppercase" style={`background-color:${ORANGE}33; border-color:${ORANGE}66; color:#f0a080`}>
+										<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={d.icon} />
+										{d.badge}
+									</div>
+									<h3 class="mb-3 text-2xl text-white">{d.title}</h3>
+									<p class="mb-5 text-sm leading-relaxed text-white/60">{d.body}</p>
+									<ul class="space-y-2">
+										{d.includes.map((item) => (
+											<li class="flex items-center gap-2 text-sm text-white/70">
+												<span class="h-1.5 w-1.5 shrink-0 rounded-full" style={`background-color:${ORANGE}`} />
+												{item}
+											</li>
+										))}
+									</ul>
+								</div>
+								<div class="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 p-8">
+									<a href={d.fullSolutionHref} class="inline-flex items-center gap-2 rounded-sm px-5 py-2.5 text-sm font-bold text-white transition-all" style={`background-color:${ORANGE}`} set:html={`${d.fullSolutionHref.includes("legal") ? "See Full Legal Solution" : "See Full Finance Solution"} ${ArrowRight}`} />
+									<a href={d.demoHref} class="inline-flex items-center gap-1.5 text-sm font-semibold transition-colors" style={`color:${ORANGE}`} set:html={`View Live Demo ${ExternalLink}`} />
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Why It Matters -->
+		<section class="py-20">
+			<div class="mx-auto max-w-5xl px-6">
+				<div class="grid items-center gap-12 md:grid-cols-2">
+					<div>
+						<p class="mb-3 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>Why It Matters</p>
+						<h2 class="mb-4 text-3xl leading-snug md:text-4xl" style={`color:${NAVY}`}>
+							Generic marketing doesn't win professional service clients.
+						</h2>
+						<p class="mb-4 leading-relaxed text-gray-600">
+							Attorneys and financial professionals compete in high-trust, high-consideration markets. The
+							clients you're after are doing serious research before they make contact. Generic marketing —
+							built for any business in any category — won't earn that trust.
+						</p>
+						<p class="leading-relaxed text-gray-600">
+							Ascend has built industry-specific marketing systems that speak the language of your clients,
+							reflect the credibility of your profession, and convert the right prospects into consultations.
+							Every element — from the website copy to the ad landing pages — is purpose-built for your
+							sector.
+						</p>
+					</div>
+					<div class="space-y-5">
+						{
+							whyItMatters.map((item) => (
+								<div class="flex gap-3">
+									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={ORANGE} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0" set:html={Check.match(/<path.*<\/path>/s)?.[0]} />
+									<div>
+										<p class="mb-0.5 text-sm font-bold" style={`color:${NAVY}`}>{item.heading}</p>
+										<p class="text-sm leading-relaxed text-gray-500">{item.body}</p>
+									</div>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Detailed sections -->
+		{
+			detailed.map((d, i) => (
+				<section class:list={["py-16 border-t border-gray-200", i % 2 === 0 ? "bg-gray-50" : "bg-white"]}>
+					<div class="mx-auto max-w-5xl px-6">
+						<div class="grid items-center gap-12 md:grid-cols-2">
+							<div class:list={i % 2 === 1 && "md:order-2"}>
+								<div class="mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-bold tracking-widest uppercase" style={`background-color:${ORANGE}1a; border-color:${ORANGE}33; color:${ORANGE}`}>
+									<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={d.icon} />
+									{d.badge}
+								</div>
+								<h2 class="mb-4 text-3xl leading-snug md:text-4xl" style={`color:${NAVY}`}>{d.title}</h2>
+								<p class="mb-4 leading-relaxed text-gray-600">{d.body}</p>
+								<p class="mb-6 text-sm leading-relaxed text-gray-500 italic">{d.note}</p>
+								<div class="flex flex-wrap items-center gap-4">
+									<a href={d.fullSolutionHref} class="inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-bold text-white transition-colors" style={`background-color:${ORANGE}`} set:html={`${d.fullSolutionLabel} ${ArrowRight}`} />
+									<a href={d.demoHref} class="inline-flex items-center gap-2 rounded-sm border px-6 py-3 text-sm font-semibold transition-colors" style={`border-color:${ORANGE}66; color:${ORANGE}`} set:html={`View Demo ${ExternalLink}`} />
+								</div>
+							</div>
+							<div class:list={["overflow-hidden rounded-xl border border-gray-200 shadow-xl", i % 2 === 1 && "md:order-1"]}>
+								<div class="flex items-center gap-2 bg-gray-800 px-4 py-2.5">
+									<span class="h-2.5 w-2.5 rounded-full bg-red-400/70"></span>
+									<span class="h-2.5 w-2.5 rounded-full bg-yellow-400/70"></span>
+									<span class="h-2.5 w-2.5 rounded-full bg-green-400/70"></span>
+									<span class="ml-3 flex-1 truncate rounded bg-gray-700 px-2 py-0.5 font-mono text-xs text-gray-300">{d.demoUrlLabel}</span>
+								</div>
+								<img src={d.demoImage} alt={d.demoImageAlt} class="block w-full" />
+							</div>
+						</div>
+					</div>
+				</section>
+			))
+		}
+
+		<!-- Final CTA -->
+		<section class="py-20" style={`background-color:${NAVY}`}>
+			<div class="mx-auto max-w-3xl px-6 text-center">
+				<p class="mb-4 text-xs font-bold tracking-widest uppercase" style={`color:${ORANGE}`}>Ready to Get Started?</p>
+				<h2 class="mb-5 text-3xl leading-snug text-white md:text-4xl">Let's build this for your firm — or someone you know.</h2>
+				<p class="mx-auto mb-10 max-w-xl text-base leading-relaxed text-white/55">
+					ProVisors members and their referrals receive 20% off all Ascend Consulting services. Reach out to
+					schedule a free conversation or contact Brad directly.
+				</p>
+				<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+					<a href={site.booking} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-sm px-7 py-3.5 font-bold text-white transition-colors" style={`background-color:${ORANGE}`} set:html={`${Calendar} Schedule a Free Consultation`} />
+					<a href="/#contact" class="inline-flex items-center gap-2 rounded-sm border border-white/25 px-7 py-3.5 font-semibold text-white/70 transition-colors hover:border-white/50 hover:text-white" set:html={`${Mail} Contact Brad`} />
+				</div>
+			</div>
+		</section>
+
+		<footer class="bg-[#060e1c] py-6">
+			<div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-6 text-sm text-white/35 sm:flex-row">
+				<a href="/" class="transition-colors hover:text-white/60">Ascend Consulting</a>
+				<div class="flex items-center gap-4">
+					<a href="/legal-marketing" class="transition-colors hover:text-white/60">Legal Marketing</a>
+					<a href="/finance-marketing" class="transition-colors hover:text-white/60">Finance Marketing</a>
+					<a href={`mailto:${site.email}`} class="transition-colors hover:text-white/60">{site.email}</a>
+				</div>
+			</div>
+		</footer>
+	</div>
+</Layout>
