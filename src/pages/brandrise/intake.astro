@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { site } from "../../data/site";
 
 const ArrowLeft = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>`;
 
@@ -240,10 +239,6 @@ const sections = [
 						Send My Intake
 					</button>
 					<p id="intake-error" class="mt-4 hidden text-sm font-medium text-red-600"></p>
-					<p class="mt-6 text-xs text-gray-400">Your answers go directly to Ascend via email — no third-party services, no databases.</p>
-					<p class="mt-1 text-xs text-gray-400">
-						Questions? Email <a href={`mailto:${site.email}`} class="text-accent underline">{site.email}</a>
-					</p>
 				</div>
 				<div id="intake-success" class="hidden">
 					<h2 class="mb-2 text-lg font-semibold text-primary">Thanks — we've got it.</h2>
