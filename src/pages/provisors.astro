@@ -194,7 +194,10 @@ const navItems = [
 								<p class="mb-2 text-base leading-snug font-bold" style={`color:${NAVY}`}>{s.label}</p>
 								<p class="mb-2 text-sm leading-relaxed text-gray-400 italic">{s.question}</p>
 								<p class="mb-4 flex-1 text-sm leading-relaxed text-gray-600">{s.desc}</p>
-								<a href={s.href} aria-label={`Learn more about ${s.label}`} class="inline-flex w-fit items-center gap-1.5 rounded-sm px-4 py-2 text-sm font-bold text-white transition-colors" style={`background-color:${ORANGE}`} set:html={`Learn More ${ArrowRight}`} />
+								<a href={s.href} class="inline-flex w-fit items-center gap-1.5 rounded-sm px-4 py-2 text-sm font-bold text-white transition-colors" style={`background-color:${ORANGE}`}>
+									Learn More<span class="sr-only"> about {s.label}</span>
+									<span set:html={ArrowRight} />
+								</a>
 							</div>
 						))
 					}
@@ -219,7 +222,7 @@ const navItems = [
 					<div class="relative aspect-video overflow-hidden rounded-lg border border-white/10 bg-black shadow-2xl">
 						<video id="ashdon-video" src="/videos/ashdon-brand-refresh.mp4" poster="/images/ashdon-poster.jpg" playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover"></video>
 						<div id="ashdon-video-overlay" class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-300" style="background:rgba(10,22,40,0.65)">
-							<button id="ashdon-video-play" aria-label="Play video" class="group flex flex-col items-center gap-2 focus:outline-none">
+							<button id="ashdon-video-play" class="group flex flex-col items-center gap-2 focus:outline-none">
 								<span class="flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-all group-hover:scale-105" style={`background-color:${ORANGE}`}>
 									<svg viewBox="0 0 24 24" class="h-6 w-6 fill-white" style="margin-left:3px"><polygon points="5,3 19,12 5,21"></polygon></svg>
 								</span>

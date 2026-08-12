@@ -216,10 +216,11 @@ const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="1
 							<div class="mt-6 border-t border-gray-200 pt-5">
 								<a
 									href={`/services/${service.slug}`}
-									aria-label={`Learn more about ${service.name}`}
 									class="inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-accent/90"
-									set:html={`Learn More ${ArrowRight}`}
-								/>
+								>
+									Learn More<span class="sr-only"> about {service.name}</span>
+									<span set:html={ArrowRight} />
+								</a>
 							</div>
 						</div>
 					))
