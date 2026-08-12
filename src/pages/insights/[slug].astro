@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { site } from "../../data/site";
+import { insights } from "../../data/insights";
+
+export function getStaticPaths() {
+	return insights.map((insight) => ({
+		params: { slug: insight.slug },
+		props: { insight },
+	}));
+}
+
+const { insight } = Astro.props;
+const pageUrl = `${site.url}/insights/${insight.slug}`;
+
+const articleSchema = {
+	"@context": "https://schema.org",
+	"@type": "Article",
+	headline: insight.title,
+	description: insight.metaDescription,
+	datePublished: insight.publishedDate,
+	dateModified: insight.publishedDate,
+	author: { "@type": "Person", "@id": `${site.url}/#brad-stave`, name: "Brad Stave" },
+	publisher: { "@type": "Organization", "@id": `${site.url}/#organization`, name: site.name },
+	mainEntityOfPage: pageUrl,
+};
+
+const ArrowLeft = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>`;
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+---
+
+<Layout title={insight.metaTitle} description={insight.metaDescription} canonical={pageUrl} ogType="article">
+	<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+	<div class="bg-[#0A1628] py-12 md:py-16">
+		<div class="mx-auto max-w-3xl px-6">
+			<a href="/insights" class="mb-6 inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white/80" set:html={`${ArrowLeft} Back to Insights`} />
+			<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">{insight.dateDisplay} &middot; {insight.readingTime}</p>
+			<h1 class="text-3xl leading-tight text-white md:text-5xl">{insight.title}</h1>
+			<p class="mt-4 text-sm text-white/50">By Brad Stave, Founder &amp; Principal, Ascend Consulting</p>
+		</div>
+	</div>
+
+	<article class="mx-auto max-w-3xl px-6 py-14">
+		<div class="space-y-8 text-lg leading-relaxed text-gray-700">
+			{
+				insight.sections.map((section) => (
+					<div>
+						{section.heading && <h2 class="mb-4 text-2xl text-primary">{section.heading}</h2>}
+						{section.paragraphs.map((p) => (
+							<p class="mb-4">{p}</p>
+						))}
+						{section.list && (
+							<ul class="space-y-3">
+								{section.list.map((item) => (
+									<li class="flex items-start gap-3 text-base text-gray-600">
+										<span class="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+										<span>{item}</span>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+				))
+			}
+		</div>
+
+		<div class="mt-14 rounded-sm border border-gray-100 bg-gray-50 p-8 text-center">
+			<a
+				href={insight.relatedLink.href}
+				class="inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-medium text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-accent/90"
+				set:html={`${insight.relatedLink.label} ${ArrowRight}`}
+			/>
+		</div>
+	</article>
+</Layout>

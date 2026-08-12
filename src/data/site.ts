@@ -75,6 +75,7 @@ export const mainNav = [
 			{ label: "Portfolio", href: "/resources#portfolio" },
 			{ label: "Testimonials", href: "/resources#testimonials" },
 			{ label: "FAQs", href: "/resources#faq" },
+			{ label: "Insights", href: "/insights" },
 			{ label: "All Resources →", href: "/resources" },
 		],
 	},
