@@ -72,35 +72,35 @@ const MapPinIcon = `<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-
 							<input type="text" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
 							<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 								<div class="intake-field" data-label="First Name">
-									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">First Name *</label>
-									<input type="text" placeholder="Jane" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+									<label for="law-contact-first-name" class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">First Name *</label>
+									<input type="text" id="law-contact-first-name" placeholder="Jane" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
 								</div>
 								<div class="intake-field" data-label="Last Name">
-									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Last Name *</label>
-									<input type="text" placeholder="Doe" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+									<label for="law-contact-last-name" class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Last Name *</label>
+									<input type="text" id="law-contact-last-name" placeholder="Doe" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
 								</div>
 							</div>
 							<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 								<div class="intake-field" data-label="Email Address">
-									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Email Address *</label>
-									<input type="email" placeholder="jane@example.com" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+									<label for="law-contact-email" class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Email Address *</label>
+									<input type="email" id="law-contact-email" placeholder="jane@example.com" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
 								</div>
 								<div class="intake-field" data-label="Phone Number">
-									<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Phone Number *</label>
-									<input type="tel" placeholder="(206) 555-0100" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+									<label for="law-contact-phone" class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Phone Number *</label>
+									<input type="tel" id="law-contact-phone" placeholder="(206) 555-0100" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none" />
 								</div>
 							</div>
 							<div class="intake-field" data-label="Area of Interest">
-								<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Area of Interest *</label>
-								<select required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none">
+								<label for="law-contact-area" class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Area of Interest *</label>
+								<select id="law-contact-area" required class="w-full rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none">
 									<option value="">Select a practice area</option>
 									{practiceAreas.map((p) => <option value={p.id}>{p.title}</option>)}
 									<option value="other">Other / Not Sure</option>
 								</select>
 							</div>
 							<div class="intake-field" data-label="Brief Description">
-								<label class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Brief Description *</label>
-								<textarea rows="5" placeholder="Please describe your legal issue. Do not include highly sensitive or confidential information yet." required class="min-h-[120px] w-full resize-y rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"></textarea>
+								<label for="law-contact-description" class="mb-2 block font-sans text-xs font-bold tracking-widest text-primary uppercase">Brief Description *</label>
+								<textarea id="law-contact-description" rows="5" placeholder="Please describe your legal issue. Do not include highly sensitive or confidential information yet." required class="min-h-[120px] w-full resize-y rounded-none border border-gray-300 px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-400 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none"></textarea>
 							</div>
 							<div id="law-contact-idle">
 								<button

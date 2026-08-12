@@ -62,7 +62,7 @@ const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" vi
 						<span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-lg font-bold text-white">
 							{service.number}
 						</span>
-						<span class="text-xs font-bold tracking-widest text-accent uppercase">Core Capability</span>
+						<span class="text-xs font-bold tracking-widest uppercase" style="color:#f88e6d">Core Capability</span>
 					</div>
 					<h1 class="mb-6 text-5xl leading-[1.1] text-white md:text-6xl lg:text-7xl">
 						{service.nameLead}<br class="hidden md:block" />
@@ -144,7 +144,7 @@ const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" vi
 							<div class="flex gap-5 rounded-sm border border-gray-100 bg-gray-50 p-6">
 								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-accent" set:html={Check.match(/<path.*<\/path>/s)?.[0]} />
 								<div>
-									<p class="mb-1 text-xs font-semibold tracking-wider text-gray-400 uppercase line-through decoration-accent decoration-2">{pair.from}</p>
+									<p class="mb-1 text-xs font-semibold tracking-wider text-gray-500 uppercase line-through decoration-accent decoration-2">{pair.from}</p>
 									<p class="leading-snug font-medium text-gray-700">{pair.to}</p>
 								</div>
 							</div>
@@ -161,7 +161,7 @@ const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" vi
 			</div>
 			<div class="relative z-10 container mx-auto px-6 md:px-12">
 				<div class="mx-auto mb-16 max-w-2xl text-center">
-					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">Who It's For</p>
+					<p class="mb-4 text-xs font-bold tracking-widest uppercase" style="color:#f88e6d">Who It's For</p>
 					<h2 class="mb-4 text-3xl leading-snug text-white md:text-4xl">{service.whoHeadline}</h2>
 					<p class="text-lg text-white/60">{service.whoSubhead}</p>
 				</div>
@@ -199,7 +199,7 @@ const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" vi
 							set:html={`${Mail} Email Brad Directly`}
 						/>
 					</div>
-					<p class="mt-6 text-sm text-gray-400">{site.email} &middot; {site.phoneDisplay}</p>
+					<p class="mt-6 text-sm text-gray-500">{site.email} &middot; {site.phoneDisplay}</p>
 				</div>
 			</div>
 		</section>

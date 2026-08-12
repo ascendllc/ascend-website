@@ -1,6 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
+const slugify = (label: string) =>
+	"intake-field-" + label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 const ArrowLeft = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>`;
 
 const channelOptions = [
@@ -246,7 +249,7 @@ const sections = [
 		<div class="bg-primary px-6 py-10">
 			<div class="mx-auto max-w-2xl">
 				<a href="/brandrise" class="mb-5 inline-flex items-center gap-1.5 text-sm text-white/60 transition-colors hover:text-white" set:html={`${ArrowLeft} Back to BrandRise™`} />
-				<p class="mb-3 text-xs font-bold tracking-widest text-accent uppercase">Pre-Call Intake Form</p>
+				<p class="mb-3 text-xs font-bold tracking-widest uppercase" style="color:#f88e6d">Pre-Call Intake Form</p>
 				<h1 class="mb-3 text-3xl leading-snug text-white md:text-4xl">Help Ascend prepare for your call.</h1>
 				<p class="text-base leading-relaxed text-white/65">
 					Answer as much or as little as you're comfortable with — there are no wrong answers. The more context
@@ -271,15 +274,16 @@ const sections = [
 						{section.fields.map((field) => (
 							<>
 								<div class="intake-field" data-label={field.label}>
-									<label class="mb-1.5 block text-sm font-semibold text-primary">
+									<label for={slugify(field.label)} class="mb-1.5 block text-sm font-semibold text-primary">
 										{field.label}
-										{field.labelNote && <span class="ml-1 font-normal text-gray-400">{field.labelNote}</span>}
+										{field.labelNote && <span class="ml-1 font-normal text-gray-500">{field.labelNote}</span>}
 										{field.required && <span class="ml-1 text-accent">*</span>}
 									</label>
-									{field.help && <p class="mb-2 text-xs leading-relaxed text-gray-400">{field.help}</p>}
+									{field.help && <p class="mb-2 text-xs leading-relaxed text-gray-500">{field.help}</p>}
 									{(field.type === "text" || field.type === "email" || field.type === "tel" || field.type === "url") && (
 										<input
 											type={field.type}
+											id={slugify(field.label)}
 											required={field.required}
 											placeholder={field.placeholder}
 											class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none"
@@ -287,6 +291,7 @@ const sections = [
 									)}
 									{field.type === "textarea" && (
 										<textarea
+											id={slugify(field.label)}
 											rows={field.rows ?? 4}
 											required={field.required}
 											placeholder={field.placeholder}
@@ -294,7 +299,7 @@ const sections = [
 										/>
 									)}
 									{field.type === "select" && (
-										<select class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none">
+										<select id={slugify(field.label)} class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none">
 											<option value="">{field.selectPlaceholder ?? "Select one..."}</option>
 											{field.options?.map((opt) => <option value={opt}>{opt}</option>)}
 										</select>
@@ -327,9 +332,10 @@ const sections = [
 										data-conditional-for={field.name}
 										data-conditional-value={field.conditional.value}
 									>
-										<label class="mb-1.5 block text-sm font-semibold text-primary">{field.conditional.field.label}</label>
+										<label for={slugify(field.conditional.field.label)} class="mb-1.5 block text-sm font-semibold text-primary">{field.conditional.field.label}</label>
 										<input
 											type="text"
+											id={slugify(field.conditional.field.label)}
 											placeholder={field.conditional.field.placeholder}
 											class="w-full rounded-sm border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none"
 										/>
