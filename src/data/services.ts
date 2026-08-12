@@ -376,6 +376,63 @@ export const services: Service[] = [
 		finalHeadline: "Ready to build creative that actually moves people?",
 		finalSubhead: "Whether you're preparing for a major campaign, rethinking your brand presence, or just need a creative partner who understands strategy — I'd love to hear what you're working toward. Let's start with a conversation.",
 	},
+	{
+		slug: "podcast-production",
+		number: 7,
+		name: "Podcast Production",
+		nameLead: "Podcast",
+		nameAccent: "Production",
+		shortHook: "Do you have a story worth a show — but no one to engineer, host, or launch it?",
+		subhead:
+			"Full-service podcast production from concept to launch — audio engineering, creative development, hosting, website design, and the promotion strategy that gets a show found.",
+		cta: "Let's Talk Podcast Production",
+		conceptHeadline: "A podcast is a brand asset. Treat it like one.",
+		conceptParagraphs: [
+			"Full-service podcast production — concept, audio engineering, post-production, branding, website, and promotion — built and run hands-on, not outsourced piecemeal.",
+		],
+		conceptBody: [
+			"Most podcasts stall for the same reason: the production burden — recording, editing, hosting, publishing, promoting — falls entirely on one person with no system behind it. Episodes get inconsistent, momentum stalls, and the show never builds the audience the content deserves.",
+			"Ascend runs podcast production the same way it runs every other engagement: as a complete system, not a checklist of disconnected vendors. Brad Stave personally engineers, hosts, and produces The Wide Lens Podcast — one of the fastest-growing new long-form interview podcasts, drawing tens of thousands of listeners across Apple Podcasts, Spotify, and YouTube — and brings that same hands-on production discipline to client engagements.",
+			"That means the same person who understands your brand strategy is also the one in the editing chair — so the show sounds right, looks right, and gets promoted with the same rigor as every other marketing asset you invest in.",
+		],
+		stats: [
+			{ value: "Full-Service", label: "Concept through launch and promotion" },
+			{ value: "Hands-On", label: "Personally engineered, hosted, and produced" },
+			{ value: "Tens of Thousands", label: "Listeners across Apple, Spotify, YouTube" },
+			{ value: "Fastest-Growing", label: "Category standing for The Wide Lens Podcast" },
+		],
+		workSubhead: "Eight engagements that take a podcast from concept to a consistently published, promoted show.",
+		work: [
+			{ title: "Show Concept & Format Development", description: "Define the show's premise, format, episode structure, and target audience — the strategic groundwork that determines whether a podcast has staying power or fizzles after a handful of episodes." },
+			{ title: "Audio Engineering & Post-Production", description: "Record, mix, and master every episode to a consistent, professional standard — noise reduction, leveling, and edit passes that make a show sound like it belongs next to the shows it's competing with." },
+			{ title: "Show Branding & Creative Identity", description: "Design the cover art, episode graphic templates, intro/outro treatment, and visual identity that make a show instantly recognizable across every platform it appears on." },
+			{ title: "Podcast Website Development", description: "Build a dedicated podcast website with episode archives, show notes, and subscribe/listen links across platforms — giving the show a real home instead of just a feed." },
+			{ title: "Hosting & Distribution Setup", description: "Configure podcast hosting and submit the feed to Apple Podcasts, Spotify, YouTube, and other major platforms, with the metadata and categorization that support discoverability." },
+			{ title: "Guest Booking & Interview Prep", description: "Coordinate guest outreach, scheduling, and pre-interview briefing so every episode is well-prepared and the conversation stays focused and compelling from the first minute." },
+			{ title: "Episode Promotion & Social Content", description: "Cut clips, quote graphics, and episode-specific social content for every release — turning a single recording into a full week of promotable content instead of one feed entry." },
+			{ title: "Publishing Cadence & Show Growth", description: "Establish a sustainable publishing rhythm and track download/listener trends over time, adjusting format and promotion based on what's actually growing the audience." },
+		],
+		valueHeadline: "What changes when a podcast has real production behind it",
+		valueSubhead: "A show stops being a side project once it has the same systems and discipline as any other marketing channel.",
+		value: [
+			{ from: "Inconsistent, sporadic episodes", to: "A reliable publishing cadence listeners can count on" },
+			{ from: "Rough, self-edited audio", to: "Professionally engineered episodes that sound like a real show" },
+			{ from: "A show with no visual identity", to: "Cohesive branding across cover art, social, and episode assets" },
+			{ from: "A feed with no home", to: "A dedicated website that builds credibility and SEO/GEO presence" },
+			{ from: "One recording, one post", to: "A full promotion cycle of clips and content per episode" },
+			{ from: "Growth left to chance", to: "A tracked, adjusted strategy built to grow the audience over time" },
+		],
+		whoHeadline: "Organizations and individuals ready to launch or fix a show",
+		whoSubhead: "I work with founders, executives, and organizations who have something worth saying — and need the production behind it to match.",
+		who: [
+			{ title: "Founders and executives building a platform", desc: "Leaders who want a podcast as a credibility and relationship-building asset, but don't have the time or production skill to run it themselves." },
+			{ title: "Organizations launching a branded show", desc: "Companies and nonprofits that want a podcast as part of a broader content and thought-leadership strategy, produced with the same brand discipline as their other marketing." },
+			{ title: "Existing shows that have stalled", desc: "Hosts with a podcast already live but struggling with inconsistent production, weak audio quality, or no real promotion strategy behind each episode." },
+			{ title: "Anyone starting from a blank page", desc: "Individuals with a concept and no production infrastructure yet — who need the full path from idea to a professionally produced, discoverable show." },
+		],
+		finalHeadline: "Ready to build a show worth listening to?",
+		finalSubhead: "Whether you're launching a first episode or fixing a show that's stalled, I'd love to hear what you're trying to build. Let's talk through the concept and what production behind it could look like.",
+	},
 ];
 
 export function getService(slug: string) {

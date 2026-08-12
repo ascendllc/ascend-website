@@ -93,7 +93,7 @@ export const faqs = [
 	},
 	{
 		q: "What services does Ascend Consulting offer?",
-		a: "Ascend offers six core service lines: Growth Marketing Strategy, Brand Alignment & Storytelling, Sales Enablement, Lifecycle Marketing Systems, Digital Acquisition & Growth, and Creative Design & Content Development. Extended capabilities include AI Integration, CRM Development, Public Relations, SEO, and Social Media. Ascend also offers BrandRise™ — a complete packaged solution for building or relaunching an organization's brand, marketing, and promotional presence, available in four upfront tiers starting at $3,500 or as a $250/month BrandRise Monthly subscription with zero upfront cost.",
+		a: "Ascend offers seven core service lines: Growth Marketing Strategy, Brand Alignment & Storytelling, Sales Enablement, Lifecycle Marketing Systems, Digital Acquisition & Growth, Creative Design & Content Development, and Podcast Production. Extended capabilities include AI Integration, CRM Development, Public Relations, SEO, and Social Media. Ascend also offers BrandRise™ — a complete packaged solution for building or relaunching an organization's brand, marketing, and promotional presence, available in four upfront tiers starting at $3,500 or as a $250/month BrandRise Monthly subscription with zero upfront cost.",
 	},
 	{
 		q: "What is BrandRise™?",
@@ -154,5 +154,29 @@ export const faqs = [
 	{
 		q: "What is The Wide Lens Podcast?",
 		a: "The Wide Lens Podcast is a long-form interview podcast hosted by Brad Stave, Founder of Ascend Consulting. It goes beyond the headlines to reveal the untold stories and hidden layers behind the events you thought you knew. One of the fastest-growing new long-form interview podcasts, it draws tens of thousands of listeners and is available on Apple Podcasts, Spotify, YouTube, and other major platforms.",
+	},
+	{
+		q: "Does Ascend Consulting offer podcast production services?",
+		a: "Yes — podcast production is one of Ascend's core service lines. It covers show concept and format development, audio engineering and post-production, branding, a dedicated podcast website, hosting and distribution setup, guest coordination, and episode promotion. Brad Stave personally engineers, hosts, and produces The Wide Lens Podcast, bringing that same hands-on production discipline to client engagements.",
+	},
+	{
+		q: "How much does a strategic marketing consultant cost?",
+		a: "It depends on scope. Ascend's productized BrandRise™ packages have fixed, published pricing — four upfront tiers from $3,500 to $33,500+, or a $250/month subscription with zero upfront cost. Custom consulting engagements (growth strategy, sales enablement, lifecycle marketing, and similar work) are scoped to the specific project, since needs vary widely by organization size and goals. Every engagement starts with a free, no-pressure consultation to discuss scope and pricing.",
+	},
+	{
+		q: "Who does marketing for nonprofits near Tacoma, WA?",
+		a: "Ascend Consulting, founded by Brad Stave and headquartered in Tacoma, WA, specializes in nonprofit marketing — including donor lifecycle marketing, brand unification, and growth strategy. Brad has led marketing at Water Mission and VisionFund International, and Ascend works with nonprofits across the Pacific Northwest and nationally, both in person and remotely.",
+	},
+	{
+		q: "Does Ascend Consulting work with clients outside of Washington state?",
+		a: "Yes. While Ascend is headquartered in Tacoma, WA, the consultancy works with clients across the United States and internationally — spanning technology, nonprofit, faith-based, and professional services organizations. Most engagements are run remotely, with in-person work available for Pacific Northwest clients.",
+	},
+	{
+		q: "What industries does Ascend Consulting specialize in?",
+		a: "Ascend has the deepest experience in nonprofit and faith-based organizations, technology and IT, professional services (legal and accounting/finance, via the Industry Solutions line), and real estate marketing. That said, the underlying growth marketing, brand, and sales enablement systems Ascend builds apply across industries — the consultancy also works with startups, corporate teams, and growth-stage businesses outside those core sectors.",
+	},
+	{
+		q: "What's the difference between BrandRise Monthly and the upfront BrandRise tiers?",
+		a: "BrandRise Monthly is a $250/month subscription with zero upfront cost (2-year minimum) — a custom one-page website, branded email, hosting, Google Workspace, basic SEO, and ongoing minor updates. The upfront tiers (Bronze through Platinum, $3,500–$33,500+) are one-time, more comprehensive brand-launch packages that scale up to full brand architecture, multi-page sites, advanced SEO/GEO/AEO, paid media strategy, and PR groundwork. Monthly suits organizations that want to start immediately without a large upfront investment; the upfront tiers suit organizations ready to build a complete brand system in one engagement.",
 	},
 ];
