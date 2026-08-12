@@ -8,6 +8,21 @@
 	src: url("/fonts/plus-jakarta-sans-latin.woff2") format("woff2");
 }
 
+/* Metric-matched fallback: renders as local Arial but with size/ascent/descent tuned to
+   Plus Jakarta Sans's actual metrics (extracted from the woff2 file itself via fontTools),
+   so the layout doesn't visibly shift when the real webfont swaps in via font-display:
+   swap. Values computed with the standard Capsize/Fontaine fallback-metrics formula:
+   size-adjust = (target xAvgCharWidth/unitsPerEm) / (fallback xAvgCharWidth/unitsPerEm);
+   ascent/descent/line-gap-override = target metric / (target unitsPerEm * size-adjust). */
+@font-face {
+	font-family: "Plus Jakarta Sans Fallback";
+	src: local("Arial");
+	ascent-override: 78.32%;
+	descent-override: 16.75%;
+	line-gap-override: 0%;
+	size-adjust: 132.53%;
+}
+
 @theme {
 	--color-primary: #1b2870;
 	--color-primary-dark: #131c52;
@@ -21,10 +36,10 @@
 	--color-muted-foreground: #475185;
 	--color-foreground: #0f163e;
 	--color-border: #e0e2eb;
-	--font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+	--font-sans: "Plus Jakarta Sans", "Plus Jakarta Sans Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
 	/* Live's own "font-serif" utility resolves to Plus Jakarta Sans too — there's no
 	   separate serif typeface in use anywhere on the site, despite the class name. */
-	--font-serif: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+	--font-serif: "Plus Jakarta Sans", "Plus Jakarta Sans Fallback", ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 
 body {
