@@ -39,7 +39,7 @@ const { title, description, transparentHeader = false, bare = false, hideChat = 
 			<slot />
 		</main>
 		{!bare && <Footer />}
-		{!hideChat && <DeferredChatWidget client:load />}
+		{!hideChat && <DeferredChatWidget client:idle />}
 
 		<script>
 			// Site-wide smooth scroll: applies to every page (main site, /law, /finance, and

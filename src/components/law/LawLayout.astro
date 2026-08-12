@@ -19,7 +19,7 @@ const { title, description, noHeaderFooter = false } = Astro.props;
 			<slot />
 		</main>
 		{!noHeaderFooter && <LawFooter />}
-		<LawDeferredChatWidget client:load />
+		<LawDeferredChatWidget client:idle />
 	</div>
 </Layout>
 
