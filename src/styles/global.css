@@ -12,7 +12,11 @@
 	--color-primary: #1b2870;
 	--color-primary-dark: #131c52;
 	--color-secondary: #364abf;
-	--color-accent: #f4511f;
+	/* Slightly darker than the original #f4511f — the original fails WCAG AA (3.0-3.5:1)
+	   for both white button text on this background and this color as small/normal text
+	   on white. This value passes 4.5:1+ in both directions while staying clearly the
+	   same brand orange. */
+	--color-accent: #d1390a;
 	--color-muted: #eff1fb;
 	--color-muted-foreground: #475185;
 	--color-foreground: #0f163e;
