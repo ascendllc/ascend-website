@@ -197,7 +197,7 @@ export default function ChatWidget() {
 
 				{lead && (
 					<div className="rounded-2xl border border-border bg-muted px-3 py-3 text-sm text-foreground">
-						<p className="font-medium">Thanks, {lead.name.split(" ")[0]}. Brad will be in touch shortly.</p>
+						<p className="font-medium">Thanks, {lead.name.split(" ")[0]}. Someone from Ascend Consulting will be in touch shortly.</p>
 						<p className="mt-1 text-muted-foreground">
 							Want to get on his calendar directly?{" "}
 							<a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer" className="font-medium text-accent underline">
