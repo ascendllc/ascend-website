@@ -1,0 +1,122 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site, trustLogos } from "../data/site";
+
+const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
+const CheckIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>`;
+
+const highlights = [
+	"20+ years of senior marketing leadership across global technology, private corporations, and nonprofits",
+	"Founder & Principal of Ascend Consulting, based in Tacoma, WA",
+	"Partner at Ninestone Partners, bringing B2B and Account-Based Marketing training to organizations nationwide",
+	"Host and producer of The Wide Lens Podcast, a long-form interview show engineered, hosted, and produced end to end",
+	"Led marketing for organizations including Water Mission, VisionFund International, and Zones, LLC",
+];
+---
+
+<Layout
+	title="About Brad Stave | Ascend Consulting"
+	description="Brad Stave, Founder & Principal of Ascend Consulting, brings 20+ years of senior marketing leadership across global tech, corporate, and nonprofit sectors."
+>
+	<section class="relative flex min-h-[50vh] items-center overflow-hidden bg-primary pt-28 pb-16 md:pt-32">
+		<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+			<div class="absolute -top-[20%] -right-[10%] h-[70%] w-[70%] rounded-full bg-secondary/30 blur-[120px]"></div>
+			<div class="absolute -bottom-[20%] -left-[10%] h-[60%] w-[60%] rounded-full bg-accent/20 blur-[100px]"></div>
+		</div>
+		<div class="container relative z-10 mx-auto px-6 md:px-12">
+			<div class="mx-auto max-w-3xl text-center">
+				<span class="mb-6 inline-block rounded-full border border-white/10 bg-secondary/30 px-3 py-1 text-sm font-medium text-white/90">
+					About Ascend Consulting
+				</span>
+				<h1 class="text-4xl leading-tight text-white md:text-6xl">Brad Stave, Founder &amp; Principal</h1>
+				<p class="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/80 md:text-xl">
+					20+ years of senior marketing leadership, brought to organizations ready to build stronger brands, communicate
+					with clarity, and grow with intention.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-white py-20 md:py-28">
+		<div class="container mx-auto px-6 md:px-12">
+			<div class="mx-auto flex max-w-4xl flex-col items-start gap-10 sm:flex-row md:gap-14">
+				<div class="w-44 shrink-0 md:w-56">
+					<div class="relative aspect-[3/4] overflow-hidden rounded-sm border border-gray-200 shadow-md">
+						<img
+							src="/images/brad-stave.jpg"
+							alt="Brad Stave — Founder & Principal, Ascend Consulting"
+							width="601"
+							height="1068"
+							class="absolute inset-0 h-full w-full object-cover object-top"
+							loading="lazy"
+							decoding="async"
+						/>
+					</div>
+					<div class="mt-3">
+						<p class="text-sm font-bold text-primary">Brad Stave</p>
+						<p class="text-sm text-gray-500">Founder &amp; Principal, {site.location}</p>
+					</div>
+				</div>
+				<div class="min-w-0 flex-1">
+					<h2 class="mb-5 text-3xl leading-tight text-primary md:text-4xl">Who is Brad Stave?</h2>
+					<div class="mb-7 h-1 w-14 bg-accent"></div>
+					<div class="space-y-5 text-lg leading-relaxed text-gray-600">
+						<p>
+							Brad Stave is the Founder &amp; Principal of Ascend Consulting, a strategic marketing and growth
+							consultancy based in Tacoma, WA. With 20+ years of senior marketing leadership across global
+							technology, private corporations, and nonprofits, Brad brings an outside perspective, creative
+							depth, and strategic discipline to every engagement.
+						</p>
+						<p>
+							Most organizations are too close to their own work to see what's unclear from the outside. Brad's
+							role is to step outside that vantage point — clarifying messaging, defining the right audience, and
+							building the acquisition systems that turn instinct-driven growth into a repeatable, measurable
+							engine.
+						</p>
+						<p>
+							Beyond Ascend, Brad is a partner at Ninestone Partners and hosts <em>The Wide Lens Podcast</em>, a
+							long-form interview show he engineers, hosts, and produces end to end — the same hands-on approach he
+							brings to every client engagement.
+						</p>
+					</div>
+					<ul class="mt-8 space-y-3">
+						{
+							highlights.map((item) => (
+								<li class="flex items-start gap-3 text-gray-700">
+									<span class="mt-1 shrink-0 text-accent" set:html={CheckIcon} />
+									<span>{item}</span>
+								</li>
+							))
+						}
+					</ul>
+					<div class="mt-10 flex flex-col gap-4 sm:flex-row">
+						<a
+							href={site.booking}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-8 py-3.5 text-base font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl"
+							set:html={`Schedule a Consultation ${ArrowRight}`}
+						/>
+						<a
+							href="/contact"
+							class="inline-flex items-center justify-center gap-2 rounded-sm border border-primary/20 px-8 py-3.5 text-base font-medium text-primary transition-all hover:border-primary/40 hover:bg-primary/5"
+						>
+							Get in Touch
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-gray-100 bg-gray-50 py-16 md:py-20">
+		<div class="container mx-auto px-6 md:px-12">
+			<div class="mx-auto max-w-4xl text-center">
+				<p class="mb-8 text-sm font-medium tracking-widest text-gray-400 uppercase">Marketing leadership experience across</p>
+				<div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-lg font-medium text-gray-500">
+					{trustLogos.map((name) => <span>{name}</span>)}
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

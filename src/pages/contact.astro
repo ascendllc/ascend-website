@@ -1,0 +1,158 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+---
+
+<Layout
+	title="Contact Ascend Consulting"
+	description="Get in touch with Ascend Consulting. Call, email, or send a message directly — based in Tacoma, WA, serving organizations nationwide."
+>
+	<section class="relative flex min-h-[40vh] items-center overflow-hidden bg-primary pt-28 pb-16 md:pt-32">
+		<div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+			<div class="absolute -top-[20%] -right-[10%] h-[70%] w-[70%] rounded-full bg-secondary/30 blur-[120px]"></div>
+			<div class="absolute -bottom-[20%] -left-[10%] h-[60%] w-[60%] rounded-full bg-accent/20 blur-[100px]"></div>
+		</div>
+		<div class="container relative z-10 mx-auto px-6 md:px-12">
+			<div class="mx-auto max-w-2xl text-center">
+				<h1 class="text-4xl leading-tight text-white md:text-6xl">Contact Ascend Consulting</h1>
+				<p class="mx-auto mt-6 max-w-xl text-lg font-light leading-relaxed text-white/80 md:text-xl">
+					Have a question, or ready to talk through your goals? Reach out directly — we'll get back to you shortly.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-white py-20 md:py-28">
+		<div class="container mx-auto px-6 md:px-12">
+			<div class="mx-auto grid max-w-5xl gap-12 md:grid-cols-2 md:gap-16">
+				<div>
+					<h2 class="mb-6 text-2xl text-primary">Contact Information</h2>
+					<div class="space-y-6">
+						<div class="flex items-center gap-4">
+							<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-muted text-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+							</div>
+							<div>
+								<p class="font-bold text-primary">Brad Stave</p>
+								<p class="text-sm text-gray-500">{site.location}</p>
+							</div>
+						</div>
+						<div class="flex items-center gap-4">
+							<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-muted text-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+							</div>
+							<a href={`mailto:${site.email}`} class="text-gray-700 transition-colors hover:text-accent">{site.email}</a>
+						</div>
+						<div class="flex items-center gap-4">
+							<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-muted text-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+							</div>
+							<a href="tel:+12534862452" class="text-gray-700 transition-colors hover:text-accent">{site.phoneDisplay}</a>
+						</div>
+						<div class="flex items-center gap-4">
+							<div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-muted text-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+							</div>
+							<a href={`https://${site.domain}`} class="text-gray-700 transition-colors hover:text-accent">{site.domain}</a>
+						</div>
+					</div>
+					<div class="mt-10">
+						<a
+							href={site.booking}
+							target="_blank"
+							rel="noopener"
+							class="inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-3 text-sm font-medium text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent/90"
+						>
+							Schedule a Consultation
+						</a>
+					</div>
+				</div>
+
+				<div class="rounded-sm border border-border bg-gray-50 p-8">
+					<div id="contact-page-idle">
+						<h2 class="mb-2 text-2xl text-primary">Send a Message</h2>
+						<p class="mb-6 text-sm leading-relaxed text-muted-foreground">We'll get back to you shortly.</p>
+						<form id="contact-page-form" class="space-y-4">
+							<input type="text" name="website" tabindex="-1" autocomplete="off" class="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden="true" />
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-primary">Name <span class="text-accent">*</span></label>
+								<input type="text" id="contact-page-name" required class="w-full rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+							</div>
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-primary">Email <span class="text-accent">*</span></label>
+								<input type="email" id="contact-page-email" required class="w-full rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+							</div>
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-primary">Phone</label>
+								<input type="tel" id="contact-page-phone" class="w-full rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none" />
+							</div>
+							<div>
+								<label class="mb-1.5 block text-sm font-semibold text-primary">Message</label>
+								<textarea id="contact-page-message" rows="4" class="w-full resize-y rounded-sm border border-border bg-white px-4 py-2.5 text-sm text-gray-800 transition-colors placeholder-gray-300 focus:border-accent/50 focus:ring-2 focus:ring-accent/30 focus:outline-none"></textarea>
+							</div>
+							<p id="contact-page-error" class="hidden text-sm font-medium text-red-600"></p>
+							<button
+								type="submit"
+								id="contact-page-submit"
+								class="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-accent px-8 py-3.5 text-base font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl disabled:pointer-events-none disabled:opacity-60"
+							>
+								Send Message
+							</button>
+						</form>
+					</div>
+					<div id="contact-page-success" class="hidden py-6 text-center">
+						<h2 class="mb-2 text-2xl text-primary">Thanks — we've got it.</h2>
+						<p class="text-sm leading-relaxed text-muted-foreground">Your message was sent to Ascend Consulting. Someone will be in touch shortly.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		import { getRecaptchaToken } from "../lib/recaptchaClient";
+
+		const form = document.getElementById("contact-page-form") as HTMLFormElement;
+		const submitBtn = document.getElementById("contact-page-submit") as HTMLButtonElement;
+		const errorEl = document.getElementById("contact-page-error") as HTMLParagraphElement;
+		const idleEl = document.getElementById("contact-page-idle") as HTMLDivElement;
+		const successEl = document.getElementById("contact-page-success") as HTMLDivElement;
+
+		form?.addEventListener("submit", async (e) => {
+			e.preventDefault();
+			if (!form.reportValidity()) return;
+
+			errorEl.classList.add("hidden");
+			submitBtn.disabled = true;
+			submitBtn.textContent = "Sending...";
+
+			const fields = [
+				{ label: "Name", value: (document.getElementById("contact-page-name") as HTMLInputElement).value },
+				{ label: "Email", value: (document.getElementById("contact-page-email") as HTMLInputElement).value },
+				{ label: "Phone", value: (document.getElementById("contact-page-phone") as HTMLInputElement).value },
+				{ label: "Message", value: (document.getElementById("contact-page-message") as HTMLTextAreaElement).value },
+			];
+			const website = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value ?? "";
+
+			try {
+				const recaptchaToken = await getRecaptchaToken("contact_page");
+				const res = await fetch("/api/contact-form", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ fields, website, recaptchaToken }),
+				});
+				if (!res.ok) {
+					const data = await res.json().catch(() => ({}));
+					throw new Error(data.error || "Something went wrong, please try again.");
+				}
+				idleEl.classList.add("hidden");
+				successEl.classList.remove("hidden");
+			} catch (err) {
+				errorEl.textContent = err instanceof Error ? err.message : "Something went wrong, please try again.";
+				errorEl.classList.remove("hidden");
+				submitBtn.disabled = false;
+				submitBtn.textContent = "Send Message";
+			}
+		});
+	</script>
+</Layout>
