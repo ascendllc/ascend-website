@@ -15,23 +15,128 @@ interface Props {
 	hideChat?: boolean;
 	noindex?: boolean;
 	canonical?: string;
+	/** Absolute or root-relative image URL for og:image/twitter:image. Defaults to the site's social share image. */
+	ogImage?: string;
+	ogType?: "website" | "article";
 }
 
-const { title, description, transparentHeader = false, bare = false, hideChat = false, noindex = false, canonical } = Astro.props;
+const {
+	title,
+	description,
+	transparentHeader = false,
+	bare = false,
+	hideChat = false,
+	noindex = false,
+	canonical,
+	ogImage = "/images/opengraph.jpg",
+	ogType = "website",
+} = Astro.props;
+
+// Self-referencing canonical, driven by the configured `site` + the current URL, unless
+// a page explicitly overrides it (e.g. a dynamic route resolving to a different canonical
+// target). This guarantees every page — including future ones — canonicalizes to the
+// correct www domain by default instead of needing a hardcoded prop per page.
+const resolvedCanonical = canonical ?? new URL(Astro.url.pathname, site.url).href;
+const resolvedOgImage = new URL(ogImage, site.url).href;
+
+// Sitewide Organization + LocalBusiness + Person entity graph. Skipped on noindexed
+// pages (the /law and /finance demo microsites, and a couple of nav-only utility
+// pages) so schema never claims to describe a page it isn't actually about.
+const orgId = `${site.url}/#organization`;
+const personId = `${site.url}/#brad-stave`;
+const entityGraph = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": ["ProfessionalService", "LocalBusiness"],
+			"@id": orgId,
+			name: site.name,
+			url: site.url,
+			logo: { "@type": "ImageObject", url: `${site.url}/images/ascend-logo-color.webp` },
+			image: resolvedOgImage,
+			description:
+				"Ascend Consulting is a strategic marketing and growth consultancy founded by Brad Stave. We help nonprofits, technology companies, and growth-stage businesses rise with purpose through brand development, growth marketing, AI-powered marketing systems, lifecycle marketing, sales enablement, and creative design — optimized for SEO, GEO, and AEO.",
+			founder: { "@id": personId },
+			address: { "@type": "PostalAddress", addressLocality: "Tacoma", addressRegion: "WA", addressCountry: "US" },
+			contactPoint: {
+				"@type": "ContactPoint",
+				telephone: site.phone,
+				email: site.email,
+				contactType: "customer service",
+				availableLanguage: "English",
+			},
+			areaServed: "Worldwide",
+			sameAs: ["https://ninestonepartners.com/bradstave/", "https://www.widelenspodcast.com"],
+		},
+		{
+			"@type": "Person",
+			"@id": personId,
+			name: "Brad Stave",
+			jobTitle: "Founder & Principal Consultant",
+			worksFor: { "@id": orgId },
+			email: site.email,
+			telephone: site.phone,
+			description:
+				"Brad Stave is a senior marketing executive with 20+ years of global leadership experience across nonprofit, technology, and real estate sectors, including senior roles at Water Mission, VisionFund International, and Zones, LLC. He is the Founder of Ascend Consulting and a partner at Ninestone Partners, and hosts The Wide Lens Podcast.",
+			sameAs: ["https://ninestonepartners.com/bradstave/", "https://www.widelenspodcast.com"],
+		},
+		{
+			"@type": "WebSite",
+			"@id": `${site.url}/#website`,
+			url: site.url,
+			name: site.name,
+			publisher: { "@id": orgId },
+		},
+	],
+};
+
+// Simple two-level breadcrumb (Home > current page), skipped on the homepage itself
+// and on noindexed pages. Reinforces site hierarchy for crawlers without needing
+// per-page hierarchy data.
+const isHomepage = Astro.url.pathname === "/";
+const breadcrumbSchema = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	itemListElement: [
+		{ "@type": "ListItem", position: 1, name: "Home", item: site.url },
+		{ "@type": "ListItem", position: 2, name: title.split(" | ")[0], item: resolvedCanonical },
+	],
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="/images/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/images/favicon.ico" sizes="any" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content={site.themeColor} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
-		{canonical && <link rel="canonical" href={canonical} />}
+		<link rel="canonical" href={resolvedCanonical} />
+
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content={site.name} />
+		<meta property="og:url" content={resolvedCanonical} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={resolvedOgImage} />
+		<meta property="og:image:width" content="1280" />
+		<meta property="og:image:height" content="720" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={resolvedOgImage} />
+
+		{!noindex && <script type="application/ld+json" set:html={JSON.stringify(entityGraph)} />}
+		{!noindex && !isHomepage && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 	</head>
 	<body class="bg-white text-foreground">
 		{!bare && <Nav transparent={transparentHeader} />}

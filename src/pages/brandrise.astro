@@ -354,14 +354,32 @@ const workCategories = [
 		outcome: "A ready-to-use content ecosystem that fuels marketing and storytelling.",
 	},
 ] as const;
+
+const brandRiseSchema = {
+	"@context": "https://schema.org",
+	"@type": "Product",
+	name: "BrandRise",
+	description: "A complete brand launch and relaunch system — strategy, visual identity, website, go-to-market, and promotion — from Ascend Consulting.",
+	brand: { "@type": "Brand", name: site.name },
+	offers: tiers.map((t) => {
+		const numeric = t.price.match(/[\d,]+/);
+		return {
+			"@type": "Offer",
+			name: t.name,
+			description: `${t.tagline} (${t.price}, ${t.priceSubtitle}${t.priceNote ? `, ${t.priceNote}` : ""})`,
+			...(numeric ? { price: numeric[0].replace(/,/g, ""), priceCurrency: "USD" } : {}),
+			url: `${site.url}/brandrise`,
+		};
+	}),
+};
 ---
 
 <Layout
 	title="BrandRise™ Launch Packages | Ascend Consulting"
-	description="BrandRise™ is your lift-off point — a complete system that builds or rebuilds your brand's strategic, visual, verbal, and digital foundation. Choose from four upfront tiers ($3,500–$33,500+) or our $250/month BrandRise Monthly subscription with zero upfront cost — plus a $100/month Ongoing Care Plan to keep everything running."
+	description="BrandRise is a complete brand launch system — strategy, identity, website, and marketing. Four tiers from $3,500, or $250/month with no upfront cost."
 	bare
-	canonical="https://ascendsmartly.com/brandrise"
 >
+	<script type="application/ld+json" set:html={JSON.stringify(brandRiseSchema)} />
 	<div class="min-h-screen bg-white">
 		<MinimalHeader showMeetButton />
 

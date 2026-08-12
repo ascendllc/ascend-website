@@ -5,7 +5,13 @@ export const site = {
 	phone: "+1.253.486.2452",
 	phoneDisplay: "253.486.2452",
 	location: "Tacoma, WA",
+	// Used for the mail-sending subdomain (mail.${domain}) — do not change to www,
+	// that would break the verified email-sending DNS configuration.
 	domain: "ascendsmartly.com",
+	// Canonical site origin: use this (not `domain`) for canonical tags, schema `url`
+	// fields, and anywhere else the actual public-facing URL is needed. Matches what
+	// the site's own redirect chain resolves every request to.
+	url: "https://www.ascendsmartly.com",
 	themeColor: "#1B2870",
 };
 

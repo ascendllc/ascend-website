@@ -88,8 +88,47 @@ const videoSection = study.videoSection
 
 const otherStudies = allStudies.filter((cs) => cs.slug !== study.slug);
 
-const pageUrl = `https://ascendsmartly.com/case-study/${study.slug}`;
+const pageUrl = `${site.url}/case-study/${study.slug}`;
 const shareTitle = `${study.title} | Ascend Consulting Case Study`;
+
+// Short, SEO-length title/description per case study — kept separate from the
+// full descriptive `study.title`/`study.tagline` used on-page (H1, share text),
+// since title tags and meta descriptions have their own length constraints.
+const metaOverrides: Record<string, { title: string; description: string }> = {
+	"ashdon-golf-brand-rebuild": {
+		title: "Ashdon Golf — Brand & Commerce Rebuild | Ascend Consulting",
+		description:
+			"How Ascend rebuilt Ashdon Golf's brand, website, and Shopify commerce platform from the ground up — plus a full paid acquisition strategy.",
+	},
+	"sensient-technologies": {
+		title: "Sensient Technologies — ABM Training | Ascend Consulting",
+		description: "How Ascend equipped Sensient's marketing team with a custom Account-Based Marketing framework, tools, and training.",
+	},
+	"trail-life-usa": {
+		title: "Trail Life USA — CRM & Revenue Alignment | Ascend Consulting",
+		description: "How Ninestone, through Ascend's partner network, mapped 7 buyer journeys and delivered a revenue systems roadmap for Trail Life USA.",
+	},
+	visionfund: {
+		title: "VisionFund — Global Brand Unification | Ascend Consulting",
+		description: "How Ascend unified 30+ separately branded microfinance institutions under one cohesive global brand for VisionFund International.",
+	},
+	"water-mission-growth": {
+		title: "Water Mission — Record Q1 Donor Growth | Ascend Consulting",
+		description: "How a rebuilt marketing engine drove Water Mission's strongest Q1 ever — 60% revenue growth and 70% more active donors.",
+	},
+	"water-mission-digital": {
+		title: "Water Mission — Digital Donor Growth | Ascend Consulting",
+		description: "How precision targeting and real-time disaster response campaigns drove record digital donor acquisition for Water Mission.",
+	},
+	zones: {
+		title: "Zones, LLC — IT Brand Portfolio Growth | Ascend Consulting",
+		description: "How strategic brand leadership drove double-digit YOY revenue growth for Zones across Dell, HP, Lenovo, Microsoft, and Intel.",
+	},
+};
+const meta = metaOverrides[study.slug] ?? {
+	title: `${study.title} | Ascend Consulting Case Study`,
+	description: `${study.tagline} — A case study by Ascend Consulting, founded by Brad Stave.`,
+};
 
 const ArrowRightSm = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
 const ExternalLink = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>`;
@@ -101,7 +140,7 @@ const TwitterIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="
 const FacebookIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>`;
 ---
 
-<Layout title={`${study.title} | Ascend Consulting Case Study`} description={`${study.tagline} — A case study by Ascend Consulting, founded by Brad Stave.`} bare canonical={pageUrl}>
+<Layout title={meta.title} description={meta.description} bare canonical={pageUrl}>
 	<div class="min-h-screen bg-white">
 		<header id="cs-header" class="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-sm">
 			<div class="container mx-auto flex items-center justify-between gap-6 px-6 py-3 md:px-12">
