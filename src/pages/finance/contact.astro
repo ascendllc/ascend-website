@@ -145,6 +145,8 @@ const situations = ["Small Business Owner", "Individual/Family", "Nonprofit", "S
 	</section>
 
 	<script>
+		import { getRecaptchaToken } from "../../lib/recaptchaClient";
+
 		const form = document.getElementById("contact-form") as HTMLFormElement;
 		const submitBtn = document.getElementById("contact-submit") as HTMLButtonElement;
 		const errorEl = document.getElementById("contact-error") as HTMLParagraphElement;
@@ -169,10 +171,11 @@ const situations = ["Small Business Owner", "Individual/Family", "Nonprofit", "S
 			const website = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value ?? "";
 
 			try {
+				const recaptchaToken = await getRecaptchaToken("finance_contact");
 				const res = await fetch("/api/finance-contact", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ fields, website }),
+					body: JSON.stringify({ fields, website, recaptchaToken }),
 				});
 				if (!res.ok) {
 					const data = await res.json().catch(() => ({}));

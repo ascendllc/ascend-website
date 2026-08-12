@@ -488,6 +488,8 @@ const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="1
 	</div>
 
 	<script>
+		import { getRecaptchaToken } from "../lib/recaptchaClient";
+
 		const modal = document.getElementById("contact-modal");
 		const trigger = document.getElementById("contact-form-trigger");
 		const closeBtn = document.getElementById("contact-modal-close");
@@ -533,10 +535,11 @@ const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="1
 			const website = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value ?? "";
 
 			try {
+				const recaptchaToken = await getRecaptchaToken("contact_form");
 				const res = await fetch("/api/contact-form", {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					body: JSON.stringify({ fields, website }),
+					body: JSON.stringify({ fields, website, recaptchaToken }),
 				});
 				if (!res.ok) {
 					const data = await res.json().catch(() => ({}));

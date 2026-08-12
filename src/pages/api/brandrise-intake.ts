@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { sendIntakeEmail, type IntakeField } from "../../lib/email";
+import { verifyRecaptcha } from "../../lib/recaptcha";
 
 export const prerender = false;
 
@@ -46,16 +47,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 		return new Response(JSON.stringify({ error: "Invalid JSON body" }), { status: 400 });
 	}
 
-	const { fields, website } = body as { fields?: unknown; website?: unknown };
+	const { fields, website, recaptchaToken } = body as { fields?: unknown; website?: unknown; recaptchaToken?: unknown };
 
 	// Honeypot: a hidden field real visitors never fill in. Bots that fill
 	// every input will trip it. Pretend success so they don't learn anything.
 	if (typeof website === "string" && website.trim().length > 0) {
 		return new Response(JSON.stringify({ ok: true }), { status: 200 });
-	}
-
-	if (!isValidFields(fields)) {
-		return new Response(JSON.stringify({ error: "Invalid intake payload" }), { status: 400 });
 	}
 
 	let ip = "unknown";
@@ -66,6 +63,14 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 	}
 	if (isRateLimited(ip)) {
 		return new Response(JSON.stringify({ error: "Too many requests, slow down." }), { status: 429 });
+	}
+
+	if (!(await verifyRecaptcha(recaptchaToken, ip))) {
+		return new Response(JSON.stringify({ error: "reCAPTCHA verification failed. Please try again." }), { status: 400 });
+	}
+
+	if (!isValidFields(fields)) {
+		return new Response(JSON.stringify({ error: "Invalid intake payload" }), { status: 400 });
 	}
 
 	const nameField = fields.find((f) => f.label === "Full name");

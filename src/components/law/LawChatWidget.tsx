@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { site } from "../../data/site";
+import { getRecaptchaToken } from "../../lib/recaptchaClient";
 
 interface DisplayMessage {
 	role: "user" | "assistant";
@@ -119,13 +120,18 @@ export default function LawChatWidget() {
 	useEffect(() => {
 		if (!lead || leadSent) return;
 		setLeadSent(true);
-		fetch("/api/law-chat/lead", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ lead, transcript: messages }),
-		}).catch(() => {
-			// Non-fatal from the visitor's perspective; the follow-up isn't blocked on this UI.
-		});
+		(async () => {
+			try {
+				const recaptchaToken = await getRecaptchaToken("law_chat_lead");
+				await fetch("/api/law-chat/lead", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ lead, transcript: messages, recaptchaToken }),
+				});
+			} catch {
+				// Non-fatal from the visitor's perspective; the follow-up isn't blocked on this UI.
+			}
+		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lead]);
 

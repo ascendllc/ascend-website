@@ -365,6 +365,8 @@ const sections = [
 		</form>
 
 		<script>
+			import { getRecaptchaToken } from "../../lib/recaptchaClient";
+
 			const form = document.getElementById("intake-form") as HTMLFormElement;
 			const submitBtn = document.getElementById("intake-submit") as HTMLButtonElement;
 			const errorEl = document.getElementById("intake-error") as HTMLParagraphElement;
@@ -418,10 +420,11 @@ const sections = [
 				const website = (form.querySelector('input[name="website"]') as HTMLInputElement)?.value ?? "";
 
 				try {
+					const recaptchaToken = await getRecaptchaToken("brandrise_intake");
 					const res = await fetch("/api/brandrise-intake", {
 						method: "POST",
 						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify({ fields, website }),
+						body: JSON.stringify({ fields, website, recaptchaToken }),
 					});
 					if (!res.ok) {
 						const data = await res.json().catch(() => ({}));

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { getRecaptchaToken } from "../lib/recaptchaClient";
 
 interface DisplayMessage {
 	role: "user" | "assistant";
@@ -118,13 +119,18 @@ export default function ChatWidget() {
 	useEffect(() => {
 		if (!lead || leadSent) return;
 		setLeadSent(true);
-		fetch("/api/chat/lead", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ lead, transcript: messages }),
-		}).catch(() => {
-			// Non-fatal from the visitor's perspective; Brad's follow-up isn't blocked on this UI.
-		});
+		(async () => {
+			try {
+				const recaptchaToken = await getRecaptchaToken("chat_lead");
+				await fetch("/api/chat/lead", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ lead, transcript: messages, recaptchaToken }),
+				});
+			} catch {
+				// Non-fatal from the visitor's perspective; Ascend's follow-up isn't blocked on this UI.
+			}
+		})();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [lead]);
 

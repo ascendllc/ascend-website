@@ -1,5 +1,6 @@
 import type { APIRoute } from "astro";
 import { sendFinanceChatLeadEmail, type CapturedFinanceLead, type ChatMessage } from "../../../lib/email";
+import { verifyRecaptcha } from "../../../lib/recaptcha";
 
 export const prerender = false;
 
@@ -27,7 +28,7 @@ function isValidTranscript(value: unknown): value is ChatMessage[] {
 	);
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, clientAddress }) => {
 	let body: unknown;
 	try {
 		body = await request.json();
@@ -35,7 +36,17 @@ export const POST: APIRoute = async ({ request }) => {
 		return new Response(JSON.stringify({ error: "Invalid JSON body" }), { status: 400 });
 	}
 
-	const { lead, transcript } = body as { lead?: unknown; transcript?: unknown };
+	const { lead, transcript, recaptchaToken } = body as { lead?: unknown; transcript?: unknown; recaptchaToken?: unknown };
+
+	let ip = "unknown";
+	try {
+		ip = clientAddress ?? "unknown";
+	} catch {
+		// clientAddress can throw in some local/dev setups; fall back silently.
+	}
+	if (!(await verifyRecaptcha(recaptchaToken, ip))) {
+		return new Response(JSON.stringify({ error: "reCAPTCHA verification failed. Please try again." }), { status: 400 });
+	}
 
 	if (!isValidLead(lead) || !isValidTranscript(transcript)) {
 		return new Response(JSON.stringify({ error: "Invalid lead payload" }), { status: 400 });
