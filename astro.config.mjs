@@ -12,6 +12,9 @@ export default defineConfig({
   // opt into on-demand rendering individually via `export const prerender = false`.
   adapter: vercel(),
   integrations: [react(), criticalCss()],
+  redirects: {
+    '/meet': 'https://meet.google.com/nqd-ofic-mdc',
+  },
   vite: {
     plugins: [tailwindcss()]
   }
