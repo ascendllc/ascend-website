@@ -23,13 +23,22 @@ const Menu = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="
 const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>`;
 ---
 
-<header id="fin-header" class:list={["fixed top-0 right-0 left-0 z-50 border-b transition-all duration-300", { "fin-header-home": isHome, "border-[#c7d9cb] bg-warmwhite shadow-sm": !isHome }]}>
+<header
+	id="fin-header"
+	class:list={["fixed top-0 right-0 left-0 z-50 border-b transition-all duration-300", isHome ? "fin-header-home bg-transparent border-transparent" : "border-[#c7d9cb] bg-warmwhite shadow-sm"]}
+>
 	<div class="container mx-auto flex h-20 items-center justify-between px-6">
 		<FinanceLogo light={isHome} />
 
 		<div class="hidden items-center gap-8 lg:flex">
 			<div class="relative fin-dropdown">
-				<button type="button" class="fin-nav-link flex items-center gap-1" data-dropdown-trigger="services" aria-haspopup="true" aria-expanded="false">
+				<button
+					type="button"
+					class:list={["fin-nav-link flex items-center gap-1", isHome ? "text-warmwhite fin-nav-link-inverted" : "text-[#151a23]"]}
+					data-dropdown-trigger="services"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
 					Services
 					<span class="h-4 w-4 transition-transform duration-200 fin-chevron" set:html={ChevronDown} />
 				</button>
@@ -48,7 +57,13 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 				</div>
 			</div>
 			<div class="relative fin-dropdown">
-				<button type="button" class="fin-nav-link flex items-center gap-1" data-dropdown-trigger="industries" aria-haspopup="true" aria-expanded="false">
+				<button
+					type="button"
+					class:list={["fin-nav-link flex items-center gap-1", isHome ? "text-warmwhite fin-nav-link-inverted" : "text-[#151a23]"]}
+					data-dropdown-trigger="industries"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
 					Industries
 					<span class="h-4 w-4 transition-transform duration-200 fin-chevron" set:html={ChevronDown} />
 				</button>
@@ -68,9 +83,15 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 					</ul>
 				</div>
 			</div>
-			<a href="/finance/team" class="fin-nav-link">Team</a>
+			<a href="/finance/team" class:list={["fin-nav-link", isHome ? "text-warmwhite fin-nav-link-inverted" : "text-[#151a23]"]}>Team</a>
 			<div class="relative fin-dropdown">
-				<button type="button" class="fin-nav-link flex items-center gap-1" data-dropdown-trigger="resources" aria-haspopup="true" aria-expanded="false">
+				<button
+					type="button"
+					class:list={["fin-nav-link flex items-center gap-1", isHome ? "text-warmwhite fin-nav-link-inverted" : "text-[#151a23]"]}
+					data-dropdown-trigger="resources"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
 					Resources
 					<span class="h-4 w-4 transition-transform duration-200 fin-chevron" set:html={ChevronDown} />
 				</button>
@@ -92,7 +113,7 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 		</div>
 
 		<button type="button" id="fin-mobile-toggle" class="-mr-2 p-2 lg:hidden" aria-label="Toggle menu">
-			<span class="block h-6 w-6" id="fin-mobile-icon-open" set:html={Menu} />
+			<span class:list={["block h-6 w-6", isHome ? "text-warmwhite" : "text-wafs-forest"]} id="fin-mobile-icon-open" set:html={Menu} />
 			<span class="hidden h-6 w-6 text-wafs-forest" id="fin-mobile-icon-close" set:html={X} />
 		</button>
 	</div>
@@ -133,83 +154,99 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 </header>
 
 <style>
-	.fin-header-home {
-		background-color: transparent;
-		border-color: transparent;
-	}
-	.fin-header-home.fin-scrolled {
-		background-color: var(--color-warmwhite, #fafaf8);
-		border-color: #c7d9cb;
-		box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-	}
+	/* Static, state-independent styling only. Anything that depends on a JS-added
+	   class (scroll position, open/closed dropdowns, the mobile menu) is handled
+	   below by toggling plain utility classes directly on the affected elements
+	   instead — a scoped selector like `.fin-header-home.fin-scrolled` only ever
+	   matches after user interaction, so the production build's critical-CSS step
+	   (which crawls the page in its initial, un-interacted state) silently drops
+	   any rule that depends on one. Plain classes don't have this problem because
+	   they're already present verbatim elsewhere in the page's markup, so the
+	   build always considers them in use. */
 	.fin-nav-link {
 		font-size: 0.9375rem;
 		font-weight: 500;
-		color: #151a23;
 		transition: color 0.2s;
 	}
-	.fin-header-home:not(.fin-scrolled) .fin-nav-link {
-		color: #fafaf8;
-	}
-	.fin-header-home:not(.fin-scrolled) #fin-mobile-icon-open {
-		color: white;
-	}
+	/* Plain, unconditional hover rules (no ancestor/state selector involved) — these
+	   survive the critical-CSS step fine on their own, same as any other :hover
+	   rule on a static class. `.fin-nav-link-inverted` is a marker class toggled
+	   via JS in the script below, not a compound selector, so its own :hover rule
+	   is equally safe; declaring it after `.fin-nav-link:hover` lets it win via
+	   source order whenever both classes are present on the same element. */
 	.fin-nav-link:hover {
 		color: #1b3a2a;
 	}
-	.fin-header-home:not(.fin-scrolled) .fin-nav-link:hover {
+	.fin-nav-link-inverted:hover {
 		color: rgba(250, 250, 248, 0.8);
-	}
-	/* The logo's light/dark colors are baked in at render time via the `light` prop
-	   (based on whether this is the homepage), but the header's background flips
-	   from transparent to solid on scroll — so once scrolled, force the logo back
-	   to its dark colors regardless of what the prop rendered, or it becomes
-	   invisible (white-on-white). */
-	.fin-header-home.fin-scrolled :global(.fin-logo-mask) {
-		background-color: #1b3a2a !important;
-	}
-	.fin-header-home.fin-scrolled :global(.fin-logo-text) {
-		color: #1b3a2a !important;
-	}
-	.fin-dropdown.fin-open .fin-dropdown-panel {
-		opacity: 1;
-		visibility: visible;
-		pointer-events: auto;
-	}
-	.fin-dropdown.fin-open .fin-chevron {
-		transform: rotate(180deg);
-	}
-	#fin-mobile-menu.fin-open {
-		display: block;
 	}
 </style>
 
 <script>
 	const header = document.getElementById("fin-header");
 	const isHome = header?.classList.contains("fin-header-home");
+	const navLinks = header?.querySelectorAll<HTMLElement>(".fin-nav-link") ?? [];
+	const mobileIconOpen = document.getElementById("fin-mobile-icon-open");
+	const logoMask = header?.querySelector<HTMLElement>(".fin-logo-mask");
+	const logoTexts = header?.querySelectorAll<HTMLElement>(".fin-logo-text") ?? [];
+
+	function setScrolled(isScrolled: boolean) {
+		if (!header) return;
+		header.classList.toggle("bg-transparent", !isScrolled);
+		header.classList.toggle("border-transparent", !isScrolled);
+		header.classList.toggle("bg-warmwhite", isScrolled);
+		header.classList.toggle("border-[#c7d9cb]", isScrolled);
+		header.classList.toggle("shadow-sm", isScrolled);
+
+		navLinks.forEach((link) => {
+			link.classList.toggle("text-warmwhite", !isScrolled);
+			link.classList.toggle("fin-nav-link-inverted", !isScrolled);
+			link.classList.toggle("text-[#151a23]", isScrolled);
+		});
+		mobileIconOpen?.classList.toggle("text-warmwhite", !isScrolled);
+		mobileIconOpen?.classList.toggle("text-wafs-forest", isScrolled);
+		logoTexts.forEach((el) => {
+			el.classList.toggle("text-warmwhite", !isScrolled);
+			el.classList.toggle("text-wafs-forest", isScrolled);
+		});
+		if (logoMask) logoMask.style.backgroundColor = isScrolled ? "#1b3a2a" : "#ffffff";
+	}
 
 	function onScroll() {
-		if (!header) return;
-		if (window.scrollY > 20) {
-			header.classList.add("fin-scrolled");
-		} else if (isHome) {
-			header.classList.remove("fin-scrolled");
-		}
+		if (!header || !isHome) return;
+		setScrolled(window.scrollY > 20);
 	}
 	window.addEventListener("scroll", onScroll);
 	onScroll();
 
+	function closeDropdown(wrapper: Element) {
+		const panel = wrapper.querySelector<HTMLElement>("[data-dropdown-panel]");
+		const chevron = wrapper.querySelector<HTMLElement>(".fin-chevron");
+		panel?.classList.add("opacity-0", "invisible", "pointer-events-none");
+		panel?.classList.remove("opacity-100", "visible", "pointer-events-auto");
+		chevron?.classList.remove("rotate-180");
+		wrapper.classList.remove("fin-open");
+	}
+	function openDropdown(wrapper: Element) {
+		const panel = wrapper.querySelector<HTMLElement>("[data-dropdown-panel]");
+		const chevron = wrapper.querySelector<HTMLElement>(".fin-chevron");
+		panel?.classList.remove("opacity-0", "invisible", "pointer-events-none");
+		panel?.classList.add("opacity-100", "visible", "pointer-events-auto");
+		chevron?.classList.add("rotate-180");
+		wrapper.classList.add("fin-open");
+	}
 	document.querySelectorAll<HTMLElement>("[data-dropdown-trigger]").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			const wrapper = btn.closest(".fin-dropdown");
-			const isOpen = wrapper?.classList.contains("fin-open");
-			document.querySelectorAll(".fin-dropdown").forEach((d) => d.classList.remove("fin-open"));
-			if (!isOpen) wrapper?.classList.add("fin-open");
+			if (!wrapper) return;
+			const isOpen = wrapper.classList.contains("fin-open");
+			document.querySelectorAll(".fin-dropdown").forEach((d) => closeDropdown(d));
+			if (!isOpen) openDropdown(wrapper);
 		});
 	});
 	document.addEventListener("click", (e) => {
 		if (!(e.target as HTMLElement).closest(".fin-dropdown")) {
-			document.querySelectorAll(".fin-dropdown").forEach((d) => d.classList.remove("fin-open"));
+			document.querySelectorAll(".fin-dropdown").forEach((d) => closeDropdown(d));
 		}
 	});
 
@@ -219,6 +256,8 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 	const iconClose = document.getElementById("fin-mobile-icon-close");
 	mobileToggle?.addEventListener("click", () => {
 		const isOpen = mobileMenu?.classList.toggle("fin-open");
+		mobileMenu?.classList.toggle("hidden", !isOpen);
+		mobileMenu?.classList.toggle("block", !!isOpen);
 		iconOpen?.classList.toggle("hidden", isOpen);
 		iconClose?.classList.toggle("hidden", !isOpen);
 	});
