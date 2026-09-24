@@ -16,13 +16,22 @@ const Menu = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="
 const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>`;
 ---
 
-<header id="law-header" class:list={["fixed top-0 z-50 w-full py-6 transition-all duration-300", { "law-header-home": isHome, "bg-white py-4 shadow-sm": !isHome }]}>
+<header
+	id="law-header"
+	class:list={["fixed top-0 z-50 w-full py-6 transition-all duration-300", isHome ? "law-header-home bg-transparent" : "bg-white py-4 shadow-sm"]}
+>
 	<div class="container mx-auto flex max-w-7xl items-center justify-between px-6">
 		<LawLogo light={isHome} />
 
 		<div class="hidden items-center gap-8 lg:flex">
 			<div class="relative law-dropdown">
-				<button type="button" class="law-nav-link flex items-center gap-1" data-dropdown-trigger="practice" aria-haspopup="true" aria-expanded="false">
+				<button
+					type="button"
+					class:list={["law-nav-link flex items-center gap-1", isHome ? "text-white" : "text-[#162140]"]}
+					data-dropdown-trigger="practice"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
 					Practice Areas
 					<span class="h-4 w-4 transition-transform duration-200 law-chevron" set:html={ChevronDown} />
 				</button>
@@ -40,11 +49,17 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 					</div>
 				</div>
 			</div>
-			<a href="/law/our-team" class="law-nav-link">Our Team</a>
-			<a href="/law/results" class="law-nav-link">Results</a>
-			<a href="/law/insights" class="law-nav-link">Insights</a>
+			<a href="/law/our-team" class:list={["law-nav-link", isHome ? "text-white" : "text-[#162140]"]}>Our Team</a>
+			<a href="/law/results" class:list={["law-nav-link", isHome ? "text-white" : "text-[#162140]"]}>Results</a>
+			<a href="/law/insights" class:list={["law-nav-link", isHome ? "text-white" : "text-[#162140]"]}>Insights</a>
 			<div class="relative law-dropdown">
-				<button type="button" class="law-nav-link flex items-center gap-1" data-dropdown-trigger="about" aria-haspopup="true" aria-expanded="false">
+				<button
+					type="button"
+					class:list={["law-nav-link flex items-center gap-1", isHome ? "text-white" : "text-[#162140]"]}
+					data-dropdown-trigger="about"
+					aria-haspopup="true"
+					aria-expanded="false"
+				>
 					About
 					<span class="h-4 w-4 transition-transform duration-200 law-chevron" set:html={ChevronDown} />
 				</button>
@@ -65,7 +80,7 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 		</div>
 
 		<button type="button" id="law-mobile-toggle" class="p-2 lg:hidden" aria-label="Toggle menu">
-			<span class="block h-6 w-6" id="law-mobile-icon-open" set:html={Menu} />
+			<span class:list={["block h-6 w-6", isHome ? "text-white" : "text-[#162140]"]} id="law-mobile-icon-open" set:html={Menu} />
 			<span class="hidden h-6 w-6 text-[#162140]" id="law-mobile-icon-close" set:html={X} />
 		</button>
 	</div>
@@ -87,84 +102,91 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 </header>
 
 <style>
-	.law-header-home {
-		background-color: transparent;
-		color: white;
-	}
-	.law-header-home.law-scrolled {
-		background-color: white;
-		padding-top: 1rem;
-		padding-bottom: 1rem;
-		box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-	}
+	/* Static, state-independent styling only. Anything that depends on a JS-added
+	   class (scroll position, open/closed dropdowns, the mobile menu) is handled
+	   below by toggling plain Tailwind utility classes directly on the affected
+	   elements instead — a scoped selector like `.law-header-home.law-scrolled`
+	   only ever matches after user interaction, so the production build's
+	   critical-CSS step (which crawls the page in its initial, un-interacted
+	   state) silently drops any rule that depends on one. Utility classes don't
+	   have this problem because they're already present verbatim elsewhere in
+	   the page's markup, so the build always considers them in use. */
 	.law-nav-link {
 		font-family: var(--law-font-sans, inherit);
 		font-size: 0.875rem;
 		font-weight: 600;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: #162140;
 		transition: color 0.2s;
-	}
-	.law-header-home:not(.law-scrolled) .law-nav-link {
-		color: white;
-	}
-	.law-header-home:not(.law-scrolled) #law-mobile-icon-open {
-		color: white;
 	}
 	.law-nav-link:hover {
 		color: #c29129;
-	}
-	/* The logo's light/dark colors are baked in at render time via the `light` prop
-	   (based on whether this is the homepage), but the header's background flips
-	   from transparent to solid white on scroll — so once scrolled, force the logo
-	   back to its dark colors regardless of what the prop rendered, or it becomes
-	   invisible (white-on-white). */
-	.law-header-home.law-scrolled :global(.law-logo-mask) {
-		background-color: #162140 !important;
-	}
-	.law-header-home.law-scrolled :global(.law-logo-text) {
-		color: #162140 !important;
-	}
-	.law-dropdown.law-open .law-dropdown-panel {
-		opacity: 1;
-		visibility: visible;
-		pointer-events: auto;
-	}
-	.law-dropdown.law-open .law-chevron {
-		transform: rotate(180deg);
-	}
-	#law-mobile-menu.law-open {
-		transform: translateY(0);
 	}
 </style>
 
 <script>
 	const header = document.getElementById("law-header");
 	const isHome = header?.classList.contains("law-header-home");
+	const navLinks = header?.querySelectorAll<HTMLElement>(".law-nav-link") ?? [];
+	const mobileIconOpen = document.getElementById("law-mobile-icon-open");
+	const logoMask = header?.querySelector<HTMLElement>(".law-logo-mask");
+	const logoTexts = header?.querySelectorAll<HTMLElement>(".law-logo-text") ?? [];
+
+	function setScrolled(isScrolled: boolean) {
+		if (!header) return;
+		header.classList.toggle("bg-transparent", !isScrolled);
+		header.classList.toggle("bg-white", isScrolled);
+		header.classList.toggle("shadow-sm", isScrolled);
+		header.classList.toggle("py-6", !isScrolled);
+		header.classList.toggle("py-4", isScrolled);
+
+		navLinks.forEach((link) => {
+			link.classList.toggle("text-white", !isScrolled);
+			link.classList.toggle("text-[#162140]", isScrolled);
+		});
+		mobileIconOpen?.classList.toggle("text-white", !isScrolled);
+		logoTexts.forEach((el) => {
+			el.classList.toggle("text-white", !isScrolled);
+			el.classList.toggle("text-[#162140]", isScrolled);
+		});
+		if (logoMask) logoMask.style.backgroundColor = isScrolled ? "#162140" : "#F8F4EE";
+	}
 
 	function onScroll() {
-		if (!header) return;
-		if (window.scrollY > 20) {
-			header.classList.add("law-scrolled");
-		} else if (isHome) {
-			header.classList.remove("law-scrolled");
-		}
+		if (!header || !isHome) return;
+		setScrolled(window.scrollY > 20);
 	}
 	window.addEventListener("scroll", onScroll);
 	onScroll();
 
+	function closeDropdown(wrapper: Element) {
+		const panel = wrapper.querySelector<HTMLElement>("[data-dropdown-panel]");
+		const chevron = wrapper.querySelector<HTMLElement>(".law-chevron");
+		panel?.classList.add("opacity-0", "invisible", "pointer-events-none");
+		panel?.classList.remove("opacity-100", "visible", "pointer-events-auto");
+		chevron?.classList.remove("rotate-180");
+		wrapper.classList.remove("law-open");
+	}
+	function openDropdown(wrapper: Element) {
+		const panel = wrapper.querySelector<HTMLElement>("[data-dropdown-panel]");
+		const chevron = wrapper.querySelector<HTMLElement>(".law-chevron");
+		panel?.classList.remove("opacity-0", "invisible", "pointer-events-none");
+		panel?.classList.add("opacity-100", "visible", "pointer-events-auto");
+		chevron?.classList.add("rotate-180");
+		wrapper.classList.add("law-open");
+	}
 	document.querySelectorAll<HTMLElement>("[data-dropdown-trigger]").forEach((btn) => {
 		btn.addEventListener("click", () => {
 			const wrapper = btn.closest(".law-dropdown");
-			const isOpen = wrapper?.classList.contains("law-open");
-			document.querySelectorAll(".law-dropdown").forEach((d) => d.classList.remove("law-open"));
-			if (!isOpen) wrapper?.classList.add("law-open");
+			if (!wrapper) return;
+			const isOpen = wrapper.classList.contains("law-open");
+			document.querySelectorAll(".law-dropdown").forEach((d) => closeDropdown(d));
+			if (!isOpen) openDropdown(wrapper);
 		});
 	});
 	document.addEventListener("click", (e) => {
 		if (!(e.target as HTMLElement).closest(".law-dropdown")) {
-			document.querySelectorAll(".law-dropdown").forEach((d) => d.classList.remove("law-open"));
+			document.querySelectorAll(".law-dropdown").forEach((d) => closeDropdown(d));
 		}
 	});
 
@@ -174,6 +196,8 @@ const X = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="non
 	const iconClose = document.getElementById("law-mobile-icon-close");
 	mobileToggle?.addEventListener("click", () => {
 		const isOpen = mobileMenu?.classList.toggle("law-open");
+		mobileMenu?.classList.toggle("-translate-y-full", !isOpen);
+		mobileMenu?.classList.toggle("translate-y-0", !!isOpen);
 		iconOpen?.classList.toggle("hidden", isOpen);
 		iconClose?.classList.toggle("hidden", !isOpen);
 	});
