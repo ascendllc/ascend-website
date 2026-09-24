@@ -25,14 +25,16 @@ function colorFor(category: string) {
 ---
 
 <LawLayout title="Case Results | Washington Law | Seattle Law Firm" description="Washington Law's track record: $3.2M shareholder settlement, $285K wrongful termination recovery, $1.1M commercial lease reduction, and more. Real results for Seattle-area clients.">
-	<div class="min-h-screen bg-secondary/20 pt-32 pb-24">
-		<div class="container mx-auto max-w-7xl px-6">
-			<div class="mx-auto mb-16 max-w-3xl text-center">
-				<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Case Results</p>
-				<h1 class="font-display mb-6 text-5xl font-semibold text-primary lg:text-6xl">Outcomes That Matter.</h1>
-				<p class="font-serif text-xl text-[#2e2e2e]">A track record of securing favorable judgments, settlements, and resolutions for our clients across the Pacific Northwest.</p>
-			</div>
+	<section class="bg-primary pt-40 pb-20 md:pt-48 md:pb-24">
+		<div class="container mx-auto max-w-3xl px-6 text-center">
+			<p class="mb-4 font-sans text-sm font-bold tracking-widest text-accent uppercase">Case Results</p>
+			<h1 class="font-display mb-6 text-5xl font-semibold text-white italic lg:text-6xl">Outcomes That Matter.</h1>
+			<p class="font-serif text-xl text-[#c7cede]">A track record of securing favorable judgments, settlements, and resolutions for our clients across the Pacific Northwest.</p>
+		</div>
+	</section>
 
+	<section class="bg-white py-20">
+		<div class="container mx-auto max-w-7xl px-6">
 			<div id="results-filters" class="mb-16 flex flex-wrap justify-center gap-4">
 				{categories.map((c, idx) => (
 					<button
@@ -59,7 +61,7 @@ function colorFor(category: string) {
 						<div class="font-display mb-2 text-4xl font-semibold text-primary">{r.amount}</div>
 						<h3 class="mb-4 font-sans text-lg font-bold text-primary">{r.title}</h3>
 						<p class="mb-6 font-serif text-[#2e2e2e]">{r.description}</p>
-						<p class="mt-auto border-t border-gray-200 pt-4 font-sans text-xs text-gray-400">Resolved: {r.year}</p>
+						<p class="mt-auto border-t border-gray-200 pt-4 font-sans text-xs text-gray-500">Resolved: {r.year}</p>
 					</div>
 				))}
 			</div>
@@ -68,7 +70,7 @@ function colorFor(category: string) {
 				<p class="mx-auto max-w-3xl font-serif text-sm text-gray-500 italic">*Past results do not guarantee future outcomes. Every case is unique and must be evaluated on its own merits. Confidential settlements have been generalized to protect client privacy.</p>
 			</div>
 		</div>
-	</div>
+	</section>
 </LawLayout>
 
 <script>
