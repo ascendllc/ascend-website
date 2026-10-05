@@ -28,7 +28,7 @@ export interface SdiGroup {
 	files: SdiFile[];
 }
 
-export const sdiBundleFile = "SDI_Love-Yourself-Now_Launch-Package.zip";
+export const sdiBundleFile = "SDI_Find-Your-Voice_Launch-Package.zip";
 
 /** Shared Google versions of the two planning documents. */
 export const sdiLinks = {
