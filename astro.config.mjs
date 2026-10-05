@@ -25,11 +25,12 @@ export default defineConfig({
       // Ascend builds for clients), not real indexable pages — keep them, their landing
       // pages, the API routes, and /industry-solutions (a noindexed ProVisors-referral
       // page, kept separate from the public /industry page by design) out of the
-      // sitemap submitted to search engines.
+      // sitemap submitted to search engines. /sdi is a private, noindexed client handoff
+      // page (a launch package for Soaring Dragonfly Institute) and stays out as well.
       filter: (page) => {
         const pathname = new URL(page).pathname;
         return (
-          !/\/(law|finance)(\/|$)/.test(pathname) &&
+          !/\/(law|finance|sdi)(\/|$)/.test(pathname) &&
           !pathname.startsWith('/api/') &&
           pathname !== '/industry-solutions/' &&
           pathname !== '/industry-solutions'

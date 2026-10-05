@@ -1,0 +1,114 @@
+{
+	"camella-png": {
+		"w": 432,
+		"h": 432
+	},
+	"dragonfly-png": {
+		"w": 400,
+		"h": 400
+	},
+	"imeko-png": {
+		"w": 432,
+		"h": 432
+	},
+	"qr-card-png": {
+		"w": 540,
+		"h": 540
+	},
+	"qr-flyer-png": {
+		"w": 540,
+		"h": 540
+	},
+	"qr-poster-png": {
+		"w": 540,
+		"h": 540
+	},
+	"qr-rack-png": {
+		"w": 540,
+		"h": 540
+	},
+	"qr-social-png": {
+		"w": 540,
+		"h": 540
+	},
+	"qr-web-png": {
+		"w": 540,
+		"h": 540
+	},
+	"sdi-bulletin-poster-8-5x11-pdf": {
+		"w": 417,
+		"h": 540
+	},
+	"sdi-bulletin-poster-8-5x11-png": {
+		"w": 417,
+		"h": 540
+	},
+	"sdi-facebook-event-cover-1920x1005-png": {
+		"w": 720,
+		"h": 377
+	},
+	"sdi-flyer-2-page-print-pdf": {
+		"w": 417,
+		"h": 540
+	},
+	"sdi-flyer-back-png": {
+		"w": 417,
+		"h": 540
+	},
+	"sdi-flyer-front-png": {
+		"w": 417,
+		"h": 540
+	},
+	"sdi-linkedin-linkshare-1200x630-png": {
+		"w": 720,
+		"h": 378
+	},
+	"sdi-post1-hook-1080x1080-png": {
+		"w": 540,
+		"h": 540
+	},
+	"sdi-post2-hook-1080x1080-png": {
+		"w": 540,
+		"h": 540
+	},
+	"sdi-post3-details-1080x1080-png": {
+		"w": 540,
+		"h": 540
+	},
+	"sdi-post4-guides-1080x1080-png": {
+		"w": 540,
+		"h": 540
+	},
+	"sdi-rack-card-4x9-front-back-pdf": {
+		"w": 240,
+		"h": 540
+	},
+	"sdi-rack-card-back-png": {
+		"w": 240,
+		"h": 540
+	},
+	"sdi-rack-card-front-png": {
+		"w": 240,
+		"h": 540
+	},
+	"sdi-story1-hook-1080x1920-png": {
+		"w": 304,
+		"h": 540
+	},
+	"sdi-story2-earlybird-1080x1920-png": {
+		"w": 304,
+		"h": 540
+	},
+	"sdi-website-hero-desktop-1920x640-png": {
+		"w": 720,
+		"h": 240
+	},
+	"sdi-website-hero-mobile-800x1100-png": {
+		"w": 393,
+		"h": 540
+	},
+	"vonna-png": {
+		"w": 432,
+		"h": 432
+	}
+}

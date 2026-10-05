@@ -1,0 +1,510 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+import { sdiBundleFile, sdiGroups, sdiLinks, resolveFile, formatBytes } from "../data/sdi";
+
+const bundle = resolveFile({ file: sdiBundleFile, title: "Complete launch package", spec: "ZIP archive" });
+const groups = sdiGroups.map((g) => ({ ...g, files: g.files.map(resolveFile) }));
+const fileCount = groups.reduce((n, g) => n + g.files.length, 0);
+
+const gridCols = {
+	1: "grid-cols-1",
+	2: "grid-cols-1 md:grid-cols-2",
+	3: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3",
+	4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+} as const;
+
+const icon = {
+	external: `<path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>`,
+	download: `<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line>`,
+	calendar: `<rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path>`,
+	pin: `<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle>`,
+	heart: `<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>`,
+	check: `<path d="M20 6 9 17l-5-5"></path>`,
+	alert: `<circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line>`,
+	doc: `<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M8 13h8M8 17h8M8 9h2"></path>`,
+	sheet: `<rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M3 9h18M3 15h18M9 3v18M15 3v18"></path>`,
+	archive: `<rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"></path><path d="M10 12h4"></path>`,
+	book: `<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>`,
+	map: `<path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3Z"></path><path d="M9 3v15M15 6v15"></path>`,
+	printer: `<path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect width="12" height="8" x="6" y="14"></rect>`,
+	monitor: `<rect width="20" height="14" x="2" y="3" rx="2"></rect><path d="M8 21h8M12 17v4"></path>`,
+	share: `<circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.59 13.51 6.83 3.98M15.41 6.51l-6.82 3.98"></path>`,
+	palette: `<circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>`,
+};
+
+const fileIcon: Record<string, string> = { DOCX: icon.doc, XLSX: icon.sheet, ZIP: icon.archive };
+
+const tiles = [
+	{ icon: icon.book, title: "The Playbook", text: "A step-by-step plan: who to reach, what to say, wording rules, scripts, the posting calendar and a checklist to review before printing.", href: sdiLinks.playbook, linkLabel: "Open in Google Docs" },
+	{ icon: icon.map, title: "The Outreach Workbook", text: "52 places to visit, 55 online channels, 27 listing sites and a dated launch calendar, so you always know the next move.", href: sdiLinks.workbook, linkLabel: "Open in Google Sheets" },
+	{ icon: icon.printer, title: "Print pieces", text: "A redesigned flyer (front and back), a 4 × 9 rack card and a bulletin-board poster with tear-off tabs." },
+	{ icon: icon.monitor, title: "Website banners", text: "Desktop and mobile banners for the top of your homepage, pointing straight to registration." },
+	{ icon: icon.share, title: "Social graphics", text: "A Facebook Event cover, four feed posts, two stories and a link-share image, matched to the posting calendar." },
+	{ icon: icon.palette, title: "Brand assets and source files", text: "The dragonfly mark, guide portraits, source-tagged QR codes and the editable files behind every piece." },
+];
+
+const audiences = [
+	{
+		title: "The tired high performer",
+		who: "Managers, founders, professionals and perfectionists who are working a lot, saying yes too often and feeling flat or on edge.",
+		hook: "A low-pressure, two-hour, no-commitment evening that respects their time.",
+	},
+	{
+		title: "The yoga and wellness regular",
+		who: "Takes classes, already invests in support, and wants a community that is not a class.",
+		hook: "Honest sharing in a small circle, plus gentle yoga and journaling.",
+	},
+	{
+		title: "The journaler and book-club reader",
+		who: "Reads self-growth books and is drawn to <em>The Artist's Way</em> by Julia Cameron.",
+		hook: "A book-club format they can join without having read anything.",
+	},
+];
+
+const moves = [
+	{ title: "Test your registration page", text: "Run a sign-up from start to finish. This one matters most." },
+	{ title: "Put the banner up and create the Event", text: "Upload the website banner above the registration form, then create the Facebook Event." },
+	{ title: "Walk the first places", text: "Visit the Priority A places in the 6th Ave and Proctor clusters with rack cards and posters." },
+];
+
+const weeks = [
+	{ week: "Week 1", dates: "Oct 5 to 11", name: "Launch", text: "Test registration, add the website banner, create the Facebook Event, submit the top listings and walk the first places." },
+	{ week: "Week 2", dates: "Oct 12 to 18", name: "Spread", text: "Remaining listings, a second walking cluster, approved group posts and brochure swaps." },
+	{ week: "Week 3", dates: "Oct 19 to 25", name: "Deepen", text: "Personal invites, second visits and Priority B places. Thursday, Oct 22 is the decision point against your sign-up goal." },
+	{ week: "Week 4", dates: "Oct 26 to Nov 1", name: "Early bird push", text: "Countdown story and “early bird ends Thursday” posts, with a last call on Oct 29." },
+	{ week: "Week 5", dates: "Nov 2 to 6", name: "Convert and show up", text: "A reminder to everyone registered, a day-before post, the event itself, then the survey and thank-you." },
+];
+
+const happenings = [
+	"Morning pages from <em>The Artist's Way</em> by Julia Cameron, with two added practices",
+	"Sorting a To Do list from a To Be list",
+	"A 10-minute yoga practice for the inner child",
+	"A floor feeling wheel for nonverbal check-ins, if you like",
+	"A refreshment break and a closing practice",
+];
+
+const hooks = [
+	"You knew exactly what you wanted to say. Then you froze.",
+	"Your mind went blank.",
+	"You said yes when you meant no.",
+	"It never left. Come practice using it.",
+];
+
+const serif = "font-family: var(--font-serif);";
+---
+
+<Layout
+	title="Love Yourself Now Launch Package | Soaring Dragonfly Institute | Ascend Consulting"
+	description="The Love Yourself Now launch package for Soaring Dragonfly Institute: the playbook, outreach workbook, print pieces, website banners and social graphics, ready to download."
+	ogImage="/images/sdi/og-link-share.jpg"
+	noindex
+>
+	<!-- Hero -->
+	<section class="relative overflow-hidden bg-primary py-16 md:py-24">
+		<div class="pointer-events-none absolute inset-0" aria-hidden="true">
+			<div class="absolute -top-[20%] -right-[10%] h-[60%] w-[60%] rounded-full bg-secondary/25 blur-[120px]"></div>
+			<div class="absolute -bottom-[20%] -left-[10%] h-[50%] w-[50%] rounded-full bg-accent/15 blur-[100px]"></div>
+		</div>
+		<div class="relative z-10 container mx-auto grid items-center gap-14 px-6 md:px-12 lg:grid-cols-[1.1fr_0.9fr]">
+			<div>
+				<p class="mb-4 text-xs font-bold tracking-widest uppercase" style="color:#f88e6d">Client Resource Area &middot; Soaring Dragonfly Institute</p>
+				<h1 class="mb-4 text-4xl leading-tight text-white md:text-6xl" style={serif}>Love Yourself Now: Launch Package</h1>
+				<p class="mb-8 max-w-2xl text-lg leading-relaxed text-white/70 md:text-xl">
+					Everything built to launch the community evening on Thursday, November 5: the plan, the print pieces, the social graphics and the outreach list, all in one place and ready to download.
+				</p>
+
+				<ul class="mb-10 space-y-3 text-white/80">
+					<li class="flex items-start gap-3">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f88e6d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0" aria-hidden="true" set:html={icon.calendar} />
+						<span><strong class="text-white">Thursday, November 5</strong> &middot; 6:30 to 8:30 PM</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f88e6d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0" aria-hidden="true" set:html={icon.pin} />
+						<span><strong class="text-white">Central Co-op</strong>, 4502 N Pearl St, Tacoma, WA 98407</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f88e6d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0" aria-hidden="true" set:html={icon.heart} />
+						<span>
+							<strong class="text-white">Free to attend.</strong> Donations gratefully accepted, never required.
+							<span class="block text-sm text-white/65 italic">Suggested: $35 early bird through Oct 29, $50 advance, $60 at the door.</span>
+						</span>
+					</li>
+				</ul>
+
+				<div class="flex flex-col gap-4 sm:flex-row">
+					<a
+						href={bundle.url}
+						download={bundle.filename}
+						class="inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-8 py-4 text-base font-medium text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-accent/90 hover:shadow-xl"
+					>
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon.download} />
+						Download everything
+					</a>
+					<a href="#downloads" class="inline-flex items-center justify-center rounded-sm border border-white/30 px-8 py-4 text-base font-medium text-white transition-all hover:bg-white/10">Browse by folder</a>
+				</div>
+				<p class="mt-4 text-sm text-white/65">{fileCount} files &middot; {bundle.size} zip &middot; Prepared by Ascend Consulting, October 4, 2026</p>
+			</div>
+
+			<div class="relative mx-auto w-fit pt-4 pr-12 pb-10">
+				<img
+					src="/images/sdi/hero-flyer.webp"
+					width="760"
+					height="984"
+					alt="Preview of the Love Yourself Now flyer: Find your voice."
+					fetchpriority="high"
+					class="w-64 rotate-[-2.5deg] rounded-sm shadow-2xl ring-1 ring-white/20 sm:w-80"
+				/>
+				<img
+					src="/images/sdi/hero-rack.webp"
+					width="400"
+					height="900"
+					alt=""
+					class="absolute right-0 bottom-0 w-28 rotate-[4deg] rounded-sm shadow-2xl ring-1 ring-white/20 sm:w-36"
+				/>
+			</div>
+		</div>
+	</section>
+
+	<!-- 1. The initiative -->
+	<section id="initiative" aria-labelledby="initiative-title" class="bg-white py-20 md:py-28">
+		<div class="container mx-auto px-6 md:px-12">
+			<div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+				<div class="lg:col-span-7">
+					<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">The Initiative</p>
+					<h2 id="initiative-title" class="mb-6 text-4xl leading-tight text-primary md:text-5xl" style={serif}>A grown-up circle time where self-kindness is practiced, not just discussed.</h2>
+					<div class="space-y-5 text-lg leading-relaxed text-gray-600">
+						<p>
+							Love Yourself Now is the launch event for Soaring Dragonfly Institute in Tacoma: a two-hour, book-club style evening for honest sharing and connection. Adults practice self-kindness by doing it, together, in a small circle. No experience is needed, and there is no pressure to share more than you want to.
+						</p>
+						<p>
+							It is led by Credentialed Guides with Lived Experience: Von-Na Chism, Imeko Woods and Camella McBrayer. Admission is free, and donations are gratefully accepted, never required.
+						</p>
+					</div>
+				</div>
+
+				<div class="lg:col-span-5">
+					<div class="rounded-sm border border-gray-100 bg-gray-50 p-8">
+						<h3 class="mb-5 text-xl font-bold text-primary">What happens in the evening</h3>
+						<ul class="space-y-3.5 text-gray-700">
+							{
+								happenings.map((item) => (
+									<li class="flex items-start gap-3">
+										<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-1 shrink-0 text-accent" aria-hidden="true" set:html={icon.check} />
+										<span set:html={item} />
+									</li>
+								))
+							}
+						</ul>
+						<p class="mt-6 border-t border-gray-200 pt-5 text-gray-700">
+							<strong class="text-primary">To take home:</strong> a stuffed animal for your inner child, an Artist Date bag and a resource packet.
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="mt-20">
+				<h3 class="mb-3 text-3xl text-primary md:text-4xl" style={serif}>Who the launch is built to reach</h3>
+				<p class="mb-8 max-w-3xl text-lg leading-relaxed text-gray-600">
+					Driven, high-performing adults who already invest in their own wellbeing and have not yet found a place where self-kindness is practiced, not just discussed. Three groups make up most of that audience.
+				</p>
+				<div class="grid gap-6 md:grid-cols-3">
+					{
+						audiences.map((a) => (
+							<article class="flex flex-col rounded-sm border border-gray-200 border-t-4 border-t-accent bg-white p-7 shadow-sm">
+								<h4 class="mb-3 text-lg leading-snug font-bold text-primary">{a.title}</h4>
+								<p class="mb-5 leading-relaxed text-gray-600" set:html={a.who} />
+								<p class="mt-auto border-t border-gray-100 pt-4 text-sm leading-relaxed text-gray-600">
+									<strong class="text-primary">What gets them to sign up:</strong> {a.hook}
+								</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- The message -->
+	<section aria-labelledby="message-title" class="bg-primary py-16 md:py-20">
+		<div class="container mx-auto max-w-4xl px-6 text-center md:px-12">
+			<h2 id="message-title" class="mb-5 text-xs font-bold tracking-widest uppercase" style="color:#f88e6d">The message in one line</h2>
+			<p class="text-2xl leading-snug text-white md:text-4xl" style={serif}>
+				A grown-up circle time where you practice self-kindness by doing it, led by Credentialed Guides with Lived Experience, free to attend.
+			</p>
+			<p class="mt-12 mb-5 text-xs font-bold tracking-widest uppercase" style="color:#f88e6d">The hooks you will see across every piece</p>
+			<ul class="mx-auto grid max-w-3xl gap-x-10 gap-y-4 text-left sm:grid-cols-2">
+				{hooks.map((h) => <li class="border-l-2 border-white/30 pl-4 text-lg text-white/80 italic">{h}</li>)}
+			</ul>
+		</div>
+	</section>
+
+	<!-- 2. What was created -->
+	<section id="created" aria-labelledby="created-title" class="bg-gray-50 py-20 md:py-28">
+		<div class="container mx-auto px-6 md:px-12">
+			<div class="mx-auto mb-14 max-w-3xl text-center">
+				<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">What Was Created</p>
+				<h2 id="created-title" class="mb-6 text-4xl leading-tight text-primary md:text-5xl" style={serif}>A complete five-week launch kit, built to fill the room.</h2>
+				<p class="text-lg leading-relaxed text-gray-600">
+					Ascend Consulting built everything below to put Love Yourself Now in front of the right people between now and November 5: the plan, the printed pieces, the digital pieces and the outreach lists. Every piece carries the same message, the same design system and the same event details.
+				</p>
+			</div>
+
+			<div class="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					tiles.map((t) => (
+						<article class="rounded-sm border border-gray-100 bg-white p-7 shadow-sm">
+							<div class="mb-5 flex h-11 w-11 items-center justify-center rounded-sm bg-primary/5 text-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={t.icon} />
+							</div>
+							<h3 class="mb-2 text-lg font-bold text-primary">{t.title}</h3>
+							<p class="leading-relaxed text-gray-600">{t.text}</p>
+							{t.href && (
+								<a href={t.href} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:underline">
+									{t.linkLabel}
+									<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon.external} />
+								</a>
+							)}
+						</article>
+					))
+				}
+			</div>
+
+			<!-- Do this first -->
+			<aside class="mx-auto mt-12 max-w-6xl rounded-sm border border-gray-200 border-l-4 border-l-accent bg-white p-7 shadow-sm md:p-8" aria-labelledby="first-title">
+				<div class="flex items-start gap-4">
+					<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 shrink-0 text-accent" aria-hidden="true" set:html={icon.alert} />
+					<div>
+						<h3 id="first-title" class="mb-2 text-xl font-bold text-primary">Do this first: update your registration form</h3>
+						<p class="max-w-4xl leading-relaxed text-gray-600">
+							Your website still shows an &ldquo;Early Bird $35&rdquo; line, a Register button and two &ldquo;Custom price&rdquo; fields. Every piece in this package says the event is free to attend, with donations welcome, so the site needs to match before anything goes out. Change the form to a free RSVP with an optional donation (suggested $35 early bird through Oct 29, $50 advance, $60 at the door), then run a test sign-up. Until it matches, anyone who scans a QR code will see a different message than the flyer.
+						</p>
+					</div>
+				</div>
+			</aside>
+
+			<!-- First three moves -->
+			<div class="mx-auto mt-20 max-w-6xl">
+				<h3 class="mb-8 text-3xl text-primary md:text-4xl" style={serif}>Your first three moves, starting Monday, October 5</h3>
+				<ol class="grid gap-6 md:grid-cols-3">
+					{
+						moves.map((m, i) => (
+							<li class="flex gap-4 rounded-sm border border-gray-100 bg-white p-7 shadow-sm">
+								<span class="text-4xl leading-none font-bold text-accent" aria-hidden="true">{i + 1}</span>
+								<div>
+									<h4 class="mb-1 text-base font-bold text-primary">{m.title}</h4>
+									<p class="leading-relaxed text-gray-600">{m.text}</p>
+								</div>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+
+			<!-- Five-week arc -->
+			<div class="mx-auto mt-20 max-w-6xl">
+				<h3 class="mb-3 text-3xl text-primary md:text-4xl" style={serif}>The five-week arc</h3>
+				<p class="mb-10 max-w-3xl text-gray-600">Early bird ends Thursday, October 29, one week before the event. The dated checklist with owners lives on the Launch Calendar tab of the <a href={sdiLinks.workbook} target="_blank" rel="noopener noreferrer" class="font-bold text-accent underline underline-offset-2 hover:no-underline">Outreach Workbook</a>.</p>
+				<ol class="grid gap-8 lg:grid-cols-5 lg:gap-6">
+					{
+						weeks.map((w) => (
+							<li class="relative border-l-2 border-primary/20 pl-6 lg:border-t-2 lg:border-l-0 lg:pt-6 lg:pl-0">
+								<span class="absolute top-1 -left-[9px] h-4 w-4 rounded-full bg-accent ring-4 ring-gray-50 lg:-top-[9px] lg:left-0" aria-hidden="true" />
+								<p class="text-xs font-bold tracking-widest text-accent uppercase">{w.week}</p>
+								<p class="text-sm font-bold text-gray-600">{w.dates}</p>
+								<h4 class="mt-1 text-lg font-bold text-primary">{w.name}</h4>
+								<p class="mt-2 text-sm leading-relaxed text-gray-600">{w.text}</p>
+							</li>
+						))
+					}
+				</ol>
+			</div>
+		</div>
+	</section>
+
+	<!-- 3. Downloads -->
+	<section id="downloads" aria-labelledby="downloads-title" class="bg-white py-20 md:py-28">
+		<div class="container mx-auto px-6 md:px-12">
+			<div class="mx-auto mb-12 max-w-3xl text-center">
+				<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">Downloads</p>
+				<h2 id="downloads-title" class="mb-6 text-4xl leading-tight text-primary md:text-5xl" style={serif}>Everything in the package, grouped just like your folders.</h2>
+				<p class="text-lg leading-relaxed text-gray-600">
+					Each group below matches a folder in the launch package. Download a single file, or take the whole package as one zip. Tap any preview to open it in a new tab.
+				</p>
+			</div>
+
+			<div class="mx-auto flex max-w-6xl flex-col gap-6 rounded-sm bg-primary p-8 shadow-lg sm:flex-row sm:items-center sm:justify-between md:p-10">
+				<div class="flex items-start gap-5">
+					<div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-sm bg-white/10 text-white">
+						<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon.archive} />
+					</div>
+					<div>
+						<h3 class="text-2xl text-white" style={serif}>Complete launch package</h3>
+						<p class="mt-1 text-white/75">All {fileCount} files in one zip, organized in the same folders as below.</p>
+						<p class="mt-1 font-mono text-xs break-all text-white/65">{bundle.filename} &middot; {bundle.size}</p>
+					</div>
+				</div>
+				<a
+					href={bundle.url}
+					download={bundle.filename}
+					class="inline-flex shrink-0 items-center justify-center gap-2 rounded-sm bg-accent px-8 py-4 text-base font-medium text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-accent/90"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon.download} />
+					Download everything
+				</a>
+			</div>
+
+			<nav aria-label="Jump to a folder" class="mx-auto mt-8 max-w-6xl">
+				<ul class="flex flex-wrap gap-3">
+					{
+						groups.map((g) => (
+							<li>
+								<a href={`#${g.id}`} class="inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-1.5 text-sm font-medium text-gray-600 transition-all hover:border-primary hover:text-primary">
+									<span class="font-bold text-accent">{g.badge}</span> {g.title}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+
+			<div class="mx-auto mt-14 max-w-6xl space-y-20">
+				{
+					groups.map((g) => {
+						const groupBytes = g.files.reduce((n, f) => n + f.bytes, 0);
+						return (
+							<section id={g.id} aria-labelledby={`${g.id}-title`}>
+								<div class="flex flex-col gap-3 border-b border-gray-200 pb-6 sm:flex-row sm:items-end sm:justify-between">
+									<div class="flex items-start gap-4">
+										<span class="flex h-12 min-w-12 items-center justify-center rounded-sm bg-primary/5 px-3 text-sm font-bold text-primary">{g.badge}</span>
+										<div>
+											<h3 id={`${g.id}-title`} class="text-2xl text-primary md:text-3xl" style={serif}>{g.title}</h3>
+											<p class="mt-1 font-mono text-xs text-gray-600">{g.folder === "Main folder" ? "Main folder" : `${g.folder}/`}</p>
+										</div>
+									</div>
+									<p class="text-sm font-bold text-gray-600">
+										{g.files.length} {g.files.length === 1 ? "file" : "files"} &middot; {formatBytes(groupBytes)}
+									</p>
+								</div>
+								<p class="mt-5 max-w-3xl leading-relaxed text-gray-600">{g.description}</p>
+
+								<ul class={`mt-8 grid gap-6 ${gridCols[g.columns]}`}>
+									{
+										g.files.map((f) =>
+											f.thumb ? (
+												<li>
+													<article class="group flex h-full flex-col overflow-hidden rounded-sm border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+														<a
+															href={f.url}
+															target="_blank"
+															rel="noopener"
+															aria-label={`Preview ${f.title} (opens in a new tab)`}
+															class="flex h-52 items-center justify-center bg-gray-50 p-4"
+														>
+															<img
+																src={f.thumb.src}
+																width={f.thumb.w}
+																height={f.thumb.h}
+																alt=""
+																loading="lazy"
+																decoding="async"
+																class="max-h-full max-w-full object-contain shadow-md transition-transform duration-500 group-hover:scale-[1.03]"
+															/>
+														</a>
+														<div class="flex flex-1 flex-col gap-2 p-5">
+															<h4 class="text-base leading-snug font-bold text-primary">{f.title}</h4>
+															{f.note && <p class="text-sm leading-relaxed text-gray-600">{f.note}</p>}
+															<p class="text-sm text-gray-600">
+																{f.spec} &middot; <span class="whitespace-nowrap">{f.size}</span>
+															</p>
+															<p class="font-mono text-xs break-all text-gray-600">{f.filename}</p>
+															<a
+																href={f.url}
+																download={f.filename}
+																class="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-sm bg-accent px-5 py-3 text-sm font-medium text-white transition-all hover:bg-accent/90"
+															>
+																<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon.download} />
+																Download<span class="sr-only"> {f.title}</span>
+															</a>
+														</div>
+													</article>
+												</li>
+											) : (
+												<li>
+													<article class="flex h-full flex-col gap-5 rounded-sm border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg sm:flex-row sm:items-center">
+														<div class="flex h-20 w-20 shrink-0 flex-col items-center justify-center gap-1 rounded-sm bg-gray-50 text-primary">
+															<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={fileIcon[f.ext] ?? icon.doc} />
+															<span class="text-[11px] font-bold tracking-wider">{f.ext}</span>
+														</div>
+														<div class="flex-1">
+															<h4 class="text-base leading-snug font-bold text-primary">{f.title}</h4>
+															{f.note && <p class="mt-1 text-sm leading-relaxed text-gray-600">{f.note}</p>}
+															<p class="mt-2 text-sm text-gray-600">
+																{f.external ? f.spec : <>{f.spec} &middot; <span class="whitespace-nowrap">{f.size}</span></>}
+															</p>
+															<p class="font-mono text-xs break-all text-gray-600">{f.filename}</p>
+														</div>
+														<div class="flex shrink-0 flex-col items-stretch gap-2 sm:items-end">
+															{f.external ? (
+																<a
+																	href={f.external.url}
+																	target="_blank"
+																	rel="noopener noreferrer"
+																	class="inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-5 py-3 text-sm font-medium text-white transition-all hover:bg-accent/90"
+																>
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon.external} />
+																	{f.external.label}<span class="sr-only"> {f.title} (opens in a new tab)</span>
+																</a>
+															) : (
+																<a
+																	href={f.url}
+																	download={f.filename}
+																	class="inline-flex items-center justify-center gap-2 rounded-sm bg-accent px-5 py-3 text-sm font-medium text-white transition-all hover:bg-accent/90"
+																>
+																	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={icon.download} />
+																	Download<span class="sr-only"> {f.title}</span>
+																</a>
+															)}
+															{f.external && (
+																<a href={f.url} download={f.filename} class="text-center text-sm font-medium text-gray-600 underline underline-offset-2 hover:text-primary sm:text-right">
+																	Download the .{f.ext.toLowerCase()} copy ({f.size})<span class="sr-only"> of {f.title}</span>
+																</a>
+															)}
+														</div>
+													</article>
+												</li>
+											)
+										)
+									}
+								</ul>
+							</section>
+						);
+					})
+				}
+			</div>
+
+			<div class="mx-auto mt-20 max-w-6xl rounded-sm border border-gray-200 bg-gray-50 p-6 text-sm leading-relaxed text-gray-600">
+				<p>
+					<strong class="text-primary">Notice and Disclaimer:</strong> This group utilizes peer-led Experiential Wellness Practices for general personal growth and recovery support. It is facilitated by a Peer Support Specialist and is completely non-clinical. These exercises are not a substitute for experiential therapy, psychotherapy, or medical treatment. Participation does not establish a clinician-client relationship. <em>The Artist's Way</em> is a book by Julia Cameron; this event is not affiliated with the author or publisher. This event is not sponsored by Central Co-op.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Closing CTA -->
+	<section class="border-t border-gray-100 bg-gray-50 py-16 md:py-20">
+		<div class="container mx-auto max-w-4xl px-6 md:px-12">
+			<div class="rounded-sm bg-primary p-10 text-center md:p-12">
+				<h2 class="mb-3 text-2xl font-bold text-white md:text-3xl">Questions, or something to change?</h2>
+				<p class="mx-auto mb-7 max-w-xl text-white/75">
+					If the date, price or venue changes, or you want a piece adjusted, reach out and we will update everything together so nothing goes out with mixed information.
+				</p>
+				<div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+					<a href={`mailto:${site.email}`} class="inline-flex items-center justify-center rounded-sm bg-accent px-8 py-4 font-medium text-white transition-all hover:-translate-y-1 hover:bg-accent/90">Email Brad</a>
+					<a href={site.booking} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-sm border border-white/30 px-8 py-4 font-medium text-white transition-all hover:bg-white/10">Schedule a Call</a>
+				</div>
+				<p class="mt-6 text-sm text-white/65">This page is private to the Soaring Dragonfly Institute team and is not listed in search engines.</p>
+			</div>
+		</div>
+	</section>
+</Layout>
