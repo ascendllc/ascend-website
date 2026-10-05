@@ -12,8 +12,6 @@ export interface SdiFile {
 	note?: string;
 	/** Short spec line, e.g. "PDF · 2 pages · 8.5 × 11 in". */
 	spec: string;
-	/** When set, the primary button opens this shared link instead of downloading the file (the file stays available as a secondary download). */
-	external?: { url: string; label: string };
 }
 
 export interface SdiGroup {
@@ -30,14 +28,6 @@ export interface SdiGroup {
 
 export const sdiBundleFile = "SDI_Find-Your-Voice_Launch-Package.zip";
 
-/** Shared Google versions of the two planning documents. */
-export const sdiLinks = {
-	playbook:
-		"https://docs.google.com/document/d/1UtdgTFFKhJ1yV75E87duxQJWhM6KsDq4/edit?usp=sharing&ouid=105426094942221743554&rtpof=true&sd=true",
-	workbook:
-		"https://docs.google.com/spreadsheets/d/1sY0NVClNtRBDamnFTbHpLRmpbZYPjBHH/edit?usp=sharing&ouid=105426094942221743554&rtpof=true&sd=true",
-};
-
 export const sdiGroups: SdiGroup[] = [
 	{
 		id: "start-here",
@@ -49,18 +39,16 @@ export const sdiGroups: SdiGroup[] = [
 		columns: 1,
 		files: [
 			{
-				file: "SDI_Love-Yourself-Now_Launch-Playbook.docx",
+				file: "SDI_Love-Yourself-Now-Playbook.docx",
 				title: "Launch Playbook",
 				note: "Strategy, messaging, wording rules, scripts, the posting calendar and a checklist to review before printing. Read this first.",
-				spec: "Google Doc · opens in a new tab",
-				external: { url: sdiLinks.playbook, label: "Open in Google Docs" },
+				spec: "Word document",
 			},
 			{
 				file: "SDI_Outreach_Workbook.xlsx",
 				title: "Outreach Workbook",
 				note: "52 places to visit, 55 online channels, 27 listing sites and a dated launch calendar.",
-				spec: "Google Sheet · 6 tabs · opens in a new tab",
-				external: { url: sdiLinks.workbook, label: "Open in Google Sheets" },
+				spec: "Excel workbook · 6 tabs",
 			},
 		],
 	},
