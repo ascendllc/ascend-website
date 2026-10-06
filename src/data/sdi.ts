@@ -39,7 +39,7 @@ export const sdiGroups: SdiGroup[] = [
 		columns: 1,
 		files: [
 			{
-				file: "SDI_Love-Yourself-Now-Playbook.docx",
+				file: "SDI_Love-Yourself-Now_Launch-Playbook.docx",
 				title: "Launch Playbook",
 				note: "Strategy, messaging, wording rules, scripts, the posting calendar and a checklist to review before printing. Read this first.",
 				spec: "Word document",
@@ -131,7 +131,7 @@ export const sdiGroups: SdiGroup[] = [
 			{ file: "04-Social-Graphics/SDI_Post1_Hook_1080x1080.png", title: "Post 1: Hook", note: "Square feed post.", spec: "PNG · 1080 × 1080 px" },
 			{ file: "04-Social-Graphics/SDI_Post2_Hook_1080x1080.png", title: "Post 2: Hook", note: "Square feed post.", spec: "PNG · 1080 × 1080 px" },
 			{ file: "04-Social-Graphics/SDI_Post3_Details_1080x1080.png", title: "Post 3: Details", note: "Square feed post.", spec: "PNG · 1080 × 1080 px" },
-			{ file: "04-Social-Graphics/SDI_Post4_Guides_1080x1080.png", title: "Post 4: Guides", note: "Square feed post.", spec: "PNG · 1080 × 1080 px" },
+			{ file: "04-Social-Graphics/SDI_Post4_Guides_1080x1080.png", title: "Post 4: Guide", note: "Square feed post.", spec: "PNG · 1080 × 1080 px" },
 			{ file: "04-Social-Graphics/SDI_Story1_Hook_1080x1920.png", title: "Story 1: Hook", note: "Vertical story.", spec: "PNG · 1080 × 1920 px" },
 			{ file: "04-Social-Graphics/SDI_Story2_EarlyBird_1080x1920.png", title: "Story 2: Early bird", note: "Vertical story.", spec: "PNG · 1080 × 1920 px" },
 		],
