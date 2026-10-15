@@ -40,7 +40,6 @@ export default defineConfig({
   ],
   redirects: {
     '/meet': 'https://meet.google.com/nqd-ofic-mdc',
-    '/join/': { status: 302, destination: 'https://nwc.churchcenter.com/registrations/events/3606965' },
   },
   vite: {
     plugins: [tailwindcss()]
