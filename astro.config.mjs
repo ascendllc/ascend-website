@@ -40,6 +40,8 @@ export default defineConfig({
   ],
   redirects: {
     '/meet': 'https://meet.google.com/nqd-ofic-mdc',
+    // Temporary (302) on purpose: it points at one event's registration page, which will change.
+    '/join': { status: 302, destination: 'https://nwc.churchcenter.com/registrations/events/3606965' },
   },
   vite: {
     plugins: [tailwindcss()]
