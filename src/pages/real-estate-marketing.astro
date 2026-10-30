@@ -43,28 +43,28 @@ const pillars = [
 
 const listings = [
 	{
-		address: "12415 6th Ave NW, Gig Harbor",
-		name: "Water View Home on Colvos Passage",
-		desc: "A 4-bed, 2.5-bath water view retreat above Colvos Passage. Full video gallery, Matterport 3D tour, custom photography, and a dedicated property site.",
-		url: "https://www.agigharborview.com/",
-		displayUrl: "agigharborview.com",
+		address: "11430 Gravelly Lake Dr SW, Lakewood",
+		name: "Historic Lake Steilacoom Estate",
+		desc: "A 1922 estate designed by architect Kirtland Cutter: 4 beds, 4 baths, 3 acres of lakefront grounds, a guest house, boathouse, and new dock. Marketed with video, a 3D tour, floor plans, and a full digital property book.",
+		url: "https://www.lakesteilacoomestate.com/",
+		displayUrl: "lakesteilacoomestate.com",
 		label: "Full Marketing System",
 		badge: null,
 		featured: true,
-		photo: "/images/re-listing-gig-harbor-6th.webp",
-		photoAlt: "Screenshot of agigharborview.com — outdoor deck with fire table overlooking Colvos Passage, Active badge, $999,850, 12415 6th Ave NW Gig Harbor",
+		photo: "/images/re-listing-lake-steilacoom.webp",
+		photoAlt: "Screenshot of lakesteilacoomestate.com — aerial video frame of the historic home on Lake Steilacoom, Active badge, $2,599,950, 11430 Gravelly Lake Dr SW Lakewood",
 	},
 	{
-		address: "7707 35th St NW, Gig Harbor",
-		name: "Wonderful Living in Artondale",
-		desc: "A 3-bed, 2-bath remodeled home with video, 3D tour, and a full digital property book covering the home, neighborhood, and community.",
-		url: "https://www.wonderfulgigharbor.com/",
-		displayUrl: "wonderfulgigharbor.com",
+		address: "12415 6th Ave NW, Gig Harbor",
+		name: "Water View Home on Colvos Passage",
+		desc: "Sold 4-bed, 2.5-bath water view retreat above Colvos Passage, marketed with a full video gallery, Matterport 3D tour, custom photography, and a dedicated property site.",
+		url: "https://www.agigharborview.com/",
+		displayUrl: "agigharborview.com",
 		label: null,
-		badge: null,
+		badge: "Sold",
 		featured: false,
-		photo: "/images/re-listing-gig-harbor-35th.webp",
-		photoAlt: "Screenshot of wonderfulgigharbor.com — white split-level home with brown garage door, Active badge, $629,850, 7707 35th St NW Gig Harbor",
+		photo: "/images/re-listing-gig-harbor-6th.webp",
+		photoAlt: "Screenshot of agigharborview.com — view over a blue home toward Colvos Passage, Sold badge, 12415 6th Ave NW Gig Harbor",
 	},
 	{
 		address: "562 W Lake Samish Dr, Bellingham",
@@ -90,6 +90,24 @@ const listings = [
 		photo: "/images/re-listing-frost-rd.webp",
 		photoAlt: "Screenshot of thebigbuckranch.com — private lake on Big Buck Ranch with river winding through high desert landscape, $1,360,000, 182 Frost Rd Twisp",
 	},
+];
+
+const bookUrl = "https://media.relahq.com/public/property-docs/prop-nid-264274676/digital-property-book-lake-steilacoom-0926_254.pdf";
+
+const bookPages = [
+	{ src: "/images/re-book-p01.webp", caption: "The cover", alt: "Cover of the Lake Steilacoom digital property book, The Joy of Living on Lake Steilacoom" },
+	{ src: "/images/re-book-p02.webp", caption: "The home at a glance", alt: "Digital property book page showing the home's bedrooms, baths, square footage, acreage, and year built" },
+	{ src: "/images/re-book-p05.webp", caption: "The people and history behind it", alt: "Digital property book page on the Dolge family, the home's original owners, with archival photos" },
+	{ src: "/images/re-book-p12.webp", caption: "Room-by-room interiors", alt: "Digital property book page with a gallery of the home's interior rooms" },
+];
+
+const bookInside = [
+	"The home at a glance: beds, baths, square footage, acreage, and year built",
+	"The story: the architect, the original owners, and decades of archival photos",
+	"Life on the lake: the dock, boathouse, patio, and fire pit",
+	"Location: parks, shopping, and the commute to I-5, JBLM, and Seattle",
+	"Room-by-room interiors, with the details that justify the price",
+	"A closing page linking the video, 3D tour, floor plan, and photo gallery",
 ];
 
 const packages = [
@@ -329,6 +347,58 @@ const packages = [
 										</a>
 									))
 							}
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Digital property book -->
+			<section id="property-book" class="bg-primary py-20 text-white md:py-28">
+				<div class="container mx-auto max-w-5xl px-6 md:px-12">
+					<div class="mx-auto mb-14 max-w-3xl text-center">
+						<p class="mb-4 text-xs font-bold tracking-widest text-orange-400 uppercase">The Digital Property Book</p>
+						<h2 class="text-3xl text-white md:text-4xl">Documents that communicate a home's true value</h2>
+						<p class="mt-5 leading-relaxed text-white/80">
+							A listing photo shows what a home looks like. It doesn't explain why it's worth the price.
+							Brad also produces designed, shareable property books that tell the whole story: the history,
+							the setting, the details, and the lifestyle. This one was built for the Lake Steilacoom estate above.
+						</p>
+					</div>
+					<div class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+						{
+							bookPages.map((p) => (
+								<figure>
+									<a href={bookUrl} target="_blank" rel="noopener" class="block overflow-hidden rounded-sm shadow-lg ring-1 ring-white/10 transition-transform hover:-translate-y-1">
+										<img src={p.src} alt={p.alt} width="640" height="828" class="h-auto w-full" loading="lazy" />
+									</a>
+									<figcaption class="mt-3 text-center text-xs text-white/70">{p.caption}</figcaption>
+								</figure>
+							))
+						}
+					</div>
+					<div class="mt-14 grid items-start gap-10 md:grid-cols-2">
+						<div>
+							<h3 class="mb-4 text-xl font-bold text-white">What's inside</h3>
+							<ul class="space-y-3 text-white/85">
+								{
+									bookInside.map((item) => (
+										<li class="flex items-start gap-3">
+											<span class="mt-1 text-orange-300" set:html={Check} />
+											<span>{item}</span>
+										</li>
+									))
+								}
+							</ul>
+						</div>
+						<div>
+							<h3 class="mb-4 text-xl font-bold text-white">Why it matters</h3>
+							<p class="leading-relaxed text-white/80">
+								Buyers, their agents, and appraisers all ask the same question: what makes this property
+								different? The property book answers it up front, with real perspective on the home, the
+								neighborhood, and the community instead of boilerplate. It's included in the Complete Marketing
+								System, and it travels well: a single link to share by email, text, or social.
+							</p>
+							<a href={bookUrl} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-sm bg-accent px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90" set:html={`View the full property book (PDF) ${ExternalLink}`} />
 						</div>
 					</div>
 				</div>
