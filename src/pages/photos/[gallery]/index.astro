@@ -1,0 +1,127 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getGallery, photoNumbers, fileUrl, zipUrl, formatBytes } from "../../../data/photo-galleries";
+
+export const prerender = false;
+
+const gallery = getGallery(Astro.params.gallery);
+if (!gallery) {
+	return new Response("Not found", { status: 404, headers: { "Content-Type": "text/plain; charset=utf-8", "X-Robots-Tag": "noindex" } });
+}
+
+Astro.response.headers.set("X-Robots-Tag", "noindex, nofollow");
+
+const numbers = photoNumbers(gallery);
+const photos = numbers.map((n) => ({
+	n,
+	thumb: fileUrl(gallery, "thumb", n),
+	full: fileUrl(gallery, "full", n),
+	download: `${fileUrl(gallery, "original", n)}?download=1`,
+}));
+
+const Download = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>`;
+---
+
+<Layout title={`${gallery.title} | Ascend Consulting`} description={gallery.description} noindex>
+	<section class="bg-primary py-14 md:py-16">
+		<div class="container mx-auto max-w-6xl px-6 md:px-12">
+			<nav class="mb-5 text-sm text-white/70" aria-label="Breadcrumb">
+				<a href="/photos" class="hover:text-white hover:underline">Photo Galleries</a>
+				<span aria-hidden="true" class="mx-2">/</span>
+				<span aria-current="page" class="text-white">{gallery.dateLabel}</span>
+			</nav>
+			<div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+				<div>
+					<p class="mb-3 text-xs font-bold tracking-widest text-orange-400 uppercase">{photos.length} photos</p>
+					<h1 class="text-3xl text-white md:text-4xl">{gallery.title}</h1>
+					<p class="mt-3 text-white/70">Select a photo to view it larger. Use the arrow keys or swipe to move between photos.</p>
+				</div>
+				<a href={zipUrl(gallery)} class="inline-flex w-fit shrink-0 items-center gap-2 rounded-sm bg-accent px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90" set:html={`${Download} Download all photos (${formatBytes(gallery.zipBytes)})`} />
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-gray-50 py-10 md:py-14">
+		<div class="container mx-auto max-w-6xl px-6 md:px-12">
+			<ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4" id="photo-grid">
+				{
+					photos.map((p, i) => (
+						<li>
+							<button type="button" data-index={i} class="group block aspect-[3/2] w-full cursor-zoom-in overflow-hidden rounded-sm bg-gray-200 shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" aria-label={`View photo ${i + 1} of ${photos.length}`}>
+								<img src={p.thumb} alt={`${gallery.title}, photo ${i + 1}`} class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.04]" width="640" height="427" loading="lazy" />
+							</button>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<dialog id="viewer" class="m-0 h-dvh max-h-none w-screen max-w-none bg-black p-0 text-white backdrop:bg-black" aria-label="Photo viewer">
+		<div class="relative flex h-full w-full flex-col">
+			<div class="flex items-center justify-between gap-3 px-4 py-3">
+				<p id="viewer-count" class="text-sm text-white/80" aria-live="polite"></p>
+				<div class="flex items-center gap-2">
+					<a id="viewer-download" href="#" download class="inline-flex items-center gap-2 rounded-sm bg-accent px-4 py-2 text-sm font-semibold text-white hover:opacity-90" set:html={`${Download} Download photo`} />
+					<button type="button" id="viewer-close" class="rounded-sm border border-white/30 px-4 py-2 text-sm font-semibold hover:bg-white/10" aria-label="Close viewer">Close</button>
+				</div>
+			</div>
+			<div class="relative flex min-h-0 flex-1 items-center justify-center px-2 md:px-16">
+				<button type="button" id="viewer-prev" class="absolute top-1/2 left-1 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-3xl leading-none hover:bg-white/30 md:left-4" aria-label="Previous photo">&lsaquo;</button>
+				<img id="viewer-img" src="" alt="" class="max-h-full max-w-full object-contain" />
+				<button type="button" id="viewer-next" class="absolute top-1/2 right-1 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-3xl leading-none hover:bg-white/30 md:right-4" aria-label="Next photo">&rsaquo;</button>
+			</div>
+			<p class="px-4 py-3 text-center text-xs text-white/50">Downloads are the full-resolution originals.</p>
+		</div>
+	</dialog>
+
+	<script is:inline define:vars={{ photos, title: gallery.title }}>
+		(function () {
+			var dialog = document.getElementById("viewer");
+			var img = document.getElementById("viewer-img");
+			var count = document.getElementById("viewer-count");
+			var dl = document.getElementById("viewer-download");
+			var current = 0;
+
+			function show(i) {
+				current = (i + photos.length) % photos.length;
+				var p = photos[current];
+				img.src = p.full;
+				img.alt = title + ", photo " + (current + 1);
+				count.textContent = "Photo " + (current + 1) + " of " + photos.length;
+				dl.href = p.download;
+				// Warm the neighbours so flicking through feels instant.
+				[current + 1, current - 1].forEach(function (j) {
+					new Image().src = photos[(j + photos.length) % photos.length].full;
+				});
+			}
+			function open(i) {
+				show(i);
+				if (!dialog.open) dialog.showModal();
+			}
+
+			document.getElementById("photo-grid").addEventListener("click", function (e) {
+				var btn = e.target.closest("button[data-index]");
+				if (btn) open(Number(btn.dataset.index));
+			});
+			document.getElementById("viewer-prev").addEventListener("click", function () { show(current - 1); });
+			document.getElementById("viewer-next").addEventListener("click", function () { show(current + 1); });
+			document.getElementById("viewer-close").addEventListener("click", function () { dialog.close(); });
+			dialog.addEventListener("close", function () { img.removeAttribute("src"); });
+			dialog.addEventListener("keydown", function (e) {
+				if (e.key === "ArrowRight") show(current + 1);
+				else if (e.key === "ArrowLeft") show(current - 1);
+			});
+
+			// Swipe left/right on touch screens.
+			var startX = null;
+			img.addEventListener("touchstart", function (e) { startX = e.changedTouches[0].clientX; }, { passive: true });
+			img.addEventListener("touchend", function (e) {
+				if (startX === null) return;
+				var dx = e.changedTouches[0].clientX - startX;
+				startX = null;
+				if (Math.abs(dx) > 40) show(current + (dx < 0 ? 1 : -1));
+			}, { passive: true });
+		})();
+	</script>
+</Layout>

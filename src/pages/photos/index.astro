@@ -1,0 +1,51 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { galleries, fileUrl, zipUrl, formatBytes } from "../../data/photo-galleries";
+
+export const prerender = false;
+
+Astro.response.headers.set("X-Robots-Tag", "noindex, nofollow");
+
+const Download = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>`;
+---
+
+<Layout title="Photo Galleries | Ascend Consulting" description="Private photo galleries." noindex>
+	<section class="bg-primary py-16 md:py-20">
+		<div class="container mx-auto max-w-5xl px-6 md:px-12">
+			<p class="mb-4 text-xs font-bold tracking-widest text-orange-400 uppercase">Private Galleries</p>
+			<h1 class="mb-4 text-4xl text-white md:text-5xl">Photo Galleries</h1>
+			<p class="max-w-2xl text-lg leading-relaxed text-white/75">
+				Open a gallery to look through the photos one by one, or download every photo in a gallery at once.
+			</p>
+		</div>
+	</section>
+
+	<section class="bg-gray-50 py-14 md:py-20">
+		<div class="container mx-auto max-w-5xl px-6 md:px-12">
+			<div class="grid gap-8 md:grid-cols-2">
+				{
+					galleries.map((g) => (
+						<article class="flex flex-col overflow-hidden rounded-sm border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+							<a href={`/photos/${g.slug}`} class="group block">
+								<div class="aspect-[3/2] overflow-hidden bg-gray-100">
+									<img src={fileUrl(g, "thumb", "01")} alt={`Cover photo for ${g.title}`} class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" width="640" height="427" loading="lazy" />
+								</div>
+								<div class="px-6 pt-6">
+									<p class="mb-1 text-xs font-bold tracking-widest text-orange-600 uppercase">{g.dateLabel}</p>
+									<h2 class="text-xl font-bold text-primary group-hover:underline">{g.title}</h2>
+									<p class="mt-2 text-sm text-gray-500">{g.count} photos</p>
+								</div>
+							</a>
+							<div class="mt-auto flex flex-wrap items-center gap-3 px-6 pt-5 pb-6">
+								<a href={`/photos/${g.slug}`} class="inline-flex items-center rounded-sm border border-primary/30 px-5 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary/5">
+									View photos
+								</a>
+								<a href={zipUrl(g)} class="inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90" set:html={`${Download} Download all photos (${formatBytes(g.zipBytes)})`} />
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+</Layout>

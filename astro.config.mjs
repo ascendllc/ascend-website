@@ -26,11 +26,12 @@ export default defineConfig({
       // pages, the API routes, and /industry-solutions (a noindexed ProVisors-referral
       // page, kept separate from the public /industry page by design) out of the
       // sitemap submitted to search engines. /sdi is a private, noindexed client handoff
-      // page (a launch package for Soaring Dragonfly Institute) and stays out as well.
+      // page (a launch package for Soaring Dragonfly Institute) and stays out as well, and
+      // /photos is the password-protected photo gallery area.
       filter: (page) => {
         const pathname = new URL(page).pathname;
         return (
-          !/\/(law|finance|sdi)(\/|$)/.test(pathname) &&
+          !/\/(law|finance|sdi|photos)(\/|$)/.test(pathname) &&
           !pathname.startsWith('/api/') &&
           pathname !== '/industry-solutions/' &&
           pathname !== '/industry-solutions'
