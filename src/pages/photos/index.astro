@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import PhotoHero from "../../components/PhotoHero.astro";
 import { galleries, fileUrl, zipUrl, formatBytes } from "../../data/photo-galleries";
 
 export const prerender = false;
@@ -10,7 +11,7 @@ const Download = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 ---
 
 <Layout title="Photo Galleries | Ascend Consulting" description="Private photo galleries." noindex>
-	<section class="bg-primary py-16 md:py-20">
+	<PhotoHero class="py-16 md:py-20">
 		<div class="container mx-auto max-w-5xl px-6 md:px-12">
 			<p class="mb-4 text-xs font-bold tracking-widest text-orange-400 uppercase">Private Galleries</p>
 			<h1 class="mb-4 text-4xl text-white md:text-5xl">Photo Galleries</h1>
@@ -18,7 +19,7 @@ const Download = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 				Open a gallery to look through the photos one by one, or download every photo in a gallery at once.
 			</p>
 		</div>
-	</section>
+	</PhotoHero>
 
 	<section class="bg-gray-50 py-14 md:py-20">
 		<div class="container mx-auto max-w-5xl px-6 md:px-12">

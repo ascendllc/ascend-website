@@ -1,0 +1,14 @@
+---
+// Navy hero band for the /photos pages: a faint greyscale mountain photo under a navy wash.
+// Every gallery page uses this, so new galleries pick it up automatically.
+interface Props {
+	class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<section class:list={["relative isolate overflow-hidden bg-primary", className]}>
+	<img src="/images/photos-hero-mountain.webp" alt="" aria-hidden="true" width="1600" height="1067" decoding="async" fetchpriority="high" class="absolute inset-0 -z-20 h-full w-full object-cover object-[center_40%] grayscale" />
+	<div class="absolute inset-0 -z-10 bg-primary/75" aria-hidden="true"></div>
+	<slot />
+</section>
