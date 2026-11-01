@@ -33,6 +33,17 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	if (!expectedUser || !expectedPass) {
 		return challenge(503, "The photo gallery isn't available right now.");
 	}
+	// Optional extra logins (e.g. lowercase variants for people who trip over case sensitivity),
+	// as a JSON array of "username:password" strings in PHOTOS_EXTRA_LOGINS.
+	const logins: [string, string][] = [[expectedUser, expectedPass]];
+	try {
+		for (const entry of JSON.parse(process.env.PHOTOS_EXTRA_LOGINS ?? "[]") as unknown[]) {
+			const at = typeof entry === "string" ? entry.indexOf(":") : -1;
+			if (at > 0) logins.push([(entry as string).slice(0, at), (entry as string).slice(at + 1)]);
+		}
+	} catch {
+		console.error("[photos] PHOTOS_EXTRA_LOGINS is not valid JSON; ignoring it.");
+	}
 
 	let ip = "unknown";
 	try {
@@ -54,9 +65,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
 			const decoded = Buffer.from(header.slice(6), "base64").toString("utf8");
 			const split = decoded.indexOf(":");
 			if (split >= 0) {
-				const userOk = safeEqual(decoded.slice(0, split), expectedUser);
-				const passOk = safeEqual(decoded.slice(split + 1), expectedPass);
-				authorized = userOk && passOk;
+				const user = decoded.slice(0, split);
+				const pass = decoded.slice(split + 1);
+				// Check every login (no early exit) so timing doesn't reveal which one matched.
+				for (const [u, p] of logins) {
+					const userOk = safeEqual(user, u);
+					const passOk = safeEqual(pass, p);
+					if (userOk && passOk) authorized = true;
+				}
 			}
 		} catch {
 			authorized = false;
