@@ -13,13 +13,62 @@ function isProtected(pathname: string) {
 	return pathname === "/photos" || pathname.startsWith("/photos/");
 }
 
+// Shown behind the browser's own sign-in prompt (and after Cancel). It is a blurred stand-in for the
+// gallery, built from plain gradients; it never includes real photos, which stay behind the login.
+const tiles = ["#8fa3d9", "#e8a07a", "#6f86c4", "#f0c9a8", "#4d62a8", "#d98b6a", "#a9b8e3", "#c27d5e", "#7d92cf", "#f2b896", "#5a70b4", "#e39c78"];
+const signInPage = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Photo Galleries | Ascend Consulting</title>
+<style>
+	* { box-sizing: border-box; }
+	html, body { margin: 0; height: 100%; }
+	body { font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif; background: #1b2870; color: #fff; overflow: hidden; }
+	.backdrop { position: fixed; inset: -80px; filter: blur(46px); transform: scale(1.1); }
+	.hero { height: 34vh; min-height: 220px; background: #1b2870; }
+	.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 28px; background: #f5f6fa; height: 100%; }
+	.grid i { display: block; border-radius: 4px; aspect-ratio: 3 / 2; }
+	.veil { position: fixed; inset: 0; background: rgba(19, 28, 82, 0.35); }
+	main { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: 24px; padding-top: 22vh; text-align: center; }
+	.card { max-width: 26rem; }
+	img { width: 150px; height: auto; margin-bottom: 20px; }
+	h1 { margin: 0 0 10px; font-size: 1.6rem; }
+	p { margin: 0; line-height: 1.6; color: rgba(255, 255, 255, 0.88); }
+	a { color: #fff; font-weight: 600; }
+	@media (max-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+	<div class="backdrop" aria-hidden="true">
+		<div class="hero"></div>
+		<div class="grid">${tiles.map((c) => `<i style="background:linear-gradient(135deg,${c},#2d3b8c)"></i>`).join("")}</div>
+	</div>
+	<div class="veil" aria-hidden="true"></div>
+	<main>
+		<div class="card">
+			<img src="/images/ascend-logo-white.webp" alt="Ascend Consulting" width="150">
+			<h1>Private Photo Gallery</h1>
+			<p>Please enter the username and password you were given to view the photos.</p>
+			<p style="margin-top:14px;font-size:.9rem">Don't see a sign-in box? <a href="/photos">Try again</a>. The username and password are case sensitive.</p>
+		</div>
+	</main>
+</body>
+</html>`;
+
 function challenge(status: 401 | 429 | 503, message: string) {
 	const headers: Record<string, string> = {
 		"Content-Type": "text/plain; charset=utf-8",
 		"Cache-Control": "private, no-store",
 		"X-Robots-Tag": "noindex, nofollow",
 	};
-	if (status === 401) headers["WWW-Authenticate"] = `Basic realm="${REALM}", charset="UTF-8"`;
+	if (status === 401) {
+		headers["WWW-Authenticate"] = `Basic realm="${REALM}", charset="UTF-8"`;
+		headers["Content-Type"] = "text/html; charset=utf-8";
+		return new Response(signInPage, { status, headers });
+	}
 	return new Response(message, { status, headers });
 }
 
