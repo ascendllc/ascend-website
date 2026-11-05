@@ -8,6 +8,17 @@ import criticalCss from './integrations/critical-css.mjs';
 
 import sitemap from '@astrojs/sitemap';
 
+// Pages that ship `noindex` (see their Layout props); kept out of the sitemap.
+const noindexPages = new Set([
+  '/industry-solutions',
+  '/finance-marketing',
+  '/legal-marketing',
+  '/provisors',
+  '/brandrise/intake',
+  '/privacy-policy',
+  '/terms-and-conditions',
+]);
+
 // https://astro.build/config
 export default defineConfig({
   // Canonical domain: the site's own redirect chain forces every request (www/non-www,
@@ -28,13 +39,15 @@ export default defineConfig({
       // sitemap submitted to search engines. /sdi is a private, noindexed client handoff
       // page (a launch package for Soaring Dragonfly Institute) and stays out as well, and
       // /photos is the password-protected photo gallery area.
+      // Also keep every page that carries a noindex tag out of the sitemap (sending crawlers a
+      // URL and a "don't index this" tag together is a mixed signal): the ProVisors/industry
+      // landing pages, the BrandRise intake form, and the legal boilerplate.
       filter: (page) => {
-        const pathname = new URL(page).pathname;
+        const pathname = new URL(page).pathname.replace(/\/$/, '');
         return (
           !/\/(law|finance|sdi|photos)(\/|$)/.test(pathname) &&
           !pathname.startsWith('/api/') &&
-          pathname !== '/industry-solutions/' &&
-          pathname !== '/industry-solutions'
+          !noindexPages.has(pathname)
         );
       },
     }),

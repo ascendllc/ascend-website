@@ -3,7 +3,8 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import DeferredChatWidget from "../components/DeferredChatWidget.tsx";
-import { site } from "../data/site";
+import { site, canonicalUrl } from "../data/site";
+import { services } from "../data/services";
 
 interface Props {
 	title: string;
@@ -18,6 +19,12 @@ interface Props {
 	/** Absolute or root-relative image URL for og:image/twitter:image. Defaults to the site's social share image. */
 	ogImage?: string;
 	ogType?: "website" | "article";
+	/** schema.org type of the page itself; defaults to a generic WebPage. */
+	pageType?: "WebPage" | "AboutPage" | "ContactPage" | "CollectionPage" | "ProfilePage";
+	/** Breadcrumb trail after "Home". Defaults to a single crumb for the current page. */
+	breadcrumbs?: { name: string; url: string }[];
+	/** ISO date the page content was last meaningfully updated (shown to search and AI engines). */
+	dateModified?: string;
 }
 
 const {
@@ -30,20 +37,55 @@ const {
 	canonical,
 	ogImage = "/images/opengraph.jpg",
 	ogType = "website",
+	pageType = "WebPage",
+	breadcrumbs,
+	dateModified,
 } = Astro.props;
 
 // Self-referencing canonical, driven by the configured `site` + the current URL, unless
 // a page explicitly overrides it (e.g. a dynamic route resolving to a different canonical
 // target). This guarantees every page — including future ones — canonicalizes to the
 // correct www domain by default instead of needing a hardcoded prop per page.
-const resolvedCanonical = canonical ?? new URL(Astro.url.pathname, site.url).href;
+const resolvedCanonical = canonicalUrl(canonical ?? Astro.url.pathname);
 const resolvedOgImage = new URL(ogImage, site.url).href;
 
-// Sitewide Organization + LocalBusiness + Person entity graph. Skipped on noindexed
-// pages (the /law and /finance demo microsites, and a couple of nav-only utility
-// pages) so schema never claims to describe a page it isn't actually about.
+// Sitewide entity graph: the organization (ProfessionalService + LocalBusiness), its founder
+// (Person), the WebSite, and a WebPage node for the current page that ties them together with
+// the breadcrumb trail. Skipped on noindexed pages (demo microsites, private areas, legal
+// boilerplate) so schema never claims to describe a page it isn't actually about.
 const orgId = `${site.url}/#organization`;
 const personId = `${site.url}/#brad-stave`;
+const websiteId = `${site.url}/#website`;
+const pageId = `${resolvedCanonical}#webpage`;
+const isHomepage = Astro.url.pathname === "/";
+
+// Trail after "Home". Pages with real hierarchy (services, case studies, articles) pass their own.
+const trail = breadcrumbs ?? [{ name: title.split(" | ")[0], url: resolvedCanonical }];
+const breadcrumbSchema = {
+	"@type": "BreadcrumbList",
+	"@id": `${resolvedCanonical}#breadcrumb`,
+	itemListElement: [{ name: "Home", url: `${site.url}/` }, ...trail].map((crumb, i) => ({
+		"@type": "ListItem",
+		position: i + 1,
+		name: crumb.name,
+		item: crumb.url.includes("#") ? new URL(crumb.url, site.url).href : canonicalUrl(crumb.url),
+	})),
+};
+
+const topics = [
+	"Marketing strategy",
+	"Growth marketing",
+	"Brand development",
+	"Brand strategy",
+	"Sales enablement",
+	"Lifecycle marketing",
+	"Digital acquisition",
+	"Podcast production",
+	"SEO, GEO and AEO",
+	"AI-powered marketing systems",
+	"Nonprofit marketing",
+];
+
 const entityGraph = {
 	"@context": "https://schema.org",
 	"@graph": [
@@ -51,7 +93,7 @@ const entityGraph = {
 			"@type": ["ProfessionalService", "LocalBusiness"],
 			"@id": orgId,
 			name: site.name,
-			url: site.url,
+			url: `${site.url}/`,
 			logo: { "@type": "ImageObject", url: `${site.url}/images/ascend-logo-color.webp` },
 			image: resolvedOgImage,
 			description:
@@ -66,40 +108,53 @@ const entityGraph = {
 				availableLanguage: "English",
 			},
 			areaServed: "Worldwide",
-			sameAs: ["https://ninestonepartners.com/bradstave/", "https://www.widelenspodcast.com"],
+			knowsAbout: topics,
+			hasOfferCatalog: {
+				"@type": "OfferCatalog",
+				name: "Ascend Consulting services",
+				itemListElement: services.map((svc) => ({
+					"@type": "Offer",
+					itemOffered: { "@type": "Service", name: svc.name, url: canonicalUrl(`/services/${svc.slug}`) },
+				})),
+			},
+			sameAs: site.sameAs,
 		},
 		{
 			"@type": "Person",
 			"@id": personId,
 			name: "Brad Stave",
+			url: canonicalUrl("/about"),
 			jobTitle: "Founder & Principal Consultant",
 			worksFor: { "@id": orgId },
 			email: site.email,
 			telephone: site.phone,
+			knowsAbout: topics,
 			description:
 				"Brad Stave is a senior marketing executive with 20+ years of global leadership experience across nonprofit, technology, and real estate sectors, including senior roles at Water Mission, VisionFund International, and Zones, LLC. He is the Founder of Ascend Consulting and a partner at Ninestone Partners, and hosts The Wide Lens Podcast.",
-			sameAs: ["https://ninestonepartners.com/bradstave/", "https://www.widelenspodcast.com"],
+			sameAs: site.sameAs,
 		},
 		{
 			"@type": "WebSite",
-			"@id": `${site.url}/#website`,
-			url: site.url,
+			"@id": websiteId,
+			url: `${site.url}/`,
 			name: site.name,
+			inLanguage: "en-US",
 			publisher: { "@id": orgId },
 		},
-	],
-};
-
-// Simple two-level breadcrumb (Home > current page), skipped on the homepage itself
-// and on noindexed pages. Reinforces site hierarchy for crawlers without needing
-// per-page hierarchy data.
-const isHomepage = Astro.url.pathname === "/";
-const breadcrumbSchema = {
-	"@context": "https://schema.org",
-	"@type": "BreadcrumbList",
-	itemListElement: [
-		{ "@type": "ListItem", position: 1, name: "Home", item: site.url },
-		{ "@type": "ListItem", position: 2, name: title.split(" | ")[0], item: resolvedCanonical },
+		{
+			"@type": pageType,
+			"@id": pageId,
+			url: resolvedCanonical,
+			name: title,
+			description,
+			inLanguage: "en-US",
+			isPartOf: { "@id": websiteId },
+			about: { "@id": orgId },
+			primaryImageOfPage: { "@type": "ImageObject", url: resolvedOgImage },
+			...(dateModified ? { dateModified } : {}),
+			...(isHomepage ? {} : { breadcrumb: { "@id": breadcrumbSchema["@id"] } }),
+		},
+		...(isHomepage ? [] : [breadcrumbSchema]),
 	],
 };
 ---
@@ -119,10 +174,20 @@ const breadcrumbSchema = {
 		<meta name="theme-color" content={site.themeColor} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{
+			noindex ? (
+				<meta name="robots" content="noindex, nofollow" />
+			) : (
+				<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+			)
+		}
 		<link rel="canonical" href={resolvedCanonical} />
 
+		<link rel="alternate" type="application/rss+xml" title={`${site.name} Insights`} href="/rss.xml" />
+		<link rel="alternate" type="text/plain" title="LLM-readable summary of this site" href="/llms.txt" />
+
 		<meta property="og:type" content={ogType} />
+		<meta property="og:locale" content="en_US" />
 		<meta property="og:site_name" content={site.name} />
 		<meta property="og:url" content={resolvedCanonical} />
 		<meta property="og:title" content={title} />
@@ -136,7 +201,6 @@ const breadcrumbSchema = {
 		<meta name="twitter:image" content={resolvedOgImage} />
 
 		{!noindex && <script type="application/ld+json" set:html={JSON.stringify(entityGraph)} />}
-		{!noindex && !isHomepage && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 	</head>
 	<body class="bg-white text-foreground">
 		{!bare && <Nav transparent={transparentHeader} />}

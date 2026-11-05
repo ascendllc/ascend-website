@@ -13,7 +13,22 @@ export const site = {
 	// the site's own redirect chain resolves every request to.
 	url: "https://www.ascendsmartly.com",
 	themeColor: "#1B2870",
+	// Profiles that identify the same entity elsewhere on the web (schema.org `sameAs`). Add the
+	// founder's/company's other official profiles here (LinkedIn, YouTube, podcast directories...)
+	// and they flow into the structured data on every page.
+	sameAs: ["https://www.linkedin.com/in/bradstave/", "https://ninestonepartners.com/bradstave/", "https://www.widelenspodcast.com"],
 };
+
+/**
+ * One canonical form for every indexable URL: absolute, www host, trailing slash (files like
+ * /llms.txt excepted). Used for canonical tags, og:url, the sitemap match and all schema URLs so
+ * the same page is never described by two different addresses.
+ */
+export function canonicalUrl(pathOrUrl: string) {
+	const u = new URL(pathOrUrl, site.url);
+	const needsSlash = !u.pathname.endsWith("/") && !/\.[a-z0-9]+$/i.test(u.pathname);
+	return `${site.url}${u.pathname}${needsSlash ? "/" : ""}`;
+}
 
 export const trustLogoImages = [
 	{ name: "Dell", src: "/images/logo-dell.webp" },

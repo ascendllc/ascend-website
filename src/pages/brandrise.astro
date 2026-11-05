@@ -368,7 +368,7 @@ const brandRiseSchema = {
 			name: t.name,
 			description: `${t.tagline} (${t.price}, ${t.priceSubtitle}${t.priceNote ? `, ${t.priceNote}` : ""})`,
 			...(numeric ? { price: numeric[0].replace(/,/g, ""), priceCurrency: "USD" } : {}),
-			url: `${site.url}/brandrise`,
+			url: `${site.url}/brandrise/`,
 		};
 	}),
 };

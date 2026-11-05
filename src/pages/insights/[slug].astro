@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { site } from "../../data/site";
+import { site, canonicalUrl } from "../../data/site";
 import { insights } from "../../data/insights";
 
 export function getStaticPaths() {
@@ -11,7 +11,8 @@ export function getStaticPaths() {
 }
 
 const { insight } = Astro.props;
-const pageUrl = `${site.url}/insights/${insight.slug}`;
+const pageUrl = canonicalUrl(`/insights/${insight.slug}`);
+const wordCount = insight.sections.reduce((n, s) => n + [...s.paragraphs, ...(s.list ?? [])].join(" ").split(/\s+/).length, 0);
 
 const articleSchema = {
 	"@context": "https://schema.org",
@@ -20,16 +21,36 @@ const articleSchema = {
 	description: insight.metaDescription,
 	datePublished: insight.publishedDate,
 	dateModified: insight.publishedDate,
-	author: { "@type": "Person", "@id": `${site.url}/#brad-stave`, name: "Brad Stave" },
-	publisher: { "@type": "Organization", "@id": `${site.url}/#organization`, name: site.name },
-	mainEntityOfPage: pageUrl,
+	author: { "@type": "Person", "@id": `${site.url}/#brad-stave`, name: "Brad Stave", url: canonicalUrl("/about") },
+	publisher: {
+		"@type": "Organization",
+		"@id": `${site.url}/#organization`,
+		name: site.name,
+		logo: { "@type": "ImageObject", url: `${site.url}/images/ascend-logo-color.webp` },
+	},
+	image: [`${site.url}/images/opengraph.jpg`],
+	wordCount,
+	inLanguage: "en-US",
+	isPartOf: { "@id": `${site.url}/#website` },
+	mainEntityOfPage: { "@type": "WebPage", "@id": `${pageUrl}#webpage` },
+	url: pageUrl,
 };
 
 const ArrowLeft = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>`;
 const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>`;
 ---
 
-<Layout title={insight.metaTitle} description={insight.metaDescription} canonical={pageUrl} ogType="article">
+<Layout
+	title={insight.metaTitle}
+	description={insight.metaDescription}
+	canonical={pageUrl}
+	ogType="article"
+	dateModified={insight.publishedDate}
+	breadcrumbs={[
+		{ name: "Insights", url: "/insights" },
+		{ name: insight.title, url: pageUrl },
+	]}
+>
 	<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
 	<div class="bg-[#0A1628] py-12 md:py-16">
