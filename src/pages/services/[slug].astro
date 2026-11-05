@@ -3,6 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import MinimalHeader from "../../components/MinimalHeader.astro";
 import { services } from "../../data/services";
 import { site, canonicalUrl } from "../../data/site";
+import FaqSection from "../../components/FaqSection.astro";
+import { serviceFaqs } from "../../data/serviceFaqs";
 
 export function getStaticPaths() {
 	return services.map((service) => ({
@@ -185,6 +187,8 @@ const Check = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" vi
 				</div>
 			</div>
 		</section>
+
+		{serviceFaqs[service.slug] && <FaqSection faqs={serviceFaqs[service.slug]} heading={`${service.name}: Common Questions`} class="bg-gray-50" />}
 
 		<!-- Closing CTA -->
 		<section class="border-t border-gray-100 bg-white py-20 md:py-28">

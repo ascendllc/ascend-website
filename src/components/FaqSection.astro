@@ -1,0 +1,48 @@
+---
+import type { Faq } from "../data/serviceFaqs";
+
+interface Props {
+	faqs: Faq[];
+	heading?: string;
+	eyebrow?: string;
+	class?: string;
+}
+const { faqs, heading = "Frequently Asked Questions", eyebrow = "Common Questions", class: className = "bg-gray-50" } = Astro.props;
+
+// The same questions and answers that are visible on the page, as FAQPage structured data.
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: faqs.map((f) => ({
+		"@type": "Question",
+		name: f.q,
+		acceptedAnswer: { "@type": "Answer", text: f.a },
+	})),
+};
+---
+
+<section class:list={["border-t border-gray-100 py-20 md:py-28", className]}>
+	<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+	<div class="container mx-auto max-w-3xl px-6 md:px-12">
+		<div class="mb-10 text-center">
+			<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">{eyebrow}</p>
+			<h2 class="mb-4 text-3xl font-bold text-primary md:text-4xl">{heading}</h2>
+			<div class="mx-auto h-1 w-16 bg-accent"></div>
+		</div>
+		<div class="space-y-3">
+			{
+				faqs.map((f) => (
+					<details class="group/faq rounded-sm border border-gray-200 bg-white shadow-sm" open>
+						<summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-left text-lg font-semibold text-primary select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary [&::-webkit-details-marker]:hidden">
+							<span>{f.q}</span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-accent transition-transform duration-200 group-open/faq:rotate-180" aria-hidden="true">
+								<path d="m6 9 6 6 6-6" />
+							</svg>
+						</summary>
+						<p class="px-6 pb-6 leading-relaxed text-gray-600">{f.a}</p>
+					</details>
+				))
+			}
+		</div>
+	</div>
+</section>

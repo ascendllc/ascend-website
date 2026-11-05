@@ -1,3 +1,5 @@
+import { novemberInsights } from "./insights-nov-2026";
+
 export interface InsightSection {
 	heading?: string;
 	paragraphs: string[];
@@ -17,7 +19,7 @@ export interface Insight {
 	sections: InsightSection[];
 }
 
-export const insights: Insight[] = [
+const originalInsights: Insight[] = [
 	{
 		slug: "what-is-brandrise",
 		title: "What Is BrandRise™? A Complete Guide to Ascend's Brand Launch System",
@@ -163,6 +165,9 @@ export const insights: Insight[] = [
 		],
 	},
 ];
+
+// Newest first.
+export const insights: Insight[] = [...novemberInsights, ...originalInsights];
 
 export function getInsight(slug: string) {
 	return insights.find((i) => i.slug === slug);

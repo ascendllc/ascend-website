@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import DeferredChatWidget from "../components/DeferredChatWidget.tsx";
 import { site, canonicalUrl } from "../data/site";
 import { services } from "../data/services";
+import { existsSync } from "node:fs";
 
 interface Props {
 	title: string;
@@ -35,7 +36,7 @@ const {
 	hideChat = false,
 	noindex = false,
 	canonical,
-	ogImage = "/images/opengraph.jpg",
+	ogImage,
 	ogType = "website",
 	pageType = "WebPage",
 	breadcrumbs,
@@ -47,7 +48,14 @@ const {
 // target). This guarantees every page — including future ones — canonicalizes to the
 // correct www domain by default instead of needing a hardcoded prop per page.
 const resolvedCanonical = canonicalUrl(canonical ?? Astro.url.pathname);
-const resolvedOgImage = new URL(ogImage, site.url).href;
+// Social-share image: an explicit prop wins; otherwise the generated per-page image in
+// public/images/og/<page-key>.jpg (see scripts/generate-og.mjs) if one exists; otherwise the
+// sitewide default.
+const pageKey = Astro.url.pathname.replace(/^\/|\/$/g, "").replace(/\//g, "-");
+const generatedOg = pageKey && existsSync(`public/images/og/${pageKey}.jpg`) ? `/images/og/${pageKey}.jpg` : undefined;
+const resolvedOgPath = ogImage ?? generatedOg ?? "/images/opengraph.jpg";
+const ogSize = resolvedOgPath === "/images/opengraph.jpg" ? { w: 1280, h: 720 } : generatedOg && resolvedOgPath === generatedOg ? { w: 1200, h: 630 } : undefined;
+const resolvedOgImage = new URL(resolvedOgPath, site.url).href;
 
 // Sitewide entity graph: the organization (ProfessionalService + LocalBusiness), its founder
 // (Person), the WebSite, and a WebPage node for the current page that ties them together with
@@ -193,8 +201,9 @@ const entityGraph = {
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={resolvedOgImage} />
-		<meta property="og:image:width" content="1280" />
-		<meta property="og:image:height" content="720" />
+		{ogSize && <meta property="og:image:width" content={String(ogSize.w)} />}
+		{ogSize && <meta property="og:image:height" content={String(ogSize.h)} />}
+		<meta property="og:image:alt" content={title} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />

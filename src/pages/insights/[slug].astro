@@ -12,6 +12,8 @@ export function getStaticPaths() {
 
 const { insight } = Astro.props;
 const pageUrl = canonicalUrl(`/insights/${insight.slug}`);
+const at = insights.findIndex((i) => i.slug === insight.slug);
+const relatedInsights = [1, 2, 3].map((n) => insights[(at + n) % insights.length]);
 const wordCount = insight.sections.reduce((n, s) => n + [...s.paragraphs, ...(s.list ?? [])].join(" ").split(/\s+/).length, 0);
 
 const articleSchema = {
@@ -93,5 +95,29 @@ const ArrowRight = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="1
 				set:html={`${insight.relatedLink.label} ${ArrowRight}`}
 			/>
 		</div>
+
+		<aside class="mt-14 border-t border-gray-100 pt-10" aria-label="About the author">
+			<p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">About the author</p>
+			<p class="text-base leading-relaxed text-gray-600">
+				<a href="/about" class="font-semibold text-primary hover:underline">Brad Stave</a> is the Founder and Principal Consultant of Ascend Consulting, a senior marketing executive with 20+ years of global leadership
+				experience across nonprofit, technology, and corporate sectors, including senior roles at Water Mission, VisionFund International, and Zones, LLC.
+				<a href="https://www.linkedin.com/in/bradstave/" rel="noopener" class="text-primary underline hover:text-accent">Connect on LinkedIn</a>.
+			</p>
+		</aside>
+
+		<nav class="mt-12" aria-label="More insights">
+			<p class="mb-4 text-xs font-bold tracking-widest text-accent uppercase">Keep reading</p>
+			<ul class="space-y-3">
+				{
+					relatedInsights.map((r) => (
+						<li>
+							<a href={`/insights/${r.slug}`} class="text-lg font-semibold text-primary hover:text-accent hover:underline">
+								{r.title}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
 	</article>
 </Layout>

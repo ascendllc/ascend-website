@@ -372,6 +372,8 @@ const brandRiseSchema = {
 		};
 	}),
 };
+import FaqSection from "../components/FaqSection.astro";
+import { brandRiseFaqs } from "../data/serviceFaqs";
 ---
 
 <Layout
@@ -728,6 +730,8 @@ const brandRiseSchema = {
 				</div>
 			</div>
 		</section>
+
+		<FaqSection faqs={brandRiseFaqs} heading="BrandRise Questions, Answered" class="bg-white" />
 
 		<!-- Final CTA -->
 		<section class="relative overflow-hidden bg-primary py-20 md:py-28">
